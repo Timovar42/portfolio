@@ -145,4 +145,7 @@ for (const file of files) {
   fs.writeFileSync(file, fixContent(fs.readFileSync(file, "utf8"), file));
 }
 
+// GitHub Pages (Jekyll) игнорирует папки с _ — без .nojekyll не отдаёт _next/
+fs.writeFileSync(path.join(OUT_DIR, ".nojekyll"), "");
+
 console.log("Fixed static paths in", files.length, "files");
