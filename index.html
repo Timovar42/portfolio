@@ -382,21 +382,6 @@
       background: linear-gradient(90deg, transparent, var(--deco-stroke), transparent);
       opacity: 0.45;
     }
-    .deco-pill {
-      position: absolute;
-      padding: 6px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--glass-border);
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      white-space: nowrap;
-    }
     .deco-svg {
       position: absolute;
       opacity: 0.22;
@@ -417,32 +402,6 @@
     .section-head {
       position: relative;
     }
-    .section-head h2 {
-      position: relative;
-      display: inline-block;
-    }
-    .section-head h2::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -10px;
-      width: 48px;
-      height: 3px;
-      border-radius: 2px;
-      background: var(--gradient);
-    }
-    .contact-header.section-head h2::after {
-      left: 50%;
-      transform: translateX(-50%);
-    }
-    .section-eyebrow::before {
-      content: '';
-      width: 18px;
-      height: 2px;
-      border-radius: 1px;
-      background: var(--gradient);
-      flex-shrink: 0;
-    }
     @keyframes float-y {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-14px); }
@@ -459,10 +418,50 @@
       0%, 100% { opacity: 0.45; transform: scale(1); }
       50% { opacity: 0.75; transform: scale(1.06); }
     }
-    .deco-float { animation: float-y 7s ease-in-out infinite; }
-    .deco-float-2 { animation: float-y 9s ease-in-out infinite reverse; }
-    .deco-spin { animation: spin-slow 48s linear infinite; }
-    .deco-pulse { animation: pulse-glow 5s ease-in-out infinite; }
+    .deco-float { animation: float-y calc(7s / var(--deco-pace, 1)) ease-in-out infinite; }
+    .deco-float-2 { animation: float-y calc(9s / var(--deco-pace, 1)) ease-in-out infinite reverse; }
+    .deco-spin { animation: spin-slow calc(48s / var(--deco-pace, 1)) linear infinite; }
+    .deco-pulse { animation: pulse-glow calc(5s / var(--deco-pace, 1)) ease-in-out infinite; }
+    .deco-pace-fast { --deco-pace: 1.4; }
+    .deco-pace-faster { --deco-pace: 1.5; }
+    .deco-pace-fastest { --deco-pace: 2.25; }
+    .deco-emphasis.deco-cross { opacity: 0.72; }
+    .deco-emphasis.deco-diamond { opacity: 0.78; }
+    .deco-emphasis.deco-ring:not(.deco-ring--solid) { opacity: 0.72; }
+    .deco-emphasis.deco-ring--solid { opacity: 0.82; }
+    .deco-emphasis.deco-svg { opacity: 0.48; }
+    .deco-emphasis.deco-dot-cluster { opacity: 0.58; }
+    .deco-emphasis.deco-orb { opacity: 0.92; filter: blur(50px) saturate(1.15); }
+    .deco-emphasis.hero-blob-3 {
+      opacity: 0.88;
+      filter: blur(42px) saturate(1.2);
+      animation: pulse-glow-emphasis calc(6s / var(--deco-pace, 1)) ease-in-out infinite;
+    }
+    .deco-emphasis.deco-pulse:not(.hero-blob-3) {
+      animation: pulse-glow-emphasis calc(5s / var(--deco-pace, 1)) ease-in-out infinite;
+    }
+    .deco-emphasis.deco-gem .deco-gem__ring,
+    .deco-emphasis.deco-gem .deco-gem__orbit {
+      border-color: var(--deco-stroke);
+      opacity: 1;
+    }
+    .deco-emphasis.deco-gem .deco-gem__core {
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+    .dev-float__item.deco-emphasis { opacity: 0.3; }
+    .dev-float__item.deco-emphasis.dev-float__item--lg { opacity: 0.26; }
+    .dev-float__item.deco-emphasis .dev-float__svg { opacity: 0.22; }
+    [data-theme="light"] .deco-emphasis.deco-cross,
+    [data-theme="light"] .deco-emphasis.deco-diamond,
+    [data-theme="light"] .deco-emphasis.deco-ring:not(.deco-ring--solid) { opacity: 0.84; }
+    [data-theme="light"] .deco-emphasis.deco-svg { opacity: 0.52; }
+    [data-theme="light"] .dev-float__item.deco-emphasis { opacity: 0.38; }
+    [data-theme="dark"] .deco-emphasis.deco-cross,
+    [data-theme="dark"] .deco-emphasis.deco-diamond { opacity: 0.76; }
+    @keyframes pulse-glow-emphasis {
+      0%, 100% { opacity: 0.62; transform: scale(1); }
+      50% { opacity: 0.92; transform: scale(1.06); }
+    }
     @media (prefers-reduced-motion: reduce) {
       .deco-float,
       .deco-float-2,
@@ -643,16 +642,16 @@
       45% { transform: translate(20px, 24px) rotate(-4deg); }
       80% { transform: translate(-12px, -20px) rotate(9deg); }
     }
-    .dev-float-drift-1 { animation: dev-drift-1 24s ease-in-out infinite; }
-    .dev-float-drift-2 { animation: dev-drift-2 28s ease-in-out infinite; animation-delay: -4s; }
-    .dev-float-drift-3 { animation: dev-drift-3 20s ease-in-out infinite; animation-delay: -8s; }
-    .dev-float-drift-4 { animation: dev-drift-4 26s ease-in-out infinite; animation-delay: -2s; }
-    .dev-float-drift-5 { animation: dev-drift-5 22s ease-in-out infinite; animation-delay: -11s; }
-    .dev-float-drift-6 { animation: dev-drift-6 30s ease-in-out infinite; animation-delay: -6s; }
-    .dev-float-drift-7 { animation: dev-drift-7 27s ease-in-out infinite; animation-delay: -9s; }
-    .dev-float-drift-8 { animation: dev-drift-8 23s ease-in-out infinite; animation-delay: -3s; }
-    .dev-float-drift-9 { animation: dev-drift-9 29s ease-in-out infinite; animation-delay: -13s; }
-    .dev-float-drift-10 { animation: dev-drift-10 25s ease-in-out infinite; animation-delay: -7s; }
+    .dev-float-drift-1 { animation: dev-drift-1 calc(24s / var(--deco-pace, 1)) ease-in-out infinite; }
+    .dev-float-drift-2 { animation: dev-drift-2 calc(28s / var(--deco-pace, 1)) ease-in-out infinite; animation-delay: calc(-4s / var(--deco-pace, 1)); }
+    .dev-float-drift-3 { animation: dev-drift-3 calc(20s / var(--deco-pace, 1)) ease-in-out infinite; animation-delay: calc(-8s / var(--deco-pace, 1)); }
+    .dev-float-drift-4 { animation: dev-drift-4 calc(26s / var(--deco-pace, 1)) ease-in-out infinite; animation-delay: calc(-2s / var(--deco-pace, 1)); }
+    .dev-float-drift-5 { animation: dev-drift-5 calc(22s / var(--deco-pace, 1)) ease-in-out infinite; animation-delay: calc(-11s / var(--deco-pace, 1)); }
+    .dev-float-drift-6 { animation: dev-drift-6 calc(30s / var(--deco-pace, 1)) ease-in-out infinite; animation-delay: calc(-6s / var(--deco-pace, 1)); }
+    .dev-float-drift-7 { animation: dev-drift-7 calc(27s / var(--deco-pace, 1)) ease-in-out infinite; animation-delay: calc(-9s / var(--deco-pace, 1)); }
+    .dev-float-drift-8 { animation: dev-drift-8 calc(23s / var(--deco-pace, 1)) ease-in-out infinite; animation-delay: calc(-3s / var(--deco-pace, 1)); }
+    .dev-float-drift-9 { animation: dev-drift-9 calc(29s / var(--deco-pace, 1)) ease-in-out infinite; animation-delay: calc(-13s / var(--deco-pace, 1)); }
+    .dev-float-drift-10 { animation: dev-drift-10 calc(25s / var(--deco-pace, 1)) ease-in-out infinite; animation-delay: calc(-7s / var(--deco-pace, 1)); }
 
     a { color: inherit; text-decoration: none; }
     button { font-family: inherit; border: none; }
@@ -668,11 +667,6 @@
     .d2 { transition-delay: 0.15s; }
     .d3 { transition-delay: 0.25s; }
     .d4 { transition-delay: 0.35s; }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
 
     /* ——— NAV ——— */
     .nav {
@@ -712,17 +706,6 @@
       font-size: 18px;
       color: var(--text);
       letter-spacing: -0.02em;
-    }
-    .logo::after {
-      content: '';
-      display: inline-block;
-      width: 5px;
-      height: 5px;
-      margin-left: 3px;
-      margin-bottom: 2px;
-      border-radius: 50%;
-      background: var(--accent);
-      vertical-align: middle;
     }
     .nav-links {
       display: flex;
@@ -821,7 +804,7 @@
       height: 180px;
       background: var(--deco-fill);
       filter: blur(50px);
-      animation: pulse-glow 6s ease-in-out infinite;
+      animation: pulse-glow calc(6s / var(--deco-pace, 1)) ease-in-out infinite;
     }
     .hero-deco-ring {
       right: 8%;
@@ -843,10 +826,6 @@
       right: 6%;
       top: 52%;
       transform: rotate(-24deg);
-    }
-    .hero-deco-pill {
-      left: 6%;
-      top: 20%;
     }
     .deco-gem {
       position: absolute;
@@ -879,7 +858,7 @@
       inset: 6px;
       border-radius: 50%;
       border: 1px dashed var(--deco-stroke-muted);
-      animation: spin-slow 24s linear infinite;
+      animation: spin-slow calc(24s / var(--deco-pace, 1)) linear infinite;
     }
     .hero-deco-gem {
       left: 6%;
@@ -1014,44 +993,6 @@
         rgba(79, 70, 229, 0.04) 3px,
         rgba(79, 70, 229, 0.04) 4px
       );
-    }
-    .eyebrow {
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border-radius: 20px;
-      padding: 5px 14px;
-      font-family: var(--font-body);
-      font-size: 11px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--white40);
-      margin-bottom: 28px;
-    }
-    .eyebrow-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--accent);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-      flex-shrink: 0;
-    }
-    .section-eyebrow {
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-      font-family: var(--font-body);
-      font-size: 12px;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent2);
-      margin-bottom: 12px;
     }
     h1 {
       font-family: var(--font-display);
@@ -2401,11 +2342,6 @@
       background: #FFFFFF;
       border-color: var(--accent);
     }
-    [data-theme="light"] .eyebrow {
-      background: var(--surface-tint);
-      border-color: rgba(15, 16, 24, 0.12);
-      color: var(--chip-text);
-    }
     [data-theme="light"] .section-bg2 {
       background: linear-gradient(180deg, rgba(15, 16, 24, 0.045) 0%, rgba(79, 70, 229, 0.04) 100%);
     }
@@ -2418,11 +2354,6 @@
     }
     [data-theme="light"] .service-price-value {
       color: var(--accent);
-    }
-    [data-theme="light"] .deco-pill {
-      background: var(--surface-tint);
-      border-color: rgba(15, 16, 24, 0.14);
-      color: var(--chip-text);
     }
 
     /* ——— MOBILE ——— */
@@ -2501,7 +2432,6 @@
       #projects .deco-svg,
       #services .deco-svg,
       #contact .deco-svg,
-      .deco-pill { display: none; }
       .hero-deco-ring,
       .hero-deco-ring-2 { opacity: 0.35; }
 
@@ -2582,11 +2512,6 @@
         flex-wrap: wrap;
       }
       .browser-url {
-        font-size: 10px;
-      }
-      .eyebrow {
-        max-width: 100%;
-        letter-spacing: 0.1em;
         font-size: 10px;
       }
       .section-head h2 {
@@ -2864,12 +2789,12 @@
 <body>
 
   <div class="dev-float" aria-hidden="true">
-    <span class="dev-float__item dev-float__item--braces" data-scroll-speed="0.207"><span class="dev-float__drift dev-float-drift-1">{ }</span></span>
-    <span class="dev-float__item dev-float__item--tags" data-scroll-speed="0.276"><span class="dev-float__drift dev-float-drift-2">&lt;/&gt;</span></span>
+    <span class="dev-float__item dev-float__item--braces deco-emphasis" data-scroll-speed="0.207"><span class="dev-float__drift dev-float-drift-1">{ }</span></span>
+    <span class="dev-float__item dev-float__item--tags deco-pace-fast" data-scroll-speed="0.276"><span class="dev-float__drift dev-float-drift-2">&lt;/&gt;</span></span>
     <span class="dev-float__item dev-float__item--arrow" data-scroll-speed="0.173"><span class="dev-float__drift dev-float-drift-3">=&gt;</span></span>
-    <span class="dev-float__item dev-float__chip dev-float__item--css" data-scroll-speed="0.322"><span class="dev-float__drift dev-float-drift-4">.class</span></span>
+    <span class="dev-float__item dev-float__chip dev-float__item--css deco-pace-fast" data-scroll-speed="0.322"><span class="dev-float__drift dev-float-drift-4">.class</span></span>
     <span class="dev-float__item dev-float__chip dev-float__item--fn" data-scroll-speed="0.138"><span class="dev-float__drift dev-float-drift-5">fn()</span></span>
-    <span class="dev-float__item dev-float__item--window" data-scroll-speed="0.253">
+    <span class="dev-float__item dev-float__item--window deco-pace-fastest deco-emphasis" data-scroll-speed="0.253">
       <svg class="dev-float__drift dev-float__svg dev-float-drift-6" viewBox="0 0 48 36" fill="none" aria-hidden="true">
         <rect x="1" y="1" width="46" height="34" rx="4" stroke="currentColor" stroke-width="1"/>
         <circle cx="9" cy="7" r="1.5" fill="currentColor" opacity="0.7"/>
@@ -2880,11 +2805,11 @@
         <line x1="8" y1="26" x2="24" y2="26" stroke="currentColor" stroke-width="1" opacity="0.45"/>
       </svg>
     </span>
-    <span class="dev-float__item dev-float__item--lg dev-float__item--div" data-scroll-speed="0.241"><span class="dev-float__drift dev-float-drift-7">&lt;/div&gt;</span></span>
-    <span class="dev-float__item dev-float__item--lg dev-float__item--brackets" data-scroll-speed="0.195"><span class="dev-float__drift dev-float-drift-8">[ ]</span></span>
+    <span class="dev-float__item dev-float__item--lg dev-float__item--div deco-pace-faster" data-scroll-speed="0.241"><span class="dev-float__drift dev-float-drift-7">&lt;/div&gt;</span></span>
+    <span class="dev-float__item dev-float__item--lg dev-float__item--brackets deco-pace-fast" data-scroll-speed="0.195"><span class="dev-float__drift dev-float-drift-8">[ ]</span></span>
     <span class="dev-float__item dev-float__chip dev-float__chip--lg dev-float__item--lg dev-float__item--id" data-scroll-speed="0.299"><span class="dev-float__drift dev-float-drift-9">#id</span></span>
-    <span class="dev-float__item dev-float__chip dev-float__chip--lg dev-float__item--lg dev-float__item--import" data-scroll-speed="0.218"><span class="dev-float__drift dev-float-drift-10">import</span></span>
-    <span class="dev-float__item dev-float__item--lg dev-float__item--git" data-scroll-speed="0.264">
+    <span class="dev-float__item dev-float__chip dev-float__chip--lg dev-float__item--lg dev-float__item--import deco-pace-fast" data-scroll-speed="0.218"><span class="dev-float__drift dev-float-drift-10">import</span></span>
+    <span class="dev-float__item dev-float__item--lg dev-float__item--git deco-pace-faster" data-scroll-speed="0.264">
       <svg class="dev-float__drift dev-float__svg dev-float__svg--lg dev-float-drift-7" viewBox="0 0 52 40" fill="none" aria-hidden="true">
         <circle cx="14" cy="10" r="4" stroke="currentColor" stroke-width="1"/>
         <circle cx="14" cy="30" r="4" stroke="currentColor" stroke-width="1"/>
@@ -2923,15 +2848,15 @@
   <!-- HERO -->
   <section class="hero">
     <div class="section-deco" aria-hidden="true">
-      <div class="deco-orb deco-float" style="width:320px;height:320px;top:-80px;right:-60px;background:var(--deco-fill);"></div>
-      <div class="deco-orb deco-float-2" style="width:240px;height:240px;bottom:10%;left:-80px;background:var(--deco-fill-2);"></div>
-      <div class="deco-ring hero-deco-ring deco-spin"></div>
-      <div class="deco-ring deco-ring--solid hero-deco-ring-2 deco-pulse"></div>
-      <div class="deco-cross hero-deco-cross-1 deco-float"></div>
+      <div class="deco-orb deco-float deco-emphasis" style="width:320px;height:320px;top:-80px;right:-60px;background:var(--deco-fill);"></div>
+      <div class="deco-orb deco-float-2 deco-pace-fast" style="width:240px;height:240px;bottom:10%;left:-80px;background:var(--deco-fill-2);"></div>
+      <div class="deco-ring hero-deco-ring deco-spin deco-pace-faster deco-emphasis"></div>
+      <div class="deco-ring deco-ring--solid hero-deco-ring-2 deco-pulse deco-pace-fast deco-emphasis"></div>
+      <div class="deco-cross hero-deco-cross-1 deco-float deco-pace-fastest deco-emphasis"></div>
       <div class="deco-cross hero-deco-cross-2"></div>
-      <div class="deco-diamond hero-deco-diamond deco-float-2"></div>
+      <div class="deco-diamond hero-deco-diamond deco-float-2 deco-pace-faster deco-emphasis"></div>
       <div class="deco-line hero-deco-line"></div>
-      <div class="deco-gem hero-deco-gem deco-float-2" aria-hidden="true">
+      <div class="deco-gem hero-deco-gem deco-float-2 deco-pace-fast deco-emphasis" aria-hidden="true">
         <span class="deco-gem__ring"></span>
         <span class="deco-gem__orbit"></span>
         <span class="deco-gem__core"></span>
@@ -2941,7 +2866,7 @@
         <span></span><span></span><span></span>
         <span></span><span></span><span></span>
       </div>
-      <svg class="deco-svg hero-deco-svg deco-spin" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+      <svg class="deco-svg hero-deco-svg deco-spin deco-pace-faster" viewBox="0 0 200 200" fill="none" aria-hidden="true">
         <circle cx="100" cy="100" r="90" stroke="var(--deco-stroke)" stroke-width="1" stroke-dasharray="6 8"/>
         <circle cx="100" cy="100" r="60" stroke="var(--deco-stroke-muted)" stroke-width="1" opacity="0.85"/>
         <path d="M100 10 L100 190 M10 100 L190 100" stroke="var(--deco-stroke-muted)" stroke-width="1" opacity="0.65"/>
@@ -2949,7 +2874,7 @@
     </div>
     <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
     <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
-    <div class="hero-blob hero-blob-3" aria-hidden="true"></div>
+    <div class="hero-blob hero-blob-3 deco-pace-fastest" aria-hidden="true"></div>
     <div class="hero-content">
       <div class="hero-main">
         <div class="hero-glass">
@@ -2957,10 +2882,6 @@
           <span class="hero-glass__corner hero-glass__corner--br" aria-hidden="true"></span>
           <span class="hero-glass__tag" aria-hidden="true">SYS·01</span>
           <div class="hero-glass__body">
-            <div class="eyebrow reveal">
-              <span class="eyebrow-dot" aria-hidden="true"></span>
-              Веб-агентство
-            </div>
             <h1 class="reveal d1">
               Бизнес, который<br />
               <span class="line2">невозможно пролистать</span>
@@ -2984,14 +2905,13 @@
   <section class="section section-bg2" id="projects">
     <div class="section-deco" aria-hidden="true">
       <div class="deco-orb" style="width:280px;height:280px;top:-60px;right:-40px;background:var(--deco-fill);"></div>
-      <div class="deco-ring deco-spin" style="width:180px;height:180px;bottom:8%;left:-40px;"></div>
+      <div class="deco-ring deco-spin deco-pace-fastest" style="width:180px;height:180px;bottom:8%;left:-40px;"></div>
       <div class="deco-cross deco-float" style="top:18%;right:12%;"></div>
-      <div class="deco-diamond deco-float-2" style="bottom:20%;right:8%;"></div>
+      <div class="deco-diamond deco-float-2 deco-pace-faster" style="bottom:20%;right:8%;"></div>
       <div class="deco-line" style="width:160px;top:32%;left:4%;transform:rotate(12deg);"></div>
     </div>
     <div class="section-inner">
       <div class="section-head reveal">
-        <div class="section-eyebrow">Наши работы</div>
         <h2>Что мы уже сделали</h2>
       </div>
 
@@ -3111,23 +3031,22 @@
   <!-- SERVICES -->
   <section class="section" id="services">
     <div class="section-deco" aria-hidden="true">
-      <div class="deco-orb deco-float-2" style="width:300px;height:300px;bottom:-80px;left:20%;background:var(--deco-fill-2);"></div>
+      <div class="deco-orb deco-float-2 deco-pace-fast" style="width:300px;height:300px;bottom:-80px;left:20%;background:var(--deco-fill-2);"></div>
       <div class="deco-orb" style="width:200px;height:200px;top:10%;right:-30px;background:var(--deco-fill);"></div>
       <div class="deco-ring deco-ring--solid deco-pulse" style="width:120px;height:120px;top:15%;right:10%;"></div>
       <div class="deco-cross" style="bottom:24%;left:8%;width:16px;height:16px;"></div>
-      <div class="deco-dot-cluster deco-float" style="top:22%;left:4%;">
+      <div class="deco-dot-cluster deco-float deco-pace-fast" style="top:22%;left:4%;">
         <span></span><span></span><span></span>
         <span></span><span></span><span></span>
       </div>
       <div class="deco-line" style="width:200px;bottom:18%;right:6%;transform:rotate(-8deg);"></div>
-      <svg class="deco-svg deco-spin" style="width:160px;height:160px;top:8%;left:-20px;" viewBox="0 0 160 160" fill="none" aria-hidden="true">
+      <svg class="deco-svg deco-spin deco-pace-faster" style="width:160px;height:160px;top:8%;left:-20px;" viewBox="0 0 160 160" fill="none" aria-hidden="true">
         <polygon points="80,10 150,80 80,150 10,80" stroke="var(--deco-stroke)" stroke-width="1"/>
         <circle cx="80" cy="80" r="24" stroke="var(--deco-stroke-muted)" stroke-width="1" opacity="0.85"/>
       </svg>
     </div>
     <div class="section-inner">
       <div class="section-head reveal">
-        <div class="section-eyebrow">Услуги</div>
         <h2>Наши услуги</h2>
       </div>
       <div class="services-grid">
@@ -3257,20 +3176,19 @@
   <!-- REVIEWS -->
   <section class="section section-bg2" id="reviews">
     <div class="section-deco" aria-hidden="true">
-      <div class="deco-ring deco-float" style="width:100px;height:100px;top:20%;left:10%;"></div>
-      <div class="deco-cross deco-float-2" style="top:30%;right:15%;"></div>
+      <div class="deco-ring deco-float deco-pace-fast" style="width:100px;height:100px;top:20%;left:10%;"></div>
+      <div class="deco-cross deco-float-2 deco-pace-faster" style="top:30%;right:15%;"></div>
       <div class="deco-diamond" style="bottom:25%;left:18%;"></div>
       <div class="deco-dot-cluster" style="bottom:20%;right:12%;">
         <span></span><span></span><span></span>
         <span></span><span></span><span></span>
       </div>
-      <div class="deco-gem deco-float-2" style="top:12%;right:22%;">
+      <div class="deco-gem deco-float-2 deco-pace-fast" style="top:12%;right:22%;">
         <span class="deco-gem__orbit"></span>
         <span class="deco-gem__ring"></span>
         <span class="deco-gem__core"></span>
       </div>
-      <span class="deco-pill deco-float" style="bottom:32%;left:8%;">design studio</span>
-      <svg class="deco-svg deco-float-2" style="width:90px;height:90px;bottom:8%;right:6%;" viewBox="0 0 90 90" fill="none" aria-hidden="true">
+      <svg class="deco-svg deco-float-2 deco-pace-faster" style="width:90px;height:90px;bottom:8%;right:6%;" viewBox="0 0 90 90" fill="none" aria-hidden="true">
         <rect x="8" y="12" width="74" height="66" rx="6" stroke="var(--deco-stroke)" stroke-width="1"/>
         <path d="M8 24 H82" stroke="var(--deco-stroke)" stroke-width="1" opacity="0.6"/>
         <circle cx="16" cy="18" r="2" fill="var(--deco-dot)"/>
@@ -3283,7 +3201,6 @@
     </div>
     <div class="section-inner">
       <div class="section-head reveal">
-        <div class="section-eyebrow">Отзывы</div>
         <h2>Что говорят клиенты</h2>
       </div>
       <div class="reviews-empty-wrap reveal d1">
@@ -3295,12 +3212,11 @@
   <!-- CONTACT -->
   <section class="section" id="contact">
     <div class="section-deco" aria-hidden="true">
-      <div class="deco-orb deco-float" style="width:260px;height:260px;top:-40px;left:-60px;background:var(--deco-fill);"></div>
+      <div class="deco-orb deco-float deco-pace-fastest" style="width:260px;height:260px;top:-40px;left:-60px;background:var(--deco-fill);"></div>
       <div class="deco-orb deco-float-2" style="width:220px;height:220px;bottom:-40px;right:-20px;background:var(--deco-fill-2);"></div>
-      <div class="deco-ring deco-spin" style="width:200px;height:200px;top:10%;right:5%;"></div>
+      <div class="deco-ring deco-spin deco-pace-fast" style="width:200px;height:200px;top:10%;right:5%;"></div>
       <div class="deco-cross" style="bottom:15%;left:12%;"></div>
       <div class="deco-line" style="width:140px;top:40%;right:8%;transform:rotate(20deg);"></div>
-      <span class="deco-pill deco-float-2" style="bottom:12%;right:10%;">let's talk</span>
       <svg class="deco-svg" style="width:120px;height:120px;top:18%;left:8%;" viewBox="0 0 120 120" fill="none" aria-hidden="true">
         <path d="M60 8 L112 60 L60 112 L8 60 Z" stroke="var(--deco-stroke)" stroke-width="1"/>
         <circle cx="60" cy="60" r="8" fill="var(--deco-dot)" opacity="0.75"/>
@@ -3310,7 +3226,7 @@
         <span class="deco-gem__ring"></span>
         <span class="deco-gem__core"></span>
       </div>
-      <svg class="deco-svg deco-float" style="width:80px;height:56px;bottom:18%;left:6%;opacity:0.28;" viewBox="0 0 80 56" fill="none" aria-hidden="true">
+      <svg class="deco-svg deco-float deco-pace-faster" style="width:80px;height:56px;bottom:18%;left:6%;opacity:0.28;" viewBox="0 0 80 56" fill="none" aria-hidden="true">
         <path d="M4 48 C20 8, 36 52, 52 20 S 72 44, 76 12" stroke="var(--deco-stroke)" stroke-width="1.5" stroke-linecap="round"/>
         <circle cx="4" cy="48" r="3" fill="var(--accent)" opacity="0.6"/>
         <circle cx="52" cy="20" r="3" fill="var(--accent)" opacity="0.6"/>
@@ -3319,7 +3235,6 @@
     </div>
     <div class="section-inner">
       <div class="contact-header section-head reveal">
-        <div class="section-eyebrow">Контакт</div>
         <h2>Давайте познакомимся 👋</h2>
         <p class="contact-sub">
           Расскажите пару слов о задаче — в Telegram или Instagram, как вам удобнее.
@@ -3399,10 +3314,10 @@
   <footer class="footer">
     <div class="section-deco" aria-hidden="true">
       <div class="deco-line" style="width:100%;top:0;left:0;opacity:0.2;background:var(--gradient);"></div>
-      <div class="deco-ring deco-float" style="width:120px;height:120px;bottom:35%;left:3%;opacity:0.45;"></div>
+      <div class="deco-ring deco-float deco-pace-faster" style="width:120px;height:120px;bottom:35%;left:3%;opacity:0.45;"></div>
       <div class="deco-ring deco-spin" style="width:90px;height:90px;top:25%;right:6%;opacity:0.35;"></div>
       <div class="deco-cross" style="bottom:40%;right:10%;opacity:0.35;"></div>
-      <div class="deco-diamond deco-float-2" style="top:30%;left:14%;"></div>
+      <div class="deco-diamond deco-float-2 deco-pace-fast" style="top:30%;left:14%;"></div>
       <div class="deco-dot-cluster" style="top:20%;right:20%;">
         <span></span><span></span><span></span>
         <span></span><span></span><span></span>
