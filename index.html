@@ -402,6 +402,13 @@
     .section-head {
       position: relative;
     }
+    .section-sub {
+      margin-top: 10px;
+      max-width: 520px;
+      font-size: 15px;
+      color: var(--white40);
+      line-height: 1.6;
+    }
     @keyframes float-y {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-14px); }
@@ -1192,6 +1199,9 @@
       overflow: hidden;
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
+    .project-card--clickable {
+      cursor: pointer;
+    }
     .project-card:hover {
       box-shadow: 0 16px 44px rgba(0, 0, 0, 0.45);
     }
@@ -1219,11 +1229,35 @@
       position: relative;
       background: #2a2a32;
       border-bottom: 1px solid var(--border);
-      cursor: pointer;
       transition: filter 0.25s ease;
     }
-    .browser:hover {
+    .project-card--clickable:hover .browser {
       filter: brightness(1.06);
+    }
+    .project-open-hint {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.42);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 11px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.62);
+      letter-spacing: 0.02em;
+      pointer-events: none;
+      opacity: 0.72;
+      transition: opacity 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+    }
+    .project-card--clickable:hover .project-open-hint {
+      opacity: 1;
+      color: rgba(255, 255, 255, 0.9);
+      border-color: rgba(255, 255, 255, 0.18);
     }
     .browser::after {
       content: '↗';
@@ -1246,7 +1280,7 @@
       transition: opacity 0.25s ease, transform 0.25s ease;
       pointer-events: none;
     }
-    .browser:hover::after {
+    .project-card--clickable:hover .browser::after {
       opacity: 1;
       transform: scale(1);
     }
@@ -1299,7 +1333,7 @@
       display: block;
       transition: transform 0.45s ease;
     }
-    .browser:hover .browser-shot {
+    .project-card--clickable:hover .browser-shot {
       transform: scale(1.04);
     }
     .browser-screen::before {
@@ -1316,7 +1350,7 @@
       opacity: 0;
       transition: opacity 0.3s ease;
     }
-    .browser:hover .browser-screen::before {
+    .project-card--clickable:hover .browser-screen::before {
       opacity: 1;
     }
 
@@ -1360,16 +1394,19 @@
       font-size: 11px;
       color: var(--chip-text);
     }
-    .project-link {
-      display: block;
-      margin-top: 16px;
-      font-size: 13px;
-      color: var(--accent2);
-      font-weight: 500;
-      cursor: pointer;
-      transition: opacity 0.2s;
+    .project-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+      transition: color 0.2s ease;
     }
-    .project-link:hover { opacity: 0.8; }
+    .project-card--clickable:hover .project-hint {
+      color: var(--accent2);
+    }
 
     /* ——— SERVICES ——— */
     .services-grid {
@@ -1434,7 +1471,44 @@
       font-size: 14px;
       color: var(--white40);
       line-height: 1.65;
-      flex: 1;
+    }
+    .service-preview-points {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .service-preview-points li {
+      position: relative;
+      padding-left: 14px;
+      font-size: 13px;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+    .service-preview-points li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent2);
+    }
+    .service-card--expandable .service-desc {
+      flex: 0;
+    }
+    .service-card--expandable .service-expand-btn {
+      margin-top: 14px;
+      flex-shrink: 0;
+    }
+    .service-card--expandable.is-open .service-panel__content {
+      padding-top: 12px;
+      padding-bottom: 0;
+    }
+    .service-card--expandable .service-price {
+      margin-top: auto;
+      padding-top: 18px;
     }
     .service-price {
       margin-top: 18px;
@@ -1448,41 +1522,38 @@
       color: var(--text);
       letter-spacing: -0.02em;
     }
-    .service-price-note {
+    .service-price-meta {
       margin-top: 6px;
       font-size: 12px;
-      color: var(--accent2);
+      color: var(--text-muted);
       line-height: 1.45;
     }
     .service-card--expandable {
       cursor: default;
     }
     .service-card--expandable .service-card__header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
       margin-bottom: 10px;
     }
     .service-card--expandable .service-title {
       margin-bottom: 0;
-      flex: 1;
     }
     .service-expand-btn {
       flex-shrink: 0;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
-      padding: 6px 10px;
-      border-radius: 8px;
+      width: 100%;
+      margin-top: 16px;
+      padding: 10px 14px;
+      border-radius: 10px;
       border: 1px solid var(--glass-border);
       background: var(--chip-bg);
       color: var(--accent2);
       font-family: var(--font-body);
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      letter-spacing: 0.03em;
       cursor: pointer;
       transition: background 0.2s, border-color 0.2s, color 0.2s;
     }
@@ -1507,10 +1578,6 @@
     .service-card--expandable.is-open .service-panel {
       grid-template-rows: 1fr;
     }
-    .service-card--expandable.is-open .service-panel__content {
-      padding-top: 12px;
-      padding-bottom: 2px;
-    }
     .service-card--expandable.is-open:hover {
       transform: none;
     }
@@ -1520,11 +1587,27 @@
     .service-panel__content {
       padding-top: 4px;
     }
-    .service-panel__lead {
-      font-size: 13px;
-      color: var(--text-soft);
-      line-height: 1.6;
-      margin-bottom: 14px;
+    .service-panel__section {
+      margin-bottom: 16px;
+    }
+    .service-panel__section:last-child {
+      margin-bottom: 0;
+    }
+    .service-panel__heading {
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 10px;
+    }
+    .service-panel__heading--muted {
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: none;
+      font-size: 11px;
     }
     .service-features {
       list-style: none;
@@ -1554,6 +1637,27 @@
       color: var(--text-soft);
       font-weight: 600;
     }
+    .service-advantages {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+    .service-advantages li {
+      position: relative;
+      padding-left: 22px;
+      font-size: 13px;
+      color: var(--white40);
+      line-height: 1.55;
+    }
+    .service-advantages li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent2);
+    }
     .service-panel__tags {
       display: flex;
       flex-wrap: wrap;
@@ -1567,25 +1671,32 @@
       font-size: 11px;
       color: var(--chip-text);
     }
-    @media (min-width: 768px) {
-      .services-grid > .service-card--expandable.is-open {
-        grid-column: 1 / -1;
-      }
-      .service-card--expandable.is-open .service-panel__content {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px 32px;
-        align-items: start;
-      }
-      .service-card--expandable.is-open .service-panel__lead {
-        grid-column: 1 / -1;
-      }
-      .service-card--expandable.is-open .service-features {
-        margin-bottom: 0;
-      }
-      .service-card--expandable.is-open .service-panel__tags {
-        align-content: start;
-      }
+    .service-panel__section--stack .service-panel__tag {
+      background: transparent;
+      color: var(--text-muted);
+      border-color: rgba(255, 255, 255, 0.08);
+      font-size: 11px;
+      font-weight: 400;
+    }
+    [data-theme="light"] .service-panel__section--stack .service-panel__tag {
+      border-color: rgba(15, 16, 24, 0.1);
+    }
+    .service-includes {
+      display: grid;
+      gap: 8px;
+    }
+    .service-includes__item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 13px;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+    .service-includes__ic {
+      flex-shrink: 0;
+      font-size: 16px;
+      line-height: 1.3;
     }
 
     .projects-grid > .project-card,
@@ -2099,128 +2210,11 @@
     }
 
     /* ——— CONTACT ——— */
-    .contact-header {
-      text-align: center;
-      max-width: 520px;
-      margin: 0 auto;
-    }
-    .contact-header h2 { margin-bottom: 12px; }
-    .contact-sub {
-      font-size: 15px;
-      color: var(--white40);
-      line-height: 1.6;
-    }
     .contact-block {
       max-width: 720px;
       margin: 40px auto 0;
       display: grid;
       gap: 20px;
-    }
-    .contact-guide {
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      box-shadow: var(--glass-shadow);
-      padding: 28px 24px;
-    }
-    .contact-guide-title {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 20px;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-    .contact-guide-lead {
-      font-size: 14px;
-      color: var(--white40);
-      line-height: 1.55;
-      margin-bottom: 20px;
-    }
-    .contact-steps {
-      display: grid;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-    .contact-step {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      font-size: 13px;
-      color: var(--text-soft);
-      line-height: 1.5;
-    }
-    .contact-step-num {
-      flex-shrink: 0;
-      width: 22px;
-      height: 22px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      background: var(--accent-glow);
-      border: 1px solid var(--glass-border);
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--accent2);
-    }
-    .contact-template-wrap {
-      position: relative;
-    }
-    .contact-template {
-      background: var(--bg-card);
-      border: 1px solid var(--glass-border);
-      border-radius: 12px;
-      padding: 16px 18px;
-      font-family: ui-monospace, 'Cascadia Code', 'Consolas', monospace;
-      font-size: 13px;
-      line-height: 1.65;
-      color: var(--text-soft);
-      white-space: pre-wrap;
-    }
-    .contact-template-label {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-    .contact-template-actions {
-      display: flex;
-      justify-content: center;
-      margin-top: 16px;
-    }
-    .contact-template-actions .btn-copy {
-      min-width: 240px;
-      width: min(100%, 320px);
-      justify-content: center;
-      padding: 12px 20px;
-    }
-    .btn-copy {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--glass-bg-strong);
-      border: 1px solid var(--glass-border);
-      color: var(--text-soft);
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background 0.2s, border-color 0.2s, color 0.2s;
-      text-decoration: none;
-    }
-    .btn-copy:hover {
-      border-color: var(--accent);
-      color: var(--text);
-    }
-    .btn-copy.is-copied {
-      border-color: #28c840;
-      color: #28c840;
     }
     .contact-actions {
       display: grid;
@@ -2428,9 +2422,6 @@
       background: #1C1F2B;
       color: rgba(255, 255, 255, 0.45);
     }
-    [data-theme="light"] .contact-template {
-      background: #F0F1F6;
-    }
     [data-theme="light"] .btn-ghost,
     [data-theme="light"] .theme-toggle,
     [data-theme="light"] .social-link {
@@ -2561,7 +2552,7 @@
         gap: 8px;
       }
       .service-expand-btn {
-        align-self: flex-start;
+        width: 100%;
         max-width: 100%;
       }
       .service-title,
@@ -2593,22 +2584,6 @@
         overflow-wrap: break-word;
         word-break: break-word;
       }
-      .contact-guide-title {
-        font-size: 18px;
-        overflow-wrap: break-word;
-      }
-      .contact-step {
-        font-size: 12px;
-      }
-      .contact-template {
-        font-size: 12px;
-        padding: 14px;
-        overflow-x: auto;
-      }
-      .btn-copy {
-        width: 100%;
-        min-width: 0;
-      }
 
       .project-info,
       .service-card {
@@ -2624,7 +2599,6 @@
       .section-head h2 {
         overflow-wrap: break-word;
       }
-      .contact-sub,
       .contact-footer-note {
         overflow-wrap: break-word;
       }
@@ -2636,13 +2610,36 @@
         font-size: 10px;
       }
 
-      /* горизонтальная лента — только свайп влево/вправо, вертикаль уходит на страницу */
-      #projects.section,
+      /* услуги — две карточки столбиком, без горизонтальной ленты */
       #services.section {
         overflow: visible;
       }
-      .projects-grid,
       .services-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        overflow: visible;
+        scroll-snap-type: none;
+        gap: 16px;
+        margin: 0;
+        padding: 0;
+      }
+      .services-grid > .service-card {
+        flex: none;
+        width: 100%;
+        scroll-snap-align: none;
+        max-height: none;
+      }
+      .services-grid > .service-card--expandable.is-open {
+        flex: none;
+        width: 100%;
+        scroll-snap-align: none;
+      }
+
+      /* проекты — горизонтальная лента */
+      #projects.section {
+        overflow: visible;
+      }
+      .projects-grid {
         display: flex;
         flex-wrap: nowrap;
         align-items: stretch;
@@ -2660,12 +2657,10 @@
         touch-action: pan-x pan-y;
         scrollbar-width: none;
       }
-      .projects-grid::-webkit-scrollbar,
-      .services-grid::-webkit-scrollbar {
+      .projects-grid::-webkit-scrollbar {
         display: none;
       }
-      .projects-grid > .project-card,
-      .services-grid > .service-card {
+      .projects-grid > .project-card {
         flex: 0 0 min(84vw, 300px);
         width: min(84vw, 300px);
         scroll-snap-align: start;
@@ -2674,11 +2669,6 @@
         max-height: none;
         overflow: hidden;
         isolation: isolate;
-      }
-      .services-grid > .service-card--expandable.is-open {
-        flex: 0 0 min(88vw, 320px);
-        width: min(88vw, 320px);
-        scroll-snap-align: center;
       }
       .projects-grid > .project-card.featured {
         flex: 0 0 min(84vw, 300px);
@@ -3060,6 +3050,7 @@
     <div class="section-inner">
       <div class="section-head reveal">
         <h2>Что мы уже сделали</h2>
+        <p class="section-sub">Нажмите на карточку — откроется живой сайт в новой вкладке.</p>
       </div>
 
       <div class="projects-grid">
@@ -3081,6 +3072,7 @@
                 decoding="async"
               />
             </div>
+            <span class="project-open-hint" aria-hidden="true">↗ Нажмите, чтобы открыть</span>
           </div>
           <div class="project-info">
             <span class="badge">Барбершоп</span>
@@ -3095,7 +3087,7 @@
               <span class="tag">Vanilla JS</span>
               <span class="tag">Scroll Snap</span>
             </div>
-            <a class="project-link" data-url="#" rel="noopener">Открыть сайт →</a>
+            <span class="project-hint" aria-hidden="true">↗ Открыть сайт</span>
           </div>
         </article>
 
@@ -3117,6 +3109,7 @@
                 decoding="async"
               />
             </div>
+            <span class="project-open-hint" aria-hidden="true">↗ Нажмите, чтобы открыть</span>
           </div>
           <div class="project-info">
             <span class="badge">Частный юрист</span>
@@ -3131,7 +3124,7 @@
               <span class="tag">Flask</span>
               <span class="tag">SQLite</span>
             </div>
-            <a class="project-link" data-url="#" rel="noopener">Открыть сайт →</a>
+            <span class="project-hint" aria-hidden="true">↗ Открыть сайт</span>
           </div>
         </article>
 
@@ -3153,6 +3146,7 @@
                 decoding="async"
               />
             </div>
+            <span class="project-open-hint" aria-hidden="true">↗ Нажмите, чтобы открыть</span>
           </div>
           <div class="project-info">
             <span class="badge">Кондитерская</span>
@@ -3168,7 +3162,7 @@
               <span class="tag">Tailwind</span>
               <span class="tag">Static Export</span>
             </div>
-            <a class="project-link" data-url="#" rel="noopener">Открыть сайт →</a>
+            <span class="project-hint" aria-hidden="true">↗ Открыть сайт</span>
           </div>
         </article>
       </div>
@@ -3201,119 +3195,151 @@
           <div class="service-icon" aria-hidden="true">🌐</div>
           <div class="service-card__header">
             <h3 class="service-title">Сайты</h3>
-            <button class="service-expand-btn" type="button" aria-expanded="false" aria-controls="service-sites-panel">
-              <span class="service-expand-btn__text">Подробнее</span>
-              <svg class="service-expand-btn__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
           <p class="service-desc">
-            Лендинги, сайты-визитки и многостраничники под ваш бизнес:
-            продуманная структура, адаптивная вёрстка, формы заявок
-            и связка с Telegram.
+            Собираем сайты под ключ — уникальный дизайн, продуманная структура
+            и всё необходимое для привлечения клиентов. Без конструкторов
+            и шаблонов «как у всех».
           </p>
+          <ul class="service-preview-points" aria-label="Основные возможности сайтов">
+            <li>Лендинг, визитка или многостраничник с каталогом</li>
+            <li>Онлайн-запись, корзина или конструктор заказа</li>
+            <li>Заявки с сайта сразу приходят в Telegram</li>
+            <li>Публикация на хостинг — домен, SSL, всё настроим</li>
+          </ul>
           <div class="service-panel" id="service-sites-panel">
             <div class="service-panel__inner">
               <div class="service-panel__content">
-                <p class="service-panel__lead">
-                  Собираем сайт под задачу — от одностраничника до каталога
-                  с онлайн-записью. Каждый проект уникален, без шаблонов «как у всех».
-                </p>
-                <ul class="service-features">
-                  <li><strong>Лендинги</strong> — одна услуга, чёткий призыв к действию и форма заявки</li>
-                  <li><strong>Сайты-визитки</strong> — для юриста, мастера, специалиста: услуги, кейсы, контакты</li>
-                  <li><strong>Каталог + заказ</strong> — меню, цены, корзина или запись, как у кондитера или барбершопа</li>
-                  <li><strong>Адаптивная вёрстка</strong> — удобно на телефоне, планшете и десктопе</li>
-                  <li><strong>Формы и Telegram</strong> — заявка с сайта сразу приходит вам в мессенджер</li>
-                  <li><strong>Конструктор / калькулятор</strong> — клиент собирает заказ и видит цену в реальном времени</li>
-                  <li><strong>Галерея и портфолио</strong> — покажите работы так, чтобы захотели заказать</li>
-                  <li><strong>SEO-основа</strong> — метатеги, скорость загрузки, правильная структура страниц</li>
-                  <li><strong>Деплой под ключ</strong> — статический хостинг или сервер, всё настроим сами</li>
-                </ul>
-                <div class="service-panel__tags">
-                  <span class="service-panel__tag">HTML / CSS / JS</span>
-                  <span class="service-panel__tag">Next.js</span>
-                  <span class="service-panel__tag">Flask</span>
-                  <span class="service-panel__tag">5–7 дней</span>
+                <div class="service-panel__section">
+                  <h4 class="service-panel__heading">Что можем сделать</h4>
+                  <ul class="service-features">
+                    <li><strong>Галерея и портфолио</strong> — работы с фильтрами и удобным просмотром</li>
+                    <li><strong>Прайс и калькулятор</strong> — клиент видит итоговую цену в реальном времени</li>
+                    <li><strong>SEO-основа</strong> — метатеги, скорость загрузки, микроразметка</li>
+                    <li><strong>Интеграции</strong> — аналитика, CRM и платёжные формы по запросу</li>
+                    <li><strong>Мультиязычность</strong> — несколько языков и тёмная тема, если нужно</li>
+                  </ul>
+                </div>
+                <div class="service-panel__section">
+                  <h4 class="service-panel__heading">Наши преимущества</h4>
+                  <ul class="service-advantages">
+                    <li>Дизайн с нуля под вашу нишу — не Tilda и не WordPress</li>
+                    <li>Адаптив с первого дня: телефон, планшет, десктоп</li>
+                    <li>Быстрая загрузка — клиенты не уходят в ожидании</li>
+                    <li>Заявка за 2–3 клика — понятная навигация без лишних шагов</li>
+                    <li>Передаём исходники и доступы — сайт полностью ваш</li>
+                  </ul>
+                </div>
+                <div class="service-panel__section">
+                  <h4 class="service-panel__heading">Входит в проект</h4>
+                  <div class="service-includes">
+                    <div class="service-includes__item">
+                      <span class="service-includes__ic" aria-hidden="true">🎛️</span>
+                      <span><strong>Админ-панель</strong> — меняете цены, тексты и фото без программиста</span>
+                    </div>
+                    <div class="service-includes__item">
+                      <span class="service-includes__ic" aria-hidden="true">⚙️</span>
+                      <span><strong>1 месяц поддержки</strong> — правки, баги и мелкие доработки после запуска</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="service-panel__section service-panel__section--stack">
+                  <h4 class="service-panel__heading service-panel__heading--muted">Языки и системы</h4>
+                  <div class="service-panel__tags">
+                    <span class="service-panel__tag">HTML</span>
+                    <span class="service-panel__tag">CSS</span>
+                    <span class="service-panel__tag">JavaScript</span>
+                    <span class="service-panel__tag">TypeScript</span>
+                    <span class="service-panel__tag">Next.js</span>
+                    <span class="service-panel__tag">Flask</span>
+                    <span class="service-panel__tag">SQLite</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <button class="service-expand-btn" type="button" aria-expanded="false" aria-controls="service-sites-panel">
+            <span class="service-expand-btn__text">Подробнее о сайтах</span>
+            <svg class="service-expand-btn__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
           <div class="service-price">
             <div class="service-price-value">$300–500</div>
-            <p class="service-price-note">Админ-панель и 1 месяц поддержки включены</p>
+            <p class="service-price-meta">Срок: 5–7 дней · дизайн и запуск под ключ</p>
           </div>
         </div>
+
         <div class="service-card service-card--expandable reveal d2" data-service="bots">
           <div class="service-icon" aria-hidden="true">🤖</div>
           <div class="service-card__header">
             <h3 class="service-title">Telegram-боты</h3>
-            <button class="service-expand-btn" type="button" aria-expanded="false" aria-controls="service-bots-panel">
-              <span class="service-expand-btn__text">Подробнее</span>
-              <svg class="service-expand-btn__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
           <p class="service-desc">
-            Автоматизация записи, приёма заказов и уведомлений:
-            каталог услуг, напоминания, сбор заявок в один канал.
+            Telegram-боты для автоматизации рутины — запись, заказы
+            и ответы без вашего участия. Клиент получает результат
+            за пару нажатий, в любое время суток.
           </p>
+          <ul class="service-preview-points" aria-label="Основные возможности ботов">
+            <li>Запись на услугу по дате и времени</li>
+            <li>Каталог с корзиной и оформлением заказа</li>
+            <li>FAQ и автоответы без ожидания оператора</li>
+            <li>Рассылки акций и напоминаний подписчикам</li>
+          </ul>
           <div class="service-panel" id="service-bots-panel">
             <div class="service-panel__inner">
               <div class="service-panel__content">
-                <p class="service-panel__lead">
-                  Бот работает 24/7: принимает заказы, отвечает на частые вопросы
-                  и передаёт готовые заявки вам — пока вы занимаетесь бизнесом.
-                </p>
-                <ul class="service-features">
-                  <li><strong>Запись на услугу</strong> — клиент выбирает дату, время и услугу в пару нажатий</li>
-                  <li><strong>Каталог и заказы</strong> — меню с ценами, корзина, оформление без звонков</li>
-                  <li><strong>FAQ и автоответы</strong> — бот отвечает на типовые вопросы вместо вас</li>
-                  <li><strong>Уведомления</strong> — вам и клиенту: подтверждение, напоминание, статус заказа</li>
-                  <li><strong>Сбор заявок</strong> — все обращения в одном чате или канале, ничего не теряется</li>
-                  <li><strong>Рассылки</strong> — акции, новости, напоминания о записи подписчикам</li>
-                  <li><strong>Приём файлов</strong> — фото, документы, референсы от клиента прямо в боте</li>
-                  <li><strong>Связка с сайтом</strong> — заявка с сайта и из бота в одной системе</li>
-                  <li><strong>Админ-панель</strong> — меняете цены, тексты и расписание без программиста</li>
-                </ul>
-                <div class="service-panel__tags">
-                  <span class="service-panel__tag">Python</span>
-                  <span class="service-panel__tag">aiogram</span>
-                  <span class="service-panel__tag">Webhooks</span>
-                  <span class="service-panel__tag">3–5 дней</span>
+                <div class="service-panel__section">
+                  <h4 class="service-panel__heading">Что можем сделать</h4>
+                  <ul class="service-features">
+                    <li><strong>Приём файлов</strong> — фото, документы и референсы прямо в боте</li>
+                    <li><strong>Уведомления о статусе</strong> — подтверждение и напоминания вам и клиенту</li>
+                    <li><strong>Сбор заявок</strong> — все обращения в одном чате или канале</li>
+                    <li><strong>Связка с сайтом</strong> — единая база обращений из бота и с сайта</li>
+                    <li><strong>Оплата и бронь</strong> — подтверждение заказа и предоплата по запросу</li>
+                  </ul>
+                </div>
+                <div class="service-panel__section">
+                  <h4 class="service-panel__heading">Наши преимущества</h4>
+                  <ul class="service-advantages">
+                    <li>Экономит часы на переписке каждую неделю</li>
+                    <li>Кнопочное меню — без команд и длинных инструкций</li>
+                    <li>Масштабируется — добавим функции по мере роста бизнеса</li>
+                    <li>Настраиваем под вашу нишу, не «коробочное» решение</li>
+                    <li>Работает круглосуточно — клиент пишет в любое время</li>
+                  </ul>
+                </div>
+                <div class="service-panel__section">
+                  <h4 class="service-panel__heading">Входит в проект</h4>
+                  <div class="service-includes">
+                    <div class="service-includes__item">
+                      <span class="service-includes__ic" aria-hidden="true">🎛️</span>
+                      <span><strong>Админ-панель</strong> — управление каталогом, расписанием и текстами бота</span>
+                    </div>
+                    <div class="service-includes__item">
+                      <span class="service-includes__ic" aria-hidden="true">⚙️</span>
+                      <span><strong>1 месяц поддержки</strong> — исправления, обновления и помощь после запуска</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="service-panel__section service-panel__section--stack">
+                  <h4 class="service-panel__heading service-panel__heading--muted">Языки и системы</h4>
+                  <div class="service-panel__tags">
+                    <span class="service-panel__tag">Python</span>
+                    <span class="service-panel__tag">aiogram</span>
+                    <span class="service-panel__tag">Webhooks</span>
+                    <span class="service-panel__tag">SQLite</span>
+                    <span class="service-panel__tag">REST API</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <button class="service-expand-btn" type="button" aria-expanded="false" aria-controls="service-bots-panel">
+            <span class="service-expand-btn__text">Подробнее о ботах</span>
+            <svg class="service-expand-btn__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
           <div class="service-price">
             <div class="service-price-value">$100–200</div>
-            <p class="service-price-note">Админ-панель и 1 месяц поддержки включены</p>
-          </div>
-        </div>
-        <div class="service-card reveal d3">
-          <div class="service-icon" aria-hidden="true">🎛️</div>
-          <h3 class="service-title">Админ-панель</h3>
-          <p class="service-desc">
-            Личный кабинет для управления сайтом или ботом без
-            программиста: цены, тексты, фото, расписание, каталог
-            и настраиваемые параметры. Входит в каждый проект —
-            меняете детали сами, мы следим за стабильностью.
-          </p>
-          <div class="service-price">
-            <div class="service-price-value">Входит в проект</div>
-            <p class="service-price-note">Бесплатно при заказе сайта или бота</p>
-          </div>
-        </div>
-        <div class="service-card reveal d4">
-          <div class="service-icon" aria-hidden="true">⚙️</div>
-          <h3 class="service-title">Поддержка</h3>
-          <p class="service-desc">
-            Правки, обновления, деплой и мониторинг после запуска.
-            Быстро реагируем на баги и мелкие доработки, не бросаем
-            после сдачи. Первый месяц — на нас при любом заказе,
-            дальше можно оформить абонентское сопровождение.
-          </p>
-          <div class="service-price">
-            <div class="service-price-value">1 месяц бесплатно</div>
-            <p class="service-price-note">Для всех услуг · далее от $50/мес</p>
+            <p class="service-price-meta">Срок: 3–5 дней · настройка и запуск под ключ</p>
           </div>
         </div>
       </div>
@@ -3381,50 +3407,7 @@
       </svg>
     </div>
     <div class="section-inner">
-      <div class="contact-header section-head reveal">
-        <h2>Давайте познакомимся 👋</h2>
-        <p class="contact-sub">
-          Расскажите пару слов о задаче — в Telegram или Instagram, как вам удобнее.
-          Не знаете, с чего начать? Держите готовую подсказку ниже.
-        </p>
-      </div>
-
       <div class="contact-block reveal d1">
-        <div class="contact-guide">
-          <h3 class="contact-guide-title">Не знаете, что писать? Вот подсказка 👇</h3>
-          <p class="contact-guide-lead">
-            Не нужно ничего продумывать — просто скопируйте и заполните
-            то, что знаете. Даже пары строк хватит, чтобы мы поняли задачу
-            и ответили в тот же день.
-          </p>
-          <div class="contact-steps">
-            <div class="contact-step">
-              <span class="contact-step-num">1</span>
-              <span>Скопируйте текст ниже одной кнопкой</span>
-            </div>
-            <div class="contact-step">
-              <span class="contact-step-num">2</span>
-              <span>Впишите своё — имя, как с вами связаться и что хотите сделать</span>
-            </div>
-            <div class="contact-step">
-              <span class="contact-step-num">3</span>
-              <span>Отправьте нам в Telegram или Instagram — и всё 🙌</span>
-            </div>
-          </div>
-          <div class="contact-template-wrap">
-            <span class="contact-template-label">Можно скопировать и отправить</span>
-            <pre class="contact-template" id="contact-template">Привет! 👋 Хочу сайт / бота.
-
-Меня зовут:
-Связаться со мной удобнее:
-Что хочу сделать:
-Есть примеры, которые нравятся:</pre>
-          </div>
-          <div class="contact-template-actions">
-            <button type="button" class="btn-copy" id="copy-template">Скопировать текст</button>
-          </div>
-        </div>
-
         <div class="contact-actions">
           <a class="contact-channel contact-channel--tg" href="https://t.me/BBoysagency" target="_blank" rel="noopener" id="contact-tg">
             <div class="contact-channel-top">
@@ -3540,31 +3523,23 @@
 
     document.querySelectorAll('.project-card').forEach((card, i) => {
       const url = PROJECT_URLS[i];
-      const link = card.querySelector('.project-link');
-      const preview = card.querySelector('.browser');
+      if (!url || url === '#') return;
 
-      if (url && url !== '#') {
-        if (link) {
-          link.href = url;
-          link.target = '_blank';
-          link.rel = 'noopener';
+      const projectTitle = card.querySelector('.project-title');
+      card.classList.add('project-card--clickable');
+      card.setAttribute('role', 'link');
+      card.setAttribute('tabindex', '0');
+      card.setAttribute('aria-label', projectTitle
+        ? 'Открыть сайт: ' + projectTitle.textContent.trim()
+        : 'Открыть сайт');
+
+      card.addEventListener('click', () => openProject(url));
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openProject(url);
         }
-        if (preview) {
-          preview.setAttribute('role', 'link');
-          preview.setAttribute('tabindex', '0');
-          const projectTitle = card.querySelector('.project-title');
-          preview.setAttribute('aria-label', projectTitle ? 'Открыть проект: ' + projectTitle.textContent.trim() : 'Открыть сайт');
-          preview.addEventListener('click', () => openProject(url));
-          preview.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              openProject(url);
-            }
-          });
-        }
-      } else if (link) {
-        link.addEventListener('click', (e) => e.preventDefault());
-      }
+      });
     });
 
     // Раскрытие карточек услуг (Сайты / Telegram-боты)
@@ -3574,33 +3549,22 @@
       if (!btn || !panel) return;
 
       const label = btn.querySelector('.service-expand-btn__text');
+      const openText = label ? label.textContent : 'Подробнее';
 
       function setOpen(open) {
         card.classList.toggle('is-open', open);
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        if (label) label.textContent = open ? 'Свернуть' : 'Подробнее';
+        if (label) label.textContent = open ? 'Свернуть' : openText;
       }
 
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const willOpen = !card.classList.contains('is-open');
-
-        document.querySelectorAll('.service-card--expandable.is-open').forEach((other) => {
-          if (other === card) return;
-          const otherBtn = other.querySelector('.service-expand-btn');
-          other.classList.remove('is-open');
-          if (otherBtn) {
-            otherBtn.setAttribute('aria-expanded', 'false');
-            const otherLabel = otherBtn.querySelector('.service-expand-btn__text');
-            if (otherLabel) otherLabel.textContent = 'Подробнее';
-          }
-        });
-
         setOpen(willOpen);
 
         if (willOpen && window.matchMedia('(max-width: 767px)').matches) {
           requestAnimationFrame(() => {
-            card.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            btn.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           });
         }
       });
@@ -3637,31 +3601,10 @@
       });
     });
 
-    // Contact guide: copy template
-    const copyBtn = document.getElementById('copy-template');
-    const templateEl = document.getElementById('contact-template');
     const tgContactLink = document.getElementById('contact-tg');
     const tgWithText = `${TG_CONTACT}?text=${encodeURIComponent(CONTACT_TEMPLATE)}`;
 
     if (tgContactLink) tgContactLink.href = tgWithText;
-
-    if (copyBtn && templateEl) {
-      copyBtn.addEventListener('click', async () => {
-        const text = templateEl.textContent.trim();
-        try {
-          await navigator.clipboard.writeText(text);
-          copyBtn.textContent = 'Скопировано ✓';
-          copyBtn.classList.add('is-copied');
-          setTimeout(() => {
-            copyBtn.textContent = 'Скопировать текст';
-            copyBtn.classList.remove('is-copied');
-          }, 2000);
-        } catch {
-          copyBtn.textContent = 'Не удалось скопировать';
-          setTimeout(() => { copyBtn.textContent = 'Скопировать текст'; }, 2000);
-        }
-      });
-    }
 
   </script>
 </body>
