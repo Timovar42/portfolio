@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ru" data-asset-prefix="./">
+<head><script id="static-export-nav">document.addEventListener("click",function(e){var a=e.target.closest("a[href]");if(!a||a.target==="_blank"||a.hasAttribute("download"))return;var href=a.getAttribute("href");if(!href||/^(https?:|mailto:|tel:|#)/.test(href))return;e.preventDefault();e.stopImmediatePropagation();window.location.href=a.href;},true);</script><script>self.__webpack_public_path__="./_next/";</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Прайс — Сайт кондитерской</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #faf3e7;
+      --cream-dark: #ede0cf;
+      --chocolate: #4a2c2a;
+      --chocolate-light: #7a5a52;
+      --terracotta: #d98b5f;
+      --rose: #f2c9c2;
+      --berry: #b83256;
+      --mint: #c8e6d0;
+      --yellow: #f5e6a3;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 20%, var(--rose) 0%, transparent 35%),
+        radial-gradient(circle at 85% 80%, var(--yellow) 0%, transparent 30%),
+        radial-gradient(circle at 70% 15%, #e8d4f0 0%, transparent 25%),
+        var(--cream);
+      font-family: "Inter", sans-serif;
+      color: var(--chocolate);
+      padding: 2rem 1rem 4rem;
+      overflow-x: hidden;
+    }
+
+    /* Фоновые каракули */
+    .doodles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.12;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    /* Главная карточка — кривые края через clip-path */
+    .main-card {
+      position: relative;
+      background: #fff;
+      padding: 2.5rem 2rem 2rem;
+      clip-path: polygon(
+        0% 2%, 3% 0%, 8% 1.5%, 15% 0%, 22% 1%, 30% 0%, 40% 0.8%,
+        50% 0%, 60% 1.2%, 70% 0%, 80% 0.5%, 90% 0%, 97% 1.5%, 100% 0.5%,
+        99% 8%, 100% 15%, 99.5% 25%, 100% 35%, 99% 45%, 100% 55%,
+        99.5% 65%, 100% 75%, 99% 85%, 100% 92%, 98% 98%, 95% 100%,
+        88% 99%, 80% 100%, 72% 99%, 65% 100%, 55% 99.5%, 45% 100%,
+        35% 99%, 25% 100%, 15% 99%, 8% 100%, 2% 98%, 0% 95%,
+        0.5% 85%, 0% 75%, 1% 65%, 0% 55%, 0.5% 45%, 0% 35%, 1% 25%, 0% 15%, 0% 8%
+      );
+      box-shadow:
+        4px 6px 0 var(--terracotta),
+        8px 12px 32px rgba(74, 44, 42, 0.15);
+      transform: rotate(-0.6deg);
+    }
+
+    /* Скотч сверху */
+    .tape {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%) rotate(2deg);
+      width: 120px;
+      height: 32px;
+      background: rgba(245, 230, 163, 0.75);
+      border: 1px solid rgba(74, 44, 42, 0.08);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+      z-index: 2;
+    }
+
+    .tape::before, .tape::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 8px;
+      height: 100%;
+      background: rgba(74, 44, 42, 0.04);
+    }
+    .tape::before { left: 20%; }
+    .tape::after { right: 25%; }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+      transform: rotate(0.4deg);
+    }
+
+    .badge {
+      display: inline-block;
+      font-family: "Caveat", cursive;
+      font-size: 1.35rem;
+      color: var(--berry);
+      transform: rotate(-3deg);
+      margin-bottom: 0.25rem;
+    }
+
+    h1 {
+      font-family: "Fraunces", serif;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--chocolate-light);
+      max-width: 480px;
+      margin-inline: auto;
+    }
+
+    /* Три тарифа — кривые карточки */
+    .tiers {
+      display: grid;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 700px) {
+      .tiers { grid-template-columns: repeat(3, 1fr); align-items: start; }
+    }
+
+    .tier {
+      position: relative;
+      padding: 1.25rem 1.1rem 1.1rem;
+      border: 2.5px solid var(--chocolate);
+      background: var(--cream);
+      transition: transform 0.2s;
+    }
+
+    .tier:nth-child(1) {
+      transform: rotate(-1.8deg);
+      border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+    }
+    .tier:nth-child(2) {
+      transform: rotate(1.2deg) scale(1.03);
+      background: linear-gradient(135deg, #fff 0%, var(--rose) 100%);
+      border-radius: 15px 255px 15px 225px / 225px 15px 255px 15px;
+      border-color: var(--berry);
+      z-index: 1;
+    }
+    .tier:nth-child(3) {
+      transform: rotate(-0.8deg);
+      border-radius: 225px 15px 255px 15px / 15px 255px 15px 225px;
+      background: linear-gradient(160deg, var(--yellow) 0%, #fff 60%);
+    }
+
+    .tier:hover { transform: rotate(0deg) scale(1.02); }
+
+    .tier-label {
+      font-family: "Caveat", cursive;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--terracotta);
+    }
+
+    .tier:nth-child(2) .tier-label { color: var(--berry); }
+
+    .tier-price {
+      font-family: "Fraunces", serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin: 0.35rem 0 0.6rem;
+      line-height: 1;
+    }
+
+    .tier-hit {
+      position: absolute;
+      top: -10px;
+      right: -6px;
+      background: var(--berry);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.3rem 0.6rem;
+      transform: rotate(8deg);
+      border-radius: 4px 12px 4px 12px;
+      box-shadow: 2px 2px 0 var(--chocolate);
+    }
+
+    .tier ul {
+      list-style: none;
+      font-size: 0.78rem;
+      line-height: 1.55;
+      color: var(--chocolate-light);
+    }
+
+    .tier li {
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.3rem;
+    }
+
+    .tier li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: var(--terracotta);
+      font-size: 0.6rem;
+      top: 0.15rem;
+    }
+
+    /* Стикер с выгодой */
+    .sticker {
+      position: relative;
+      background: var(--mint);
+      border: 2px dashed var(--chocolate);
+      padding: 1rem 1.25rem;
+      margin: 0 auto 2rem;
+      max-width: 520px;
+      transform: rotate(1.5deg);
+      border-radius: 3px 18px 5px 22px / 22px 5px 18px 3px;
+      text-align: center;
+    }
+
+    .sticker p {
+      font-family: "Caveat", cursive;
+      font-size: 1.45rem;
+      line-height: 1.3;
+      color: var(--chocolate);
+    }
+
+    .sticker strong {
+      color: var(--berry);
+      font-weight: 700;
+    }
+
+    /* Модули — кривая сетка */
+    .modules-title {
+      font-family: "Fraunces", serif;
+      font-size: 1.2rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      transform: rotate(-0.5deg);
+    }
+
+    .modules {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.65rem;
+      margin-bottom: 2rem;
+    }
+
+    .mod {
+      background: #fff;
+      border: 1.5px solid var(--cream-dark);
+      padding: 0.65rem 0.7rem;
+      font-size: 0.72rem;
+      line-height: 1.4;
+      box-shadow: 2px 3px 0 var(--cream-dark);
+    }
+
+    .mod:nth-child(odd) { transform: rotate(-0.7deg); border-radius: 12px 4px 14px 6px; }
+    .mod:nth-child(even) { transform: rotate(0.6deg); border-radius: 4px 14px 6px 12px; }
+    .mod:nth-child(3n) { background: var(--rose); }
+    .mod:nth-child(5n) { background: var(--yellow); }
+
+    .mod-name { font-weight: 600; display: block; margin-bottom: 0.15rem; font-size: 0.75rem; }
+    .mod-price { color: var(--berry); font-weight: 600; font-size: 0.7rem; }
+
+    /* Низ — условия на «обрывке» */
+    .footer-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 1.5rem;
+    }
+
+    .note {
+      flex: 1;
+      min-width: 200px;
+      max-width: 280px;
+      padding: 0.9rem 1rem;
+      font-size: 0.75rem;
+      line-height: 1.5;
+      color: var(--chocolate-light);
+      border: 1.5px solid var(--chocolate);
+      background: #fffef8;
+    }
+
+    .note:nth-child(1) { transform: rotate(-2deg); border-radius: 2px 16px 3px 18px; }
+    .note:nth-child(2) { transform: rotate(1.5deg); border-radius: 18px 2px 16px 3px; background: var(--rose); }
+    .note:nth-child(3) { transform: rotate(-1deg); border-radius: 3px 18px 2px 16px; background: var(--mint); }
+
+    .note h3 {
+      font-family: "Caveat", cursive;
+      font-size: 1.15rem;
+      color: var(--chocolate);
+      margin-bottom: 0.35rem;
+    }
+
+    .cta-row {
+      text-align: center;
+      margin-top: 2rem;
+      transform: rotate(-0.3deg);
+    }
+
+    .cta {
+      display: inline-block;
+      font-family: "Fraunces", serif;
+      font-size: 1rem;
+      font-weight: 600;
+      background: var(--berry);
+      color: #fff;
+      padding: 0.75rem 2rem;
+      text-decoration: none;
+      border: 2.5px solid var(--chocolate);
+      border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+      box-shadow: 3px 4px 0 var(--chocolate);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .cta:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 2px 0 var(--chocolate);
+    }
+
+    .disclaimer {
+      text-align: center;
+      font-size: 0.65rem;
+      color: var(--chocolate-light);
+      margin-top: 1.5rem;
+      opacity: 0.7;
+      transform: rotate(0.5deg);
+    }
+
+  </style>
+</head>
+<body>
+
+  <svg class="doodles" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50,200 Q120,180 90,250 T130,320" stroke="#4a2c2a" fill="none" stroke-width="2"/>
+    <path d="M800,100 Q750,150 820,180 T880,250" stroke="#4a2c2a" fill="none" stroke-width="1.5"/>
+    <circle cx="150" cy="600" r="40" stroke="#d98b5f" fill="none" stroke-width="1.5" stroke-dasharray="4 6"/>
+    <path d="M700,500 Q720,480 740,510 Q760,540 730,550" stroke="#b83256" fill="none" stroke-width="2"/>
+  </svg>
+
+  <div class="wrap">
+    <article class="main-card">
+      <div class="tape" aria-hidden="true"></div>
+
+      <header class="header">
+        <span class="badge">~ white-label ~</span>
+        <h1>Сайт для кондитерской<br>«Сладкие Торты»</h1>
+        <p class="subtitle">Bento-лендинг · конструктор · каталог · Telegram · админка<br>Запуск за 3–7 дней</p>
+      </header>
+
+      <section class="tiers" aria-label="Тарифы">
+        <div class="tier">
+          <div class="tier-label">Старт</div>
+          <div class="tier-price">49 000 ₽</div>
+          <ul>
+            <li>Настройка под заказчика</li>
+            <li>Тексты и контакты</li>
+            <li>До 10 фото тортов</li>
+            <li>Деплой на хостинг</li>
+          </ul>
+        </div>
+
+        <div class="tier">
+          <span class="tier-hit">Хит</span>
+          <div class="tier-label">Бизнес</div>
+          <div class="tier-price">89 000 ₽</div>
+          <ul>
+            <li>Bento-лендинг и каталог</li>
+            <li>Конструктор тортов</li>
+            <li>Формы заказа</li>
+            <li>Telegram-уведомления</li>
+            <li>Админ-панель + карта</li>
+            <li>До 25 фото</li>
+          </ul>
+        </div>
+
+        <div class="tier">
+          <div class="tier-label">Премиум</div>
+          <div class="tier-price">139 000 ₽</div>
+          <ul>
+            <li>Всё из «Бизнес»</li>
+            <li>Индивидуальный дизайн</li>
+            <li>Цветокоррекция до 30 фото</li>
+            <li>Настройка цен и начинок</li>
+            <li>Обучение 1 час</li>
+            <li>1 мес. поддержки</li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="sticker">
+        <p>с нуля это <strong>153 000 – 237 000 ₽</strong><br>и 4–8 недель ожидания 🍰</p>
+      </div>
+
+      <h2 class="modules-title">Что внутри</h2>
+      <div class="modules">
+        <div class="mod"><span class="mod-name">Bento-лендинг</span><span class="mod-price">35–55 тыс ₽</span></div>
+        <div class="mod"><span class="mod-name">Bento-каталог</span><span class="mod-price">20–30 тыс ₽</span></div>
+        <div class="mod"><span class="mod-name">Конструктор</span><span class="mod-price">40–60 тыс ₽</span></div>
+        <div class="mod"><span class="mod-name">Формы заказа</span><span class="mod-price">15–25 тыс ₽</span></div>
+        <div class="mod"><span class="mod-name">Telegram</span><span class="mod-price">8–12 тыс ₽</span></div>
+        <div class="mod"><span class="mod-name">Админка</span><span class="mod-price">25–40 тыс ₽</span></div>
+        <div class="mod"><span class="mod-name">Адаптив</span><span class="mod-price">10–15 тыс ₽</span></div>
+        <div class="mod"><span class="mod-name">Next.js 15</span><span class="mod-price">в комплекте</span></div>
+      </div>
+
+      <div class="footer-strip">
+        <div class="note">
+          <h3>Условия</h3>
+          Предоплата 50/50 · 2 раунда правок · гарантия 30 дней · передача кода и доступов
+        </div>
+        <div class="note">
+          <h3>Поддержка</h3>
+          от 3 000 ₽/мес — бэкапы, правки, обновления
+        </div>
+        <div class="note">
+          <h3>Срок</h3>
+          3–7 рабочих дней при готовом контенте от заказчика
+        </div>
+      </div>
+
+      <div class="cta-row">
+        <a class="cta" href="mailto:hello@example.com">Заказать сайт →</a>
+      </div>
+
+      <p class="disclaimer">Не является публичной офертой · июль 2026 · без НДС</p>
+    </article>
+  </div>
+
+<script id="static-export-fallback">(function(){document.querySelectorAll(".bento-reveal").forEach(function(el){el.classList.add("is-visible")});})();</script></body>
+</html>

@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fcatalog\u002F[id]\u002Forder"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
