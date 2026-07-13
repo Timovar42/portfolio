@@ -2371,7 +2371,7 @@
       background: var(--footer-bg);
       backdrop-filter: var(--glass-blur);
       -webkit-backdrop-filter: var(--glass-blur);
-      padding: 40px 24px;
+      padding: 48px 24px 40px;
       border-top: 1px solid var(--glass-border);
     }
     .footer-inner {
@@ -2454,6 +2454,301 @@
       text-align: center;
       font-size: 12px;
       color: var(--white40);
+    }
+
+    /* ——— STUDIO DECOR (нижняя часть) ——— */
+    .studio-band {
+      position: relative;
+      margin: 28px 0 0;
+      padding: 22px 20px;
+      border-radius: 16px;
+      border: 1px solid var(--glass-border);
+      background:
+        linear-gradient(135deg, rgba(108, 99, 255, 0.06) 0%, transparent 45%),
+        linear-gradient(225deg, rgba(255, 101, 132, 0.05) 0%, transparent 40%),
+        var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: var(--glass-shadow);
+      overflow: hidden;
+    }
+    .studio-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+      background-size: 20px 20px;
+      opacity: 0.45;
+      mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+      pointer-events: none;
+    }
+    .studio-band__inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 14px 18px;
+    }
+    .studio-band__label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .studio-band__divider {
+      width: 1px;
+      height: 28px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+    .studio-swatches {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .studio-swatch {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+      flex-shrink: 0;
+    }
+    [data-theme="light"] .studio-swatch {
+      border-color: rgba(15, 16, 24, 0.12);
+      box-shadow: 0 2px 6px rgba(15, 16, 24, 0.08);
+    }
+    .studio-swatch--1 { background: #6C63FF; }
+    .studio-swatch--2 { background: #FF6584; }
+    .studio-swatch--3 { background: #9B94FF; }
+    .studio-swatch--4 { background: linear-gradient(135deg, #6C63FF, #FF6584); }
+    .studio-type {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 10px;
+      border: 1px dashed var(--deco-stroke-muted);
+      background: var(--surface-tint);
+    }
+    .studio-type__aa {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .studio-type__meta {
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      line-height: 1.35;
+    }
+    .studio-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+    }
+    .studio-chip {
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--glass-border);
+      background: var(--chip-bg);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--chip-text);
+      white-space: nowrap;
+    }
+    .studio-frame {
+      width: 52px;
+      height: 38px;
+      border-radius: 6px;
+      border: 1px solid var(--deco-stroke);
+      background: var(--glass-bg);
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .studio-frame__bar {
+      height: 8px;
+      border-bottom: 1px solid var(--deco-stroke-muted);
+      background: var(--surface-tint);
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      padding: 0 4px;
+    }
+    .studio-frame__bar span {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--deco-dot);
+    }
+    .studio-frame__body {
+      padding: 5px;
+      display: grid;
+      gap: 3px;
+    }
+    .studio-frame__line {
+      height: 2px;
+      border-radius: 1px;
+      background: var(--deco-stroke-muted);
+    }
+    .studio-frame__line--accent {
+      width: 70%;
+      background: var(--gradient);
+      opacity: 0.75;
+    }
+    .studio-frame__line--short { width: 45%; }
+    .studio-curve {
+      width: 64px;
+      height: 40px;
+      flex-shrink: 0;
+      opacity: 0.55;
+    }
+    .studio-layers {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      width: 44px;
+      flex-shrink: 0;
+    }
+    .studio-layer {
+      height: 7px;
+      border-radius: 3px;
+      border: 1px solid var(--deco-stroke-muted);
+      background: var(--glass-bg);
+    }
+    .studio-layer:nth-child(1) { width: 100%; margin-left: 0; }
+    .studio-layer:nth-child(2) { width: 82%; margin-left: 6px; opacity: 0.85; }
+    .studio-layer:nth-child(3) { width: 64%; margin-left: 12px; opacity: 0.65; }
+    .studio-ruler {
+      display: flex;
+      align-items: flex-end;
+      gap: 5px;
+      height: 22px;
+      padding-bottom: 2px;
+      border-bottom: 1px solid var(--deco-stroke-muted);
+    }
+    .studio-ruler span {
+      width: 1px;
+      background: var(--deco-stroke);
+      flex-shrink: 0;
+    }
+    .studio-ruler span:nth-child(3n) { height: 14px; opacity: 0.7; }
+    .studio-ruler span:nth-child(3n+1) { height: 8px; opacity: 0.45; }
+    .studio-ruler span:nth-child(3n+2) { height: 11px; opacity: 0.55; }
+    .reviews-studio-visual {
+      margin-top: 36px;
+      display: flex;
+      justify-content: center;
+    }
+    .reviews-studio-card {
+      position: relative;
+      max-width: 520px;
+      width: 100%;
+      padding: 24px 28px;
+      border-radius: 18px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: var(--glass-shadow);
+      text-align: center;
+      overflow: hidden;
+    }
+    .reviews-studio-card::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -30px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--deco-fill);
+      filter: blur(40px);
+      pointer-events: none;
+    }
+    .reviews-studio-card__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      border: 1px solid var(--glass-border);
+      background: var(--surface-tint);
+      color: var(--accent2);
+    }
+    .reviews-studio-card__icon svg {
+      width: 22px;
+      height: 22px;
+    }
+    .reviews-studio-card p {
+      position: relative;
+      z-index: 1;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .reviews-studio-card strong {
+      color: var(--text-soft);
+      font-weight: 600;
+    }
+    .contact-studio-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      max-width: 720px;
+      margin: 0 auto 24px;
+    }
+    .contact-studio-tile {
+      padding: 14px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      text-align: center;
+    }
+    .contact-studio-tile__ic {
+      font-size: 18px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .contact-studio-tile__label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .footer-studio-band {
+      margin: 28px 0 0;
+    }
+    .deco-studio-cursor {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      opacity: 0.5;
+    }
+    .deco-studio-cursor svg {
+      width: 100%;
+      height: 100%;
+      color: var(--accent2);
     }
 
     /* ——— LIGHT THEME DEPTH ——— */
@@ -2973,6 +3268,17 @@
 
       .footer { padding: 32px 20px; }
       .footer-top { flex-direction: column; }
+      .contact-studio-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .studio-band__divider,
+      .studio-ruler,
+      .studio-curve,
+      .studio-layers { display: none; }
+      .studio-band { padding: 16px 14px; }
+      .reviews-studio-visual { margin-top: 24px; }
     }
   </style>
 </head>
@@ -3412,6 +3718,22 @@
         <span></span><span></span><span></span>
         <span></span><span></span><span></span>
       </div>
+      <div class="deco-gem deco-float-2" style="top:12%;right:22%;">
+        <span class="deco-gem__orbit"></span>
+        <span class="deco-gem__ring"></span>
+        <span class="deco-gem__core"></span>
+      </div>
+      <span class="deco-pill deco-float" style="bottom:32%;left:8%;">design studio</span>
+      <svg class="deco-svg deco-float-2" style="width:90px;height:90px;bottom:8%;right:6%;" viewBox="0 0 90 90" fill="none" aria-hidden="true">
+        <rect x="8" y="12" width="74" height="66" rx="6" stroke="var(--deco-stroke)" stroke-width="1"/>
+        <path d="M8 24 H82" stroke="var(--deco-stroke)" stroke-width="1" opacity="0.6"/>
+        <circle cx="16" cy="18" r="2" fill="var(--deco-dot)"/>
+        <circle cx="24" cy="18" r="2" fill="var(--deco-dot)" opacity="0.6"/>
+        <rect x="18" y="34" width="28" height="4" rx="2" fill="var(--deco-stroke-muted)"/>
+        <rect x="18" y="44" width="48" height="3" rx="1.5" fill="var(--deco-stroke-muted)" opacity="0.7"/>
+        <rect x="18" y="52" width="36" height="3" rx="1.5" fill="var(--deco-stroke-muted)" opacity="0.5"/>
+      </svg>
+      <div class="deco-line" style="width:100px;top:55%;left:5%;transform:rotate(-12deg);"></div>
     </div>
     <div class="section-inner">
       <div class="section-head reveal">
@@ -3420,6 +3742,17 @@
       </div>
       <div class="reviews-empty-wrap reveal d1">
         <p class="reviews-empty">Вы можете стать первым :)</p>
+      </div>
+      <div class="reviews-studio-visual reveal d2">
+        <div class="reviews-studio-card">
+          <div class="reviews-studio-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3L3 8v8l9 5 9-5V8l-9-5z"/>
+              <path d="M3 8l9 5 9-5M12 13v8"/>
+            </svg>
+          </div>
+          <p>Каждый проект проходит через <strong>дизайн-студию BarbieBoys</strong>: прототип, визуальная система, вёрстка и запуск — без шаблонов с полки.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -3437,6 +3770,22 @@
         <path d="M60 8 L112 60 L60 112 L8 60 Z" stroke="var(--deco-stroke)" stroke-width="1"/>
         <circle cx="60" cy="60" r="8" fill="var(--deco-dot)" opacity="0.75"/>
       </svg>
+      <div class="deco-gem deco-pulse" style="top:8%;right:18%;">
+        <span class="deco-gem__orbit"></span>
+        <span class="deco-gem__ring"></span>
+        <span class="deco-gem__core"></span>
+      </div>
+      <svg class="deco-svg deco-float" style="width:80px;height:56px;bottom:18%;left:6%;opacity:0.28;" viewBox="0 0 80 56" fill="none" aria-hidden="true">
+        <path d="M4 48 C20 8, 36 52, 52 20 S 72 44, 76 12" stroke="var(--deco-stroke)" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="4" cy="48" r="3" fill="var(--accent)" opacity="0.6"/>
+        <circle cx="52" cy="20" r="3" fill="var(--accent)" opacity="0.6"/>
+        <circle cx="76" cy="12" r="3" fill="var(--accent)" opacity="0.6"/>
+      </svg>
+      <div class="deco-studio-cursor deco-float-2" style="bottom:28%;right:16%;">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M5 3l14 8.5L11 13l-1.5 7L5 3z"/>
+        </svg>
+      </div>
     </div>
     <div class="section-inner">
       <div class="contact-header section-head reveal">
@@ -3448,7 +3797,22 @@
         </p>
       </div>
 
-      <div class="contact-block reveal d1">
+      <div class="contact-studio-row reveal d1" aria-hidden="true">
+        <div class="contact-studio-tile">
+          <div class="contact-studio-tile__ic">🎨</div>
+          <div class="contact-studio-tile__label">UI / UX</div>
+        </div>
+        <div class="contact-studio-tile">
+          <div class="contact-studio-tile__ic">✦</div>
+          <div class="contact-studio-tile__label">Брендинг</div>
+        </div>
+        <div class="contact-studio-tile">
+          <div class="contact-studio-tile__ic">⚡</div>
+          <div class="contact-studio-tile__label">Разработка</div>
+        </div>
+      </div>
+
+      <div class="contact-block reveal d2">
         <div class="contact-guide">
           <h3 class="contact-guide-title">Не знаете, что писать? Вот подсказка 👇</h3>
           <p class="contact-guide-lead">
@@ -3520,8 +3884,18 @@
   <footer class="footer">
     <div class="section-deco" aria-hidden="true">
       <div class="deco-line" style="width:100%;top:0;left:0;opacity:0.2;background:var(--gradient);"></div>
-      <div class="deco-ring" style="width:80px;height:80px;bottom:20%;left:5%;opacity:0.4;"></div>
-      <div class="deco-cross" style="bottom:30%;right:8%;opacity:0.3;"></div>
+      <div class="deco-ring deco-float" style="width:120px;height:120px;bottom:35%;left:3%;opacity:0.45;"></div>
+      <div class="deco-ring deco-spin" style="width:90px;height:90px;top:25%;right:6%;opacity:0.35;"></div>
+      <div class="deco-cross" style="bottom:40%;right:10%;opacity:0.35;"></div>
+      <div class="deco-diamond deco-float-2" style="top:30%;left:14%;"></div>
+      <div class="deco-dot-cluster" style="top:20%;right:20%;">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
+      <svg class="deco-svg deco-float" style="width:70px;height:70px;bottom:15%;left:8%;" viewBox="0 0 70 70" fill="none" aria-hidden="true">
+        <circle cx="35" cy="35" r="28" stroke="var(--deco-stroke)" stroke-width="1" stroke-dasharray="4 6"/>
+        <path d="M35 7 L35 63 M7 35 L63 35" stroke="var(--deco-stroke-muted)" stroke-width="1"/>
+      </svg>
     </div>
     <div class="footer-inner">
       <div class="footer-top">
@@ -3535,6 +3909,53 @@
           <a class="social-link" href="https://www.tiktok.com/@_barbie_boys_" target="_blank" rel="noopener" aria-label="TikTok BarbieBoys" data-tip="TikTok @_barbie_boys_">TT</a>
         </div>
       </div>
+
+      <div class="studio-band footer-studio-band" aria-hidden="true">
+        <div class="studio-band__inner">
+          <span class="studio-band__label">Design studio</span>
+          <span class="studio-band__divider"></span>
+          <div class="studio-swatches">
+            <span class="studio-swatch studio-swatch--1"></span>
+            <span class="studio-swatch studio-swatch--2"></span>
+            <span class="studio-swatch studio-swatch--3"></span>
+            <span class="studio-swatch studio-swatch--4"></span>
+          </div>
+          <span class="studio-band__divider"></span>
+          <div class="studio-type">
+            <span class="studio-type__aa">Aa</span>
+            <span class="studio-type__meta">Space Grotesk<br>Inter</span>
+          </div>
+          <span class="studio-band__divider"></span>
+          <div class="studio-frame">
+            <div class="studio-frame__bar"><span></span><span></span><span></span></div>
+            <div class="studio-frame__body">
+              <div class="studio-frame__line studio-frame__line--accent"></div>
+              <div class="studio-frame__line"></div>
+              <div class="studio-frame__line studio-frame__line--short"></div>
+            </div>
+          </div>
+          <span class="studio-band__divider"></span>
+          <div class="studio-layers">
+            <div class="studio-layer"></div>
+            <div class="studio-layer"></div>
+            <div class="studio-layer"></div>
+          </div>
+          <svg class="studio-curve" viewBox="0 0 64 40" fill="none" aria-hidden="true">
+            <path d="M2 34 C14 6, 28 38, 42 14 S 58 32, 62 8" stroke="var(--deco-stroke)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <div class="studio-ruler" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <span class="studio-band__divider"></span>
+          <div class="studio-chips">
+            <span class="studio-chip">UI</span>
+            <span class="studio-chip">Brand</span>
+            <span class="studio-chip">Layout</span>
+            <span class="studio-chip">Web</span>
+          </div>
+        </div>
+      </div>
+
       <div class="footer-bottom">
         © 2026 BarbieBoys. Все права защищены.
       </div>
