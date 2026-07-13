@@ -2456,8 +2456,6 @@
       color: var(--accent);
     }
 
-    .deco-mobile-only { display: none; }
-
     /* ——— MOBILE ——— */
     @media (max-width: 767px) {
       .reveal {
@@ -2526,8 +2524,8 @@
       }
       h1 .line2 { display: inline; }
 
-      /* декор: больше элементов, слабые — выразительнее, но полупрозрачные */
-      .deco-mobile-only { display: block; }
+      /* декор: вдвое меньше элементов, слабые — выразительнее, но полупрозрачные */
+      .section-deco > *:nth-child(even) { display: none !important; }
 
       body::after { opacity: 0.72; }
       [data-theme="light"] body::after { opacity: 0.84; }
@@ -3144,13 +3142,6 @@
         <circle cx="100" cy="100" r="60" stroke="var(--deco-stroke-muted)" stroke-width="1" opacity="0.85"/>
         <path d="M100 10 L100 190 M10 100 L190 100" stroke="var(--deco-stroke-muted)" stroke-width="1" opacity="0.65"/>
       </svg>
-      <div class="deco-orb deco-mobile-only deco-float deco-pace-fast" style="width:200px;height:200px;bottom:6%;right:-40px;background:var(--deco-fill-2);"></div>
-      <div class="deco-cross deco-mobile-only deco-float-2" style="top:10%;left:5%;width:16px;height:16px;"></div>
-      <div class="deco-ring deco-mobile-only deco-spin deco-pace-faster" style="width:88px;height:88px;bottom:10%;left:4%;"></div>
-      <div class="deco-dot-cluster deco-mobile-only deco-float" style="top:6%;right:6%;">
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
-      </div>
     </div>
     <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
     <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
@@ -3189,16 +3180,6 @@
       <div class="deco-cross deco-float" style="top:18%;right:12%;"></div>
       <div class="deco-diamond deco-float-2 deco-pace-faster" style="bottom:20%;right:8%;"></div>
       <div class="deco-line" style="width:160px;top:32%;left:4%;transform:rotate(12deg);"></div>
-      <div class="deco-orb deco-mobile-only deco-float-2" style="width:160px;height:160px;bottom:12%;right:-20px;background:var(--deco-fill-2);"></div>
-      <div class="deco-dot-cluster deco-mobile-only" style="top:10%;left:6%;">
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
-      </div>
-      <div class="deco-diamond deco-mobile-only deco-float deco-pace-fast" style="top:14%;right:6%;"></div>
-      <svg class="deco-svg deco-mobile-only deco-spin deco-pace-fast" style="width:72px;height:72px;bottom:14%;right:5%;" viewBox="0 0 72 72" fill="none" aria-hidden="true">
-        <circle cx="36" cy="36" r="30" stroke="var(--deco-stroke)" stroke-width="1" stroke-dasharray="4 6"/>
-        <circle cx="36" cy="36" r="6" fill="var(--deco-dot)" opacity="0.7"/>
-      </svg>
     </div>
     <div class="section-inner">
       <div class="section-head reveal">
@@ -3338,9 +3319,6 @@
         <polygon points="80,10 150,80 80,150 10,80" stroke="var(--deco-stroke)" stroke-width="1"/>
         <circle cx="80" cy="80" r="24" stroke="var(--deco-stroke-muted)" stroke-width="1" opacity="0.85"/>
       </svg>
-      <div class="deco-cross deco-mobile-only deco-float-2 deco-pace-fast" style="top:8%;right:5%;width:14px;height:14px;"></div>
-      <div class="deco-ring deco-mobile-only deco-pulse" style="width:76px;height:76px;bottom:16%;left:5%;"></div>
-      <div class="deco-line deco-mobile-only" style="width:120px;top:48%;right:4%;transform:rotate(-14deg);"></div>
     </div>
     <div class="section-inner">
       <div class="section-head reveal">
@@ -3527,8 +3505,6 @@
         <rect x="18" y="52" width="36" height="3" rx="1.5" fill="var(--deco-stroke-muted)" opacity="0.5"/>
       </svg>
       <div class="deco-line" style="width:100px;top:55%;left:5%;transform:rotate(-12deg);"></div>
-      <div class="deco-orb deco-mobile-only deco-float" style="width:140px;height:140px;top:-30px;right:-20px;background:var(--deco-fill);"></div>
-      <div class="deco-cross deco-mobile-only" style="bottom:12%;left:6%;width:14px;height:14px;"></div>
     </div>
     <div class="section-inner">
       <div class="section-head reveal">
@@ -3563,12 +3539,6 @@
         <circle cx="52" cy="20" r="3" fill="var(--accent)" opacity="0.6"/>
         <circle cx="76" cy="12" r="3" fill="var(--accent)" opacity="0.6"/>
       </svg>
-      <div class="deco-dot-cluster deco-mobile-only deco-float-2" style="top:6%;right:8%;">
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
-      </div>
-      <div class="deco-diamond deco-mobile-only" style="bottom:10%;right:6%;"></div>
-      <div class="deco-ring deco-mobile-only deco-ring--solid deco-pulse deco-pace-fast" style="width:70px;height:70px;bottom:22%;left:5%;"></div>
     </div>
     <div class="section-inner">
       <div class="contact-block reveal d1">
