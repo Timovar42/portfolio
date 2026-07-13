@@ -1,0 +1,26 @@
+# Архивы
+*.zip
+*.7z
+
+# Cake (Next.js)
+cake/node_modules/
+cake/.next/
+cake/.env
+cake/.env*.local
+cake/data/
+
+# Базы данных
+*.db
+*.db-shm
+*.db-wal
+
+# Lawyer backend
+lawyer/backend/__pycache__/
+lawyer/backend/.env
+lawyer/backend/venv/
+lawyer/backend/.venv/
+
+# Системное
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,11 @@
+# После деплоя замените barbieboys.agency на реальный домен
+User-agent: *
+Allow: /
+
+# Демо-проекты не индексируем — это примеры работ, а не контент сайта
+Disallow: /barbie/
+Disallow: /lawyer/
+Disallow: /cake/
+Disallow: /scripts/
+
+Sitemap: https://barbieboys.agency/sitemap.xml

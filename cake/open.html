@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Сладкие Торты — запуск</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #f7f0ea;
+      color: #3d2c25;
+      font-family: Inter, system-ui, sans-serif;
+      padding: 24px;
+    }
+    .box {
+      width: 100%;
+      max-width: 440px;
+      background: #fff;
+      border: 1px solid rgba(60, 40, 30, 0.12);
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+      text-align: center;
+    }
+    h1 {
+      font-family: Georgia, serif;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(61, 44, 37, 0.75);
+      margin-bottom: 12px;
+    }
+    ol {
+      text-align: left;
+      margin: 16px 0 20px 20px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(61, 44, 37, 0.85);
+    }
+    code {
+      background: #f3ece6;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      margin-top: 10px;
+      padding: 13px 18px;
+      border-radius: 10px;
+      border: none;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-primary { background: #b44a5c; color: #fff; }
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid rgba(60, 40, 30, 0.15);
+      color: rgba(61, 44, 37, 0.8);
+    }
+    #status { margin-top: 14px; font-size: 13px; color: #b44a5c; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>🎂 Сладкие Торты</h1>
+    <p>Конструктор и интерактивные кнопки работают через локальный сервер.</p>
+    <ol>
+      <li>Откройте папку <code>cake</code></li>
+      <li>Запустите <code>start.cmd</code></li>
+      <li>Нажмите кнопку ниже</li>
+    </ol>
+    <a class="btn btn-primary" id="open-site" href="http://127.0.0.1:8765/" target="_blank" rel="noopener">Открыть сайт</a>
+    <button class="btn btn-ghost" type="button" id="check-server">Проверить сервер</button>
+    <a class="btn btn-ghost" href="out/index.html">Упрощённая версия (без конструктора)</a>
+    <p id="status"></p>
+  </div>
+  <script>
+    const LOCAL = 'http://127.0.0.1:8765/';
+    const status = document.getElementById('status');
+    const checkBtn = document.getElementById('check-server');
+    const openBtn = document.getElementById('open-site');
+
+    async function checkServer() {
+      status.textContent = 'Проверяем…';
+      try {
+        const res = await fetch(LOCAL, { method: 'GET', cache: 'no-store' });
+        if (!res.ok) throw new Error('offline');
+        status.textContent = 'Сервер запущен — можно открывать сайт.';
+        openBtn.focus();
+        return true;
+      } catch {
+        status.textContent = 'Сервер не найден. Сначала запустите cake/start.cmd';
+        return false;
+      }
+    }
+
+    checkBtn.addEventListener('click', checkServer);
+    openBtn.addEventListener('click', async (e) => {
+      const ok = await checkServer();
+      if (!ok) e.preventDefault();
+    });
+
+    checkServer();
+  </script>
+</body>
+</html>

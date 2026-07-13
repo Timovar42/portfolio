@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Иван Иванов — юрист в Москве, Россия. Суды, бизнес, семейные и трудовые споры, наследство. Бесплатная консультация.">
+  <title>Иван Иванов — Юрист · Москва, Россия</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark:    #111318;
+      --bg-mid:     #1C2030;
+      --bg-card:    #232840;
+      --bg-light:   #F4F2ED;
+      --gold:       #C09A4E;
+      --gold-soft:  #D4B472;
+      --text-dark:  #1A1A2E;
+      --text-light: #EDEAE2;
+      --text-muted: rgba(237,234,226,0.45);
+      --border:     rgba(237,234,226,0.10);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'Inter', system-ui, sans-serif;
+      --header-h: 72px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text-light);
+      background: var(--bg-dark);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Tilda-style cover scroll: секции накрывают друг друга при прокрутке */
+    .page-stack { position: relative; }
+
+    .stack-panel {
+      position: sticky;
+      top: 0;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      will-change: transform;
+    }
+
+    .stack-panel:nth-child(1)  { z-index: 1; }
+    .stack-panel:nth-child(2)  { z-index: 2; }
+    .stack-panel:nth-child(3)  { z-index: 3; }
+    .stack-panel:nth-child(4)  { z-index: 4; }
+    .stack-panel:nth-child(5)  { z-index: 5; }
+    .stack-panel:nth-child(6)  { z-index: 6; }
+    .stack-panel:nth-child(7)  { z-index: 7; }
+
+    .stack-panel:not(:first-child) {
+      box-shadow: 0 -12px 48px rgba(0, 0, 0, 0.35);
+    }
+
+    .stack-panel--footer {
+      position: relative;
+      z-index: 8;
+      min-height: auto;
+      box-shadow: none;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.08s; }
+    .delay-2 { transition-delay: 0.18s; }
+    .delay-3 { transition-delay: 0.28s; }
+    .delay-4 { transition-delay: 0.38s; }
+    .delay-5 { transition-delay: 0.48s; }
+
+    .section-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: calc(var(--header-h) + 48px) 24px 48px;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .section-inner--top { justify-content: flex-start; }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      margin-bottom: 14px;
+    }
+    .eyebrow--dark { color: var(--gold); }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 4.2vw, 42px);
+      margin-bottom: 20px;
+    }
+    .section-title--dark { color: var(--text-dark); }
+
+    .section-lead {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+    .section-lead--dark { color: rgba(26,26,46,0.55); }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: var(--header-h);
+      background: rgba(17,19,24,0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid transparent;
+      transition: background 0.4s ease, border-color 0.4s ease;
+    }
+    .header--light {
+      background: rgba(244,242,237,0.94);
+      border-bottom-color: rgba(26,26,46,0.08);
+    }
+    .header__inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .logo { display: flex; flex-direction: column; gap: 2px; }
+    .logo__name {
+      font-family: var(--font-display);
+      font-size: 17px;
+      color: var(--text-light);
+      transition: color 0.4s ease;
+    }
+    .logo__sub {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      transition: color 0.4s ease;
+    }
+    .header--light .logo__name { color: var(--text-dark); }
+    .header--light .logo__sub { color: rgba(26,26,46,0.45); }
+
+    .header__right { display: flex; align-items: center; gap: 18px; }
+    .nav { display: flex; gap: 26px; }
+    .nav__link {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: color 0.25s ease;
+    }
+    .nav__link:hover { color: var(--gold-soft); }
+    .header--light .nav__link { color: rgba(26,26,46,0.5); }
+    .header--light .nav__link:hover { color: var(--gold); }
+
+    .header__phone {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--gold-soft);
+      white-space: nowrap;
+    }
+    .header--light .header__phone { color: var(--gold); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      padding: 13px 26px;
+      border-radius: 4px;
+      transition: background 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+      white-space: nowrap;
+    }
+    .btn--gold { background: var(--gold); color: var(--text-dark); }
+    .btn--gold:hover { background: var(--gold-soft); transform: translateY(-1px); }
+    .btn--outline {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-light);
+    }
+    .btn--outline:hover { border-color: var(--gold-soft); color: var(--gold-soft); }
+    .btn--full { width: 100%; height: 50px; font-size: 14px; }
+
+    /* Scroll dots */
+    .scroll-dots {
+      position: fixed;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 900;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .scroll-dots button {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(237,234,226,0.2);
+      border: none;
+      padding: 0;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+    .scroll-dots button.active {
+      background: var(--gold);
+      transform: scale(1.35);
+    }
+    .scroll-dots--light button { background: rgba(26,26,46,0.15); }
+    .scroll-dots--light button.active { background: var(--gold); }
+
+    /* Sections bg */
+    .section--dark { background: var(--bg-dark); }
+    .section--mid  { background: var(--bg-mid); }
+    .section--light { background: var(--bg-light); color: var(--text-dark); }
+
+    /* Hero */
+    .hero__title {
+      font-size: clamp(34px, 5.5vw, 56px);
+      margin-bottom: 24px;
+      max-width: 700px;
+    }
+    .hero__title span { display: block; color: var(--gold-soft); font-style: italic; }
+    .hero__subtitle {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin-bottom: 36px;
+      line-height: 1.75;
+    }
+    .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    /* Service accordions */
+    .accordion { display: flex; flex-direction: column; gap: 8px; }
+
+    .accordion__item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+    .accordion__item--open { border-color: rgba(192,154,78,0.45); }
+
+    .accordion__trigger {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 22px;
+      text-align: left;
+      color: var(--text-light);
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .accordion__trigger h3 {
+      font-family: var(--font-body);
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .accordion__icon {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--gold-soft);
+      transition: transform 0.35s ease, border-color 0.35s ease;
+    }
+    .accordion__item--open .accordion__icon {
+      transform: rotate(45deg);
+      border-color: var(--gold);
+    }
+
+    .accordion__panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .accordion__item--open .accordion__panel {
+      grid-template-rows: 1fr;
+    }
+
+    .accordion__panel-inner { overflow: hidden; min-height: 0; }
+
+    .accordion__list {
+      padding: 0 22px 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 24px;
+      opacity: 0;
+      transform: translateY(16px);
+      transition:
+        opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.08s,
+        transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.08s;
+    }
+    .accordion__item--open .accordion__list {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .accordion__item:not(.accordion__item--open) .accordion__list {
+      transition:
+        opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .accordion__list li {
+      font-size: 13px;
+      color: var(--text-muted);
+      padding-left: 14px;
+      position: relative;
+    }
+    .accordion__list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+
+    /* Stats */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .stats-row__item {
+      background: var(--bg-card);
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .stats-row__value {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 6vw, 56px);
+      color: var(--gold-soft);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .stats-row__label {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.45;
+      max-width: 180px;
+      margin: 0 auto;
+    }
+
+    /* Advantages */
+    .advantages-intro {
+      font-size: 15px;
+      color: var(--text-muted);
+      max-width: 720px;
+      margin-bottom: 32px;
+      line-height: 1.75;
+    }
+    .advantages-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 14px;
+    }
+    .advantage-card {
+      background: var(--bg-card);
+      border-radius: 8px;
+      padding: 24px;
+      border: 1px solid transparent;
+      transition: border-color 0.3s ease;
+      grid-column: span 2;
+    }
+    .advantage-card:nth-child(4),
+    .advantage-card:nth-child(5) {
+      grid-column: span 3;
+    }
+    .advantage-card:hover { border-color: var(--border); }
+
+    .advantage-card__title {
+      font-size: 18px;
+      margin-bottom: 8px;
+      color: var(--text-light);
+    }
+    .advantage-card__text {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 56px;
+      align-items: center;
+    }
+    .about__role {
+      font-size: 15px;
+      color: var(--gold-soft);
+      margin-bottom: 20px;
+    }
+    .about__bio {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 520px;
+    }
+    .about__photo {
+      width: 280px;
+      height: 340px;
+      background: linear-gradient(160deg, var(--bg-card) 0%, var(--bg-mid) 100%);
+      border: 1px solid rgba(192,154,78,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .about__initials {
+      font-family: var(--font-display);
+      font-size: 80px;
+      color: var(--gold);
+      opacity: 0.3;
+    }
+    .about__badge {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--text-dark);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      white-space: nowrap;
+      border-radius: 3px;
+    }
+
+    /* Form */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      max-width: 640px;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group--full { grid-column: 1 / -1; }
+    .form-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(26,26,46,0.45);
+    }
+    .form-input {
+      width: 100%;
+      padding: 12px 14px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--text-dark);
+      background: #fff;
+      border: 1px solid rgba(26,26,46,0.12);
+      border-radius: 4px;
+      transition: border-color 0.25s ease;
+    }
+    .form-input:focus { outline: none; border-color: var(--gold); }
+    .form-input--error { border-color: #c0392b; }
+    .form-error { font-size: 12px; color: #c0392b; }
+    .form-note {
+      font-size: 12px;
+      color: rgba(26,26,46,0.4);
+      text-align: center;
+      margin-top: 10px;
+    }
+    .form-success { padding: 40px 0; max-width: 480px; }
+    .form-success p {
+      font-family: var(--font-display);
+      font-size: 26px;
+      color: var(--text-dark);
+    }
+    .form-success[hidden], .contact-form[hidden] { display: none; }
+
+    /* Footer */
+    .footer {
+      background: var(--bg-dark);
+      padding-bottom: 40px;
+    }
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 48px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+    }
+    .footer__title {
+      font-family: var(--font-display);
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+    .footer__subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .footer__contacts li {
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+    .footer__contacts a:hover { color: var(--gold-soft); }
+    .footer__bottom {
+      padding-top: 24px;
+      font-size: 12px;
+      color: rgba(237,234,226,0.3);
+    }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .scroll-dots { display: none; }
+      .nav { display: none; }
+      html { scroll-behavior: auto; }
+      .stack-panel:not(:first-child) { box-shadow: 0 -6px 24px rgba(0,0,0,0.2); }
+      .advantages-grid { grid-template-columns: 1fr; }
+      .advantage-card,
+      .advantage-card:nth-child(4),
+      .advantage-card:nth-child(5) { grid-column: span 1; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about__photo { width: 100%; height: 220px; order: -1; }
+      .accordion__list { grid-template-columns: 1fr; }
+      .stats-row { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .footer__grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .header__phone { font-size: 12px; }
+      .hero__actions { flex-direction: column; }
+      .hero__actions .btn { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { transition: opacity 0.4s ease; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="#hero" class="logo" data-goto="0">
+        <span class="logo__name">Иван Иванов</span>
+        <span class="logo__sub">Юрист · Москва, Россия</span>
+      </a>
+      <div class="header__right">
+        <nav class="nav">
+          <a href="#services" class="nav__link" data-goto="1">Услуги</a>
+          <a href="#about" class="nav__link" data-goto="4">О юристе</a>
+        </nav>
+        <a href="tel:+123456789" class="header__phone">+123456789</a>
+        <a href="#contact" class="btn btn--gold" data-goto="5">Консультация</a>
+      </div>
+    </div>
+  </header>
+
+  <nav class="scroll-dots" id="scroll-dots" aria-label="Навигация по секциям"></nav>
+
+  <main class="page-stack">
+
+  <!-- 1. Hero -->
+  <section class="stack-panel section--dark" id="hero" data-section>
+    <div class="section-inner">
+      <p class="eyebrow reveal">Частная практика · Россия</p>
+      <h1 class="hero__title reveal delay-1">
+        Юридические услуги
+        <span>г. Москва, Россия</span>
+      </h1>
+      <p class="hero__subtitle reveal delay-2">Моя цель — обеспечить клиентов качественными и эффективными решениями, которые помогут достичь желаемого результата. Обратитесь сегодня, чтобы получить профессиональную помощь в разрешении юридических вопросов.</p>
+      <div class="hero__actions reveal delay-3">
+        <a href="#contact" class="btn btn--gold" data-goto="5">Получить бесплатную консультацию</a>
+        <a href="#services" class="btn btn--outline" data-goto="1">Область экспертизы</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Services -->
+  <section class="stack-panel section--mid" id="services" data-section>
+    <div class="section-inner section-inner--top">
+      <p class="eyebrow reveal">Экспертиза</p>
+      <h2 class="section-title reveal delay-1">Область экспертизы</h2>
+      <p class="section-lead reveal delay-2">Предлагаю широкий спектр юридических услуг для частных лиц и бизнеса: консультации, анализ правовой ситуации, подготовку документов, представительство в судах, органах власти и организациях.</p>
+
+      <div class="accordion reveal delay-3" id="accordion">
+        <div class="accordion__item">
+          <button class="accordion__trigger" aria-expanded="false">
+            <h3>Сопровождение и представление интересов в суде</h3>
+            <span class="accordion__icon">+</span>
+          </button>
+          <div class="accordion__panel">
+            <div class="accordion__panel-inner">
+            <ul class="accordion__list">
+              <li>Юридическое сопровождение сделок</li>
+              <li>Экспертиза документов при покупке недвижимости</li>
+              <li>Составление и подача исковых заявлений</li>
+              <li>Представительство в суде общей юрисдикции</li>
+              <li>Представительство в арбитражном суде</li>
+            </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__trigger" aria-expanded="false">
+            <h3>Сопровождение бизнеса</h3>
+            <span class="accordion__icon">+</span>
+          </button>
+          <div class="accordion__panel">
+            <div class="accordion__panel-inner">
+            <ul class="accordion__list">
+              <li>Составление правовых документов</li>
+              <li>Составление договоров и претензий</li>
+              <li>Представление интересов в госорганах и судах</li>
+              <li>Урегулирование споров</li>
+            </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__trigger" aria-expanded="false">
+            <h3>Трудовые споры</h3>
+            <span class="accordion__icon">+</span>
+          </button>
+          <div class="accordion__panel">
+            <div class="accordion__panel-inner">
+            <ul class="accordion__list">
+              <li>Восстановление на работе</li>
+              <li>Защита прав работников</li>
+              <li>Взыскание выплат</li>
+              <li>Защита прав работодателей</li>
+            </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__trigger" aria-expanded="false">
+            <h3>Семейные споры</h3>
+            <span class="accordion__icon">+</span>
+          </button>
+          <div class="accordion__panel">
+            <div class="accordion__panel-inner">
+            <ul class="accordion__list">
+              <li>Расторжение брака</li>
+              <li>Взыскание алиментов</li>
+              <li>Споры по детям</li>
+              <li>Раздел имущества и обязательств</li>
+              <li>Взыскание долгов</li>
+            </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__trigger" aria-expanded="false">
+            <h3>Наследственные споры</h3>
+            <span class="accordion__icon">+</span>
+          </button>
+          <div class="accordion__panel">
+            <div class="accordion__panel-inner">
+            <ul class="accordion__list">
+              <li>Вступление в наследство</li>
+              <li>Споры по долгам наследодателя</li>
+              <li>Оспаривание завещания</li>
+            </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__trigger" aria-expanded="false">
+            <h3>Для физических лиц</h3>
+            <span class="accordion__icon">+</span>
+          </button>
+          <div class="accordion__panel">
+            <div class="accordion__panel-inner">
+            <ul class="accordion__list">
+              <li>Договор купли-продажи</li>
+              <li>Отмена судебного приказа</li>
+              <li>Договор дарения</li>
+              <li>Договор аренды</li>
+            </ul>
+            </div>
+          </div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__trigger" aria-expanded="false">
+            <h3>Жилищные споры</h3>
+            <span class="accordion__icon">+</span>
+          </button>
+          <div class="accordion__panel">
+            <div class="accordion__panel-inner">
+            <ul class="accordion__list">
+              <li>Выселение</li>
+              <li>Определение порядка пользования</li>
+              <li>Раздел жилого помещения</li>
+            </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Stats -->
+  <section class="stack-panel section--dark" id="stats" data-section>
+    <div class="section-inner">
+      <div class="stats-row reveal">
+        <div class="stats-row__item">
+          <div class="stats-row__value"><span class="counter" data-target="15">0</span></div>
+          <p class="stats-row__label">лет успешной юридической практики</p>
+        </div>
+        <div class="stats-row__item">
+          <div class="stats-row__value"><span class="counter" data-target="300">0</span></div>
+          <p class="stats-row__label">среднее количество консультаций в год</p>
+        </div>
+        <div class="stats-row__item">
+          <div class="stats-row__value"><span class="counter" data-target="600" data-prefix="более ">0</span></div>
+          <p class="stats-row__label">успешных дел</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Advantages -->
+  <section class="stack-panel section--mid" id="advantages" data-section>
+    <div class="section-inner section-inner--top">
+      <p class="eyebrow reveal">Преимущества</p>
+      <h2 class="section-title reveal delay-1">Мои преимущества</h2>
+      <p class="advantages-intro reveal delay-2">Опыт и специализированные знания создают основание для доверия. Я предлагаю не только консультацию, но и стратегическое планирование и поддержку на всех этапах — комплексный подход для оптимального результата.</p>
+      <div class="advantages-grid">
+        <article class="advantage-card reveal delay-1">
+          <h3 class="advantage-card__title">Годы практики</h3>
+          <p class="advantage-card__text">Накопленный за 15 лет опыт — значительное преимущество в решении сложных правовых задач.</p>
+        </article>
+        <article class="advantage-card reveal delay-2">
+          <h3 class="advantage-card__title">Конфиденциальность</h3>
+          <p class="advantage-card__text">Личные данные остаются конфиденциальными и не передаются третьим лицам.</p>
+        </article>
+        <article class="advantage-card reveal delay-3">
+          <h3 class="advantage-card__title">Персональный подход</h3>
+          <p class="advantage-card__text">Уникальные стратегии для каждого клиента с учётом конкретной ситуации и целей.</p>
+        </article>
+        <article class="advantage-card reveal delay-1">
+          <h3 class="advantage-card__title">Отличный сервис</h3>
+          <p class="advantage-card__text">Надёжность, своевременная информация и постоянная доступность — качества надёжного партнёра.</p>
+        </article>
+        <article class="advantage-card reveal delay-2">
+          <h3 class="advantage-card__title">Выгода</h3>
+          <p class="advantage-card__text">Фиксированные тарифы на стандартные услуги — вы заранее знаете стоимость каждой услуги.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. About -->
+  <section class="stack-panel section--dark" id="about" data-section>
+    <div class="section-inner">
+      <div class="about-grid">
+        <div>
+          <p class="eyebrow reveal">О юристе</p>
+          <h2 class="section-title reveal delay-1">Иван Иванов</h2>
+          <p class="about__role reveal delay-2">Юрист · Россия</p>
+          <p class="about__bio reveal delay-3">За время 15-летней практики я приобрёл знания в различных областях права. Этот опыт позволяет эффективно решать самые сложные юридические задачи для моих клиентов — от первой консультации до представительства в судах всех инстанций.</p>
+        </div>
+        <div class="about__photo reveal delay-2" role="img" aria-label="Иван Иванов">
+          <span class="about__initials">ИИ</span>
+          <span class="about__badge">15 лет практики</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Form -->
+  <section class="stack-panel section--light" id="contact" data-section data-header-trigger="light">
+    <div class="section-inner section-inner--top">
+      <p class="eyebrow eyebrow--dark reveal">Запись</p>
+      <h2 class="section-title section-title--dark reveal delay-1">Первичная консультация — бесплатно</h2>
+      <p class="section-lead section-lead--dark reveal delay-2">Отвечу в течение 2 часов в рабочее время · Пн–Сб, 09:00–18:00</p>
+
+      <form class="contact-form reveal delay-3" id="contact-form" novalidate>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="name">Ваше имя</label>
+            <input class="form-input" type="text" id="name" required placeholder="Как к вам обращаться">
+            <span class="form-error" id="name-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="phone">Телефон или Telegram</label>
+            <input class="form-input" type="text" id="phone" required placeholder="+123456789">
+            <span class="form-error" id="phone-error"></span>
+          </div>
+          <div class="form-group form-group--full">
+            <label class="form-label" for="area">Направление права</label>
+            <select class="form-input" id="area" required>
+              <option value="" disabled selected>Выберите направление</option>
+              <option value="court">Суды и сопровождение сделок</option>
+              <option value="business">Сопровождение бизнеса</option>
+              <option value="labor">Трудовые споры</option>
+              <option value="family">Семейные споры</option>
+              <option value="inheritance">Наследственные споры</option>
+              <option value="individual">Для физических лиц</option>
+              <option value="housing">Жилищные споры</option>
+              <option value="other">Другое</option>
+            </select>
+            <span class="form-error" id="area-error"></span>
+          </div>
+          <div class="form-group form-group--full">
+            <label class="form-label" for="message">Кратко опишите ситуацию (необязательно)</label>
+            <textarea class="form-input" id="message" rows="3" placeholder="Несколько предложений"></textarea>
+          </div>
+          <div class="form-group form-group--full">
+            <button type="submit" class="btn btn--gold btn--full">Отправить заявку — это бесплатно</button>
+            <p class="form-note">Данные конфиденциальны. Не передаём третьим лицам.</p>
+          </div>
+        </div>
+      </form>
+      <div class="form-success" id="form-success" hidden>
+        <p>Заявка принята. Свяжемся в течение 2 часов.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Footer -->
+  <footer class="stack-panel stack-panel--footer footer" id="footer" data-section>
+    <div class="section-inner section-inner--top" style="justify-content:flex-start;">
+      <div class="footer__grid">
+        <div>
+          <p class="footer__title">Иван Иванов</p>
+          <p class="footer__subtitle">Юридические услуги · г. Москва, Россия</p>
+        </div>
+        <ul class="footer__contacts">
+          <li><span>📞</span><a href="tel:+123456789">+123456789</a></li>
+          <li><span>✉</span><a href="mailto:youremail@gmail.com">youremail@gmail.com</a></li>
+          <li><span>🕐</span><span>Пн–Сб, 09:00–18:00</span></li>
+        </ul>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Иван Иванов · Юрист · Россия</p>
+      </div>
+    </div>
+  </footer>
+
+  </main>
+
+  <script>
+    (function () {
+      'use strict';
+
+      const sections = Array.from(document.querySelectorAll('[data-section]'));
+      const header = document.getElementById('header');
+      const dotsNav = document.getElementById('scroll-dots');
+
+      /* Навигация — нативный плавный скролл к секции */
+      function goToSection(index) {
+        if (index < 0 || index >= sections.length) return;
+        sections[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      function getCurrentIndex() {
+        const mid = window.scrollY + window.innerHeight * 0.45;
+        let idx = 0;
+        sections.forEach((sec, i) => {
+          if (sec.offsetTop <= mid) idx = i;
+        });
+        return idx;
+      }
+
+      function updateDots(index) {
+        dotsNav.querySelectorAll('button').forEach((btn, i) => {
+          btn.classList.toggle('active', i === index);
+        });
+      }
+
+      function updateHeaderTheme(index) {
+        const sec = sections[index];
+        const isLight = sec && sec.dataset.headerTrigger === 'light';
+        header.classList.toggle('header--light', isLight);
+        dotsNav.classList.toggle('scroll-dots--light', isLight);
+      }
+
+      sections.forEach((_, i) => {
+        const btn = document.createElement('button');
+        btn.setAttribute('aria-label', 'Секция ' + (i + 1));
+        btn.addEventListener('click', () => goToSection(i));
+        dotsNav.appendChild(btn);
+      });
+
+      document.querySelectorAll('[data-goto]').forEach((el) => {
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          goToSection(parseInt(el.dataset.goto, 10));
+        });
+      });
+
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            const idx = getCurrentIndex();
+            updateDots(idx);
+            updateHeaderTheme(idx);
+            ticking = false;
+          });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      updateDots(0);
+      updateHeaderTheme(0);
+
+      /* Reveal */
+      const countersDone = new Set();
+
+      function animateCounter(el, target, duration) {
+        const prefix = el.dataset.prefix || '';
+        const start = performance.now();
+        function tick(now) {
+          const p = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = prefix + Math.round(eased * target);
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      const revealObs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          if (el.classList.contains('reveal')) el.classList.add('visible');
+          if (el.classList.contains('counter') && !countersDone.has(el)) {
+            countersDone.add(el);
+            animateCounter(el, parseInt(el.dataset.target, 10), 1600);
+          }
+          if (el.classList.contains('stats-row')) {
+            el.querySelectorAll('.counter').forEach((c) => {
+              if (!countersDone.has(c)) {
+                countersDone.add(c);
+                animateCounter(c, parseInt(c.dataset.target, 10), 1600);
+              }
+            });
+          }
+          revealObs.unobserve(el);
+        });
+      }, { threshold: 0.2 });
+
+      document.querySelectorAll('.reveal, .counter, .stats-row').forEach((el) => revealObs.observe(el));
+
+      /* Accordion — плавное открытие и закрытие */
+      document.querySelectorAll('.accordion__trigger').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const item = btn.closest('.accordion__item');
+          const wasOpen = item.classList.contains('accordion__item--open');
+
+          if (wasOpen) {
+            item.classList.remove('accordion__item--open');
+            btn.setAttribute('aria-expanded', 'false');
+            return;
+          }
+
+          document.querySelectorAll('.accordion__item--open').forEach((open) => {
+            open.classList.remove('accordion__item--open');
+            open.querySelector('.accordion__trigger').setAttribute('aria-expanded', 'false');
+          });
+
+          item.classList.add('accordion__item--open');
+          btn.setAttribute('aria-expanded', 'true');
+        });
+      });
+
+      /* Form */
+      const form = document.getElementById('contact-form');
+      const success = document.getElementById('form-success');
+      const fields = {
+        name:  { el: document.getElementById('name'),  error: document.getElementById('name-error'),  v: (x) => x.trim().length >= 2 || 'Введите имя' },
+        phone: { el: document.getElementById('phone'), error: document.getElementById('phone-error'), v: (x) => x.trim().length >= 5 || 'Укажите контакт' },
+        area:  { el: document.getElementById('area'),  error: document.getElementById('area-error'),  v: (x) => x !== '' || 'Выберите направление' },
+      };
+
+      function validate(key) {
+        const f = fields[key];
+        const r = f.v(f.el.value);
+        if (r === true) { f.el.classList.remove('form-input--error'); f.error.textContent = ''; return true; }
+        f.el.classList.add('form-input--error'); f.error.textContent = r; return false;
+      }
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!Object.keys(fields).every(validate)) return;
+        form.hidden = true;
+        success.hidden = false;
+      });
+    })();
+  </script>
+</body>
+</html>

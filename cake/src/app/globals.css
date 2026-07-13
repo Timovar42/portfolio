@@ -1,0 +1,192 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #faf3e7;
+  --color-cream-dark: #ede0cf;
+  --color-chocolate: #4a2c2a;
+  --color-chocolate-light: #7a5a52;
+  --color-terracotta: #d98b5f;
+  --color-terracotta-dark: #c0754a;
+  --color-rose: #f2c9c2;
+  --color-rose-dark: #e0a89e;
+  --color-berry: #b83256;
+  --color-berry-dark: #9a2848;
+  --color-gold: #c2a35a;
+
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-hand: "Caveat", cursive;
+
+  --radius-bento: 1.5rem;
+  --radius-bento-lg: 2rem;
+  --bento-gap: 1rem;
+
+  --shadow-bento: 0 2px 8px rgba(74, 44, 42, 0.06),
+    0 12px 32px -8px rgba(74, 44, 42, 0.1);
+  --shadow-bento-hover: 0 4px 12px rgba(74, 44, 42, 0.08),
+    0 24px 48px -12px rgba(74, 44, 42, 0.18);
+
+  --shadow-soft: var(--shadow-bento);
+  --shadow-lift: var(--shadow-bento-hover);
+
+  --header-height: 4.5rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height);
+    overflow-x: clip;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-rose) 40%, transparent);
+    color: var(--color-chocolate);
+  }
+}
+
+@layer utilities {
+  .shadow-soft {
+    box-shadow: var(--shadow-bento);
+  }
+
+  .shadow-lift {
+    box-shadow: var(--shadow-bento-hover);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .font-hand {
+    font-family: var(--font-hand);
+  }
+
+  .pb-safe {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .bento-grid {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .bento-grid {
+      gap: var(--bento-gap);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .bento-grid {
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: minmax(130px, auto);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .bento-grid {
+      grid-template-columns: repeat(6, 1fr);
+      grid-auto-rows: minmax(120px, auto);
+      gap: 1.125rem;
+    }
+  }
+
+  .bento-card {
+    border-radius: 1.25rem;
+    box-shadow: var(--shadow-bento);
+    transition:
+      transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1),
+      box-shadow 0.35s ease;
+  }
+
+  @media (min-width: 640px) {
+    .bento-card {
+      border-radius: var(--radius-bento);
+    }
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .bento-card:hover {
+      transform: scale(1.02);
+      box-shadow: var(--shadow-bento-hover);
+    }
+  }
+
+  .bento-scroll-x {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.25rem;
+    margin-inline: -0.25rem;
+    padding-inline: 0.25rem;
+  }
+
+  .bento-scroll-x::-webkit-scrollbar {
+    display: none;
+  }
+
+  .bento-scroll-x > * {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+
+  .bento-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .bento-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  html[data-static-export] .bento-reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .bento-reveal-stagger > .bento-reveal:nth-child(1) {
+    transition-delay: 0ms;
+  }
+  .bento-reveal-stagger > .bento-reveal:nth-child(2) {
+    transition-delay: 60ms;
+  }
+  .bento-reveal-stagger > .bento-reveal:nth-child(3) {
+    transition-delay: 120ms;
+  }
+  .bento-reveal-stagger > .bento-reveal:nth-child(4) {
+    transition-delay: 180ms;
+  }
+  .bento-reveal-stagger > .bento-reveal:nth-child(5) {
+    transition-delay: 240ms;
+  }
+  .bento-reveal-stagger > .bento-reveal:nth-child(6) {
+    transition-delay: 300ms;
+  }
+}
