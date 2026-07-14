@@ -253,6 +253,13 @@
       --shard-edge: rgba(155, 148, 255, 0.35);
       --shard-stroke: rgba(255, 255, 255, 0.28);
       --shard-glow: rgba(108, 99, 255, 0.25);
+      --star-dim: rgba(255, 255, 255, 0.18);
+      --star-mid: rgba(255, 255, 255, 0.42);
+      --star-bright: rgba(255, 255, 255, 0.78);
+      --star-blue: rgba(168, 198, 255, 0.72);
+      --star-warm: rgba(255, 228, 196, 0.48);
+      --nebula-mist: rgba(255, 255, 255, 0.022);
+      --nebula-dust: rgba(12, 12, 15, 0.35);
     }
 
     [data-theme="light"] {
@@ -298,6 +305,13 @@
       --shard-edge: rgba(79, 70, 229, 0.28);
       --shard-stroke: rgba(15, 16, 24, 0.14);
       --shard-glow: rgba(79, 70, 229, 0.18);
+      --star-dim: rgba(0, 0, 0, 0.16);
+      --star-mid: rgba(0, 0, 0, 0.34);
+      --star-bright: rgba(0, 0, 0, 0.56);
+      --star-blue: rgba(0, 0, 0, 0.42);
+      --star-warm: rgba(0, 0, 0, 0.38);
+      --nebula-mist: rgba(255, 255, 255, 0.14);
+      --nebula-dust: rgba(232, 233, 240, 0.45);
     }
 
     :root {
@@ -322,7 +336,7 @@
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
     }
-    /* colorful backdrop so glass has something to refract */
+    /* deep space nebulae — soft, organic gas clouds */
     body::before {
       content: '';
       position: fixed;
@@ -330,26 +344,36 @@
       z-index: -1;
       pointer-events: none;
       background:
-        radial-gradient(620px circle at 12% 12%, var(--backdrop-a), transparent 45%),
-        radial-gradient(520px circle at 88% 22%, var(--backdrop-b), transparent 45%),
-        radial-gradient(560px circle at 78% 78%, var(--backdrop-c), transparent 48%),
-        radial-gradient(680px circle at 30% 95%, var(--backdrop-d), transparent 50%);
+        radial-gradient(ellipse 130% 95% at 50% 108%, var(--bg2) 0%, transparent 58%),
+        radial-gradient(ellipse 52% 40% at 7% 13%, var(--backdrop-a) 0%, rgba(108, 99, 255, 0.05) 38%, transparent 68%),
+        radial-gradient(ellipse 34% 26% at 17% 24%, rgba(155, 148, 255, 0.11) 0%, transparent 58%),
+        radial-gradient(ellipse 44% 34% at 93% 11%, var(--backdrop-b) 0%, rgba(255, 101, 132, 0.04) 42%, transparent 70%),
+        radial-gradient(ellipse 28% 22% at 86% 28%, rgba(255, 101, 132, 0.07) 0%, transparent 54%),
+        radial-gradient(ellipse 50% 38% at 74% 80%, var(--backdrop-c) 0%, rgba(108, 99, 255, 0.04) 45%, transparent 72%),
+        radial-gradient(ellipse 36% 28% at 81% 66%, rgba(155, 148, 255, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 58% 44% at 24% 90%, var(--backdrop-d) 0%, rgba(155, 148, 255, 0.04) 40%, transparent 66%),
+        radial-gradient(ellipse 30% 24% at 34% 76%, rgba(255, 101, 132, 0.05) 0%, transparent 52%),
+        radial-gradient(ellipse 110% 14% at 46% 44%, var(--nebula-mist) 0%, transparent 74%),
+        radial-gradient(ellipse 72% 48% at 58% 36%, rgba(108, 99, 255, 0.045) 0%, transparent 72%),
+        radial-gradient(ellipse 18% 14% at 62% 18%, rgba(255, 255, 255, 0.03) 0%, transparent 62%),
+        radial-gradient(ellipse 22% 16% at 42% 58%, var(--nebula-dust) 0%, transparent 68%);
+      filter: blur(0.6px);
       transition: opacity 0.3s ease;
     }
-    body::after {
-      content: '';
+    [data-theme="light"] body::before {
+      filter: blur(0.4px);
+    }
+
+    .cosmos-stars {
       position: fixed;
       inset: 0;
       z-index: -1;
       pointer-events: none;
-      opacity: 0.55;
-      background-image:
-        linear-gradient(var(--grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(ellipse 85% 75% at 50% 40%, black 20%, transparent 72%);
+      width: 100%;
+      height: 100%;
+      display: block;
     }
-    [data-theme="light"] body::after {
+    [data-theme="light"] .cosmos-stars {
       opacity: 0.72;
     }
 
@@ -530,6 +554,15 @@
       white-space: nowrap;
       will-change: transform;
       transform: translateY(calc(var(--scroll-y, 0) * 1px));
+    }
+    .dev-float__item--lift {
+      filter: brightness(1.2);
+    }
+    .dev-float__item--hyper.dev-float__item--lift {
+      filter: none;
+    }
+    .dev-float__item--hyper.dev-float__item--lift .dev-float__drift {
+      filter: brightness(1.2) drop-shadow(0 0 10px var(--accent-glow));
     }
     .dev-float__drift {
       display: inline-block;
@@ -923,13 +956,15 @@
       position: relative;
       z-index: 1;
       min-height: 100vh;
+      min-height: 100svh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;
       text-align: left;
-      padding: calc(var(--nav-h) + 60px) 24px 80px;
+      padding: calc(var(--nav-h) + 60px) 24px 0;
       overflow: hidden;
+      box-sizing: border-box;
     }
     .hero-blob {
       position: absolute;
@@ -974,6 +1009,87 @@
     .hero-deco-dots {
       right: 32%;
       bottom: 18%;
+    }
+    .hero-layout {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+      margin-top: auto;
+    }
+    .hero-astronaut {
+      --leg-ratio: 0.48;
+      --reveal: 0;
+      --waist-h: min(calc(100svh - var(--nav-h) - 60px), 940px);
+      --full-h: calc(var(--waist-h) / (1 - var(--leg-ratio)));
+      grid-column: 1;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      position: relative;
+      align-self: stretch;
+      overflow: visible;
+    }
+    .hero-astronaut__stage {
+      overflow: hidden;
+      height: calc(var(--waist-h) + (var(--full-h) - var(--waist-h)) * var(--reveal));
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+    }
+    .hero-astronaut__figure {
+      margin: 0;
+      line-height: 0;
+    }
+    .hero-astronaut__figure img {
+      display: block;
+      height: var(--full-h);
+      width: auto;
+      max-width: min(92vw, 980px);
+      object-fit: contain;
+      object-position: bottom left;
+      transform: translateY(calc(var(--leg-ratio) * (1 - var(--reveal)) * 100%));
+      will-change: transform;
+      -webkit-user-drag: none;
+      user-select: none;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-astronaut { --reveal: 0 !important; }
+      .hero-astronaut__figure img { transform: translateY(calc(var(--leg-ratio) * 100%)); }
+    }
+    .hero-layout .hero-content {
+      grid-column: 2;
+      align-self: center;
+      justify-self: start;
+      max-width: 560px;
+      width: 100%;
+      text-align: left;
+      align-items: flex-start;
+      padding-bottom: clamp(40px, 6vh, 100px);
+    }
+    .hero-layout .hero-main {
+      align-items: flex-start;
+      width: 100%;
+    }
+    .hero-layout .hero-glass {
+      max-width: 100%;
+    }
+    .hero-layout h1 {
+      text-align: left;
+      font-size: clamp(36px, 4.2vw, 52px);
+    }
+    .hero-layout .hero-sub {
+      margin-left: 0;
+      margin-right: 0;
+      max-width: none;
+      text-align: left;
+    }
+    .hero-layout .hero-ctas {
+      justify-content: flex-start;
     }
     /* golden ratio composition: welcome bar centered on first screen */
     .hero-content {
@@ -2454,9 +2570,33 @@
 
       .section { padding: 60px 20px; overflow-x: clip; }
       .hero {
-        padding: calc(var(--nav-h) + 48px) 20px 60px;
+        padding: calc(var(--nav-h) + 48px) 20px 0;
         text-align: center;
         overflow-x: clip;
+      }
+      .hero-layout {
+        grid-template-columns: 1fr;
+      }
+      .hero-content {
+        grid-column: 1;
+        order: -1;
+        justify-self: center;
+        max-width: 480px;
+        padding-bottom: 28px;
+      }
+      .hero-astronaut {
+        order: 1;
+        grid-column: 1;
+        justify-content: center;
+        justify-self: center;
+        --waist-h: min(calc(100svh - var(--nav-h) - 48px), 560px);
+      }
+      .hero-astronaut__stage {
+        justify-content: center;
+      }
+      .hero-astronaut__figure img {
+        max-width: min(96vw, 560px);
+        object-position: bottom center;
       }
       .hero-content {
         gap: 0;
@@ -2489,8 +2629,8 @@
       /* декор: вдвое меньше элементов, слабые — выразительнее, но полупрозрачные */
       .section-deco > *:nth-child(even) { display: none !important; }
 
-      body::after { opacity: 0.72; }
-      [data-theme="light"] body::after { opacity: 0.84; }
+      .cosmos-stars { opacity: 1; }
+      [data-theme="light"] .cosmos-stars { opacity: 0.78; }
 
       .section-deco { opacity: 1; }
       .hero .section-deco { opacity: 1; }
@@ -3271,6 +3411,8 @@
 </head>
 <body>
 
+  <canvas class="cosmos-stars" id="cosmos-stars" aria-hidden="true"></canvas>
+
   <div class="gift-surprise" id="gift-surprise" hidden aria-hidden="true">
     <button type="button" class="gift-surprise__inner" id="gift-trigger" aria-label="Открыть подарок со скидкой">
       <span class="gift-surprise__tap" aria-hidden="true"></span>
@@ -3289,12 +3431,12 @@
   <div class="discount-flyer" id="discount-flyer" hidden aria-hidden="true"></div>
 
   <div class="dev-float" aria-hidden="true">
-    <span class="dev-float__item dev-float__item--braces deco-emphasis" data-scroll-speed="0.207"><span class="dev-float__drift dev-float-drift-1">{ }</span></span>
-    <span class="dev-float__item dev-float__item--tags deco-pace-fast" data-scroll-speed="0.276"><span class="dev-float__drift dev-float-drift-2">&lt;/&gt;</span></span>
+    <span class="dev-float__item dev-float__item--braces deco-emphasis dev-float__item--lift" data-scroll-speed="0.207"><span class="dev-float__drift dev-float-drift-1">{ }</span></span>
+    <span class="dev-float__item dev-float__item--tags deco-pace-fast dev-float__item--lift" data-scroll-speed="0.276"><span class="dev-float__drift dev-float-drift-2">&lt;/&gt;</span></span>
     <span class="dev-float__item dev-float__item--arrow" data-scroll-speed="0.173"><span class="dev-float__drift dev-float-drift-3">=&gt;</span></span>
-    <span class="dev-float__item dev-float__chip dev-float__item--css deco-pace-fast" data-scroll-speed="0.322"><span class="dev-float__drift dev-float-drift-4">.class</span></span>
+    <span class="dev-float__item dev-float__chip dev-float__item--css deco-pace-fast dev-float__item--lift" data-scroll-speed="0.322"><span class="dev-float__drift dev-float-drift-4">.class</span></span>
     <span class="dev-float__item dev-float__chip dev-float__item--fn" data-scroll-speed="0.138"><span class="dev-float__drift dev-float-drift-5">fn()</span></span>
-    <span class="dev-float__item dev-float__item--window deco-pace-fastest deco-emphasis" data-scroll-speed="0.253">
+    <span class="dev-float__item dev-float__item--window deco-pace-fastest deco-emphasis dev-float__item--lift" data-scroll-speed="0.253">
       <svg class="dev-float__drift dev-float__svg dev-float-drift-6" viewBox="0 0 48 36" fill="none" aria-hidden="true">
         <rect x="1" y="1" width="46" height="34" rx="4" stroke="currentColor" stroke-width="1"/>
         <circle cx="9" cy="7" r="1.5" fill="currentColor" opacity="0.7"/>
@@ -3305,10 +3447,10 @@
         <line x1="8" y1="26" x2="24" y2="26" stroke="currentColor" stroke-width="1" opacity="0.45"/>
       </svg>
     </span>
-    <span class="dev-float__item dev-float__item--lg dev-float__item--div deco-pace-faster" data-scroll-speed="0.241"><span class="dev-float__drift dev-float-drift-7">&lt;/div&gt;</span></span>
+    <span class="dev-float__item dev-float__item--lg dev-float__item--div deco-pace-faster dev-float__item--lift" data-scroll-speed="0.241"><span class="dev-float__drift dev-float-drift-7">&lt;/div&gt;</span></span>
     <span class="dev-float__item dev-float__item--lg dev-float__item--brackets deco-pace-fast" data-scroll-speed="0.195"><span class="dev-float__drift dev-float-drift-8">[ ]</span></span>
     <span class="dev-float__item dev-float__chip dev-float__chip--lg dev-float__item--lg dev-float__item--id" data-scroll-speed="0.299"><span class="dev-float__drift dev-float-drift-9">#id</span></span>
-    <span class="dev-float__item dev-float__chip dev-float__chip--lg dev-float__item--lg dev-float__item--import deco-pace-fast" data-scroll-speed="0.218"><span class="dev-float__drift dev-float-drift-10">import</span></span>
+    <span class="dev-float__item dev-float__chip dev-float__chip--lg dev-float__item--lg dev-float__item--import deco-pace-fast dev-float__item--lift" data-scroll-speed="0.218"><span class="dev-float__drift dev-float-drift-10">import</span></span>
     <span class="dev-float__item dev-float__item--lg dev-float__item--git deco-pace-faster" data-scroll-speed="0.264">
       <svg class="dev-float__drift dev-float__svg dev-float__svg--lg dev-float-drift-7" viewBox="0 0 52 40" fill="none" aria-hidden="true">
         <circle cx="14" cy="10" r="4" stroke="currentColor" stroke-width="1"/>
@@ -3318,21 +3460,21 @@
         <path d="M18 30 H26 C32 30 32 22 38 22" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
       </svg>
     </span>
-    <span class="dev-float__item dev-float__item--bulb dev-float__item--hyper deco-pace-hyper" data-scroll-speed="0.288">
+    <span class="dev-float__item dev-float__item--bulb dev-float__item--hyper deco-pace-hyper dev-float__item--lift" data-scroll-speed="0.288">
       <svg class="dev-float__drift dev-float__svg dev-float__svg--prop dev-float-drift-11" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <path d="M20 7v2M14 15a6 6 0 1 1 12 0c0 2.5-1.8 3.8-2 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         <path d="M16 28h8M17 31h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         <path d="M11 13l-2-2M29 13l2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
       </svg>
     </span>
-    <span class="dev-float__item dev-float__item--pencil dev-float__item--hyper deco-pace-hyper" data-scroll-speed="0.195">
+    <span class="dev-float__item dev-float__item--pencil dev-float__item--hyper deco-pace-hyper dev-float__item--lift" data-scroll-speed="0.195">
       <svg class="dev-float__drift dev-float__svg dev-float__svg--prop dev-float-drift-12" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <path d="M10 30l20-20 4 4-20 20H10v-4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
         <path d="M26 12l4 4" stroke="currentColor" stroke-width="1.5"/>
         <path d="M10 34h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.65"/>
       </svg>
     </span>
-    <span class="dev-float__item dev-float__item--palette dev-float__item--hyper deco-pace-hyper" data-scroll-speed="0.312">
+    <span class="dev-float__item dev-float__item--palette dev-float__item--hyper deco-pace-hyper dev-float__item--lift" data-scroll-speed="0.312">
       <svg class="dev-float__drift dev-float__svg dev-float__svg--prop dev-float-drift-13" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <path d="M20 8c-7 0-12 5-12 11s5 11 12 11c1.8 0 3-1.2 3-3 0-2-1.5-3-1.5-5h3.5c3 0 5-2 5-5 0-5-5-9-10-9z" stroke="currentColor" stroke-width="1.5"/>
         <circle cx="14" cy="17" r="1.5" fill="currentColor" opacity="0.7"/>
@@ -3341,17 +3483,17 @@
         <circle cx="17" cy="22" r="1.5" fill="currentColor" opacity="0.45"/>
       </svg>
     </span>
-    <span class="dev-float__item dev-float__chip dev-float__item--terminal dev-float__item--hyper deco-pace-hyper" data-scroll-speed="0.168">
+    <span class="dev-float__item dev-float__chip dev-float__item--terminal dev-float__item--hyper deco-pace-hyper dev-float__item--lift" data-scroll-speed="0.168">
       <span class="dev-float__drift dev-float-drift-14">&gt;_ ui.kit</span>
     </span>
-    <span class="dev-float__item dev-float__item--layers dev-float__item--hyper deco-pace-hyper" data-scroll-speed="0.255">
+    <span class="dev-float__item dev-float__item--layers dev-float__item--hyper deco-pace-hyper dev-float__item--lift" data-scroll-speed="0.255">
       <svg class="dev-float__drift dev-float__svg dev-float__svg--prop dev-float-drift-15" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <path d="M8 14l12-6 12 6-12 6-12-6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
         <path d="M8 22l12 6 12-6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" opacity="0.85"/>
         <path d="M8 30l12 6 12-6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" opacity="0.65"/>
       </svg>
     </span>
-    <span class="dev-float__item dev-float__item--spark dev-float__item--hyper deco-pace-hyper" data-scroll-speed="0.224">
+    <span class="dev-float__item dev-float__item--spark dev-float__item--hyper deco-pace-hyper dev-float__item--lift" data-scroll-speed="0.224">
       <svg class="dev-float__drift dev-float__svg dev-float__svg--prop dev-float-drift-16" viewBox="0 0 40 40" fill="none" aria-hidden="true">
         <path d="M20 6l2 7 7 2-7 2-2 7-2-7-7-2 7-2 2-7z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
         <circle cx="30" cy="12" r="1.5" fill="currentColor" opacity="0.6"/>
@@ -3406,6 +3548,48 @@
     <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
     <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
     <div class="hero-blob hero-blob-3 deco-pace-fastest" aria-hidden="true"></div>
+    <div class="hero-layout">
+      <div class="hero-astronaut" id="hero-astronaut">
+        <div class="hero-astronaut__stage">
+          <figure class="hero-astronaut__figure">
+            <img
+              src="images/hero-astronaut-full.png"
+              srcset="
+                images/hero-astronaut-full.png 489w,
+                images/hero-astronaut-full@2x.png 978w
+              "
+              sizes="(max-width: 767px) 96vw, 980px"
+              alt="Космонавт в скафандре приветствует вас"
+              width="489"
+              height="950"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </figure>
+        </div>
+      </div>
+      <div class="hero-content">
+        <div class="hero-main">
+          <div class="hero-glass">
+            <span class="hero-glass__tag" aria-hidden="true">antares.agency</span>
+            <span class="hero-glass__corner hero-glass__corner--tl" aria-hidden="true"></span>
+            <span class="hero-glass__corner hero-glass__corner--br" aria-hidden="true"></span>
+            <div class="hero-glass__body">
+              <h1>Сайты и боты <span class="line2">под ключ</span></h1>
+              <p class="hero-sub">
+                Лендинги, сайты-визитки и Telegram-боты для малого бизнеса.
+                Делаем дизайн, вёрстку и запуск за 5–7 дней — заявки с сайта
+                сразу приходят в Telegram.
+              </p>
+              <div class="hero-ctas">
+                <a class="btn-primary" href="#projects">Смотреть работы</a>
+                <a class="btn-ghost" href="#contact">Обсудить проект</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- PROJECTS -->
@@ -3556,7 +3740,7 @@
       <div class="services-grid">
         <div class="service-card service-card--expandable reveal d1" data-service="sites">
           <div class="service-cover" aria-hidden="true">
-            <img class="service-cover__art" src="images/service-sites.svg" width="560" height="200" alt="" decoding="async" />
+            <img class="service-cover__art" src="images/service-sites.png" width="1024" height="571" alt="" decoding="async" />
           </div>
           <div class="service-card__body">
           <div class="service-card__header">
@@ -3572,20 +3756,17 @@
             <li>Онлайн-запись, корзина или конструктор заказа</li>
             <li>Заявки с сайта сразу приходят в Telegram</li>
             <li>Публикация на хостинг — домен, SSL, всё настроим</li>
+            <li>Галерея и портфолио — работы с фильтрами и удобным просмотром</li>
+            <li>Прайс и калькулятор — клиент видит итоговую цену в реальном времени</li>
+            <li>SEO-основа — метатеги, скорость загрузки, микроразметка</li>
+            <li>Интеграции — аналитика, CRM и платёжные формы по запросу</li>
+            <li>Мультиязычность — несколько языков и тёмная тема, если нужно</li>
+            <li>Админ-панель — меняете цены, тексты и фото без программиста</li>
+            <li>1 месяц поддержки — правки, баги и мелкие доработки после запуска</li>
           </ul>
           <div class="service-panel" id="service-sites-panel">
             <div class="service-panel__inner">
               <div class="service-panel__content">
-                <div class="service-panel__section">
-                  <h4 class="service-panel__heading">Что можем сделать</h4>
-                  <ul class="service-features">
-                    <li><strong>Галерея и портфолио</strong> — работы с фильтрами и удобным просмотром</li>
-                    <li><strong>Прайс и калькулятор</strong> — клиент видит итоговую цену в реальном времени</li>
-                    <li><strong>SEO-основа</strong> — метатеги, скорость загрузки, микроразметка</li>
-                    <li><strong>Интеграции</strong> — аналитика, CRM и платёжные формы по запросу</li>
-                    <li><strong>Мультиязычность</strong> — несколько языков и тёмная тема, если нужно</li>
-                  </ul>
-                </div>
                 <div class="service-panel__section">
                   <h4 class="service-panel__heading">Наши преимущества</h4>
                   <ul class="service-advantages">
@@ -3595,19 +3776,6 @@
                     <li>Заявка за 2–3 клика — понятная навигация без лишних шагов</li>
                     <li>Передаём исходники и доступы — сайт полностью ваш</li>
                   </ul>
-                </div>
-                <div class="service-panel__section">
-                  <h4 class="service-panel__heading">Входит в проект</h4>
-                  <div class="service-includes">
-                    <div class="service-includes__item">
-                      <span class="service-includes__ic" aria-hidden="true">🎛️</span>
-                      <span><strong>Админ-панель</strong> — меняете цены, тексты и фото без программиста</span>
-                    </div>
-                    <div class="service-includes__item">
-                      <span class="service-includes__ic" aria-hidden="true">⚙️</span>
-                      <span><strong>1 месяц поддержки</strong> — правки, баги и мелкие доработки после запуска</span>
-                    </div>
-                  </div>
                 </div>
                 <div class="service-panel__section service-panel__section--stack">
                   <h4 class="service-panel__heading service-panel__heading--muted">Языки и системы</h4>
@@ -3637,7 +3805,7 @@
 
         <div class="service-card service-card--expandable reveal d2" data-service="bots">
           <div class="service-cover" aria-hidden="true">
-            <img class="service-cover__art" src="images/service-bots.svg" width="560" height="200" alt="" decoding="async" />
+            <img class="service-cover__art" src="images/service-bots.png" width="722" height="423" alt="" decoding="async" />
           </div>
           <div class="service-card__body">
           <div class="service-card__header">
@@ -3653,20 +3821,17 @@
             <li>Каталог с корзиной и оформлением заказа</li>
             <li>FAQ и автоответы без ожидания оператора</li>
             <li>Рассылки акций и напоминаний подписчикам</li>
+            <li>Приём файлов — фото, документы и референсы прямо в боте</li>
+            <li>Уведомления о статусе — подтверждение и напоминания вам и клиенту</li>
+            <li>Сбор заявок — все обращения в одном чате или канале</li>
+            <li>Связка с сайтом — единая база обращений из бота и с сайта</li>
+            <li>Оплата и бронь — подтверждение заказа и предоплата по запросу</li>
+            <li>Админ-панель — управление каталогом, расписанием и текстами бота</li>
+            <li>1 месяц поддержки — исправления, обновления и помощь после запуска</li>
           </ul>
           <div class="service-panel" id="service-bots-panel">
             <div class="service-panel__inner">
               <div class="service-panel__content">
-                <div class="service-panel__section">
-                  <h4 class="service-panel__heading">Что можем сделать</h4>
-                  <ul class="service-features">
-                    <li><strong>Приём файлов</strong> — фото, документы и референсы прямо в боте</li>
-                    <li><strong>Уведомления о статусе</strong> — подтверждение и напоминания вам и клиенту</li>
-                    <li><strong>Сбор заявок</strong> — все обращения в одном чате или канале</li>
-                    <li><strong>Связка с сайтом</strong> — единая база обращений из бота и с сайта</li>
-                    <li><strong>Оплата и бронь</strong> — подтверждение заказа и предоплата по запросу</li>
-                  </ul>
-                </div>
                 <div class="service-panel__section">
                   <h4 class="service-panel__heading">Наши преимущества</h4>
                   <ul class="service-advantages">
@@ -3676,19 +3841,6 @@
                     <li>Настраиваем под вашу нишу, не «коробочное» решение</li>
                     <li>Работает круглосуточно — клиент пишет в любое время</li>
                   </ul>
-                </div>
-                <div class="service-panel__section">
-                  <h4 class="service-panel__heading">Входит в проект</h4>
-                  <div class="service-includes">
-                    <div class="service-includes__item">
-                      <span class="service-includes__ic" aria-hidden="true">🎛️</span>
-                      <span><strong>Админ-панель</strong> — управление каталогом, расписанием и текстами бота</span>
-                    </div>
-                    <div class="service-includes__item">
-                      <span class="service-includes__ic" aria-hidden="true">⚙️</span>
-                      <span><strong>1 месяц поддержки</strong> — исправления, обновления и помощь после запуска</span>
-                    </div>
-                  </div>
                 </div>
                 <div class="service-panel__section service-panel__section--stack">
                   <h4 class="service-panel__heading service-panel__heading--muted">Языки и системы</h4>
@@ -3853,7 +4005,207 @@
       const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('bb-theme', next);
+      if (window.renderCosmosStars) window.renderCosmosStars(next);
     });
+
+    // Realistic static starfield — dense like astrophotography references
+    (function initCosmosStars() {
+      const canvas = document.getElementById('cosmos-stars');
+      if (!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      let resizeTimer = 0;
+
+      function mulberry32(seed) {
+        return function () {
+          let t = seed += 0x6D2B79F5;
+          t = Math.imul(t ^ (t >>> 15), t | 1);
+          t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+
+      function pickStarPosition(rand, w, h) {
+        const roll = rand();
+
+        // лёгкая полоса плотности — очень рассеянная
+        if (roll < 0.08) {
+          const t = rand();
+          const along = t * w * 1.18 - w * 0.09;
+          const across = h * 0.47 + (rand() - 0.5) * h * 0.24;
+          const nx = 0.82;
+          const ny = 0.57;
+          return {
+            x: along * nx - across * ny + (rand() - 0.5) * 18,
+            y: along * ny + across * nx + (rand() - 0.5) * 18,
+          };
+        }
+
+        // мягкие скопления — разнесены по всей площади, без наложений
+        if (roll < 0.2) {
+          const clusters = [
+            { x: 0.14, y: 0.16, r: 0.048 },
+            { x: 0.84, y: 0.14, r: 0.044 },
+            { x: 0.78, y: 0.80, r: 0.05 },
+            { x: 0.16, y: 0.78, r: 0.048 },
+            { x: 0.50, y: 0.28, r: 0.038 },
+            { x: 0.62, y: 0.58, r: 0.04 },
+            { x: 0.28, y: 0.46, r: 0.036 },
+            { x: 0.72, y: 0.38, r: 0.036 },
+          ];
+          const c = clusters[Math.floor(rand() * clusters.length)];
+          const angle = rand() * Math.PI * 2;
+          const dist = Math.pow(rand(), 2.6) * c.r * Math.min(w, h);
+          return {
+            x: c.x * w + Math.cos(angle) * dist,
+            y: c.y * h + Math.sin(angle) * dist,
+          };
+        }
+
+        // основная масса — равномерно по всему небу
+        return { x: rand() * w, y: rand() * h };
+      }
+
+      function starPalette(isDark) {
+        const black = [0, 0, 0];
+        return {
+          white: isDark ? [255, 255, 255] : black,
+          blue: isDark ? [168, 198, 255] : black,
+          violet: isDark ? [155, 148, 255] : black,
+          warm: isDark ? [255, 220, 180] : black,
+          glow: isDark ? [108, 99, 255] : black,
+        };
+      }
+
+      function drawStar(star) {
+        const { x, y, radius, alpha, rgb, glow } = star;
+        if (glow) {
+          const halo = ctx.createRadialGradient(x, y, 0, x, y, radius * 7);
+          halo.addColorStop(0, `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${alpha * 0.42})`);
+          halo.addColorStop(0.35, `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${alpha * 0.1})`);
+          halo.addColorStop(1, `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 0)`);
+          ctx.fillStyle = halo;
+          ctx.beginPath();
+          ctx.arc(x, y, radius * 7, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.fillStyle = `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${alpha})`;
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      function renderCosmosStars(theme) {
+        const isDark = theme !== 'light';
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, w, h);
+
+        const rand = mulberry32(isDark ? 42857 : 91391);
+        const palette = starPalette(isDark);
+        const area = w * h;
+        const count = Math.floor(Math.min(
+          Math.floor(area / (isDark ? 100 : 215)),
+          isDark ? 20000 : 9000
+        ) * 0.8);
+        const stars = [];
+
+        for (let i = 0; i < count; i += 1) {
+          const pos = pickStarPosition(rand, w, h);
+          if (pos.x < -2 || pos.y < -2 || pos.x > w + 2 || pos.y > h + 2) continue;
+
+          const roll = rand();
+          let radius;
+          let alpha;
+          let rgb = palette.white;
+          let glow = false;
+
+          if (roll > 0.996) {
+            radius = 1.5 + rand() * 1.1;
+            alpha = 0.82 + rand() * 0.18;
+            rgb = rand() > 0.45 ? palette.blue : palette.violet;
+            glow = true;
+          } else if (roll > 0.985) {
+            radius = 1.0 + rand() * 0.7;
+            alpha = 0.62 + rand() * 0.28;
+            rgb = rand() > 0.55 ? palette.blue : palette.white;
+            glow = rand() > 0.35;
+          } else if (roll > 0.94) {
+            radius = 0.55 + rand() * 0.45;
+            alpha = 0.34 + rand() * 0.34;
+            if (rand() > 0.82) rgb = palette.blue;
+            else if (rand() > 0.96) rgb = palette.warm;
+          } else if (roll > 0.72) {
+            radius = 0.32 + rand() * 0.28;
+            alpha = 0.18 + rand() * 0.28;
+          } else {
+            radius = 0.15 + rand() * 0.22;
+            alpha = 0.08 + rand() * 0.2;
+          }
+
+          let finalAlpha = alpha * 0.9;
+          if (!isDark) {
+            if (roll > 0.996) {
+              finalAlpha = 0.94 + rand() * 0.06;
+              radius *= 1.08;
+            } else if (roll > 0.985) {
+              finalAlpha = Math.min(1, finalAlpha * 1.42);
+              radius *= 1.05;
+            } else if (roll > 0.94) {
+              finalAlpha = Math.min(1, finalAlpha * 1.28);
+            } else if (roll > 0.72) {
+              finalAlpha = Math.min(1, finalAlpha * 1.14);
+            }
+          }
+
+          stars.push({
+            x: pos.x,
+            y: pos.y,
+            radius,
+            alpha: finalAlpha,
+            rgb,
+            glow,
+            layer: glow ? 2 : radius > 0.5 ? 1 : 0,
+          });
+        }
+
+        stars.sort((a, b) => a.layer - b.layer);
+        stars.forEach(drawStar);
+      }
+
+      window.renderCosmosStars = renderCosmosStars;
+      renderCosmosStars(document.documentElement.getAttribute('data-theme') || 'dark');
+
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = window.setTimeout(() => {
+          renderCosmosStars(document.documentElement.getAttribute('data-theme') || 'dark');
+        }, 180);
+      }, { passive: true });
+    })();
+
+    // Космонавт: по пояс → полный рост при скролле вниз
+    (function initHeroAstronautReveal() {
+      const root = document.getElementById('hero-astronaut');
+      if (!root) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      function update() {
+        const range = Math.max(window.innerHeight * 0.92, 320);
+        const progress = Math.min(1, Math.max(0, window.scrollY / range));
+        root.style.setProperty('--reveal', String(progress));
+      }
+
+      update();
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update, { passive: true });
+    })();
 
     // Параллакс dev-декора: скролл вниз → элементы вверх, скролл вверх → вниз
     (function initDevFloatScroll() {
