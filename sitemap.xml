@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- После деплоя замените barbieboys.agency на реальный домен -->
+<!-- После деплоя замените antares.agency на реальный домен -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://barbieboys.agency/</loc>
+    <loc>https://antares.agency/</loc>
     <lastmod>2026-07-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://barbieboys.agency/images/previews/barbie.jpg</image:loc>
-      <image:title>Сайт барбершопа IRON CLIP — работа BarbieBoys</image:title>
+      <image:loc>https://antares.agency/images/previews/barbie.jpg</image:loc>
+      <image:title>Сайт барбершопа IRON CLIP — работа Antares</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://barbieboys.agency/images/previews/lawyer.jpg</image:loc>
-      <image:title>Сайт-визитка юриста — работа BarbieBoys</image:title>
+      <image:loc>https://antares.agency/images/previews/lawyer.jpg</image:loc>
+      <image:title>Сайт-визитка юриста — работа Antares</image:title>
     </image:image>
     <image:image>
-      <image:loc>https://barbieboys.agency/images/previews/cake.jpg</image:loc>
-      <image:title>Сайт кондитера с конструктором торта — работа BarbieBoys</image:title>
+      <image:loc>https://antares.agency/images/previews/cake.jpg</image:loc>
+      <image:title>Сайт кондитера с конструктором торта — работа Antares</image:title>
     </image:image>
   </url>
 </urlset>

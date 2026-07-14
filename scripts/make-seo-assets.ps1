@@ -31,7 +31,7 @@ $fSmall = New-Object System.Drawing.Font('Segoe UI', 22, [System.Drawing.FontSty
 $fEyebrow = New-Object System.Drawing.Font('Segoe UI', 24, [System.Drawing.FontStyle]::Bold)
 
 $g.DrawString('ВЕБ-АГЕНТСТВО', $fEyebrow, $accent, 85, 150)
-$g.DrawString('BarbieBoys', $fBrand, $white, 75, 195)
+$g.DrawString('Antares', $fBrand, $white, 75, 195)
 $g.DrawString('Сайты и Telegram-боты под ключ', $fSub, $soft, 82, 440)
 $g.DrawString('Малый бизнес · Молдова и СНГ · проект за 5–7 дней', $fSmall, $muted, 85, 520)
 
@@ -49,7 +49,7 @@ $brI = New-Object System.Drawing.Drawing2D.LinearGradientBrush($rectI, [System.D
 $fIcon = New-Object System.Drawing.Font('Segoe UI', 62, [System.Drawing.FontStyle]::Bold)
 $fmt = New-Object System.Drawing.StringFormat
 $fmt.Alignment = 'Center'; $fmt.LineAlignment = 'Center'
-$gi.DrawString('BB', $fIcon, $brI, (New-Object System.Drawing.RectangleF(0, 4, 180, 180)), $fmt)
+$gi.DrawString('A', $fIcon, $brI, (New-Object System.Drawing.RectangleF(0, 4, 180, 180)), $fmt)
 $icon.Save((Join-Path $root 'images\apple-touch-icon.png'), [System.Drawing.Imaging.ImageFormat]::Png)
 $gi.Dispose(); $icon.Dispose()
 Write-Output 'OK'

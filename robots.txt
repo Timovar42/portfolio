@@ -1,4 +1,4 @@
-# После деплоя замените barbieboys.agency на реальный домен
+# После деплоя замените antares.agency на реальный домен
 User-agent: *
 Allow: /
 
@@ -8,4 +8,4 @@ Disallow: /lawyer/
 Disallow: /cake/
 Disallow: /scripts/
 
-Sitemap: https://barbieboys.agency/sitemap.xml
+Sitemap: https://antares.agency/sitemap.xml
