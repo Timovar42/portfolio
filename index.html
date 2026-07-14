@@ -3,39 +3,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <style>
-    #discount-flyer[hidden],
-    #contact-discount-tag[hidden] {
+    #discount-flyer,
+    #contact-discount-tag {
       display: none !important;
       visibility: hidden !important;
+      pointer-events: none !important;
+    }
+    #discount-flyer.is-live,
+    #contact-discount-tag.is-shown {
+      visibility: visible !important;
+      pointer-events: none !important;
+    }
+    #discount-flyer.is-live {
+      display: flex !important;
+    }
+    #contact-discount-tag.is-shown {
+      display: inline-flex !important;
     }
   </style>
   <script>
     (function () {
-      var storageKey = 'antares-discount-v2';
-      var legacyKeys = ['antares-discount', 'antares-gift-roll', storageKey];
+      var STORAGE_KEY = 'antares-discount-v3';
+      var LEGACY_KEYS = ['antares-discount', 'antares-discount-v2', 'antares-gift-roll'];
       var params = new URLSearchParams(location.search);
 
+      LEGACY_KEYS.forEach(function (key) {
+        try { localStorage.removeItem(key); } catch (e) {}
+      });
+
       if (params.has('reset-gift')) {
-        legacyKeys.forEach(function (key) {
-          try { localStorage.removeItem(key); } catch (e) {}
-          try { sessionStorage.removeItem(key); } catch (e) {}
-        });
+        try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+        try { sessionStorage.removeItem('antares-force-gift'); } catch (e) {}
+        try { sessionStorage.removeItem('antares-gift-roll'); } catch (e) {}
+        try { sessionStorage.setItem('antares-force-gift', '1'); } catch (e) {}
         history.replaceState(null, '', location.pathname + location.hash);
         return;
       }
 
-      try { localStorage.removeItem('antares-discount'); } catch (e) {}
-
       try {
-        var raw = localStorage.getItem(storageKey);
+        var raw = localStorage.getItem(STORAGE_KEY);
         if (!raw) return;
         var data = JSON.parse(raw);
-        if (!data || data.revealed !== true || typeof data.code !== 'string') {
-          localStorage.removeItem(storageKey);
+        if (!data || data.version !== 3 || data.revealed !== true || typeof data.code !== 'string') {
+          localStorage.removeItem(STORAGE_KEY);
         }
       } catch (e) {
-        try { localStorage.removeItem(storageKey); } catch (err) {}
+        try { localStorage.removeItem(STORAGE_KEY); } catch (err) {}
       }
     })();
   </script>
@@ -2231,6 +2248,8 @@
       color: var(--text-muted);
     }
     .contact-discount-tag {
+      display: none !important;
+      visibility: hidden !important;
       justify-self: center;
       display: inline-flex;
       align-items: center;
@@ -2246,6 +2265,10 @@
       font-weight: 700;
       letter-spacing: -0.02em;
       box-shadow: 0 8px 20px var(--accent-glow);
+    }
+    .contact-discount-tag.is-shown {
+      display: inline-flex !important;
+      visibility: visible !important;
     }
     .contact-discount-tag[hidden] {
       display: none !important;
@@ -2952,7 +2975,7 @@
     /* ——— GIFT SURPRISE ——— */
     .gift-surprise {
       position: fixed;
-      z-index: 250;
+      z-index: 10000;
       width: 104px;
       height: 120px;
       pointer-events: none;
@@ -3160,9 +3183,14 @@
       transform: scale(0.42) translateY(10px);
       will-change: transform, opacity, left, top;
     }
-    .discount-flyer[hidden] {
+    .discount-flyer[hidden],
+    .discount-flyer:not(.is-live) {
       display: none !important;
       visibility: hidden !important;
+    }
+    .discount-flyer.is-live {
+      display: flex !important;
+      visibility: visible !important;
     }
     .discount-flyer.is-emerging {
       opacity: 1;
@@ -3891,11 +3919,15 @@
       });
     });
 
-    const DISCOUNT_STORAGE_KEY = 'antares-discount-v2';
-    const LEGACY_DISCOUNT_KEY = 'antares-discount';
+    const DISCOUNT_STORAGE_KEY = 'antares-discount-v3';
+    const DISCOUNT_VERSION = 3;
+    const LEGACY_DISCOUNT_KEYS = ['antares-discount', 'antares-discount-v2'];
     const GIFT_SESSION_KEY = 'antares-gift-roll';
+    const GIFT_FORCE_KEY = 'antares-force-gift';
 
-    try { localStorage.removeItem(LEGACY_DISCOUNT_KEY); } catch (e) {}
+    LEGACY_DISCOUNT_KEYS.forEach((key) => {
+      try { localStorage.removeItem(key); } catch (e) {}
+    });
 
     function generatePromoCode() {
       let suffix = '';
@@ -3916,6 +3948,7 @@
     function isValidDiscount(data) {
       return Boolean(
         data &&
+        data.version === DISCOUNT_VERSION &&
         typeof data.code === 'string' &&
         /^ANT-[A-Z0-9]{4}$/.test(data.code) &&
         Number(data.percent) > 0 &&
@@ -3933,6 +3966,7 @@
 
     function saveClaimedDiscount(discount) {
       localStorage.setItem(DISCOUNT_STORAGE_KEY, JSON.stringify({
+        version: DISCOUNT_VERSION,
         code: discount.code,
         percent: discount.percent,
         claimedAt: discount.claimedAt,
@@ -3942,8 +3976,11 @@
 
     function clearDiscountState() {
       localStorage.removeItem(DISCOUNT_STORAGE_KEY);
-      localStorage.removeItem(LEGACY_DISCOUNT_KEY);
+      LEGACY_DISCOUNT_KEYS.forEach((key) => {
+        try { localStorage.removeItem(key); } catch (e) {}
+      });
       sessionStorage.removeItem(GIFT_SESSION_KEY);
+      sessionStorage.removeItem(GIFT_FORCE_KEY);
     }
 
     function buildDiscountMessage(discount) {
@@ -4022,6 +4059,7 @@
       if (discountTag) {
         const showDiscount = Boolean(discount);
         discountTag.hidden = !showDiscount;
+        discountTag.classList.toggle('is-shown', showDiscount);
         discountTag.setAttribute('aria-hidden', showDiscount ? 'false' : 'true');
         discountTag.textContent = showDiscount ? `−${discount.percent}%` : '';
         if (!showDiscount) discountTag.classList.remove('is-reveal');
@@ -4220,6 +4258,7 @@
         const discountTag = document.getElementById('contact-discount-tag');
         if (!discountTag || !getStoredDiscount()) return;
         discountTag.hidden = false;
+        discountTag.classList.add('is-shown');
         discountTag.classList.remove('is-reveal');
         void discountTag.offsetWidth;
         discountTag.classList.add('is-reveal');
@@ -4257,13 +4296,14 @@
           discountFlyer.hidden = true;
           discountFlyer.setAttribute('aria-hidden', 'true');
           discountFlyer.className = 'discount-flyer';
+          discountFlyer.textContent = '';
           discountFlyer.style.cssText = '';
         };
 
         discountFlyer.hidden = false;
         discountFlyer.setAttribute('aria-hidden', 'false');
         discountFlyer.textContent = '−5%';
-        discountFlyer.className = 'discount-flyer';
+        discountFlyer.className = 'discount-flyer is-live';
         discountFlyer.style.width = `${startSize}px`;
         discountFlyer.style.height = `${startSize}px`;
         discountFlyer.style.fontSize = '15px';
@@ -4344,6 +4384,10 @@
 
       function shouldShowGiftThisVisit() {
         if (getStoredDiscount()) return false;
+        if (sessionStorage.getItem(GIFT_FORCE_KEY) === '1') {
+          sessionStorage.removeItem(GIFT_FORCE_KEY);
+          return true;
+        }
         return Math.random() < 0.5;
       }
 
@@ -4353,12 +4397,14 @@
 
       if (!shouldShowGiftThisVisit()) return;
 
-      setTimeout(() => {
+      const revealGift = () => {
         startGiftBounce();
         giftWrap.hidden = false;
         giftWrap.setAttribute('aria-hidden', 'false');
         requestAnimationFrame(() => giftWrap.classList.add('is-visible'));
-      }, GIFT_REVEAL_DELAY);
+      };
+
+      setTimeout(revealGift, GIFT_REVEAL_DELAY);
 
       window.addEventListener('resize', () => {
         if (!giftBounceState || giftWrap.classList.contains('is-opened')) return;
