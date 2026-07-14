@@ -4334,21 +4334,16 @@
         }, reducedMotion ? 80 : 380);
       }
 
-      function shouldShowGiftThisSession() {
+      function shouldShowGiftThisVisit() {
         if (getStoredDiscount()) return false;
-        let roll = sessionStorage.getItem(GIFT_SESSION_KEY);
-        if (roll === null) {
-          roll = Math.random() < 0.5 ? 'yes' : 'no';
-          sessionStorage.setItem(GIFT_SESSION_KEY, roll);
-        }
-        return roll === 'yes';
+        return Math.random() < 0.5;
       }
 
       if (getStoredDiscount()) {
         return;
       }
 
-      if (!shouldShowGiftThisSession()) return;
+      if (!shouldShowGiftThisVisit()) return;
 
       setTimeout(() => {
         startGiftBounce();
