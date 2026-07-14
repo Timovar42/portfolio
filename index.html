@@ -3,6 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    #discount-flyer[hidden],
+    #contact-discount-tag[hidden] {
+      display: none !important;
+      visibility: hidden !important;
+    }
+  </style>
+  <script>
+    (function () {
+      var storageKey = 'antares-discount-v2';
+      var legacyKeys = ['antares-discount', 'antares-gift-roll', storageKey];
+      var params = new URLSearchParams(location.search);
+
+      if (params.has('reset-gift')) {
+        legacyKeys.forEach(function (key) {
+          try { localStorage.removeItem(key); } catch (e) {}
+          try { sessionStorage.removeItem(key); } catch (e) {}
+        });
+        history.replaceState(null, '', location.pathname + location.hash);
+        return;
+      }
+
+      try { localStorage.removeItem('antares-discount'); } catch (e) {}
+
+      try {
+        var raw = localStorage.getItem(storageKey);
+        if (!raw) return;
+        var data = JSON.parse(raw);
+        if (!data || data.revealed !== true || typeof data.code !== 'string') {
+          localStorage.removeItem(storageKey);
+        }
+      } catch (e) {
+        try { localStorage.removeItem(storageKey); } catch (err) {}
+      }
+    })();
+  </script>
 
   <!-- ===== SEO ===== -->
   <!-- ВАЖНО: после деплоя замените https://antares.agency на реальный домен
@@ -3123,6 +3159,10 @@
       opacity: 0;
       transform: scale(0.35);
     }
+    .discount-flyer[hidden] {
+      display: none !important;
+      visibility: hidden !important;
+    }
     .discount-flyer.is-active {
       opacity: 1;
       transform: scale(1);
@@ -3180,7 +3220,7 @@
     </button>
   </div>
 
-  <div class="discount-flyer" id="discount-flyer" hidden aria-hidden="true">−5%</div>
+  <div class="discount-flyer" id="discount-flyer" hidden aria-hidden="true"></div>
 
   <div class="dev-float" aria-hidden="true">
     <span class="dev-float__item dev-float__item--braces deco-emphasis" data-scroll-speed="0.207"><span class="dev-float__drift dev-float-drift-1">{ }</span></span>
@@ -3829,8 +3869,11 @@
       });
     });
 
-    const DISCOUNT_STORAGE_KEY = 'antares-discount';
+    const DISCOUNT_STORAGE_KEY = 'antares-discount-v2';
+    const LEGACY_DISCOUNT_KEY = 'antares-discount';
     const GIFT_SESSION_KEY = 'antares-gift-roll';
+
+    try { localStorage.removeItem(LEGACY_DISCOUNT_KEY); } catch (e) {}
 
     function generatePromoCode() {
       let suffix = '';
@@ -3859,30 +3902,11 @@
       );
     }
 
-    function normalizeStoredDiscount() {
-      const data = readDiscountRaw();
-      if (!data) return null;
-
-      if (isValidDiscount(data)) return data;
-
-      if (
-        data &&
-        typeof data.code === 'string' &&
-        /^ANT-[A-Z0-9]{4}$/.test(data.code) &&
-        Number(data.percent) > 0 &&
-        data.claimedAt
-      ) {
-        const migrated = { ...data, revealed: true };
-        localStorage.setItem(DISCOUNT_STORAGE_KEY, JSON.stringify(migrated));
-        return migrated;
-      }
-
-      localStorage.removeItem(DISCOUNT_STORAGE_KEY);
-      return null;
-    }
-
     function getStoredDiscount() {
-      return normalizeStoredDiscount();
+      const data = readDiscountRaw();
+      if (isValidDiscount(data)) return data;
+      if (data) localStorage.removeItem(DISCOUNT_STORAGE_KEY);
+      return null;
     }
 
     function saveClaimedDiscount(discount) {
@@ -3896,12 +3920,8 @@
 
     function clearDiscountState() {
       localStorage.removeItem(DISCOUNT_STORAGE_KEY);
+      localStorage.removeItem(LEGACY_DISCOUNT_KEY);
       sessionStorage.removeItem(GIFT_SESSION_KEY);
-    }
-
-    if (new URLSearchParams(location.search).has('reset-gift')) {
-      clearDiscountState();
-      history.replaceState(null, '', location.pathname + location.hash);
     }
 
     function buildDiscountMessage(discount) {
