@@ -59,14 +59,14 @@
         "areaServed": ["Молдова", "СНГ"],
         "priceRange": "$$",
         "sameAs": [
-          "https://t.me/BBoys_agency",
-          "https://www.instagram.com/bboys_agency/",
+          "https://t.me/AntaresAgensy",
+          "https://www.instagram.com/antares_agensy/",
           "https://www.tiktok.com/@_barbie_boys_"
         ],
         "contactPoint": {
           "@type": "ContactPoint",
           "contactType": "customer support",
-          "url": "https://t.me/BBoysagency",
+          "url": "https://t.me/AntaresAgensy",
           "availableLanguage": ["Russian"]
         },
         "makesOffer": [
@@ -1381,7 +1381,7 @@
       border: 1px solid var(--glass-border);
       border-radius: 16px;
       box-shadow: var(--glass-shadow);
-      padding: 28px 24px;
+      padding: 0;
       transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
       overflow: hidden;
     }
@@ -1401,21 +1401,31 @@
       background: var(--glass-bg-strong);
       box-shadow: 0 16px 44px rgba(0, 0, 0, 0.45);
     }
-    .service-icon {
+    .service-cover {
       position: relative;
-      font-size: 32px;
-      line-height: 1;
-      margin-bottom: 16px;
-      width: fit-content;
-    }
-    .service-icon::before {
-      content: '';
-      position: absolute;
-      inset: -10px -14px;
-      border-radius: 14px;
+      width: 100%;
+      aspect-ratio: 560 / 200;
+      overflow: hidden;
+      flex-shrink: 0;
       background: linear-gradient(135deg, var(--deco-fill), var(--deco-fill-2));
-      opacity: 0.85;
-      z-index: -1;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .service-cover__art {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.45s ease;
+    }
+    .service-card:hover .service-cover__art {
+      transform: scale(1.03);
+    }
+    .service-card__body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding: 24px 24px 28px;
     }
     .service-title {
       font-family: var(--font-display);
@@ -2176,6 +2186,8 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
+      position: relative;
+      z-index: 3;
     }
     .contact-channel {
       display: flex;
@@ -2258,6 +2270,26 @@
       margin-top: 16px;
       font-size: 12px;
       color: var(--text-muted);
+    }
+    .contact-discount-tag {
+      justify-self: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 58px;
+      height: 30px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: var(--gradient);
+      color: var(--white);
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      box-shadow: 0 8px 20px var(--accent-glow);
+    }
+    .contact-discount-tag[hidden] {
+      display: none !important;
     }
 
     /* ——— FOOTER ——— */
@@ -2963,9 +2995,213 @@
       .footer { padding: 32px 20px; }
       .footer-top { flex-direction: column; }
     }
+
+    /* ——— GIFT SURPRISE ——— */
+    .gift-surprise {
+      position: fixed;
+      z-index: 250;
+      width: 104px;
+      height: 120px;
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+    .gift-surprise.is-visible {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: none;
+    }
+    .gift-surprise.is-visible .gift-surprise__inner {
+      pointer-events: auto;
+    }
+    .gift-surprise.is-opened {
+      pointer-events: none;
+    }
+    .gift-surprise__inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-origin: center bottom;
+      cursor: pointer;
+      border: none;
+      background: none;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .gift-surprise__inner:focus-visible {
+      outline: 2px solid var(--accent2);
+      outline-offset: 4px;
+      border-radius: 8px;
+    }
+    .gift-surprise__tap {
+      position: absolute;
+      top: -6px;
+      right: -18px;
+      width: 42px;
+      height: 42px;
+      z-index: 3;
+      pointer-events: none;
+      background-color: var(--accent2);
+      -webkit-mask: url('images/hand-tap.png') no-repeat center / contain;
+      mask: url('images/hand-tap.png') no-repeat center / contain;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
+      animation: hand-tap-click 2.2s ease-in-out infinite;
+      transform-origin: 55% 70%;
+    }
+    .gift-surprise.is-opened .gift-surprise__tap {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .gift-box {
+      position: relative;
+      width: 98px;
+      height: 108px;
+      margin: 2px auto 0;
+    }
+    .gift-box__shadow {
+      position: absolute;
+      left: 50%;
+      bottom: -6px;
+      width: 62px;
+      height: 12px;
+      margin-left: -31px;
+      background: radial-gradient(ellipse, rgba(108, 99, 255, 0.18) 0%, transparent 72%);
+      filter: blur(3px);
+      transition: opacity 0.5s ease;
+    }
+    .gift-box__art {
+      width: 100%;
+      height: 100%;
+      filter:
+        drop-shadow(0 14px 26px rgba(108, 99, 255, 0.18))
+        drop-shadow(0 5px 12px rgba(232, 120, 148, 0.1))
+        drop-shadow(0 2px 8px rgba(0, 0, 0, 0.12));
+      transition: transform 0.65s cubic-bezier(0.34, 1.2, 0.64, 1), opacity 0.5s ease, filter 0.5s ease;
+    }
+    [data-theme="light"] .gift-box__art {
+      filter:
+        drop-shadow(0 12px 24px rgba(79, 70, 229, 0.18))
+        drop-shadow(0 4px 10px rgba(232, 90, 122, 0.08))
+        drop-shadow(0 2px 8px rgba(15, 16, 24, 0.08));
+    }
+    .gift-box__img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+      pointer-events: none;
+      user-select: none;
+    }
+    .gift-surprise.is-opened .gift-box__art {
+      transform: translateY(-10px) scale(1.06) rotate(-6deg);
+      opacity: 0;
+      filter: blur(6px) saturate(1);
+    }
+    .gift-surprise.is-opened .gift-box__shadow {
+      opacity: 0;
+    }
+    .gift-sparkles {
+      position: absolute;
+      inset: -20px;
+      pointer-events: none;
+      opacity: 0;
+    }
+    .gift-sparkles span {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent2);
+      box-shadow: 0 0 8px var(--accent-glow);
+    }
+    .gift-surprise.is-opened .gift-sparkles {
+      animation: gift-sparkle-burst 0.7s ease-out forwards;
+    }
+    .gift-sparkles span:nth-child(1) { top: 20%; left: 10%; }
+    .gift-sparkles span:nth-child(2) { top: 5%; right: 15%; background: #FF6584; }
+    .gift-sparkles span:nth-child(3) { bottom: 30%; left: 0; }
+    .gift-sparkles span:nth-child(4) { bottom: 10%; right: 5%; background: #FF6584; }
+    .gift-sparkles span:nth-child(5) { top: 40%; right: 0; width: 4px; height: 4px; }
+    .gift-sparkles span:nth-child(6) { top: 55%; left: 20%; width: 4px; height: 4px; }
+
+    .gift-surprise.is-bouncing .gift-surprise__inner {
+      will-change: transform;
+    }
+    .gift-surprise.is-floating .gift-surprise__inner,
+    .gift-surprise.is-entering .gift-surprise__inner,
+    .gift-surprise.is-opened .gift-surprise__inner {
+      animation: none !important;
+    }
+
+    @keyframes hand-tap-click {
+      0%, 72%, 100% { transform: translate(0, 0); }
+      28% { transform: translate(-2px, -3px); }
+      38% { transform: translate(-0.5px, -0.5px); }
+    }
+    @keyframes gift-drift-a {
+      0%, 100% { transform: translate(0, 0) rotate(-4deg); }
+      33% { transform: translate(22px, -28px) rotate(5deg); }
+      66% { transform: translate(-14px, -18px) rotate(-3deg); }
+    }
+    @keyframes gift-drift-b {
+      0%, 100% { transform: translate(0, 0) rotate(5deg); }
+      40% { transform: translate(-20px, 24px) rotate(-4deg); }
+      70% { transform: translate(13px, -16px) rotate(7deg); }
+    }
+    @keyframes gift-drift-c {
+      0%, 100% { transform: translate(0, 0) rotate(-2deg); }
+      50% { transform: translate(18px, -30px) rotate(8deg); }
+    }
+    @keyframes gift-drift-d {
+      0%, 100% { transform: translate(0, 0) rotate(3deg); }
+      35% { transform: translate(-16px, -22px) rotate(-5deg); }
+      65% { transform: translate(11px, 14px) rotate(6deg); }
+    }
+    @keyframes gift-drift-e {
+      0%, 100% { transform: translate(0, 0) rotate(-3deg); }
+      45% { transform: translate(15px, 20px) rotate(-4deg); }
+      80% { transform: translate(-10px, -14px) rotate(7deg); }
+    }
+    @keyframes gift-drift-f {
+      0%, 100% { transform: translate(0, 0) rotate(4deg); }
+      35% { transform: translate(-18px, -24px) rotate(-6deg); }
+      70% { transform: translate(14px, 16px) rotate(5deg); }
+    }
+    @keyframes gift-sparkle-burst {
+      0% { opacity: 0; transform: scale(0.6); }
+      30% { opacity: 1; }
+      100% { opacity: 0; transform: scale(1.4); }
+    }
+
+    .gift-surprise.is-entering .gift-surprise__inner {
+      will-change: transform, opacity;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .gift-surprise__tap,
+      .gift-surprise.is-bouncing .gift-surprise__inner {
+        animation: none !important;
+      }
+    }
   </style>
 </head>
 <body>
+
+  <div class="gift-surprise" id="gift-surprise" hidden aria-hidden="true">
+    <button type="button" class="gift-surprise__inner" id="gift-trigger" aria-label="Открыть подарок со скидкой">
+      <span class="gift-surprise__tap" aria-hidden="true"></span>
+      <div class="gift-box" aria-hidden="true">
+        <div class="gift-box__shadow"></div>
+        <div class="gift-box__art">
+          <img class="gift-box__img" src="images/gift-box-3d.png" width="196" height="196" alt="" decoding="async" />
+        </div>
+      </div>
+      <div class="gift-sparkles" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+    </button>
+  </div>
 
   <div class="dev-float" aria-hidden="true">
     <span class="dev-float__item dev-float__item--braces deco-emphasis" data-scroll-speed="0.207"><span class="dev-float__drift dev-float-drift-1">{ }</span></span>
@@ -3060,7 +3296,7 @@
             <path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"></path>
           </svg>
         </button>
-        <a class="btn-nav" href="#contact">Написать</a>
+        <a class="btn-nav" href="#contact" id="btn-write">Написать</a>
       </div>
     </div>
   </nav>
@@ -3249,7 +3485,10 @@
       </div>
       <div class="services-grid">
         <div class="service-card service-card--expandable reveal d1" data-service="sites">
-          <div class="service-icon" aria-hidden="true">🌐</div>
+          <div class="service-cover" aria-hidden="true">
+            <img class="service-cover__art" src="images/service-sites.svg" width="560" height="200" alt="" decoding="async" />
+          </div>
+          <div class="service-card__body">
           <div class="service-card__header">
             <h3 class="service-title">Сайты</h3>
           </div>
@@ -3323,10 +3562,14 @@
             <div class="service-price-value">$300–500</div>
             <p class="service-price-meta">Срок: 5–7 дней · дизайн и запуск под ключ</p>
           </div>
+          </div>
         </div>
 
         <div class="service-card service-card--expandable reveal d2" data-service="bots">
-          <div class="service-icon" aria-hidden="true">🤖</div>
+          <div class="service-cover" aria-hidden="true">
+            <img class="service-cover__art" src="images/service-bots.svg" width="560" height="200" alt="" decoding="async" />
+          </div>
+          <div class="service-card__body">
           <div class="service-card__header">
             <h3 class="service-title">Telegram-боты</h3>
           </div>
@@ -3398,6 +3641,7 @@
             <div class="service-price-value">$100–200</div>
             <p class="service-price-meta">Срок: 3–5 дней · настройка и запуск под ключ</p>
           </div>
+          </div>
         </div>
       </div>
     </div>
@@ -3465,24 +3709,25 @@
     </div>
     <div class="section-inner">
       <div class="contact-block reveal d1">
+        <span class="contact-discount-tag" id="contact-discount-tag" hidden>−5%</span>
         <div class="contact-actions">
-          <a class="contact-channel contact-channel--tg" href="https://t.me/BBoysagency" target="_blank" rel="noopener" id="contact-tg">
+          <a class="contact-channel contact-channel--tg" href="https://t.me/AntaresAgensy" target="_blank" rel="noopener" id="contact-tg">
             <div class="contact-channel-top">
               <span class="contact-channel-ic" aria-hidden="true">TG</span>
               <div>
                 <div class="contact-channel-name">Написать в Telegram</div>
-                <div class="contact-channel-handle">@BBoysagency</div>
+                <div class="contact-channel-handle">@AntaresAgensy</div>
               </div>
               <span class="contact-channel-arrow" aria-hidden="true">→</span>
             </div>
             <p class="contact-channel-note">Самый быстрый способ — обычно отвечаем за пару часов</p>
           </a>
-          <a class="contact-channel contact-channel--ig" href="https://www.instagram.com/bboys_agency/" target="_blank" rel="noopener">
+          <a class="contact-channel contact-channel--ig" href="https://www.instagram.com/antares_agensy/" target="_blank" rel="noopener" id="contact-ig">
             <div class="contact-channel-top">
               <span class="contact-channel-ic" aria-hidden="true">IG</span>
               <div>
                 <div class="contact-channel-name">Написать в Instagram</div>
-                <div class="contact-channel-handle">@bboys_agency</div>
+                <div class="contact-channel-handle">@antares_agensy</div>
               </div>
               <span class="contact-channel-arrow" aria-hidden="true">→</span>
             </div>
@@ -3524,8 +3769,8 @@
           <p>Сайты и боты для бизнеса · 2026</p>
         </div>
         <div class="footer-socials">
-          <a class="social-link" href="https://t.me/BBoys_agency" target="_blank" rel="noopener" aria-label="Telegram-канал Antares" data-tip="Telegram-канал @BBoys_agency">TG</a>
-          <a class="social-link" href="https://www.instagram.com/bboys_agency/" target="_blank" rel="noopener" aria-label="Instagram Antares" data-tip="Instagram @bboys_agency">IG</a>
+          <a class="social-link" href="tg://resolve?domain=AntaresAgensy" target="_blank" rel="noopener" aria-label="Telegram Antares" data-tip="Telegram @AntaresAgensy">TG</a>
+          <a class="social-link" href="https://www.instagram.com/antares_agensy/" target="_blank" rel="noopener" aria-label="Instagram Antares" data-tip="Instagram @antares_agensy">IG</a>
           <a class="social-link" href="https://www.tiktok.com/@_barbie_boys_" target="_blank" rel="noopener" aria-label="TikTok Antares" data-tip="TikTok @_barbie_boys_">TT</a>
         </div>
       </div>
@@ -3537,13 +3782,9 @@
   </footer>
 
   <script>
-    const CONTACT_TEMPLATE = `Привет! 👋 Хочу сайт / бота.
-
-Меня зовут:
-Связаться со мной удобнее:
-Что хочу сделать:
-Есть примеры, которые нравятся:`;
-    const TG_CONTACT = 'https://t.me/BBoysagency';
+    const TG_USERNAME = 'AntaresAgensy';
+    const TG_CONTACT = `https://t.me/${TG_USERNAME}`;
+    const TG_APP = `tg://resolve?domain=${TG_USERNAME}`;
 
     // Theme toggle
     const themeToggle = document.getElementById('theme-toggle');
@@ -3633,10 +3874,308 @@
       });
     });
 
-    const tgContactLink = document.getElementById('contact-tg');
-    const tgWithText = `${TG_CONTACT}?text=${encodeURIComponent(CONTACT_TEMPLATE)}`;
+    const DISCOUNT_STORAGE_KEY = 'antares-discount';
+    const GIFT_SESSION_KEY = 'antares-gift-roll';
 
-    if (tgContactLink) tgContactLink.href = tgWithText;
+    function getStoredDiscount() {
+      try {
+        return JSON.parse(localStorage.getItem(DISCOUNT_STORAGE_KEY) || 'null');
+      } catch {
+        return null;
+      }
+    }
+
+    function tryOpenTelegramApp() {
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.setAttribute('aria-hidden', 'true');
+      iframe.src = TG_APP;
+      document.body.appendChild(iframe);
+      window.setTimeout(() => iframe.remove(), 1500);
+    }
+
+    function openTelegramContact() {
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      let fallbackDone = false;
+
+      const openWebFallback = () => {
+        if (fallbackDone) return;
+        fallbackDone = true;
+        window.open(TG_CONTACT, '_blank', 'noopener,noreferrer');
+      };
+
+      const cancelFallback = window.setTimeout(openWebFallback, 800);
+      const stopFallback = () => window.clearTimeout(cancelFallback);
+      window.addEventListener('blur', stopFallback, { once: true });
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stopFallback();
+      }, { once: true });
+
+      if (isMobile) {
+        window.location.href = TG_APP;
+      } else {
+        tryOpenTelegramApp();
+      }
+    }
+
+    function bindTelegramContactLink(link) {
+      if (!link || link.dataset.tgBound === '1') return;
+      link.dataset.tgBound = '1';
+      link.addEventListener('click', (e) => {
+        if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+        openTelegramContact();
+      });
+    }
+
+    function updateDiscountUI() {
+      const discount = getStoredDiscount();
+      const contactTg = document.getElementById('contact-tg');
+      const discountTag = document.getElementById('contact-discount-tag');
+      if (contactTg) contactTg.href = TG_CONTACT;
+      if (discountTag) {
+        discountTag.hidden = !discount;
+        if (discount) discountTag.textContent = `−${discount.percent || 5}%`;
+      }
+    }
+
+    bindTelegramContactLink(document.getElementById('contact-tg'));
+    updateDiscountUI();
+
+    (function initGiftSurprise() {
+      if (new URLSearchParams(location.search).has('reset-gift')) {
+        localStorage.removeItem(DISCOUNT_STORAGE_KEY);
+        sessionStorage.removeItem(GIFT_SESSION_KEY);
+        updateDiscountUI();
+        const cleanUrl = location.pathname + location.hash;
+        history.replaceState(null, '', cleanUrl);
+      }
+
+      const giftWrap = document.getElementById('gift-surprise');
+      const giftTrigger = document.getElementById('gift-trigger');
+      if (!giftWrap || !giftTrigger) return;
+
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const GIFT_REVEAL_DELAY = 1000;
+      const GIFT_SPEED = 0.03645; // на 10% медленнее 0.0405
+      const GIFT_W = 104;
+      const GIFT_H = 120;
+
+      let giftBounceFrame = null;
+      let giftBounceState = null;
+
+      function getPageSize() {
+        return {
+          w: document.documentElement.clientWidth,
+          h: document.documentElement.clientHeight,
+        };
+      }
+
+      function getGiftPageBounds() {
+        const { w, h } = getPageSize();
+        return {
+          minX: 0,
+          minY: 0,
+          maxX: Math.max(0, w - GIFT_W),
+          maxY: Math.max(0, h - GIFT_H),
+        };
+      }
+
+      function createGiftEntryState() {
+        const bounds = getGiftPageBounds();
+        const { w, h } = getPageSize();
+        const speed = GIFT_SPEED * (0.88 + Math.random() * 0.28);
+        const edge = Math.floor(Math.random() * 4);
+        const peek = 22 + Math.random() * 24;
+        let x;
+        let y;
+        let vx;
+        let vy;
+
+        if (edge === 0) {
+          x = -GIFT_W + peek;
+          y = bounds.minY + Math.random() * Math.max(0, bounds.maxY - bounds.minY);
+          vx = speed;
+          vy = (Math.random() - 0.5) * speed * 0.5;
+        } else if (edge === 1) {
+          x = w - peek;
+          y = bounds.minY + Math.random() * Math.max(0, bounds.maxY - bounds.minY);
+          vx = -speed;
+          vy = (Math.random() - 0.5) * speed * 0.5;
+        } else if (edge === 2) {
+          x = bounds.minX + Math.random() * Math.max(0, bounds.maxX - bounds.minX);
+          y = -GIFT_H + peek;
+          vx = (Math.random() - 0.5) * speed * 0.5;
+          vy = speed;
+        } else {
+          x = bounds.minX + Math.random() * Math.max(0, bounds.maxX - bounds.minX);
+          y = h - peek;
+          vx = (Math.random() - 0.5) * speed * 0.5;
+          vy = -speed;
+        }
+
+        return {
+          x,
+          y,
+          vx,
+          vy,
+          phase: 'entering',
+          rot: (Math.random() - 0.5) * 8,
+          vrot: (Math.random() - 0.5) * 0.006,
+          wobblePhase: Math.random() * Math.PI * 2,
+          lastTs: 0,
+        };
+      }
+
+      function isGiftInsidePlayArea(state) {
+        const bounds = getGiftPageBounds();
+        return (
+          state.x >= bounds.minX &&
+          state.x <= bounds.maxX &&
+          state.y >= bounds.minY &&
+          state.y <= bounds.maxY
+        );
+      }
+
+      function applyGiftBounceState(state) {
+        giftWrap.style.left = `${state.x}px`;
+        giftWrap.style.top = `${state.y}px`;
+        const wobble = Math.sin(state.wobblePhase) * 1.6;
+        giftTrigger.style.transform = `rotate(${state.rot + wobble}deg)`;
+      }
+
+      function reflectGiftEdge(state, axis, min, max) {
+        if (axis === 'x') {
+          if (state.x <= min) {
+            state.x = min;
+            state.vx = Math.abs(state.vx) * 0.992;
+            state.vrot += (Math.random() - 0.5) * 0.006;
+          } else if (state.x >= max) {
+            state.x = max;
+            state.vx = -Math.abs(state.vx) * 0.992;
+            state.vrot += (Math.random() - 0.5) * 0.006;
+          }
+        } else {
+          if (state.y <= min) {
+            state.y = min;
+            state.vy = Math.abs(state.vy) * 0.992;
+            state.vrot += (Math.random() - 0.5) * 0.006;
+          } else if (state.y >= max) {
+            state.y = max;
+            state.vy = -Math.abs(state.vy) * 0.992;
+            state.vrot += (Math.random() - 0.5) * 0.006;
+          }
+        }
+      }
+
+      function bounceGift(ts) {
+        if (!giftBounceState) return;
+
+        const state = giftBounceState;
+        const dt = state.lastTs ? Math.min(28, ts - state.lastTs) : 16;
+        state.lastTs = ts;
+
+        state.x += state.vx * dt;
+        state.y += state.vy * dt;
+        state.rot += state.vrot * dt;
+        state.wobblePhase += dt * 0.0012;
+
+        if (state.phase === 'entering') {
+          if (isGiftInsidePlayArea(state)) {
+            state.phase = 'bouncing';
+          }
+        } else {
+          const bounds = getGiftPageBounds();
+          reflectGiftEdge(state, 'x', bounds.minX, bounds.maxX);
+          reflectGiftEdge(state, 'y', bounds.minY, bounds.maxY);
+        }
+
+        applyGiftBounceState(state);
+        giftBounceFrame = requestAnimationFrame(bounceGift);
+      }
+
+      function startGiftBounce() {
+        if (reducedMotion) {
+          const pos = randomGiftPosition();
+          giftWrap.style.left = `${pos.x}px`;
+          giftWrap.style.top = `${pos.y}px`;
+          return;
+        }
+
+        giftBounceState = createGiftEntryState();
+        giftWrap.classList.add('is-bouncing');
+        applyGiftBounceState(giftBounceState);
+        giftBounceFrame = requestAnimationFrame(bounceGift);
+      }
+
+      function stopGiftBounce() {
+        if (giftBounceFrame) {
+          cancelAnimationFrame(giftBounceFrame);
+          giftBounceFrame = null;
+        }
+        giftBounceState = null;
+        giftWrap.classList.remove('is-bouncing', 'is-floating', 'is-entering');
+        giftTrigger.style.transform = '';
+      }
+
+      function randomGiftPosition() {
+        const bounds = getGiftPageBounds();
+        const x = bounds.minX + Math.random() * Math.max(0, bounds.maxX - bounds.minX);
+        const y = bounds.minY + Math.random() * Math.max(0, bounds.maxY - bounds.minY);
+        return { x, y };
+      }
+
+      function openGift() {
+        if (giftWrap.classList.contains('is-opened')) return;
+        stopGiftBounce();
+        giftWrap.classList.add('is-opened');
+
+        localStorage.setItem(DISCOUNT_STORAGE_KEY, JSON.stringify({
+          percent: 5,
+          claimedAt: Date.now(),
+        }));
+        updateDiscountUI();
+
+        setTimeout(() => {
+          giftWrap.classList.remove('is-visible');
+          giftWrap.hidden = true;
+          giftWrap.setAttribute('aria-hidden', 'true');
+        }, reducedMotion ? 200 : 650);
+      }
+
+      function shouldShowGiftThisSession() {
+        if (getStoredDiscount()) return false;
+        let roll = sessionStorage.getItem(GIFT_SESSION_KEY);
+        if (roll === null) {
+          roll = Math.random() < 0.5 ? 'yes' : 'no';
+          sessionStorage.setItem(GIFT_SESSION_KEY, roll);
+        }
+        return roll === 'yes';
+      }
+
+      if (getStoredDiscount()) {
+        return;
+      }
+
+      if (!shouldShowGiftThisSession()) return;
+
+      setTimeout(() => {
+        startGiftBounce();
+        giftWrap.hidden = false;
+        giftWrap.setAttribute('aria-hidden', 'false');
+        requestAnimationFrame(() => giftWrap.classList.add('is-visible'));
+      }, GIFT_REVEAL_DELAY);
+
+      window.addEventListener('resize', () => {
+        if (!giftBounceState || giftWrap.classList.contains('is-opened')) return;
+        const bounds = getGiftPageBounds();
+        giftBounceState.x = Math.min(bounds.maxX, Math.max(bounds.minX, giftBounceState.x));
+        giftBounceState.y = Math.min(bounds.maxY, Math.max(bounds.minY, giftBounceState.y));
+        applyGiftBounceState(giftBounceState);
+      });
+
+      giftTrigger.addEventListener('click', openGift);
+    })();
 
   </script>
 </body>
