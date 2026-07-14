@@ -93,7 +93,7 @@
     type="image/webp"
     href="images/hero-astronaut-full.webp"
     imagesrcset="images/hero-astronaut-full.webp 497w, images/hero-astronaut-full@2x.webp 994w"
-    imagesizes="(max-width: 767px) 96vw, 980px"
+    imagesizes="(max-width: 767px) 82vw, 833px"
     fetchpriority="high"
   />
 
@@ -979,7 +979,7 @@
       justify-content: flex-end;
       text-align: left;
       padding: calc(var(--nav-h) + 60px) 24px 0;
-      overflow: hidden;
+      overflow: visible;
       box-sizing: border-box;
     }
     .hero-blob {
@@ -1038,10 +1038,12 @@
       margin-top: auto;
     }
     .hero-astronaut {
+      --astro-scale: 0.85;
+      --astro-lift: 1.75cm;
       --leg-ratio: 0.48;
       --reveal: 0;
       --fly-y: 0;
-      --waist-h: min(calc(100svh - var(--nav-h) - 60px), 940px);
+      --waist-h: min(calc((100svh - var(--nav-h) - 60px) * var(--astro-scale)), 799px);
       --full-h: calc(var(--waist-h) / (1 - var(--leg-ratio)));
       grid-column: 1;
       display: flex;
@@ -1052,22 +1054,29 @@
       overflow: visible;
       transform: translateY(calc(var(--fly-y) * 1px));
     }
+    .hero-astronaut.is-scrolling {
+      z-index: 2;
+    }
     .hero-astronaut__stage {
       overflow: hidden;
-      height: calc(var(--waist-h) + (var(--full-h) - var(--waist-h)) * var(--reveal));
+      height: calc(var(--waist-h) + (var(--full-h) - var(--waist-h)) * var(--reveal) + var(--astro-lift));
       display: flex;
       align-items: flex-end;
       justify-content: flex-start;
     }
+    .hero-astronaut.is-scrolling .hero-astronaut__stage {
+      overflow: visible;
+      height: calc(var(--full-h) + var(--astro-lift));
+    }
     .hero-astronaut__figure {
-      margin: 0;
+      margin: 0 0 var(--astro-lift);
       line-height: 0;
     }
     .hero-astronaut__figure img {
       display: block;
       height: var(--full-h);
       width: auto;
-      max-width: min(92vw, 980px);
+      max-width: min(calc(92vw * var(--astro-scale, 1)), 833px);
       object-fit: contain;
       object-position: bottom left;
       transform: translateY(calc(var(--leg-ratio) * (1 - var(--reveal)) * 100%));
@@ -1091,9 +1100,6 @@
     .hero-layout .hero-main {
       align-items: flex-start;
       width: 100%;
-    }
-    .hero-layout .hero-glass {
-      max-width: 100%;
     }
     .hero-layout h1 {
       text-align: left;
@@ -2650,13 +2656,13 @@
         grid-column: 1;
         justify-content: center;
         justify-self: center;
-        --waist-h: min(calc(100svh - var(--nav-h) - 48px), 560px);
+        --waist-h: min(calc((100svh - var(--nav-h) - 48px) * var(--astro-scale)), 476px);
       }
       .hero-astronaut__stage {
         justify-content: center;
       }
       .hero-astronaut__figure img {
-        max-width: min(96vw, 560px);
+        max-width: min(calc(96vw * var(--astro-scale, 1)), 476px);
         object-position: bottom center;
       }
       .hero-content {
@@ -3620,7 +3626,7 @@
                   images/hero-astronaut-full.webp 497w,
                   images/hero-astronaut-full@2x.webp 994w
                 "
-                sizes="(max-width: 767px) 96vw, 980px"
+                sizes="(max-width: 767px) 82vw, 833px"
               />
               <img
                 src="images/hero-astronaut-full.png"
@@ -3628,7 +3634,7 @@
                   images/hero-astronaut-full.png 497w,
                   images/hero-astronaut-full@2x.png 994w
                 "
-                sizes="(max-width: 767px) 96vw, 980px"
+                sizes="(max-width: 767px) 82vw, 833px"
                 alt="Космонавт в скафандре приветствует вас"
                 width="497"
                 height="965"
@@ -3638,27 +3644,6 @@
               />
             </picture>
           </figure>
-        </div>
-      </div>
-      <div class="hero-content">
-        <div class="hero-main">
-          <div class="hero-glass">
-            <span class="hero-glass__tag" aria-hidden="true">antares.agency</span>
-            <span class="hero-glass__corner hero-glass__corner--tl" aria-hidden="true"></span>
-            <span class="hero-glass__corner hero-glass__corner--br" aria-hidden="true"></span>
-            <div class="hero-glass__body">
-              <h1>Сайты и боты <span class="line2">под ключ</span></h1>
-              <p class="hero-sub">
-                Лендинги, сайты-визитки и Telegram-боты для малого бизнеса.
-                Делаем дизайн, вёрстку и запуск за 5–7 дней — заявки с сайта
-                сразу приходят в Telegram.
-              </p>
-              <div class="hero-ctas">
-                <a class="btn-primary" href="#projects">Смотреть работы</a>
-                <a class="btn-ghost" href="#contact">Обсудить проект</a>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -4364,6 +4349,7 @@
         const progress = Math.min(1, Math.max(0, scrollY / range));
         root.style.setProperty('--reveal', String(progress));
         root.style.setProperty('--fly-y', String(-scrollY * 0.5));
+        root.classList.toggle('is-scrolling', scrollY > 0);
       }
 
       update();
