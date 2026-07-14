@@ -318,16 +318,6 @@
       border-radius: 50%;
       filter: blur(60px);
     }
-    .deco-ring {
-      position: absolute;
-      border-radius: 50%;
-      border: 1px dashed var(--deco-stroke);
-    }
-    .deco-ring--solid {
-      border-style: solid;
-      border-width: 1px;
-      opacity: 0.55;
-    }
     .deco-cross {
       position: absolute;
       width: 20px;
@@ -388,8 +378,7 @@
       color: var(--deco-stroke);
     }
     [data-theme="light"] .deco-cross,
-    [data-theme="light"] .deco-diamond,
-    [data-theme="light"] .deco-ring {
+    [data-theme="light"] .deco-diamond {
       opacity: 0.62;
     }
     [data-theme="light"] .deco-svg {
@@ -435,8 +424,6 @@
     .deco-pace-hyper { --deco-pace: 0.495; }
     .deco-emphasis.deco-cross { opacity: 0.72; }
     .deco-emphasis.deco-diamond { opacity: 0.78; }
-    .deco-emphasis.deco-ring:not(.deco-ring--solid) { opacity: 0.72; }
-    .deco-emphasis.deco-ring--solid { opacity: 0.82; }
     .deco-emphasis.deco-svg { opacity: 0.48; }
     .deco-emphasis.deco-dot-cluster { opacity: 0.58; }
     .deco-emphasis.deco-orb { opacity: 0.92; filter: blur(50px) saturate(1.15); }
@@ -452,8 +439,7 @@
     .dev-float__item.deco-emphasis.dev-float__item--lg { opacity: 0.26; }
     .dev-float__item.deco-emphasis .dev-float__svg { opacity: 0.22; }
     [data-theme="light"] .deco-emphasis.deco-cross,
-    [data-theme="light"] .deco-emphasis.deco-diamond,
-    [data-theme="light"] .deco-emphasis.deco-ring:not(.deco-ring--solid) { opacity: 0.84; }
+    [data-theme="light"] .deco-emphasis.deco-diamond { opacity: 0.84; }
     [data-theme="light"] .deco-emphasis.deco-svg { opacity: 0.52; }
     [data-theme="light"] .dev-float__item.deco-emphasis { opacity: 0.38; }
     [data-theme="dark"] .deco-emphasis.deco-cross,
@@ -923,18 +909,6 @@
       filter: blur(50px);
       animation: pulse-glow calc(6s / var(--deco-pace, 1)) ease-in-out infinite;
     }
-    .hero-deco-ring {
-      right: 8%;
-      top: 14%;
-      width: 220px;
-      height: 220px;
-    }
-    .hero-deco-ring-2 {
-      left: 4%;
-      bottom: 12%;
-      width: 140px;
-      height: 140px;
-    }
     .hero-deco-cross-1 { right: 22%; top: 28%; }
     .hero-deco-cross-2 { left: 18%; top: 22%; width: 14px; height: 14px; opacity: 0.3; }
     .hero-deco-diamond { right: 14%; bottom: 22%; }
@@ -947,12 +921,6 @@
     .hero-deco-dots {
       right: 32%;
       bottom: 18%;
-    }
-    .hero-deco-svg {
-      left: -2%;
-      bottom: 8%;
-      width: 200px;
-      height: 200px;
     }
     /* golden ratio composition: welcome bar centered on first screen */
     .hero-content {
@@ -2469,23 +2437,17 @@
       .hero .section-deco { opacity: 1; }
 
       .deco-orb { filter: blur(48px) saturate(1.15); }
-      .deco-ring { opacity: 0.58; }
-      .deco-ring--solid { opacity: 0.64; }
       .deco-cross { opacity: 0.58; }
       .deco-diamond { opacity: 0.62; }
       .deco-dot-cluster { opacity: 0.52; }
       .deco-line { opacity: 0.55; }
       .deco-svg { opacity: 0.42 !important; }
       [data-theme="light"] .deco-cross,
-      [data-theme="light"] .deco-diamond,
-      [data-theme="light"] .deco-ring { opacity: 0.68; }
+      [data-theme="light"] .deco-diamond { opacity: 0.68; }
       [data-theme="light"] .deco-svg { opacity: 0.5 !important; }
       [data-theme="light"] .deco-dot-cluster { opacity: 0.58; }
 
       .hero-deco-cross-2 { opacity: 0.52; }
-      .hero-deco-ring,
-      .hero-deco-ring-2 { opacity: 0.62; }
-      .hero-deco-svg { opacity: 0.48 !important; width: 160px; height: 160px; }
       .hero-blob-1,
       .hero-blob-2 {
         transform: scale(1.25);
@@ -3325,8 +3287,6 @@
     <div class="section-deco" aria-hidden="true">
       <div class="deco-orb deco-float deco-emphasis" style="width:320px;height:320px;top:-80px;right:-60px;background:var(--deco-fill);"></div>
       <div class="deco-orb deco-float-2 deco-pace-fast" style="width:240px;height:240px;bottom:10%;left:-80px;background:var(--deco-fill-2);"></div>
-      <div class="deco-ring hero-deco-ring deco-spin deco-pace-faster deco-emphasis"></div>
-      <div class="deco-ring deco-ring--solid hero-deco-ring-2 deco-pulse deco-pace-fast deco-emphasis"></div>
       <div class="deco-cross hero-deco-cross-1 deco-float deco-pace-fastest deco-emphasis"></div>
       <div class="deco-cross hero-deco-cross-2"></div>
       <div class="deco-diamond hero-deco-diamond deco-float-2 deco-pace-faster deco-emphasis"></div>
@@ -3336,11 +3296,6 @@
         <span></span><span></span><span></span>
         <span></span><span></span><span></span>
       </div>
-      <svg class="deco-svg hero-deco-svg deco-spin deco-pace-faster" viewBox="0 0 200 200" fill="none" aria-hidden="true">
-        <circle cx="100" cy="100" r="90" stroke="var(--deco-stroke)" stroke-width="1" stroke-dasharray="6 8"/>
-        <circle cx="100" cy="100" r="60" stroke="var(--deco-stroke-muted)" stroke-width="1" opacity="0.85"/>
-        <path d="M100 10 L100 190 M10 100 L190 100" stroke="var(--deco-stroke-muted)" stroke-width="1" opacity="0.65"/>
-      </svg>
     </div>
     <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
     <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
@@ -3351,7 +3306,6 @@
   <section class="section section-bg2" id="projects">
     <div class="section-deco" aria-hidden="true">
       <div class="deco-orb" style="width:280px;height:280px;top:-60px;right:-40px;background:var(--deco-fill);"></div>
-      <div class="deco-ring deco-spin deco-pace-fastest" style="width:180px;height:180px;bottom:8%;left:-40px;"></div>
       <div class="deco-cross deco-float" style="top:18%;right:12%;"></div>
       <div class="deco-diamond deco-float-2 deco-pace-faster" style="bottom:20%;right:8%;"></div>
       <div class="deco-line" style="width:160px;top:32%;left:4%;transform:rotate(12deg);"></div>
@@ -3479,7 +3433,6 @@
     <div class="section-deco" aria-hidden="true">
       <div class="deco-orb deco-float-2 deco-pace-fast" style="width:300px;height:300px;bottom:-80px;left:20%;background:var(--deco-fill-2);"></div>
       <div class="deco-orb" style="width:200px;height:200px;top:10%;right:-30px;background:var(--deco-fill);"></div>
-      <div class="deco-ring deco-ring--solid deco-pulse" style="width:120px;height:120px;top:15%;right:10%;"></div>
       <div class="deco-cross" style="bottom:24%;left:8%;width:16px;height:16px;"></div>
       <div class="deco-dot-cluster deco-float deco-pace-fast" style="top:22%;left:4%;">
         <span></span><span></span><span></span>
@@ -3488,7 +3441,6 @@
       <div class="deco-line" style="width:200px;bottom:18%;right:6%;transform:rotate(-8deg);"></div>
       <svg class="deco-svg deco-spin deco-pace-faster" style="width:160px;height:160px;top:8%;left:-20px;" viewBox="0 0 160 160" fill="none" aria-hidden="true">
         <polygon points="80,10 150,80 80,150 10,80" stroke="var(--deco-stroke)" stroke-width="1"/>
-        <circle cx="80" cy="80" r="24" stroke="var(--deco-stroke-muted)" stroke-width="1" opacity="0.85"/>
       </svg>
     </div>
     <div class="section-inner">
@@ -3662,7 +3614,6 @@
   <!-- REVIEWS -->
   <section class="section section-bg2" id="reviews">
     <div class="section-deco" aria-hidden="true">
-      <div class="deco-ring deco-float deco-pace-fast" style="width:100px;height:100px;top:20%;left:10%;"></div>
       <div class="deco-cross deco-float-2 deco-pace-faster" style="top:30%;right:15%;"></div>
       <div class="deco-diamond" style="bottom:25%;left:18%;"></div>
       <div class="deco-dot-cluster" style="bottom:20%;right:12%;">
@@ -3695,12 +3646,10 @@
     <div class="section-deco" aria-hidden="true">
       <div class="deco-orb deco-float deco-pace-fastest" style="width:260px;height:260px;top:-40px;left:-60px;background:var(--deco-fill);"></div>
       <div class="deco-orb deco-float-2" style="width:220px;height:220px;bottom:-40px;right:-20px;background:var(--deco-fill-2);"></div>
-      <div class="deco-ring deco-spin deco-pace-fast" style="width:200px;height:200px;top:10%;right:5%;"></div>
       <div class="deco-cross" style="bottom:15%;left:12%;"></div>
       <div class="deco-line" style="width:140px;top:40%;right:8%;transform:rotate(20deg);"></div>
       <svg class="deco-svg" style="width:120px;height:120px;top:18%;left:8%;" viewBox="0 0 120 120" fill="none" aria-hidden="true">
         <path d="M60 8 L112 60 L60 112 L8 60 Z" stroke="var(--deco-stroke)" stroke-width="1"/>
-        <circle cx="60" cy="60" r="8" fill="var(--deco-dot)" opacity="0.75"/>
       </svg>
       <svg class="deco-svg deco-float deco-pace-faster" style="width:80px;height:56px;bottom:18%;left:6%;opacity:0.28;" viewBox="0 0 80 56" fill="none" aria-hidden="true">
         <path d="M4 48 C20 8, 36 52, 52 20 S 72 44, 76 12" stroke="var(--deco-stroke)" stroke-width="1.5" stroke-linecap="round"/>
@@ -3751,18 +3700,12 @@
   <footer class="footer">
     <div class="section-deco" aria-hidden="true">
       <div class="deco-line" style="width:100%;top:0;left:0;opacity:0.2;background:var(--gradient);"></div>
-      <div class="deco-ring deco-float deco-pace-faster" style="width:120px;height:120px;bottom:35%;left:3%;opacity:0.45;"></div>
-      <div class="deco-ring deco-spin" style="width:90px;height:90px;top:25%;right:6%;opacity:0.35;"></div>
       <div class="deco-cross" style="bottom:40%;right:10%;opacity:0.35;"></div>
       <div class="deco-diamond deco-float-2 deco-pace-fast" style="top:30%;left:14%;"></div>
       <div class="deco-dot-cluster" style="top:20%;right:20%;">
         <span></span><span></span><span></span>
         <span></span><span></span><span></span>
       </div>
-      <svg class="deco-svg deco-float" style="width:70px;height:70px;bottom:15%;left:8%;" viewBox="0 0 70 70" fill="none" aria-hidden="true">
-        <circle cx="35" cy="35" r="28" stroke="var(--deco-stroke)" stroke-width="1" stroke-dasharray="4 6"/>
-        <path d="M35 7 L35 63 M7 35 L63 35" stroke="var(--deco-stroke-muted)" stroke-width="1"/>
-      </svg>
     </div>
     <div class="footer-inner">
       <div class="footer-top">
