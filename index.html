@@ -324,6 +324,7 @@
 
     html {
       scroll-behavior: auto;
+      scroll-padding-top: calc(var(--nav-h) + 24px);
       background: var(--bg);
       transition: background-color 0.3s ease;
     }
@@ -955,8 +956,9 @@
     .hero {
       position: relative;
       z-index: 1;
-      min-height: 100vh;
+      height: 100svh;
       min-height: 100svh;
+      max-height: 100svh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1024,6 +1026,7 @@
     .hero-astronaut {
       --leg-ratio: 0.48;
       --reveal: 0;
+      --fly-y: 0;
       --waist-h: min(calc(100svh - var(--nav-h) - 60px), 940px);
       --full-h: calc(var(--waist-h) / (1 - var(--leg-ratio)));
       grid-column: 1;
@@ -1033,6 +1036,8 @@
       position: relative;
       align-self: stretch;
       overflow: visible;
+      transform: translateY(calc(var(--fly-y) * 1px));
+      will-change: transform;
     }
     .hero-astronaut__stage {
       overflow: hidden;
@@ -1058,7 +1063,7 @@
       user-select: none;
     }
     @media (prefers-reduced-motion: reduce) {
-      .hero-astronaut { --reveal: 0 !important; }
+      .hero-astronaut { --reveal: 0 !important; --fly-y: 0 !important; transform: none; }
       .hero-astronaut__figure img { transform: translateY(calc(var(--leg-ratio) * 100%)); }
     }
     .hero-layout .hero-content {
@@ -1275,6 +1280,9 @@
       z-index: 1;
       padding: 100px 24px;
       overflow: hidden;
+    }
+    .section[id] {
+      scroll-margin-top: calc(var(--nav-h) + 24px);
     }
     .section-bg2 { background: var(--section-alt-bg); }
     .section-inner {
@@ -1667,6 +1675,12 @@
       text-transform: none;
       font-size: 11px;
     }
+    .service-panel__lead {
+      font-size: 13px;
+      color: var(--white40);
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
     .service-features {
       list-style: none;
       display: grid;
@@ -1715,6 +1729,41 @@
       font-size: 12px;
       font-weight: 700;
       color: var(--accent2);
+    }
+    .service-workflow {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      counter-reset: service-step;
+    }
+    .service-workflow li {
+      position: relative;
+      padding-left: 32px;
+      font-size: 13px;
+      color: var(--white40);
+      line-height: 1.55;
+      counter-increment: service-step;
+    }
+    .service-workflow li::before {
+      content: counter(service-step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent2);
+      background: var(--chip-bg);
+      border: 1px solid var(--glass-border);
+    }
+    .service-workflow strong {
+      color: var(--text-soft);
+      font-weight: 600;
     }
     .service-panel__tags {
       display: flex;
@@ -3555,13 +3604,14 @@
             <img
               src="images/hero-astronaut-full.png"
               srcset="
-                images/hero-astronaut-full.png 489w,
-                images/hero-astronaut-full@2x.png 978w
+                images/hero-astronaut-full.png 497w,
+                images/hero-astronaut-full@2x.png 994w,
+                images/hero-astronaut-full@3x.png 1491w
               "
               sizes="(max-width: 767px) 96vw, 980px"
               alt="Космонавт в скафандре приветствует вас"
-              width="489"
-              height="950"
+              width="497"
+              height="965"
               decoding="async"
               fetchpriority="high"
             />
@@ -3768,25 +3818,71 @@
             <div class="service-panel__inner">
               <div class="service-panel__content">
                 <div class="service-panel__section">
-                  <h4 class="service-panel__heading">Наши преимущества</h4>
+                  <h4 class="service-panel__heading">Как мы работаем</h4>
+                  <ol class="service-workflow">
+                    <li><strong>Переписка</strong> — всё начинается, когда вы пишете нам в Telegram</li>
+                    <li><strong>Анализ</strong> — изучаем ваш бизнес, наводим справки и заранее готовимся к проекту</li>
+                    <li><strong>Видеозвонок</strong> — вместе формируем образ сайта, его идею и концепцию</li>
+                    <li><strong>Разработка (3–4 дня)</strong> — создаём сайт и согласовываем каждый шаг: дизайн, структуру и содержание</li>
+                    <li><strong>Доработка (до 3 дней)</strong> — всё проверяем, тестируем и доводим до идеала</li>
+                  </ol>
+                </div>
+                <div class="service-panel__section">
+                  <h4 class="service-panel__heading">Наш сайт</h4>
+                  <p class="service-panel__lead">
+                    Каждый проект — продуманный инструмент для бизнеса: понятный с первого
+                    экрана, удобный для клиента и готовый принимать заявки.
+                  </p>
                   <ul class="service-advantages">
-                    <li>Дизайн с нуля под вашу нишу — не Tilda и не WordPress</li>
-                    <li>Адаптив с первого дня: телефон, планшет, десктоп</li>
-                    <li>Быстрая загрузка — клиенты не уходят в ожидании</li>
-                    <li>Заявка за 2–3 клика — понятная навигация без лишних шагов</li>
-                    <li>Передаём исходники и доступы — сайт полностью ваш</li>
+                    <li>Первый экран с ясным предложением — сразу видно, кто вы и чем полезны</li>
+                    <li>Логичная структура: услуги, цены, работы, контакты — без лишних кликов</li>
+                    <li>Дизайн под вашу нишу — цвета, шрифты и стиль, которые вызывают доверие</li>
+                    <li>Галерея, портфолио или отзывы — подтверждают ваш опыт и качество</li>
+                    <li>Форма заявки, онлайн-запись или заказ — клиент действует за 2–3 шага</li>
+                    <li>Уведомления в Telegram — вы узнаёте о новом обращении сразу</li>
+                    <li>Адаптив под телефон и планшет — одинаково удобен на любом экране</li>
+                    <li>SEO-основа, быстрая загрузка и защищённое соединение (SSL)</li>
                   </ul>
                 </div>
                 <div class="service-panel__section service-panel__section--stack">
-                  <h4 class="service-panel__heading service-panel__heading--muted">Языки и системы</h4>
+                  <h4 class="service-panel__heading service-panel__heading--muted">Наши инструменты</h4>
                   <div class="service-panel__tags">
-                    <span class="service-panel__tag">HTML</span>
-                    <span class="service-panel__tag">CSS</span>
+                    <span class="service-panel__tag">HTML5</span>
+                    <span class="service-panel__tag">CSS3</span>
+                    <span class="service-panel__tag">Sass</span>
                     <span class="service-panel__tag">JavaScript</span>
                     <span class="service-panel__tag">TypeScript</span>
+                    <span class="service-panel__tag">React</span>
                     <span class="service-panel__tag">Next.js</span>
+                    <span class="service-panel__tag">Tailwind CSS</span>
+                    <span class="service-panel__tag">Vanilla JS</span>
+                    <span class="service-panel__tag">Python</span>
                     <span class="service-panel__tag">Flask</span>
+                    <span class="service-panel__tag">Node.js</span>
+                    <span class="service-panel__tag">Express</span>
                     <span class="service-panel__tag">SQLite</span>
+                    <span class="service-panel__tag">PostgreSQL</span>
+                    <span class="service-panel__tag">REST API</span>
+                    <span class="service-panel__tag">JSON-LD</span>
+                    <span class="service-panel__tag">Open Graph</span>
+                    <span class="service-panel__tag">Schema.org</span>
+                    <span class="service-panel__tag">SEO</span>
+                    <span class="service-panel__tag">PWA</span>
+                    <span class="service-panel__tag">CSS Grid</span>
+                    <span class="service-panel__tag">Flexbox</span>
+                    <span class="service-panel__tag">Responsive</span>
+                    <span class="service-panel__tag">Static Export</span>
+                    <span class="service-panel__tag">Git</span>
+                    <span class="service-panel__tag">GitHub</span>
+                    <span class="service-panel__tag">Nginx</span>
+                    <span class="service-panel__tag">SSL/TLS</span>
+                    <span class="service-panel__tag">Docker</span>
+                    <span class="service-panel__tag">Vercel</span>
+                    <span class="service-panel__tag">Netlify</span>
+                    <span class="service-panel__tag">Telegram API</span>
+                    <span class="service-panel__tag">Google Analytics</span>
+                    <span class="service-panel__tag">Yandex Metrica</span>
+                    <span class="service-panel__tag">Figma</span>
                   </div>
                 </div>
               </div>
@@ -3833,23 +3929,66 @@
             <div class="service-panel__inner">
               <div class="service-panel__content">
                 <div class="service-panel__section">
-                  <h4 class="service-panel__heading">Наши преимущества</h4>
+                  <h4 class="service-panel__heading">Как мы работаем</h4>
+                  <ol class="service-workflow">
+                    <li><strong>Переписка</strong> — всё начинается, когда вы пишете нам в Telegram</li>
+                    <li><strong>Анализ</strong> — изучаем ваш бизнес, наводим справки и заранее готовимся к проекту</li>
+                    <li><strong>Видеозвонок</strong> — вместе формируем образ бота, его сценарии и концепцию</li>
+                    <li><strong>Разработка (3–4 дня)</strong> — создаём бота и согласовываем каждый шаг: логику, меню и наполнение</li>
+                    <li><strong>Доработка (до 3 дней)</strong> — всё проверяем, тестируем и доводим до идеала</li>
+                  </ol>
+                </div>
+                <div class="service-panel__section">
+                  <h4 class="service-panel__heading">Наш бот</h4>
+                  <p class="service-panel__lead">
+                    Каждый проект — продуманный помощник для бизнеса: понятный с первого
+                    сообщения, удобный для клиента и готовый работать без вашего участия.
+                  </p>
                   <ul class="service-advantages">
-                    <li>Экономит часы на переписке каждую неделю</li>
-                    <li>Кнопочное меню — без команд и длинных инструкций</li>
-                    <li>Масштабируется — добавим функции по мере роста бизнеса</li>
-                    <li>Настраиваем под вашу нишу, не «коробочное» решение</li>
-                    <li>Работает круглосуточно — клиент пишет в любое время</li>
+                    <li>Приветствие и меню с кнопками — клиент сразу понимает, что можно сделать</li>
+                    <li>Логичные сценарии: запись, заказ, вопрос или заявка — без лишних шагов</li>
+                    <li>Тексты и оформление под вашу нишу — бот говорит от лица вашего бизнеса</li>
+                    <li>Каталог, прайс или FAQ — вся нужная информация под рукой</li>
+                    <li>Запись, заказ или заявка — клиент получает результат за пару нажатий</li>
+                    <li>Уведомления вам в Telegram — вы узнаёте о новом обращении сразу</li>
+                    <li>Напоминания клиенту — подтверждения, статусы и акции в нужный момент</li>
+                    <li>Админ-панель — вы сами меняете цены, тексты и расписание</li>
                   </ul>
                 </div>
                 <div class="service-panel__section service-panel__section--stack">
-                  <h4 class="service-panel__heading service-panel__heading--muted">Языки и системы</h4>
+                  <h4 class="service-panel__heading service-panel__heading--muted">Наши инструменты</h4>
                   <div class="service-panel__tags">
                     <span class="service-panel__tag">Python</span>
-                    <span class="service-panel__tag">aiogram</span>
+                    <span class="service-panel__tag">aiogram 3</span>
+                    <span class="service-panel__tag">python-telegram-bot</span>
                     <span class="service-panel__tag">Webhooks</span>
-                    <span class="service-panel__tag">SQLite</span>
+                    <span class="service-panel__tag">Long Polling</span>
                     <span class="service-panel__tag">REST API</span>
+                    <span class="service-panel__tag">Flask</span>
+                    <span class="service-panel__tag">FastAPI</span>
+                    <span class="service-panel__tag">SQLite</span>
+                    <span class="service-panel__tag">PostgreSQL</span>
+                    <span class="service-panel__tag">Redis</span>
+                    <span class="service-panel__tag">JSON</span>
+                    <span class="service-panel__tag">asyncio</span>
+                    <span class="service-panel__tag">pydantic</span>
+                    <span class="service-panel__tag">FSM</span>
+                    <span class="service-panel__tag">Inline-кнопки</span>
+                    <span class="service-panel__tag">Telegram Payments</span>
+                    <span class="service-panel__tag">Celery</span>
+                    <span class="service-panel__tag">APScheduler</span>
+                    <span class="service-panel__tag">JWT</span>
+                    <span class="service-panel__tag">OAuth 2.0</span>
+                    <span class="service-panel__tag">SMTP</span>
+                    <span class="service-panel__tag">Google Sheets API</span>
+                    <span class="service-panel__tag">Stripe</span>
+                    <span class="service-panel__tag">PayPal</span>
+                    <span class="service-panel__tag">Docker</span>
+                    <span class="service-panel__tag">Linux</span>
+                    <span class="service-panel__tag">Git</span>
+                    <span class="service-panel__tag">GitHub</span>
+                    <span class="service-panel__tag">Nginx</span>
+                    <span class="service-panel__tag">SSL/TLS</span>
                   </div>
                 </div>
               </div>
@@ -4197,9 +4336,12 @@
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       function update() {
-        const range = Math.max(window.innerHeight * 0.92, 320);
-        const progress = Math.min(1, Math.max(0, window.scrollY / range));
+        const vh = window.innerHeight;
+        const range = Math.max(vh * 0.307, 107);
+        const scrollY = window.scrollY;
+        const progress = Math.min(1, Math.max(0, scrollY / range));
         root.style.setProperty('--reveal', String(progress));
+        root.style.setProperty('--fly-y', String(-scrollY * 0.5));
       }
 
       update();
@@ -4275,7 +4417,26 @@
       document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
     }
 
-    // Smooth scroll to anchors
+    // Smooth scroll to anchors (с учётом фиксированной шапки)
+    function scrollToSection(target, href) {
+      const navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 56;
+      const gap = 24;
+      const head = target.querySelector('.section-head') || target;
+
+      if (href === '#projects') {
+        const astronaut = document.getElementById('hero-astronaut');
+        if (astronaut) {
+          astronaut.style.setProperty('--reveal', '1');
+          astronaut.style.setProperty('--fly-y', String(-window.scrollY * 0.5));
+        }
+      }
+
+      requestAnimationFrame(() => {
+        const top = head.getBoundingClientRect().top + window.pageYOffset - navH - gap;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      });
+    }
+
     document.querySelectorAll('a[href^="#"]').forEach((a) => {
       a.addEventListener('click', (e) => {
         const href = a.getAttribute('href');
@@ -4283,7 +4444,7 @@
         const target = document.querySelector(href);
         if (!target) return;
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
+        scrollToSection(target, href);
       });
     });
 
