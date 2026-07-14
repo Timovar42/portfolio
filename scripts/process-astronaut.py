@@ -86,6 +86,14 @@ def main() -> None:
     cut.save(OUT, format="PNG", compress_level=1)
     upscale(cut, 2).save(OUT2, format="PNG", compress_level=1)
     upscale(cut, 3).save(OUT3, format="PNG", compress_level=1)
+
+    for src, quality in ((OUT, 82), (OUT2, 80)):
+        webp = src.with_suffix(".webp")
+        Image.open(src).convert("RGBA").save(
+            webp, format="WEBP", quality=quality, method=6
+        )
+        print("webp", webp.name, webp.stat().st_size // 1024, "KB")
+
     print("saved", cut.size)
 
 

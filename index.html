@@ -3,9 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
   <style>
     #discount-flyer,
     #contact-discount-tag {
@@ -90,6 +87,15 @@
   <!-- Иконки -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+  <link
+    rel="preload"
+    as="image"
+    type="image/webp"
+    href="images/hero-astronaut-full.webp"
+    imagesrcset="images/hero-astronaut-full.webp 497w, images/hero-astronaut-full@2x.webp 994w"
+    imagesizes="(max-width: 767px) 96vw, 980px"
+    fetchpriority="high"
+  />
 
   <!-- Верификация поисковиков: раскомментируйте и вставьте свои коды
   <meta name="google-site-verification" content="XXXX" />
@@ -200,7 +206,15 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Bebas+Neue&family=Playfair+Display:ital@1&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Bebas+Neue&family=Playfair+Display:ital@1&display=swap"
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Bebas+Neue&family=Playfair+Display:ital@1&display=swap" rel="stylesheet" />
+  </noscript>
   <script>
     (function () {
       var stored = localStorage.getItem('bb-theme');
@@ -1037,7 +1051,6 @@
       align-self: stretch;
       overflow: visible;
       transform: translateY(calc(var(--fly-y) * 1px));
-      will-change: transform;
     }
     .hero-astronaut__stage {
       overflow: hidden;
@@ -1058,7 +1071,6 @@
       object-fit: contain;
       object-position: bottom left;
       transform: translateY(calc(var(--leg-ratio) * (1 - var(--reveal)) * 100%));
-      will-change: transform;
       -webkit-user-drag: none;
       user-select: none;
     }
@@ -3601,20 +3613,30 @@
       <div class="hero-astronaut" id="hero-astronaut">
         <div class="hero-astronaut__stage">
           <figure class="hero-astronaut__figure">
-            <img
-              src="images/hero-astronaut-full.png"
-              srcset="
-                images/hero-astronaut-full.png 497w,
-                images/hero-astronaut-full@2x.png 994w,
-                images/hero-astronaut-full@3x.png 1491w
-              "
-              sizes="(max-width: 767px) 96vw, 980px"
-              alt="Космонавт в скафандре приветствует вас"
-              width="497"
-              height="965"
-              decoding="async"
-              fetchpriority="high"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcset="
+                  images/hero-astronaut-full.webp 497w,
+                  images/hero-astronaut-full@2x.webp 994w
+                "
+                sizes="(max-width: 767px) 96vw, 980px"
+              />
+              <img
+                src="images/hero-astronaut-full.png"
+                srcset="
+                  images/hero-astronaut-full.png 497w,
+                  images/hero-astronaut-full@2x.png 994w
+                "
+                sizes="(max-width: 767px) 96vw, 980px"
+                alt="Космонавт в скафандре приветствует вас"
+                width="497"
+                height="965"
+                decoding="sync"
+                loading="eager"
+                fetchpriority="high"
+              />
+            </picture>
           </figure>
         </div>
       </div>
