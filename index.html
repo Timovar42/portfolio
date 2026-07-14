@@ -3663,7 +3663,7 @@
         <h2>Контакты</h2>
       </div>
       <div class="contact-block reveal d1">
-        <span class="contact-discount-tag" id="contact-discount-tag" hidden>−5%</span>
+        <span class="contact-discount-tag" id="contact-discount-tag" hidden aria-hidden="true"></span>
         <div class="contact-actions">
           <a class="contact-channel contact-channel--tg" href="https://t.me/AntaresAgensy" target="_blank" rel="noopener" id="contact-tg">
             <div class="contact-channel-top">
@@ -3840,17 +3840,68 @@
       return `ANT-${suffix}`;
     }
 
-    function getStoredDiscount() {
+    function readDiscountRaw() {
       try {
-        const data = JSON.parse(localStorage.getItem(DISCOUNT_STORAGE_KEY) || 'null');
-        if (data && !data.code) {
-          data.code = generatePromoCode();
-          localStorage.setItem(DISCOUNT_STORAGE_KEY, JSON.stringify(data));
-        }
-        return data;
+        return JSON.parse(localStorage.getItem(DISCOUNT_STORAGE_KEY) || 'null');
       } catch {
         return null;
       }
+    }
+
+    function isValidDiscount(data) {
+      return Boolean(
+        data &&
+        typeof data.code === 'string' &&
+        /^ANT-[A-Z0-9]{4}$/.test(data.code) &&
+        Number(data.percent) > 0 &&
+        data.claimedAt &&
+        data.revealed === true
+      );
+    }
+
+    function normalizeStoredDiscount() {
+      const data = readDiscountRaw();
+      if (!data) return null;
+
+      if (isValidDiscount(data)) return data;
+
+      if (
+        data &&
+        typeof data.code === 'string' &&
+        /^ANT-[A-Z0-9]{4}$/.test(data.code) &&
+        Number(data.percent) > 0 &&
+        data.claimedAt
+      ) {
+        const migrated = { ...data, revealed: true };
+        localStorage.setItem(DISCOUNT_STORAGE_KEY, JSON.stringify(migrated));
+        return migrated;
+      }
+
+      localStorage.removeItem(DISCOUNT_STORAGE_KEY);
+      return null;
+    }
+
+    function getStoredDiscount() {
+      return normalizeStoredDiscount();
+    }
+
+    function saveClaimedDiscount(discount) {
+      localStorage.setItem(DISCOUNT_STORAGE_KEY, JSON.stringify({
+        code: discount.code,
+        percent: discount.percent,
+        claimedAt: discount.claimedAt,
+        revealed: true,
+      }));
+    }
+
+    function clearDiscountState() {
+      localStorage.removeItem(DISCOUNT_STORAGE_KEY);
+      sessionStorage.removeItem(GIFT_SESSION_KEY);
+    }
+
+    if (new URLSearchParams(location.search).has('reset-gift')) {
+      clearDiscountState();
+      history.replaceState(null, '', location.pathname + location.hash);
     }
 
     function buildDiscountMessage(discount) {
@@ -3927,24 +3978,19 @@
 
       if (contactTg) contactTg.href = getTelegramContactUrl();
       if (discountTag) {
-        discountTag.hidden = !discount;
-        if (discount) discountTag.textContent = `−${discount.percent || 5}%`;
+        const showDiscount = Boolean(discount);
+        discountTag.hidden = !showDiscount;
+        discountTag.setAttribute('aria-hidden', showDiscount ? 'false' : 'true');
+        discountTag.textContent = showDiscount ? `−${discount.percent}%` : '';
+        if (!showDiscount) discountTag.classList.remove('is-reveal');
       }
-      if (btnWrite) btnWrite.classList.toggle('has-discount', !!discount);
+      if (btnWrite) btnWrite.classList.toggle('has-discount', Boolean(discount));
     }
 
     bindTelegramContactLink(document.getElementById('contact-tg'));
     updateDiscountUI();
 
     (function initGiftSurprise() {
-      if (new URLSearchParams(location.search).has('reset-gift')) {
-        localStorage.removeItem(DISCOUNT_STORAGE_KEY);
-        sessionStorage.removeItem(GIFT_SESSION_KEY);
-        updateDiscountUI();
-        const cleanUrl = location.pathname + location.hash;
-        history.replaceState(null, '', cleanUrl);
-      }
-
       const giftWrap = document.getElementById('gift-surprise');
       const giftTrigger = document.getElementById('gift-trigger');
       const discountFlyer = document.getElementById('discount-flyer');
@@ -4137,10 +4183,15 @@
         discountTag.classList.add('is-reveal');
       }
 
-      function launchDiscountFlyer(fromRect) {
+      function finishDiscountClaim(discount) {
+        saveClaimedDiscount(discount);
+        updateDiscountUI();
+        revealDiscountTag();
+      }
+
+      function launchDiscountFlyer(fromRect, pendingDiscount) {
         if (!discountFlyer || !btnWrite) {
-          updateDiscountUI();
-          revealDiscountTag();
+          finishDiscountClaim(pendingDiscount);
           return;
         }
 
@@ -4186,8 +4237,7 @@
                 discountFlyer.style.cssText = '';
                 btnWrite.classList.remove('is-absorbing');
                 btnWrite.classList.add('has-discount');
-                updateDiscountUI();
-                revealDiscountTag();
+                finishDiscountClaim(pendingDiscount);
               }, reducedMotion ? 120 : 450);
             }, flyDuration);
           });
@@ -4200,15 +4250,14 @@
         stopGiftBounce();
         giftWrap.classList.add('is-opened');
 
-        const discount = {
+        const pendingDiscount = {
           code: generatePromoCode(),
           percent: 5,
           claimedAt: Date.now(),
         };
-        localStorage.setItem(DISCOUNT_STORAGE_KEY, JSON.stringify(discount));
 
         window.setTimeout(() => {
-          launchDiscountFlyer(giftRect);
+          launchDiscountFlyer(giftRect, pendingDiscount);
           window.setTimeout(() => {
             giftWrap.classList.remove('is-visible');
             giftWrap.hidden = true;
