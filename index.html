@@ -274,6 +274,7 @@
       --star-warm: rgba(255, 228, 196, 0.48);
       --nebula-mist: rgba(255, 255, 255, 0.022);
       --nebula-dust: rgba(12, 12, 15, 0.35);
+      --hero-window-bg: #FFFFFF;
     }
 
     [data-theme="light"] {
@@ -326,12 +327,15 @@
       --star-warm: rgba(0, 0, 0, 0.38);
       --nebula-mist: rgba(255, 255, 255, 0.14);
       --nebula-dust: rgba(232, 233, 240, 0.45);
+      --hero-window-bg: #0C0C0F;
     }
 
     :root {
       --font-display: 'Space Grotesk', system-ui, sans-serif;
       --font-body: 'Inter', system-ui, sans-serif;
       --nav-h: 56px;
+      --hero-top-gap: calc(60px / 1.75);
+      --astro-fly-speed: 0.72;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -341,6 +345,8 @@
       scroll-padding-top: calc(var(--nav-h) + 24px);
       background: var(--bg);
       transition: background-color 0.3s ease;
+      overflow-x: clip;
+      max-width: 100%;
     }
 
     body {
@@ -350,6 +356,8 @@
       font-weight: 400;
       line-height: 1.5;
       -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
+      max-width: 100%;
     }
     /* deep space nebulae — soft, organic gas clouds */
     body::before {
@@ -554,7 +562,7 @@
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      overflow: visible;
+      overflow: hidden;
       mask-image: radial-gradient(ellipse 82% 78% at 50% 50%, transparent 6%, black 92%);
       -webkit-mask-image: radial-gradient(ellipse 82% 78% at 50% 50%, transparent 6%, black 92%);
     }
@@ -855,13 +863,28 @@
     .reveal {
       opacity: 0;
       transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
     .reveal.visible { opacity: 1; transform: none; }
-    .d1 { transition-delay: 0.05s; }
-    .d2 { transition-delay: 0.15s; }
-    .d3 { transition-delay: 0.25s; }
-    .d4 { transition-delay: 0.35s; }
+    .d1 { transition-delay: 0s; }
+    .d2 { transition-delay: 0.06s; }
+    .d3 { transition-delay: 0.12s; }
+    .d4 { transition-delay: 0.18s; }
+    #projects .reveal {
+      transition:
+        opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    #projects .section-head.reveal {
+      transform: translateY(36px);
+      transition-delay: 0s;
+    }
+    #projects .project-card.reveal {
+      transform: translateY(56px);
+    }
+    #projects .d1 { transition-delay: 0.12s; }
+    #projects .d2 { transition-delay: 0.34s; }
+    #projects .d3 { transition-delay: 0.56s; }
 
     /* ——— NAV ——— */
     .nav {
@@ -969,7 +992,8 @@
     /* ——— HERO ——— */
     .hero {
       position: relative;
-      z-index: 1;
+      z-index: 2;
+      isolation: isolate;
       height: 100svh;
       min-height: 100svh;
       max-height: 100svh;
@@ -978,7 +1002,7 @@
       align-items: center;
       justify-content: flex-end;
       text-align: left;
-      padding: calc(var(--nav-h) + 60px) 24px 0;
+      padding: calc(var(--nav-h) + var(--hero-top-gap)) 24px 0;
       overflow: visible;
       box-sizing: border-box;
     }
@@ -1033,50 +1057,73 @@
       max-width: 1280px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       align-items: end;
       margin-top: auto;
-    }
-    .hero-astronaut {
+      min-width: 0;
       --astro-scale: 0.85;
-      --astro-lift: 1.75cm;
+      --astro-shift: 2.5cm;
       --leg-ratio: 0.48;
       --reveal: 0;
       --fly-y: 0;
-      --waist-h: min(calc((100svh - var(--nav-h) - 60px) * var(--astro-scale)), 799px);
+      --waist-h: min(calc((100svh - var(--nav-h) - var(--hero-top-gap)) * var(--astro-scale)), 799px);
       --full-h: calc(var(--waist-h) / (1 - var(--leg-ratio)));
+      --astro-aspect: calc(494 / 956);
+      --astro-w: calc(var(--full-h) * var(--astro-aspect));
+    }
+    .hero-window {
+      grid-column: 1 / -1;
+      grid-row: 1;
+      align-self: end;
+      justify-self: end;
+      width: clamp(380px, 42vw, 540px);
+      height: clamp(260px, 38vh, 360px);
+      margin-right: clamp(16px, 4vw, 52px);
+      margin-bottom: clamp(80px, 12vh, 120px);
+      background: var(--hero-window-bg);
+      clip-path: url(#hero-window-clip);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hero-window__defs {
+      position: absolute;
+      width: 0;
+      height: 0;
+      overflow: hidden;
+    }
+    .hero-astronaut {
       grid-column: 1;
+      grid-row: 1;
       display: flex;
       justify-content: flex-start;
       align-items: flex-end;
       position: relative;
       align-self: stretch;
+      min-width: 0;
       overflow: visible;
-      transform: translateY(calc(var(--fly-y) * 1px));
+      z-index: 2;
+      transform: translateY(calc(var(--fly-y) * 1px - var(--astro-shift)));
     }
     .hero-astronaut.is-scrolling {
-      z-index: 2;
+      z-index: 3;
     }
     .hero-astronaut__stage {
-      overflow: hidden;
-      height: calc(var(--waist-h) + (var(--full-h) - var(--waist-h)) * var(--reveal) + var(--astro-lift));
+      overflow: visible;
+      height: var(--full-h);
+      min-height: var(--full-h);
       display: flex;
       align-items: flex-end;
       justify-content: flex-start;
     }
-    .hero-astronaut.is-scrolling .hero-astronaut__stage {
-      overflow: visible;
-      height: calc(var(--full-h) + var(--astro-lift));
-    }
     .hero-astronaut__figure {
-      margin: 0 0 var(--astro-lift);
+      margin: 0;
       line-height: 0;
     }
     .hero-astronaut__figure img {
       display: block;
       height: var(--full-h);
       width: auto;
-      max-width: min(calc(92vw * var(--astro-scale, 1)), 833px);
+      max-width: 100%;
       object-fit: contain;
       object-position: bottom left;
       transform: translateY(calc(var(--leg-ratio) * (1 - var(--reveal)) * 100%));
@@ -1084,7 +1131,7 @@
       user-select: none;
     }
     @media (prefers-reduced-motion: reduce) {
-      .hero-astronaut { --reveal: 0 !important; --fly-y: 0 !important; transform: none; }
+      .hero-astronaut { --reveal: 0 !important; --fly-y: 0 !important; transform: translateY(calc(-1 * var(--astro-shift))); }
       .hero-astronaut__figure img { transform: translateY(calc(var(--leg-ratio) * 100%)); }
     }
     .hero-layout .hero-content {
@@ -1093,6 +1140,7 @@
       justify-self: start;
       max-width: 560px;
       width: 100%;
+      min-width: 0;
       text-align: left;
       align-items: flex-start;
       padding-bottom: clamp(40px, 6vh, 100px);
@@ -1297,12 +1345,25 @@
       position: relative;
       z-index: 1;
       padding: 100px 24px;
-      overflow: hidden;
+      overflow-x: clip;
+      overflow-y: visible;
     }
     .section[id] {
       scroll-margin-top: calc(var(--nav-h) + 24px);
     }
     .section-bg2 { background: var(--section-alt-bg); }
+    .hero + #projects.section {
+      margin-top: 0;
+      padding: 20px 24px 100px;
+      background: var(--section-alt-bg);
+      z-index: 1;
+    }
+    .hero + #projects.section .section-head {
+      margin-top: 0;
+    }
+    .hero + #projects.section h2 {
+      margin-top: 0;
+    }
     .section-inner {
       max-width: 1100px;
       margin: 0 auto;
@@ -2637,12 +2698,25 @@
 
       .section { padding: 60px 20px; overflow-x: clip; }
       .hero {
-        padding: calc(var(--nav-h) + 48px) 20px 0;
+        --hero-top-gap: calc(48px / 1.75);
+        padding: calc(var(--nav-h) + var(--hero-top-gap)) 20px 0;
         text-align: center;
         overflow-x: clip;
       }
       .hero-layout {
         grid-template-columns: 1fr;
+      }
+      .hero-window {
+        grid-column: 1;
+        grid-row: auto;
+        order: -1;
+        width: min(42vw, 214px);
+        height: clamp(72px, 11vh, 107px);
+        margin: 0 auto 24px;
+        align-self: auto;
+        justify-self: center;
+        clip-path: none;
+        border-radius: 0 14px 14px 0;
       }
       .hero-content {
         grid-column: 1;
@@ -2654,9 +2728,10 @@
       .hero-astronaut {
         order: 1;
         grid-column: 1;
+        grid-row: auto;
         justify-content: center;
         justify-self: center;
-        --waist-h: min(calc((100svh - var(--nav-h) - 48px) * var(--astro-scale)), 476px);
+        --waist-h: min(calc((100svh - var(--nav-h) - var(--hero-top-gap)) * var(--astro-scale)), 476px);
       }
       .hero-astronaut__stage {
         justify-content: center;
@@ -2949,6 +3024,11 @@
       }
 
       /* проекты — горизонтальная лента */
+      .hero + #projects.section {
+        margin-top: 0;
+        padding: 16px 20px 60px;
+        background: var(--section-alt-bg);
+      }
       #projects.section {
         overflow: visible;
       }
@@ -3616,6 +3696,14 @@
     <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
     <div class="hero-blob hero-blob-3 deco-pace-fastest" aria-hidden="true"></div>
     <div class="hero-layout">
+      <svg class="hero-window__defs" aria-hidden="true" focusable="false">
+        <defs>
+          <clipPath id="hero-window-clip" clipPathUnits="userSpaceOnUse">
+            <path id="hero-window-clip-path" d="" />
+          </clipPath>
+        </defs>
+      </svg>
+      <div class="hero-window" aria-hidden="true"></div>
       <div class="hero-astronaut" id="hero-astronaut">
         <div class="hero-astronaut__stage">
           <figure class="hero-astronaut__figure">
@@ -4336,11 +4424,100 @@
       }, { passive: true });
     })();
 
+    // Окно справа от космонавта: левый край по силуэту, справа — скругление
+    (function initHeroWindowClip() {
+      const SILHOUETTE = [[0.0115, 0.2874], [0.023, 0.2854], [0.0345, 0.2713], [0.046, 0.2611], [0.0575, 0.4028], [0.069, 0.6761], [0.0805, 0.7004], [0.0921, 0.7227], [0.1036, 0.7368], [0.1151, 0.753], [0.1266, 0.7895], [0.1381, 0.7834], [0.1496, 0.7773], [0.1611, 0.7571], [0.1726, 0.753], [0.1841, 0.747], [0.1956, 0.7348], [0.2071, 0.7247], [0.2186, 0.7166], [0.2301, 0.7085], [0.2416, 0.7004], [0.2531, 0.7146], [0.2646, 0.7368], [0.2762, 0.7652], [0.2877, 0.7854], [0.2992, 0.8097], [0.3107, 0.83], [0.3222, 0.8441], [0.3337, 0.8583], [0.3452, 0.8765], [0.3567, 0.8968], [0.3682, 0.9089], [0.3797, 0.9231], [0.3912, 0.9271], [0.4027, 0.9352], [0.4142, 0.9555], [0.4257, 0.9575], [0.4372, 0.9595], [0.4487, 0.9777], [0.4603, 0.9858], [0.4718, 0.9919], [0.4833, 0.9939], [0.4948, 0.9939], [0.5063, 0.9879], [0.5178, 0.7146], [0.5293, 0.7146], [0.5408, 0.7146], [0.5523, 0.7085], [0.5638, 0.6599], [0.5753, 0.668], [0.5868, 0.6781], [0.5983, 0.6883], [0.6098, 0.6964], [0.6213, 0.7024], [0.6328, 0.7105], [0.6444, 0.7186], [0.6559, 0.7247], [0.6674, 0.7267], [0.6789, 0.7267], [0.6904, 0.7267], [0.7019, 0.7247], [0.7134, 0.7206], [0.7249, 0.7126], [0.7364, 0.6984], [0.7479, 0.6842], [0.7594, 0.664], [0.7709, 0.6437], [0.7824, 0.6235], [0.7939, 0.6073], [0.8054, 0.6093], [0.8169, 0.6194], [0.8285, 0.6255], [0.84, 0.6336], [0.8515, 0.6377], [0.863, 0.6397], [0.8745, 0.6397], [0.886, 0.6275], [0.8975, 0.5951], [0.909, 0.2955], [0.9205, 0.2955], [0.932, 0.2996], [0.9435, 0.3016], [0.955, 0.3016], [0.9665, 0.3036], [0.978, 0.3057], [0.9895, 0.2996], [1, 0]];
+      const panel = document.querySelector('.hero-window');
+      const clipPath = document.getElementById('hero-window-clip-path');
+      const img = document.querySelector('.hero-astronaut__figure img');
+      if (!panel || !clipPath || !img) return;
+
+      const R = 14;
+      let frame = 0;
+
+      function silhouetteXAt(y) {
+        if (y < SILHOUETTE[0][0] || y > 1) return 0;
+
+        for (let i = 1; i < SILHOUETTE.length; i++) {
+          const previous = SILHOUETTE[i - 1];
+          const current = SILHOUETTE[i];
+          if (y <= current[0]) {
+            const progress = (y - previous[0]) / (current[0] - previous[0]);
+            return previous[1] + (current[1] - previous[1]) * progress;
+          }
+        }
+
+        return 0;
+      }
+
+      function buildPathNow() {
+        if (window.matchMedia('(max-width: 767px)').matches) return;
+
+        const panelRect = panel.getBoundingClientRect();
+        const imageRect = img.getBoundingClientRect();
+        const width = panelRect.width;
+        const height = panelRect.height;
+        if (!width || !height || !imageRect.width || !imageRect.height) return;
+
+        const points = [];
+        const samples = 30;
+
+        for (let i = 0; i <= samples; i++) {
+          const y = height * i / samples;
+          const progress = i / samples;
+          const imageY = (panelRect.top + y - imageRect.top) / imageRect.height;
+          const contourX = imageRect.left
+            + silhouetteXAt(imageY) * imageRect.width
+            - panelRect.left;
+          const curveEnvelope = Math.pow(Math.sin(Math.PI * progress), 0.9);
+          const curvedSide = 16 + curveEnvelope * (
+            Math.min(58, width * 0.12)
+            + Math.sin(Math.PI * progress * 3 - 0.55) * Math.min(20, width * 0.04)
+            + Math.sin(Math.PI * progress * 7 + 0.4) * Math.min(12, width * 0.025)
+          );
+          points.push({
+            x: Math.max(curvedSide, Math.min(width * 0.3, contourX)),
+            y,
+          });
+        }
+
+        let d = 'M ' + points[0].x + ' 0';
+        for (let i = 1; i < points.length - 1; i++) {
+          const midpointX = (points[i].x + points[i + 1].x) / 2;
+          const midpointY = (points[i].y + points[i + 1].y) / 2;
+          d += ' Q ' + points[i].x + ' ' + points[i].y
+            + ' ' + midpointX + ' ' + midpointY;
+        }
+
+        const last = points[points.length - 1];
+        d += ' L ' + last.x + ' ' + height;
+        d += ' L ' + (width - R) + ' ' + height;
+        d += ' Q ' + width + ' ' + height + ' ' + width + ' ' + (height - R);
+        d += ' L ' + width + ' ' + R;
+        d += ' Q ' + width + ' 0 ' + (width - R) + ' 0 Z';
+
+        clipPath.setAttribute('d', d);
+      }
+
+      function buildPath() {
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(buildPathNow);
+      }
+
+      buildPath();
+      window.addEventListener('resize', buildPath, { passive: true });
+      window.addEventListener('scroll', buildPath, { passive: true });
+      if (img.complete) buildPath();
+      else img.addEventListener('load', buildPath, { once: true });
+    })();
+
     // Космонавт: по пояс → полный рост при скролле вниз
     (function initHeroAstronautReveal() {
       const root = document.getElementById('hero-astronaut');
       if (!root) return;
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      const flySpeed = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--astro-fly-speed')) || 0.72;
 
       function update() {
         const vh = window.innerHeight;
@@ -4348,7 +4525,7 @@
         const scrollY = window.scrollY;
         const progress = Math.min(1, Math.max(0, scrollY / range));
         root.style.setProperty('--reveal', String(progress));
-        root.style.setProperty('--fly-y', String(-scrollY * 0.5));
+        root.style.setProperty('--fly-y', String(-scrollY * flySpeed));
         root.classList.toggle('is-scrolling', scrollY > 0);
       }
 
@@ -4420,9 +4597,34 @@
             }
           });
         },
-        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+        { threshold: 0, rootMargin: '0px 0px 15% 0px' }
       );
-      document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+      document.querySelectorAll('.reveal').forEach((el) => {
+        if (el.closest('#projects')) return;
+        revealObserver.observe(el);
+      });
+
+      const projectsSection = document.getElementById('projects');
+      function revealProjects() {
+        if (!projectsSection) return;
+        projectsSection.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
+      }
+      if (projectsSection) {
+        const projectsRevealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              revealProjects();
+              projectsRevealObserver.disconnect();
+            });
+          },
+          { threshold: 0, rootMargin: '0px 0px 80% 0px' }
+        );
+        projectsRevealObserver.observe(projectsSection);
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 0) revealProjects();
+        }, { passive: true });
+      }
     }
 
     // Smooth scroll to anchors (с учётом фиксированной шапки)
@@ -4435,7 +4637,7 @@
         const astronaut = document.getElementById('hero-astronaut');
         if (astronaut) {
           astronaut.style.setProperty('--reveal', '1');
-          astronaut.style.setProperty('--fly-y', String(-window.scrollY * 0.5));
+          astronaut.style.setProperty('--fly-y', String(-window.scrollY * (parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--astro-fly-speed')) || 0.72)));
         }
       }
 
