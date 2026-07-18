@@ -57,7 +57,7 @@
   <!-- ===== SEO ===== -->
   <!-- ВАЖНО: после деплоя замените https://antares.agency на реальный домен
        (здесь, в og:url, og:image, twitter:image, canonical, JSON-LD, robots.txt и sitemap.xml) -->
-  <title>Antares — разработка сайтов и Telegram-ботов под ключ для малого бизнеса</title>
+  <title>Antares – разработка сайтов и Telegram-ботов под ключ для малого бизнеса</title>
   <meta name="description" content="Веб-агентство Antares: делаем сайты, лендинги и Telegram-боты под ключ за 5–7 дней. Работаем с малым бизнесом в Молдове и СНГ. Портфолио, цены, бесплатная консультация." />
   <meta name="keywords" content="разработка сайтов, создание сайта, лендинг, сайт-визитка, telegram бот, телеграм бот, веб-агентство, сайт под ключ, Молдова, Кишинёв, Тирасполь, СНГ, Antares" />
   <meta name="author" content="Antares" />
@@ -69,18 +69,18 @@
   <!-- Open Graph (Telegram, VK, Facebook, WhatsApp) -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Antares" />
-  <meta property="og:title" content="Antares — сайты и Telegram-боты под ключ для малого бизнеса" />
+  <meta property="og:title" content="Antares – сайты и Telegram-боты под ключ для малого бизнеса" />
   <meta property="og:description" content="Сайты, лендинги и Telegram-боты под ключ за 5–7 дней. Малый бизнес в Молдове и СНГ. Портфолио и бесплатная консультация." />
   <meta property="og:url" content="https://antares.agency/" />
   <meta property="og:image" content="https://antares.agency/images/og-cover.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Antares — веб-агентство: сайты и Telegram-боты для бизнеса" />
+  <meta property="og:image:alt" content="Antares – веб-агентство: сайты и Telegram-боты для бизнеса" />
   <meta property="og:locale" content="ru_RU" />
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Antares — сайты и Telegram-боты под ключ" />
+  <meta name="twitter:title" content="Antares – сайты и Telegram-боты под ключ" />
   <meta name="twitter:description" content="Сайты, лендинги и Telegram-боты под ключ за 5–7 дней. Малый бизнес в Молдове и СНГ." />
   <meta name="twitter:image" content="https://antares.agency/images/og-cover.png" />
 
@@ -159,7 +159,7 @@
         "@type": "WebSite",
         "@id": "https://antares.agency/#website",
         "url": "https://antares.agency/",
-        "name": "Antares — сайты и Telegram-боты для бизнеса",
+        "name": "Antares – сайты и Telegram-боты для бизнеса",
         "inLanguage": "ru",
         "publisher": { "@id": "https://antares.agency/#organization" }
       },
@@ -1261,15 +1261,16 @@
       }
     }
     .hero-window .hero-window__title {
-      max-width: 390px;
+      max-width: 420px;
       margin: 0 0 18px;
       color: var(--hero-window-text);
       font-family: var(--font-display);
-      font-size: clamp(30px, 3vw, 44px);
+      font-size: clamp(26px, 2.4vw, 38px);
       font-weight: 700;
-      line-height: 1.04;
-      letter-spacing: -0.035em;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
       text-align: left;
+      text-wrap: balance;
     }
     .hero-window__title span {
       color: var(--hero-window-accent);
@@ -1752,7 +1753,7 @@
       border-radius: 16px;
       box-shadow: var(--glass-shadow);
       padding: 0;
-      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
       overflow: hidden;
     }
     .service-card::after {
@@ -1770,6 +1771,21 @@
       transform: translateY(-4px);
       background: var(--glass-bg-strong);
       box-shadow: 0 16px 44px rgba(0, 0, 0, 0.45);
+    }
+    /* Разделение услуг по цвету: сайты — синий, боты — красноватый */
+    .service-card[data-service="sites"] {
+      border-color: rgba(59, 130, 246, 0.35);
+    }
+    .service-card[data-service="sites"]:hover {
+      border-color: #3B82F6;
+      box-shadow: 0 16px 44px rgba(59, 130, 246, 0.2);
+    }
+    .service-card[data-service="bots"] {
+      border-color: rgba(226, 87, 76, 0.35);
+    }
+    .service-card[data-service="bots"]:hover {
+      border-color: #E2574C;
+      box-shadow: 0 16px 44px rgba(226, 87, 76, 0.18);
     }
     .service-cover {
       position: relative;
@@ -2816,6 +2832,20 @@
       background: var(--glass-bg-strong);
       box-shadow: 0 16px 40px rgba(15, 16, 24, 0.14), 0 4px 12px rgba(15, 16, 24, 0.06);
     }
+    [data-theme="light"] .service-card[data-service="sites"] {
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+    [data-theme="light"] .service-card[data-service="sites"]:hover {
+      border-color: #3B82F6;
+      box-shadow: 0 16px 40px rgba(59, 130, 246, 0.18), 0 4px 12px rgba(59, 130, 246, 0.08);
+    }
+    [data-theme="light"] .service-card[data-service="bots"] {
+      border-color: rgba(226, 87, 76, 0.4);
+    }
+    [data-theme="light"] .service-card[data-service="bots"]:hover {
+      border-color: #E2574C;
+      box-shadow: 0 16px 40px rgba(226, 87, 76, 0.16), 0 4px 12px rgba(226, 87, 76, 0.07);
+    }
     [data-theme="light"] .browser {
       background: #2E3140;
       border-bottom-color: rgba(15, 16, 24, 0.18);
@@ -2945,7 +2975,10 @@
         box-shadow: var(--hero-window-shadow);
       }
       .hero-window .hero-window__title {
-        font-size: clamp(27px, 8vw, 36px);
+        max-width: 340px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: clamp(23px, 6.5vw, 30px);
         text-align: center;
       }
       .hero-window__description {
@@ -3885,7 +3918,7 @@
   <!-- NAV -->
   <nav class="nav" aria-label="Основная навигация">
     <div class="nav-inner">
-      <a href="#" class="logo" aria-label="Antares — на главную">
+      <a href="#" class="logo" aria-label="Antares – на главную">
         <img src="images/antares-logo.png" alt="Antares" class="logo-img logo-img--dark" width="803" height="173" decoding="async" />
         <img src="images/antares-logo-light.png" alt="" class="logo-img logo-img--light" width="803" height="173" decoding="async" aria-hidden="true" />
       </a>
@@ -3930,10 +3963,10 @@
     <div class="hero-blob hero-blob-3 deco-pace-fastest" aria-hidden="true"></div>
     <div class="hero-layout">
       <div class="hero-window">
-        <h1 class="hero-window__title">Сайты и боты <span>под ключ</span></h1>
+        <h1 class="hero-window__title"><span>Antares</span> – место, где идеи обретают жизнь.</h1>
         <p class="hero-window__description">
           Создаём лендинги, сайты-визитки и Telegram-боты для малого бизнеса.
-          Берём на себя дизайн, разработку и запуск — заявки сразу приходят в Telegram.
+          Берём на себя дизайн, разработку и запуск – заявки сразу приходят в Telegram.
         </p>
       </div>
       <div class="hero-astronaut" id="hero-astronaut">
@@ -4080,7 +4113,7 @@
             <p class="project-desc">
               Статический Next.js: bento-лендинг, конструктор торта
               (11 шагов, live-цена), каталог и оформление заказа.
-              Открывается двойным щелчком — без сервера.
+              Открывается двойным щелчком, сервер не требуется.
             </p>
             <div class="tags">
               <span class="tag">Next.js</span>
@@ -4124,22 +4157,22 @@
             <h3 class="service-title">Сайты</h3>
           </div>
           <p class="service-desc">
-            Собираем сайты под ключ — уникальный дизайн, продуманная структура
-            и всё необходимое для привлечения клиентов. Без конструкторов
+            Собираем сайты под ключ: продуманный дизайн, понятная структура
+            и всё нужное для привлечения клиентов. Никаких конструкторов
             и шаблонов «как у всех».
           </p>
           <ul class="service-preview-points" aria-label="Основные возможности сайтов">
             <li>Лендинг, визитка или многостраничник с каталогом</li>
             <li>Онлайн-запись, корзина или конструктор заказа</li>
             <li>Заявки с сайта сразу приходят в Telegram</li>
-            <li>Публикация на хостинг — домен, SSL, всё настроим</li>
-            <li>Галерея и портфолио — работы с фильтрами и удобным просмотром</li>
-            <li>Прайс и калькулятор — клиент видит итоговую цену в реальном времени</li>
-            <li>SEO-основа — метатеги, скорость загрузки, микроразметка</li>
-            <li>Интеграции — аналитика, CRM и платёжные формы по запросу</li>
-            <li>Мультиязычность — несколько языков и тёмная тема, если нужно</li>
-            <li>Админ-панель — меняете цены, тексты и фото без программиста</li>
-            <li>1 месяц поддержки — правки, баги и мелкие доработки после запуска</li>
+            <li>Настроим публикацию на хостинге, подключим домен и SSL</li>
+            <li>Галерея и портфолио с фильтрами для удобного просмотра работ</li>
+            <li>Прайс и калькулятор, который сразу показывает точную цену</li>
+            <li>SEO-основа: метатеги, скорость загрузки, микроразметка</li>
+            <li>Интеграции с аналитикой, CRM и платёжными формами по запросу</li>
+            <li>При необходимости добавим мультиязычность и тёмную тему</li>
+            <li>Цены, тексты и фото меняете сами в админ-панели, без программиста</li>
+            <li>Месяц поддержки после запуска: правки, доработки, помощь с багами</li>
           </ul>
           <div class="service-panel" id="service-sites-panel">
             <div class="service-panel__inner">
@@ -4147,27 +4180,27 @@
                 <div class="service-panel__section">
                   <h4 class="service-panel__heading">Как мы работаем</h4>
                   <ol class="service-workflow">
-                    <li><strong>Переписка</strong> — всё начинается, когда вы пишете нам в Telegram</li>
-                    <li><strong>Анализ</strong> — изучаем ваш бизнес, наводим справки и заранее готовимся к проекту</li>
-                    <li><strong>Видеозвонок</strong> — вместе формируем образ сайта, его идею и концепцию</li>
-                    <li><strong>Разработка (3–4 дня)</strong> — создаём сайт и согласовываем каждый шаг: дизайн, структуру и содержание</li>
-                    <li><strong>Доработка (до 3 дней)</strong> — всё проверяем, тестируем и доводим до идеала</li>
+                    <li><strong>Переписка:</strong> всё начинается с сообщения в Telegram</li>
+                    <li><strong>Анализ:</strong> изучаем ваш бизнес и заранее готовимся к проекту</li>
+                    <li><strong>Видеозвонок:</strong> обсуждаем образ сайта, его идею и концепцию</li>
+                    <li><strong>Разработка (3–4 дня):</strong> собираем сайт и согласовываем с вами дизайн, структуру и содержание</li>
+                    <li><strong>Доработка (до 3 дней):</strong> проверяем, тестируем и доводим до идеала</li>
                   </ol>
                 </div>
                 <div class="service-panel__section">
                   <h4 class="service-panel__heading">Наш сайт</h4>
                   <p class="service-panel__lead">
-                    Каждый проект — продуманный инструмент для бизнеса: понятный с первого
-                    экрана, удобный для клиента и готовый принимать заявки.
+                    Каждый проект становится продуманным инструментом для бизнеса: понятным с первого
+                    экрана, удобным для клиента и готовым принимать заявки.
                   </p>
                   <ul class="service-advantages">
-                    <li>Первый экран с ясным предложением — сразу видно, кто вы и чем полезны</li>
-                    <li>Логичная структура: услуги, цены, работы, контакты — без лишних кликов</li>
-                    <li>Дизайн под вашу нишу — цвета, шрифты и стиль, которые вызывают доверие</li>
-                    <li>Галерея, портфолио или отзывы — подтверждают ваш опыт и качество</li>
-                    <li>Форма заявки, онлайн-запись или заказ — клиент действует за 2–3 шага</li>
-                    <li>Уведомления в Telegram — вы узнаёте о новом обращении сразу</li>
-                    <li>Адаптив под телефон и планшет — одинаково удобен на любом экране</li>
+                    <li>Первый экран сразу объясняет, кто вы и чем можете быть полезны</li>
+                    <li>Логичная структура: услуги, цены, работы, контакты, без лишних кликов</li>
+                    <li>Дизайн под вашу нишу, с цветами и стилем, которые вызывают доверие</li>
+                    <li>Галерея, портфолио или отзывы подтверждают ваш опыт и качество</li>
+                    <li>Заявка, онлайн-запись или заказ оформляются за 2–3 шага</li>
+                    <li>О новом обращении вы узнаёте сразу, через уведомление в Telegram</li>
+                    <li>Адаптив под телефон и планшет: сайт одинаково удобен на любом экране</li>
                     <li>SEO-основа, быстрая загрузка и защищённое соединение (SSL)</li>
                   </ul>
                 </div>
@@ -4235,8 +4268,8 @@
             <h3 class="service-title">Telegram-боты</h3>
           </div>
           <p class="service-desc">
-            Telegram-боты для автоматизации рутины — запись, заказы
-            и ответы без вашего участия. Клиент получает результат
+            Telegram-боты берут на себя рутину: запись, заказы
+            и ответы клиентам без вашего участия. Результат клиент получает
             за пару нажатий, в любое время суток.
           </p>
           <ul class="service-preview-points" aria-label="Основные возможности ботов">
@@ -4244,13 +4277,13 @@
             <li>Каталог с корзиной и оформлением заказа</li>
             <li>FAQ и автоответы без ожидания оператора</li>
             <li>Рассылки акций и напоминаний подписчикам</li>
-            <li>Приём файлов — фото, документы и референсы прямо в боте</li>
-            <li>Уведомления о статусе — подтверждение и напоминания вам и клиенту</li>
-            <li>Сбор заявок — все обращения в одном чате или канале</li>
-            <li>Связка с сайтом — единая база обращений из бота и с сайта</li>
-            <li>Оплата и бронь — подтверждение заказа и предоплата по запросу</li>
-            <li>Админ-панель — управление каталогом, расписанием и текстами бота</li>
-            <li>1 месяц поддержки — исправления, обновления и помощь после запуска</li>
+            <li>Приём файлов: фото, документы и референсы прямо в чате</li>
+            <li>Уведомления о статусе с подтверждением и напоминаниями вам и клиенту</li>
+            <li>Все заявки собираются в одном чате или канале</li>
+            <li>Связка с сайтом: единая база обращений из бота и с сайта</li>
+            <li>Оплата и бронь с предоплатой по запросу</li>
+            <li>Каталог, расписание и тексты бота меняете сами в админ-панели</li>
+            <li>Месяц поддержки после запуска: исправления, обновления, помощь</li>
           </ul>
           <div class="service-panel" id="service-bots-panel">
             <div class="service-panel__inner">
@@ -4258,28 +4291,28 @@
                 <div class="service-panel__section">
                   <h4 class="service-panel__heading">Как мы работаем</h4>
                   <ol class="service-workflow">
-                    <li><strong>Переписка</strong> — всё начинается, когда вы пишете нам в Telegram</li>
-                    <li><strong>Анализ</strong> — изучаем ваш бизнес, наводим справки и заранее готовимся к проекту</li>
-                    <li><strong>Видеозвонок</strong> — вместе формируем образ бота, его сценарии и концепцию</li>
-                    <li><strong>Разработка (3–4 дня)</strong> — создаём бота и согласовываем каждый шаг: логику, меню и наполнение</li>
-                    <li><strong>Доработка (до 3 дней)</strong> — всё проверяем, тестируем и доводим до идеала</li>
+                    <li><strong>Переписка:</strong> всё начинается с сообщения в Telegram</li>
+                    <li><strong>Анализ:</strong> изучаем ваш бизнес и заранее готовимся к проекту</li>
+                    <li><strong>Видеозвонок:</strong> обсуждаем сценарии и концепцию бота</li>
+                    <li><strong>Разработка (3–4 дня):</strong> собираем бота и согласовываем с вами логику, меню и наполнение</li>
+                    <li><strong>Доработка (до 3 дней):</strong> проверяем, тестируем и доводим до идеала</li>
                   </ol>
                 </div>
                 <div class="service-panel__section">
                   <h4 class="service-panel__heading">Наш бот</h4>
                   <p class="service-panel__lead">
-                    Каждый проект — продуманный помощник для бизнеса: понятный с первого
-                    сообщения, удобный для клиента и готовый работать без вашего участия.
+                    Каждый проект становится продуманным помощником для бизнеса: понятным с первого
+                    сообщения, удобным для клиента и готовым работать без вашего участия.
                   </p>
                   <ul class="service-advantages">
-                    <li>Приветствие и меню с кнопками — клиент сразу понимает, что можно сделать</li>
-                    <li>Логичные сценарии: запись, заказ, вопрос или заявка — без лишних шагов</li>
-                    <li>Тексты и оформление под вашу нишу — бот говорит от лица вашего бизнеса</li>
-                    <li>Каталог, прайс или FAQ — вся нужная информация под рукой</li>
-                    <li>Запись, заказ или заявка — клиент получает результат за пару нажатий</li>
-                    <li>Уведомления вам в Telegram — вы узнаёте о новом обращении сразу</li>
-                    <li>Напоминания клиенту — подтверждения, статусы и акции в нужный момент</li>
-                    <li>Админ-панель — вы сами меняете цены, тексты и расписание</li>
+                    <li>Приветствие и меню с кнопками сразу показывают, что можно сделать</li>
+                    <li>Логичные сценарии: запись, заказ, вопрос или заявка без лишних шагов</li>
+                    <li>Тексты и оформление под вашу нишу, бот говорит от лица бизнеса</li>
+                    <li>Каталог, прайс или FAQ всегда под рукой у клиента</li>
+                    <li>Запись, заказ или заявка оформляются за пару нажатий</li>
+                    <li>О новом обращении вы узнаёте сразу, через уведомление в Telegram</li>
+                    <li>Напоминания клиенту: подтверждения, статусы и акции в нужный момент</li>
+                    <li>Цены, тексты и расписание меняете сами в админ-панели</li>
                   </ul>
                 </div>
                 <div class="service-panel__section service-panel__section--stack">
@@ -4398,7 +4431,7 @@
               </div>
               <span class="contact-channel-arrow" aria-hidden="true">→</span>
             </div>
-            <p class="contact-channel-note">Самый быстрый способ — обычно отвечаем за пару часов</p>
+            <p class="contact-channel-note">Самый быстрый способ: обычно отвечаем за пару часов</p>
           </a>
           <a class="contact-channel contact-channel--ig" href="https://www.instagram.com/antares_agensy/" target="_blank" rel="noopener" id="contact-ig">
             <div class="contact-channel-top">
@@ -4434,7 +4467,7 @@
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
-          <a href="#" class="logo" aria-label="Antares — на главную">
+          <a href="#" class="logo" aria-label="Antares – на главную">
             <img src="images/antares-logo.png" alt="Antares" class="logo-img logo-img--dark" width="803" height="173" decoding="async" />
             <img src="images/antares-logo-light.png" alt="" class="logo-img logo-img--light" width="803" height="173" decoding="async" aria-hidden="true" />
           </a>
