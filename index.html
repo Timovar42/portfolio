@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -63,8 +63,7 @@
   <meta name="author" content="Antares" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
   <link rel="canonical" href="https://antares.agency/" />
-  <meta name="theme-color" content="#0C0C0F" media="(prefers-color-scheme: dark)" />
-  <meta name="theme-color" content="#E8E9F0" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#2563EB" />
 
   <!-- Open Graph (Telegram, VK, Facebook, WhatsApp) -->
   <meta property="og:type" content="website" />
@@ -203,137 +202,56 @@
       font-display: swap;
     }
   </style>
-  <script>
-    (function () {
-      var stored = localStorage.getItem('bb-theme');
-      var theme = stored || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-      document.documentElement.setAttribute('data-theme', theme);
-    })();
-  </script>
   <style>
+    /* — единственная тема: минимализм, белый фон + синий акцент — */
     :root,
     [data-theme="dark"] {
-      color-scheme: dark;
-      --bg: #171720;
-      --bg2: #1E1E27;
-      --bg-card: #25252E;
-      --accent: #9580FF;
-      --accent2: #9580FF;
-      --accent-glow: rgba(149, 128, 255, 0.25);
-      --white: #FFFFFF;
-      --text: #FFFFFF;
-      --text-soft: rgba(255, 255, 255, 0.80);
-      --text-muted: rgba(255, 255, 255, 0.40);
-      --white80: rgba(255, 255, 255, 0.80);
-      --white40: rgba(255, 255, 255, 0.40);
-      --white08: rgba(255, 255, 255, 0.08);
-      --border: rgba(255, 255, 255, 0.07);
-      --gradient: linear-gradient(90deg, #9580FF, #FF1247);
-      --nav-bg: rgba(23, 23, 32, 0.55);
-      --section-alt-bg: transparent;
-      --footer-bg: rgba(255, 255, 255, 0.02);
-      --glass-bg: rgba(255, 255, 255, 0.05);
-      --glass-bg-strong: rgba(255, 255, 255, 0.08);
-      --glass-border: rgba(255, 255, 255, 0.14);
-      --glass-blur: blur(18px) saturate(150%);
-      --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
-      --backdrop-a: rgba(149, 128, 255, 0.245);
-      --backdrop-b: rgba(255, 18, 71, 0.182);
-      --backdrop-c: rgba(149, 128, 255, 0.182);
-      --backdrop-d: rgba(107, 89, 255, 0.154);
-      --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='rgba(255,255,255,0.4)' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
-      --grid-color: rgba(255, 255, 255, 0.05);
-      --deco-stroke: rgba(255, 255, 255, 0.18);
-      --deco-stroke-muted: rgba(255, 255, 255, 0.10);
-      --deco-dot: rgba(255, 255, 255, 0.34);
-      --deco-fill: rgba(149, 128, 255, 0.17);
-      --deco-fill-2: rgba(255, 18, 71, 0.14);
-      --surface-tint: rgba(255, 255, 255, 0.04);
-      --chip-bg: rgba(255, 255, 255, 0.06);
-      --chip-text: rgba(255, 255, 255, 0.45);
-      --shard-face: rgba(255, 255, 255, 0.22);
-      --shard-edge: rgba(155, 148, 255, 0.35);
-      --shard-stroke: rgba(255, 255, 255, 0.28);
-      --shard-glow: rgba(149, 128, 255, 0.40);
-      --star-dim: rgba(255, 255, 255, 0.18);
-      --star-mid: rgba(255, 255, 255, 0.42);
-      --star-bright: rgba(255, 255, 255, 0.78);
-      --star-blue: rgba(168, 198, 255, 0.72);
-      --star-warm: rgba(255, 228, 196, 0.48);
-      --nebula-mist: rgba(255, 255, 255, 0.022);
-      --nebula-dust: rgba(23, 23, 32, 0.35);
-      --hero-window-bg: #FFFFFF;
-      --hero-window-border: rgba(15, 16, 24, 0.12);
-      --hero-window-shadow: 0 8px 32px rgba(15, 16, 24, 0.10), 0 2px 8px rgba(15, 16, 24, 0.05);
-      --hero-window-text: #171720;
-      --hero-window-muted: rgba(12, 12, 15, 0.7);
-      --hero-window-accent: #9580FF;
-    }
-
-    [data-theme="light"] {
       color-scheme: light;
-      --bg: #E8E9F0;
-      --bg2: #DEDFE8;
-      --bg-card: #F7F7FB;
-      --accent: #9580FF;
-      --accent2: #9580FF;
-      --accent-glow: rgba(149, 128, 255, 0.26);
+      --bg: #FFFFFF;
+      --bg-card: #FFFFFF;
+      --accent: #2563EB;
+      --accent2: #0EA5E9;
+      --accent-glow: rgba(37, 99, 235, 0.20);
+      --accent2-glow: rgba(14, 165, 233, 0.18);
       --white: #FFFFFF;
-      --text: #0F1018;
-      --text-soft: rgba(15, 16, 24, 0.86);
-      --text-muted: rgba(15, 16, 24, 0.58);
-      --white80: rgba(15, 16, 24, 0.86);
-      --white40: rgba(15, 16, 24, 0.52);
-      --white08: rgba(15, 16, 24, 0.08);
-      --border: rgba(15, 16, 24, 0.12);
-      --gradient: linear-gradient(90deg, #9580FF, #FF245B);
-      --nav-bg: rgba(232, 233, 240, 0.88);
-      --section-alt-bg: transparent;
-      --footer-bg: rgba(15, 16, 24, 0.06);
-      --glass-bg: rgba(247, 247, 251, 0.92);
-      --glass-bg-strong: #FFFFFF;
-      --glass-border: rgba(15, 16, 24, 0.14);
-      --glass-blur: blur(18px) saturate(140%);
-      --glass-shadow: 0 10px 28px rgba(15, 16, 24, 0.10), 0 2px 8px rgba(15, 16, 24, 0.05);
-      --backdrop-a: rgba(149, 128, 255, 0.203);
-      --backdrop-b: rgba(255, 24, 73, 0.140);
-      --backdrop-c: rgba(149, 128, 255, 0.140);
-      --backdrop-d: rgba(46, 30, 255, 0.119);
-      --select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='rgba(15,16,24,0.5)' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
-      --grid-color: rgba(15, 16, 24, 0.08);
-      --deco-stroke: rgba(15, 16, 24, 0.26);
-      --deco-stroke-muted: rgba(15, 16, 24, 0.15);
-      --deco-dot: rgba(15, 16, 24, 0.30);
-      --deco-fill: rgba(149, 128, 255, 0.20);
-      --deco-fill-2: rgba(255, 24, 73, 0.17);
-      --surface-tint: #D8DAE6;
-      --chip-bg: #DCDFEA;
-      --chip-text: #3A3D52;
-      --shard-face: rgba(255, 255, 255, 0.75);
-      --shard-edge: rgba(79, 70, 229, 0.28);
-      --shard-stroke: rgba(15, 16, 24, 0.14);
-      --shard-glow: rgba(149, 128, 255, 0.30);
-      --star-dim: rgba(0, 0, 0, 0.16);
-      --star-mid: rgba(0, 0, 0, 0.34);
-      --star-bright: rgba(0, 0, 0, 0.56);
-      --star-blue: rgba(0, 0, 0, 0.42);
-      --star-warm: rgba(0, 0, 0, 0.38);
-      --nebula-mist: rgba(255, 255, 255, 0.14);
-      --nebula-dust: rgba(232, 233, 240, 0.45);
-      --hero-window-bg: #FFFFFF;
-      --hero-window-border: rgba(15, 16, 24, 0.12);
-      --hero-window-shadow: 0 8px 32px rgba(15, 16, 24, 0.10), 0 2px 8px rgba(15, 16, 24, 0.05);
-      --hero-window-text: #0C0C0F;
-      --hero-window-muted: rgba(12, 12, 15, 0.7);
-      --hero-window-accent: #9580FF;
+      --text: #0F172A;
+      --text-soft: rgba(15, 23, 42, 0.72);
+      --text-muted: rgba(15, 23, 42, 0.46);
+      --white80: rgba(15, 23, 42, 0.78);
+      --white40: rgba(15, 23, 42, 0.46);
+      --border: rgba(37, 99, 235, 0.14);
+      --nav-bg: rgba(255, 255, 255, 0.82);
+      --section-alt-bg: #EAF2FE;
+      --footer-bg: #EAF2FE;
+      --glass-bg: rgba(255, 255, 255, 0.72);
+      --glass-bg-strong: rgba(255, 255, 255, 0.94);
+      --glass-border: rgba(37, 99, 235, 0.16);
+      --glass-blur: blur(14px);
+      --glass-shadow: 0 10px 30px rgba(37, 99, 235, 0.10);
+      /* фон — сплошной белый, без градиентов; цвет и глубину дают геометрические зоны-фигуры */
+      --page-bg: #FFFFFF;
+      --hero-bg: #FFFFFF;
+      --zone-1: #DCE7F8;
+      --zone-2: #C9DDF5;
+      --zone-3: #EEF3FC;
+      --deco-stroke: rgba(15, 23, 42, 0.16);
+      --deco-stroke-muted: rgba(15, 23, 42, 0.10);
+      --deco-dot: rgba(37, 99, 235, 0.40);
+      --surface-tint: rgba(37, 99, 235, 0.04);
+      --chip-bg: rgba(37, 99, 235, 0.10);
+      --chip-text: rgba(15, 23, 42, 0.68);
+      --hero-window-bg: rgba(255, 255, 255, 0.80);
+      --hero-window-border: rgba(15, 23, 42, 0.08);
+      --hero-window-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+      --hero-window-text: #0F172A;
+      --hero-window-muted: rgba(15, 23, 42, 0.6);
+      --hero-window-accent: #2563EB;
     }
 
     :root {
       --font-display: 'Space Grotesk', system-ui, sans-serif;
       --font-body: 'Space Grotesk', system-ui, sans-serif;
       --nav-h: 56px;
-      --hero-top-gap: calc(60px / 1.75);
-      --astro-fly-speed: 0.72;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -348,7 +266,9 @@
     }
 
     body {
-      background: transparent;
+      background: var(--page-bg);
+      background-attachment: fixed;
+      background-size: cover;
       color: var(--text);
       font-family: var(--font-body);
       font-weight: 400;
@@ -356,136 +276,15 @@
       -webkit-font-smoothing: antialiased;
       overflow-x: clip;
       max-width: 100%;
+      transition: background-color 0.3s ease;
     }
-    /* deep space nebulae — soft, organic gas clouds */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      background:
-        radial-gradient(ellipse 130% 95% at 50% 108%, var(--bg2) 0%, transparent 58%),
-        radial-gradient(ellipse 52% 40% at 7% 13%, var(--backdrop-a) 0%, rgba(108, 99, 255, 0.035) 38%, transparent 68%),
-        radial-gradient(ellipse 34% 26% at 17% 24%, rgba(155, 148, 255, 0.077) 0%, transparent 58%),
-        radial-gradient(ellipse 44% 34% at 93% 11%, var(--backdrop-b) 0%, rgba(255, 101, 132, 0.028) 42%, transparent 70%),
-        radial-gradient(ellipse 28% 22% at 86% 28%, rgba(255, 101, 132, 0.049) 0%, transparent 54%),
-        radial-gradient(ellipse 50% 38% at 74% 80%, var(--backdrop-c) 0%, rgba(108, 99, 255, 0.028) 45%, transparent 72%),
-        radial-gradient(ellipse 36% 28% at 81% 66%, rgba(155, 148, 255, 0.056) 0%, transparent 60%),
-        radial-gradient(ellipse 58% 44% at 24% 90%, var(--backdrop-d) 0%, rgba(155, 148, 255, 0.028) 40%, transparent 66%),
-        radial-gradient(ellipse 30% 24% at 34% 76%, rgba(255, 101, 132, 0.035) 0%, transparent 52%),
-        radial-gradient(ellipse 110% 14% at 46% 44%, var(--nebula-mist) 0%, transparent 74%),
-        radial-gradient(ellipse 72% 48% at 58% 36%, rgba(108, 99, 255, 0.0315) 0%, transparent 72%),
-        radial-gradient(ellipse 18% 14% at 62% 18%, rgba(255, 255, 255, 0.021) 0%, transparent 62%),
-        radial-gradient(ellipse 22% 16% at 42% 58%, var(--nebula-dust) 0%, transparent 68%);
-      filter: blur(0.6px);
-      transition: opacity 0.3s ease;
-    }
-    [data-theme="light"] body::before {
-      filter: blur(0.4px);
-    }
-
-    .cosmos-stars {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-    [data-theme="light"] .cosmos-stars {
-      opacity: 0.72;
-    }
-
-    /* ——— DECORATIVE GRAPHICS ——— */
-    .section-deco {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 0;
+    @media (max-width: 900px) {
+      body { background-attachment: scroll; }
     }
     .section-inner,
     .hero-content {
       position: relative;
       z-index: 1;
-    }
-    .deco-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(60px);
-    }
-    .deco-cross {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      opacity: 0.45;
-    }
-    .deco-cross::before,
-    .deco-cross::after {
-      content: '';
-      position: absolute;
-      background: var(--deco-stroke);
-      border-radius: 1px;
-    }
-    .deco-cross::before {
-      width: 100%;
-      height: 1px;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-    }
-    .deco-cross::after {
-      width: 1px;
-      height: 100%;
-      left: 50%;
-      top: 0;
-      transform: translateX(-50%);
-    }
-    .deco-diamond {
-      display: none;
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      border: 1px solid var(--deco-stroke);
-      transform: rotate(45deg);
-      opacity: 0.5;
-    }
-    .deco-dot-cluster {
-      position: absolute;
-      display: grid;
-      grid-template-columns: repeat(3, 4px);
-      gap: 6px;
-      opacity: 0.35;
-    }
-    .deco-dot-cluster span {
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--deco-dot);
-    }
-    .deco-line {
-      position: absolute;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--deco-stroke), transparent);
-      opacity: 0.45;
-    }
-    .deco-svg {
-      position: absolute;
-      opacity: 0.22;
-      color: var(--deco-stroke);
-    }
-    [data-theme="light"] .deco-cross,
-    [data-theme="light"] .deco-diamond {
-      opacity: 0.62;
-    }
-    [data-theme="light"] .deco-svg {
-      opacity: 0.34;
-    }
-    [data-theme="dark"] .deco-cross,
-    [data-theme="dark"] .deco-diamond {
-      opacity: 0.48;
     }
     .section-head {
       position: relative;
@@ -498,6 +297,8 @@
       justify-content: center;
       align-items: flex-end;
       background: var(--hero-window-bg);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
       border: 1px solid var(--hero-window-border);
       border-left: none;
       border-radius: 0 18px 18px 0;
@@ -545,364 +346,6 @@
       color: var(--white40);
       line-height: 1.6;
     }
-    @keyframes float-y {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-14px); }
-    }
-    @keyframes float-rotate {
-      0%, 100% { transform: rotate(0deg); }
-      50% { transform: rotate(8deg); }
-    }
-    @keyframes spin-slow {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    @keyframes pulse-glow {
-      0%, 100% { opacity: 0.45; transform: scale(1); }
-      50% { opacity: 0.75; transform: scale(1.06); }
-    }
-    .deco-float { animation: float-y calc(7s / var(--deco-pace, 1)) ease-in-out infinite; }
-    .deco-float-2 { animation: float-y calc(9s / var(--deco-pace, 1)) ease-in-out infinite reverse; }
-    .deco-spin { animation: spin-slow calc(48s / var(--deco-pace, 1)) linear infinite; }
-    .deco-pulse { animation: pulse-glow calc(5s / var(--deco-pace, 1)) ease-in-out infinite; }
-    .deco-pace-fast { --deco-pace: 1.4; }
-    .deco-pace-faster { --deco-pace: 1.5; }
-    .deco-pace-fastest { --deco-pace: 2.25; }
-    .deco-pace-hyper { --deco-pace: 0.495; }
-    .deco-emphasis.deco-cross { opacity: 0.72; }
-    .deco-emphasis.deco-diamond { opacity: 0.78; }
-    .deco-emphasis.deco-svg { opacity: 0.48; }
-    .deco-emphasis.deco-dot-cluster { opacity: 0.58; }
-    .deco-emphasis.deco-orb { opacity: 0.92; filter: blur(50px) saturate(1.15); }
-    .deco-emphasis.hero-blob-3 {
-      opacity: 0.88;
-      filter: blur(42px) saturate(1.2);
-      animation: pulse-glow-emphasis calc(6s / var(--deco-pace, 1)) ease-in-out infinite;
-    }
-    .deco-emphasis.deco-pulse:not(.hero-blob-3) {
-      animation: pulse-glow-emphasis calc(5s / var(--deco-pace, 1)) ease-in-out infinite;
-    }
-    .dev-float__item.deco-emphasis { opacity: 0.3; }
-    .dev-float__item.deco-emphasis.dev-float__item--lg { opacity: 0.26; }
-    .dev-float__item.deco-emphasis .dev-float__svg { opacity: 0.22; }
-    [data-theme="light"] .deco-emphasis.deco-cross,
-    [data-theme="light"] .deco-emphasis.deco-diamond { opacity: 0.84; }
-    [data-theme="light"] .deco-emphasis.deco-svg { opacity: 0.52; }
-    [data-theme="light"] .dev-float__item.deco-emphasis { opacity: 0.38; }
-    [data-theme="dark"] .deco-emphasis.deco-cross,
-    [data-theme="dark"] .deco-emphasis.deco-diamond { opacity: 0.76; }
-    @keyframes pulse-glow-emphasis {
-      0%, 100% { opacity: 0.62; transform: scale(1); }
-      50% { opacity: 0.92; transform: scale(1.06); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .deco-float,
-      .deco-float-2,
-      .deco-spin,
-      .deco-pulse,
-      .dev-float__drift { animation: none; }
-    }
-
-    /* ——— FLOATING DEV DECOR ——— */
-    .dev-float {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      overflow: hidden;
-      mask-image: radial-gradient(ellipse 82% 78% at 50% 50%, transparent 6%, black 92%);
-      -webkit-mask-image: radial-gradient(ellipse 82% 78% at 50% 50%, transparent 6%, black 92%);
-    }
-    .dev-float__item {
-      position: absolute;
-      font-family: var(--font-display);
-      font-weight: 500;
-      color: var(--accent);
-      opacity: 0.13;
-      line-height: 1;
-      user-select: none;
-      white-space: nowrap;
-      will-change: transform;
-      transform: translateY(calc(var(--scroll-y, 0) * 1px));
-    }
-    .dev-float__item--lift {
-      filter: brightness(1.2);
-    }
-    .dev-float__item--hyper.dev-float__item--lift {
-      filter: none;
-    }
-    .dev-float__item--hyper.dev-float__item--lift .dev-float__drift {
-      filter: brightness(1.2) drop-shadow(0 0 10px var(--accent-glow));
-    }
-    .dev-float__drift {
-      display: inline-block;
-    }
-    [data-theme="light"] .dev-float__item {
-      opacity: 0.17;
-      color: var(--accent2);
-    }
-    .dev-float__chip {
-      padding: 5px 9px;
-      border-radius: 6px;
-      border: 1px solid var(--deco-stroke-muted);
-      background: var(--deco-fill);
-      font-size: 11px;
-      letter-spacing: 0.03em;
-    }
-    .dev-float__svg {
-      width: 44px;
-      height: 34px;
-      opacity: 0.11;
-    }
-    [data-theme="light"] .dev-float__svg { opacity: 0.15; }
-    .dev-float__item--braces {
-      left: 5%;
-      top: 16%;
-      font-size: clamp(18px, 2.2vw, 26px);
-      letter-spacing: 0.12em;
-      color: var(--accent2);
-    }
-    .dev-float__item--tags {
-      right: 6%;
-      top: 20%;
-      font-size: clamp(15px, 1.8vw, 22px);
-      letter-spacing: 0.06em;
-    }
-    .dev-float__item--arrow {
-      left: 7%;
-      bottom: 20%;
-      font-size: clamp(16px, 2vw, 24px);
-      color: var(--accent2);
-    }
-    .dev-float__item--css {
-      right: 5%;
-      bottom: 22%;
-      font-size: 10px;
-      color: var(--text-muted);
-    }
-    .dev-float__item--fn {
-      left: 4%;
-      top: 54%;
-      font-size: 10px;
-      color: var(--text-muted);
-    }
-    .dev-float__item--window {
-      right: 4%;
-      top: 50%;
-      transform: translateY(calc(-50% + var(--scroll-y, 0) * 1px));
-    }
-    .dev-float__item--lg {
-      opacity: 0.1;
-    }
-    [data-theme="light"] .dev-float__item--lg {
-      opacity: 0.13;
-    }
-    .dev-float__item--div {
-      right: 3%;
-      top: 38%;
-      font-size: clamp(18px, 2.1vw, 26px);
-      letter-spacing: 0.04em;
-      color: var(--text-muted);
-    }
-    .dev-float__item--brackets {
-      left: 3%;
-      top: 30%;
-      font-size: clamp(22px, 2.6vw, 30px);
-      letter-spacing: 0.14em;
-      color: var(--accent2);
-    }
-    .dev-float__item--id {
-      left: 6%;
-      bottom: 12%;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-    .dev-float__chip--lg {
-      padding: 6px 11px;
-      font-size: 12px;
-    }
-    .dev-float__item--import {
-      right: 7%;
-      bottom: 10%;
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-    .dev-float__item--fn,
-    .dev-float__item--css { opacity: 0.33; }
-    [data-theme="light"] .dev-float__item--fn,
-    [data-theme="light"] .dev-float__item--css { opacity: 0.37; }
-    .dev-float__item--import,
-    .dev-float__item--div { opacity: 0.3; }
-    [data-theme="light"] .dev-float__item--import,
-    [data-theme="light"] .dev-float__item--div { opacity: 0.33; }
-    .dev-float__item--git {
-      left: 5%;
-      top: 68%;
-    }
-    .dev-float__item--bulb,
-    .dev-float__item--pencil,
-    .dev-float__item--palette,
-    .dev-float__item--terminal,
-    .dev-float__item--layers,
-    .dev-float__item--spark {
-      left: 50%;
-      top: 50%;
-      margin-left: -24px;
-      margin-top: -24px;
-    }
-    .dev-float__item--terminal {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--accent2);
-      margin-left: -42px;
-      margin-top: -14px;
-    }
-    .dev-float__item--hyper {
-      opacity: 0.62;
-      color: var(--accent2);
-      z-index: 1;
-    }
-    [data-theme="light"] .dev-float__item--hyper {
-      opacity: 0.72;
-      color: var(--accent);
-    }
-    .dev-float__item--hyper .dev-float__drift {
-      opacity: 1;
-      filter: drop-shadow(0 0 10px var(--accent-glow));
-    }
-    .dev-float__item--hyper .dev-float__svg {
-      opacity: 1;
-      width: 48px;
-      height: 48px;
-      stroke-width: 1.35;
-    }
-    .dev-float__item--hyper.dev-float__chip {
-      padding: 7px 12px;
-      font-size: 12px;
-      border-color: var(--deco-stroke);
-      background: var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-    }
-    .dev-float__svg--prop {
-      width: 48px;
-      height: 48px;
-    }
-    .dev-float__svg--lg {
-      width: 52px;
-      height: 40px;
-      opacity: 0.09;
-    }
-    [data-theme="light"] .dev-float__svg--lg { opacity: 0.12; }
-    @keyframes dev-drift-1 {
-      0%, 100% { transform: translate(0, 0) rotate(-8deg); }
-      33% { transform: translate(25px, -32px) rotate(5deg); }
-      66% { transform: translate(-16px, -21px) rotate(-3deg); }
-    }
-    @keyframes dev-drift-2 {
-      0%, 100% { transform: translate(0, 0) rotate(6deg); }
-      40% { transform: translate(-23px, 28px) rotate(-4deg); }
-      70% { transform: translate(14px, -18px) rotate(9deg); }
-    }
-    @keyframes dev-drift-3 {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      50% { transform: translate(21px, -37px) rotate(12deg); }
-    }
-    @keyframes dev-drift-4 {
-      0%, 100% { transform: translate(0, 0) rotate(-4deg); }
-      35% { transform: translate(-18px, -25px) rotate(6deg); }
-      65% { transform: translate(12px, 16px) rotate(-7deg); }
-    }
-    @keyframes dev-drift-5 {
-      0%, 100% { transform: translate(0, 0) rotate(3deg); }
-      45% { transform: translate(16px, 23px) rotate(-5deg); }
-      80% { transform: translate(-9px, -14px) rotate(8deg); }
-    }
-    @keyframes dev-drift-6 {
-      0%, 100% { transform: translate(0, 0) rotate(-6deg); }
-      50% { transform: translate(-21px, -30px) rotate(4deg); }
-    }
-    @keyframes dev-drift-7 {
-      0%, 100% { transform: translate(0, 0) rotate(4deg); }
-      35% { transform: translate(-20px, -28px) rotate(-5deg); }
-      70% { transform: translate(15px, 18px) rotate(7deg); }
-    }
-    @keyframes dev-drift-8 {
-      0%, 100% { transform: translate(0, 0) rotate(-5deg); }
-      50% { transform: translate(24px, -22px) rotate(8deg); }
-    }
-    @keyframes dev-drift-9 {
-      0%, 100% { transform: translate(0, 0) rotate(-3deg); }
-      40% { transform: translate(-14px, 26px) rotate(5deg); }
-      75% { transform: translate(18px, -16px) rotate(-6deg); }
-    }
-    @keyframes dev-drift-10 {
-      0%, 100% { transform: translate(0, 0) rotate(6deg); }
-      45% { transform: translate(20px, 24px) rotate(-4deg); }
-      80% { transform: translate(-12px, -20px) rotate(9deg); }
-    }
-    @keyframes dev-drift-11 {
-      0%   { transform: translate(-49vw, -47vh) rotate(0deg); }
-      20%  { transform: translate(47vw, -45vh) rotate(144deg); }
-      40%  { transform: translate(49vw, 43vh) rotate(288deg); }
-      60%  { transform: translate(-45vw, 47vh) rotate(432deg); }
-      80%  { transform: translate(-49vw, 10vh) rotate(576deg); }
-      100% { transform: translate(-49vw, -47vh) rotate(720deg); }
-    }
-    @keyframes dev-drift-12 {
-      0%   { transform: translate(49vw, -47vh) rotate(0deg); }
-      25%  { transform: translate(-47vw, -20vh) rotate(180deg); }
-      50%  { transform: translate(-49vw, 45vh) rotate(360deg); }
-      75%  { transform: translate(40vw, 47vh) rotate(540deg); }
-      100% { transform: translate(49vw, -47vh) rotate(720deg); }
-    }
-    @keyframes dev-drift-13 {
-      0%   { transform: translate(-49vw, 45vh) rotate(0deg); }
-      20%  { transform: translate(5vw, -47vh) rotate(120deg); }
-      40%  { transform: translate(49vw, -15vh) rotate(240deg); }
-      60%  { transform: translate(30vw, 47vh) rotate(360deg); }
-      80%  { transform: translate(-35vw, -40vh) rotate(480deg); }
-      100% { transform: translate(-49vw, 45vh) rotate(600deg); }
-    }
-    @keyframes dev-drift-14 {
-      0%   { transform: translate(-49vw, -30vh) rotate(0deg); }
-      25%  { transform: translate(35vw, 47vh) rotate(180deg); }
-      50%  { transform: translate(49vw, -47vh) rotate(360deg); }
-      75%  { transform: translate(-40vw, 40vh) rotate(540deg); }
-      100% { transform: translate(-49vw, -30vh) rotate(720deg); }
-    }
-    @keyframes dev-drift-15 {
-      0%   { transform: translate(45vw, 47vh) rotate(0deg); }
-      20%  { transform: translate(-49vw, 25vh) rotate(144deg); }
-      40%  { transform: translate(-45vw, -47vh) rotate(288deg); }
-      60%  { transform: translate(49vw, -35vh) rotate(432deg); }
-      80%  { transform: translate(20vw, 47vh) rotate(576deg); }
-      100% { transform: translate(45vw, 47vh) rotate(720deg); }
-    }
-    @keyframes dev-drift-16 {
-      0%   { transform: translate(-35vw, -47vh) rotate(0deg); }
-      30%  { transform: translate(49vw, 20vh) rotate(216deg); }
-      55%  { transform: translate(-49vw, 47vh) rotate(396deg); }
-      80%  { transform: translate(40vw, -47vh) rotate(576deg); }
-      100% { transform: translate(-35vw, -47vh) rotate(720deg); }
-    }
-    .dev-float-drift-1 { animation: dev-drift-1 calc(24s / var(--deco-pace, 1)) ease-in-out infinite; }
-    .dev-float-drift-2 { animation: dev-drift-2 calc(28s / var(--deco-pace, 1)) ease-in-out infinite; animation-delay: calc(-4s / var(--deco-pace, 1)); }
-    .dev-float-drift-3 { animation: dev-drift-3 calc(20s / var(--deco-pace, 1)) ease-in-out infinite; animation-delay: calc(-8s / var(--deco-pace, 1)); }
-    .dev-float-drift-4 { animation: dev-drift-4 calc(26s / var(--deco-pace, 1)) ease-in-out infinite; animation-delay: calc(-2s / var(--deco-pace, 1)); }
-    .dev-float-drift-5 { animation: dev-drift-5 calc(22s / var(--deco-pace, 1)) ease-in-out infinite; animation-delay: calc(-11s / var(--deco-pace, 1)); }
-    .dev-float-drift-6 { animation: dev-drift-6 calc(30s / var(--deco-pace, 1)) ease-in-out infinite; animation-delay: calc(-6s / var(--deco-pace, 1)); }
-    .dev-float-drift-7 { animation: dev-drift-7 calc(27s / var(--deco-pace, 1)) ease-in-out infinite; animation-delay: calc(-9s / var(--deco-pace, 1)); }
-    .dev-float-drift-8 { animation: dev-drift-8 calc(23s / var(--deco-pace, 1)) ease-in-out infinite; animation-delay: calc(-3s / var(--deco-pace, 1)); }
-    .dev-float-drift-9 { animation: dev-drift-9 calc(29s / var(--deco-pace, 1)) ease-in-out infinite; animation-delay: calc(-13s / var(--deco-pace, 1)); }
-    .dev-float-drift-10 { animation: dev-drift-10 calc(25s / var(--deco-pace, 1)) ease-in-out infinite; animation-delay: calc(-7s / var(--deco-pace, 1)); }
-    .dev-float-drift-11 { animation: dev-drift-11 calc(32s / var(--deco-pace, 1)) linear infinite; animation-delay: calc(-5s / var(--deco-pace, 1)); }
-    .dev-float-drift-12 { animation: dev-drift-12 calc(36s / var(--deco-pace, 1)) linear infinite; animation-delay: calc(-11s / var(--deco-pace, 1)); }
-    .dev-float-drift-13 { animation: dev-drift-13 calc(30s / var(--deco-pace, 1)) linear infinite; animation-delay: calc(-7s / var(--deco-pace, 1)); }
-    .dev-float-drift-14 { animation: dev-drift-14 calc(34s / var(--deco-pace, 1)) linear infinite; animation-delay: calc(-14s / var(--deco-pace, 1)); }
-    .dev-float-drift-15 { animation: dev-drift-15 calc(38s / var(--deco-pace, 1)) linear infinite; animation-delay: calc(-9s / var(--deco-pace, 1)); }
-    .dev-float-drift-16 { animation: dev-drift-16 calc(33s / var(--deco-pace, 1)) linear infinite; animation-delay: calc(-16s / var(--deco-pace, 1)); }
-
     a { color: inherit; text-decoration: none; }
     button { font-family: inherit; border: none; }
     img { max-width: 100%; display: block; }
@@ -956,13 +399,7 @@
       transition: background 0.3s ease, border-color 0.3s ease;
     }
     .nav::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      height: 2px;
-      background: var(--gradient);
+      display: none;
     }
     .nav-inner {
       max-width: 1100px;
@@ -986,8 +423,6 @@
       object-fit: contain;
     }
     .logo-img--light { display: none; }
-    [data-theme="dark"] .logo-img--dark { display: none; }
-    [data-theme="dark"] .logo-img--light { display: block; }
     .footer-brand .logo-img { height: 26px; }
     .nav-links {
       display: flex;
@@ -1001,51 +436,21 @@
       transition: color 0.2s;
     }
     .nav-links a:not(.btn-nav):hover { color: var(--text); }
-    .theme-toggle {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      flex-shrink: 0;
-      border-radius: 8px;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
-      color: var(--text-soft);
-      cursor: pointer;
-      transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
-    }
-    .theme-toggle:hover {
-      background: var(--glass-bg-strong);
-      border-color: var(--accent2);
-      color: var(--text);
-    }
-    .theme-toggle svg {
-      width: 18px;
-      height: 18px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.75;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    [data-theme="dark"] .theme-icon-moon { display: none; }
-    [data-theme="light"] .theme-icon-sun { display: none; }
     .btn-nav {
       display: inline-block;
-      background: #9580FF;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
       color: #fff !important;
       border-radius: 8px;
       padding: 7px 20px;
       font-family: var(--font-body);
       font-size: 13px;
       font-weight: 500;
-      box-shadow: 0 2px 14px rgba(149, 128, 255, 0.32);
+      box-shadow: 0 2px 14px var(--accent-glow);
       transition: box-shadow 0.25s ease, opacity 0.2s, transform 0.18s ease;
     }
     .btn-nav:hover {
       opacity: 0.9;
-      box-shadow: 0 4px 22px rgba(149, 128, 255, 0.48);
+      box-shadow: 0 4px 22px var(--accent-glow);
       transform: translateY(-1px);
     }
 
@@ -1054,273 +459,92 @@
       position: relative;
       z-index: 2;
       isolation: isolate;
-      height: 100svh;
       min-height: 100svh;
-      max-height: 100svh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-end;
-      text-align: left;
-      padding: calc(var(--nav-h) + var(--hero-top-gap)) 24px 0;
-      overflow: visible;
-      box-sizing: border-box;
-    }
-    .hero-blob {
-      position: absolute;
-      pointer-events: none;
-      z-index: 0;
-      border-radius: 50%;
-    }
-    .hero-blob-1 {
-      right: -100px;
-      top: -60px;
-      width: 400px;
-      height: 400px;
-      background: rgba(108, 99, 255, 0.08);
-      filter: blur(80px);
-    }
-    .hero-blob-2 {
-      left: -60px;
-      bottom: 80px;
-      width: 280px;
-      height: 280px;
-      background: rgba(255, 101, 132, 0.06);
-      filter: blur(60px);
-    }
-    .hero-blob-3 {
-      left: 42%;
-      top: 18%;
-      width: 180px;
-      height: 180px;
-      background: var(--deco-fill);
-      filter: blur(50px);
-      animation: pulse-glow calc(6s / var(--deco-pace, 1)) ease-in-out infinite;
-    }
-    .hero-deco-cross-1 { right: 22%; top: 28%; }
-    .hero-deco-cross-2 { left: 18%; top: 22%; width: 14px; height: 14px; opacity: 0.3; }
-    .hero-deco-diamond { right: 14%; bottom: 22%; }
-    .hero-deco-line {
-      width: 120px;
-      right: 6%;
-      top: 52%;
-      transform: rotate(-24deg);
-    }
-    .hero-deco-dots {
-      right: 32%;
-      bottom: 18%;
-    }
-    .hero-layout {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 1280px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      align-items: end;
-      margin-top: auto;
-      min-width: 0;
-      --astro-scale: 0.85;
-      --astro-shift: 2.5cm;
-      --leg-ratio: 0.48;
-      --reveal: 0;
-      --fly-y: 0;
-      --waist-h: min(calc((100svh - var(--nav-h) - var(--hero-top-gap)) * var(--astro-scale)), 799px);
-      --full-h: calc(var(--waist-h) / (1 - var(--leg-ratio)));
-      --astro-aspect: calc(494 / 956);
-      --astro-w: calc(var(--full-h) * var(--astro-aspect));
-    }
-    .hero-window {
-      grid-column: 1 / -1;
-      grid-row: 1;
-      align-self: end;
-      justify-self: end;
-      width: clamp(598px, calc(54vw + 1cm), 738px);
-      height: clamp(441px, 58.8vh, 559px);
-      margin-right: calc(-1 * max(24px, (100vw - 1280px) / 2));
-      margin-bottom: clamp(88px, 12vh, 120px);
-      padding: 44px 52px 42px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
       justify-content: center;
-      background: var(--hero-window-bg);
-      border: 1px solid var(--hero-window-border);
-      border-right: none;
-      border-radius: 18px 0 0 18px;
-      box-shadow: var(--hero-window-shadow);
-      pointer-events: none;
-      z-index: 1;
-      position: relative;
+      text-align: center;
+      padding: calc(var(--nav-h) + 56px) 24px 72px;
       overflow: hidden;
-      animation: hero-window-enter 1600ms cubic-bezier(0.16, 1, 0.3, 1) 420ms both;
-      will-change: transform, opacity;
+      box-sizing: border-box;
     }
-
-    /* High-Fidelity Vector Cosmic Tree inside Hero Window */
-    .hero-window__tree-wrap {
+    /* — крупные геометрические фигуры зонируют фон секций (без градиентов, приглушённый цвет, минимум фигур) — */
+    .zone-shapes {
       position: absolute;
       inset: 0;
-      pointer-events: none;
-      z-index: 1;
+      z-index: 0;
       overflow: hidden;
+      pointer-events: none;
     }
-
-    .hero-window__tree-svg {
-      width: 100%;
-      height: 100%;
-      display: block;
+    .zone-shape { position: absolute; }
+    .zone-shape--blue-1 { background: var(--zone-1); }
+    .zone-shape--blue-2 { background: var(--zone-2); }
+    .zone-shape--white { background: var(--white); }
+    /* неправильные многоугольники (близкие к шестиугольнику/семиугольнику/пятиугольнику), однотонная заливка, без градиентов;
+       по умолчанию — угол вылета сверху-справа (плоские верх/право, неправильный контур внутри) */
+    .poly-hex {
+      clip-path: polygon(26% 0%, 100% 0%, 100% 64%, 68% 100%, 14% 90%, 0% 38%);
     }
-
-    /* Floating Website Fruit Cards */
-    .tree-fruit {
-      position: absolute;
-      z-index: 2;
-      pointer-events: auto;
-      animation: fruit-float 5s ease-in-out infinite alternate;
-      will-change: transform;
+    .poly-hept {
+      clip-path: polygon(18% 0%, 62% 0%, 100% 22%, 100% 70%, 62% 100%, 18% 96%, 0% 48%);
     }
-
-    .tree-fruit--bot { animation-delay: -1.2s; }
-    .tree-fruit--card { animation-delay: -2.5s; }
-    .tree-fruit--store { animation-delay: -3.8s; }
-
-    @keyframes fruit-float {
-      0% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-6px) rotate(1deg); }
-      100% { transform: translateY(4px) rotate(-1deg); }
+    .poly-penta {
+      clip-path: polygon(30% 0%, 100% 0%, 100% 58%, 46% 100%, 0% 52%);
     }
-
-    .tree-fruit__card {
-      background: rgba(255, 255, 255, 0.88);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(149, 128, 255, 0.22);
-      border-radius: 10px;
-      padding: 6px 8px;
-      box-shadow: 0 6px 20px rgba(15, 16, 24, 0.08), 0 2px 6px rgba(124, 58, 237, 0.12);
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
-      min-width: 78px;
+    .shape-flip-x { transform: scaleX(-1); }
+    .shape-flip-y { transform: scaleY(-1); }
+    .shape-flip-xy { transform: scale(-1, -1); }
+    /* hero (белый фон → голубая фигура, только левая половина, не задевает иллюстрацию) */
+    .hero-shape--a {
+      width: 26vw; height: 26vw; max-width: 340px; max-height: 340px;
+      left: -6vw; bottom: -8vw;
     }
-
-    .tree-fruit__card:hover {
-      transform: translateY(-4px) scale(1.06);
-      border-color: rgba(149, 128, 255, 0.55);
-      box-shadow: 0 10px 28px rgba(124, 58, 237, 0.2), 0 4px 10px rgba(15, 16, 24, 0.12);
+    /* hero, вторая фигура: крупнее, другой оттенок синего, сверху, с отступом от левого края и от фото */
+    .hero-shape--b {
+      width: 36vw; height: 36vw; max-width: 480px; max-height: 480px;
+      left: 9vw; top: -8vw;
     }
-
-    .tree-fruit__header {
-      display: flex;
-      align-items: center;
-      gap: 3px;
-      margin-bottom: 5px;
+    /* projects (голубая секция → белая фигура, угол сверху-слева) */
+    .projects-shape--a {
+      width: 44vw; height: 44vw; max-width: 580px; max-height: 580px;
+      left: -6vw; top: -6vw;
     }
-
-    .tree-fruit__dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: rgba(15, 16, 24, 0.25);
+    /* services (белая секция → голубая фигура, угол сверху-справа) */
+    .services-shape--a {
+      width: 48vw; height: 48vw; max-width: 640px; max-height: 640px;
+      right: -6vw; top: -4%;
     }
-    .tree-fruit__dot.red { background: #FF5F56; }
-    .tree-fruit__dot.yellow { background: #FFBD2E; }
-    .tree-fruit__dot.green { background: #27C93F; }
-
-    .tree-fruit__tag {
-      font-size: 9px;
-      font-weight: 600;
-      color: #7C3AED;
-      margin-left: auto;
-      letter-spacing: -0.01em;
-      line-height: 1;
+    /* reviews (голубая секция → белая фигура, угол снизу-слева, забирает пустое пространство) */
+    .reviews-shape--a {
+      width: 46vw; height: 46vw; max-width: 600px; max-height: 600px;
+      left: -4vw; bottom: -4vw;
     }
-
-    .tree-fruit__icon-tg {
-      color: #0088cc;
-      display: flex;
-      align-items: center;
+    /* contact (белая секция → голубая фигура, угол снизу-справа) */
+    .contact-shape--a {
+      width: 36vw; height: 36vw; max-width: 480px; max-height: 480px;
+      right: -4vw; bottom: -4vw;
     }
-
-    .tree-fruit__body {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
+    /* footer (голубая секция → белая фигура, угол снизу-слева, компактно) */
+    .footer-shape--a {
+      width: 26vw; height: 26vw; max-width: 260px; max-height: 240px;
+      left: -4vw; bottom: -6vw;
     }
-
-    .tree-fruit__line {
-      height: 3px;
-      border-radius: 2px;
-      background: rgba(15, 16, 24, 0.12);
-    }
-    .tree-fruit__line.title { width: 85%; background: rgba(124, 58, 237, 0.4); }
-    .tree-fruit__line.desc { width: 65%; }
-    .tree-fruit__line.short { width: 45px; background: rgba(15, 16, 24, 0.35); }
-    .tree-fruit__line.micro { width: 30px; }
-
-    .tree-fruit__btn {
-      width: 24px;
-      height: 5px;
-      border-radius: 3px;
-      background: #9580FF;
-      margin-top: 2px;
-    }
-
-    .tree-fruit__body.chat {
-      gap: 4px;
-    }
-    .tree-fruit__msg {
-      height: 5px;
-      border-radius: 3px;
-    }
-    .tree-fruit__msg.msg-in { width: 70%; background: rgba(0, 136, 204, 0.2); align-self: flex-start; }
-    .tree-fruit__msg.msg-out { width: 60%; background: #9580FF; align-self: flex-end; }
-
-    .tree-fruit__body.profile {
-      flex-direction: row;
-      align-items: center;
-      gap: 5px;
-    }
-    .tree-fruit__avatar {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #9580FF, #3B82F6);
-      flex-shrink: 0;
-    }
-    .tree-fruit__info {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .tree-fruit__body.grid {
-      flex-direction: row;
-      gap: 4px;
-    }
-    .tree-fruit__item {
-      width: 28px;
-      height: 20px;
-      border-radius: 4px;
-      background: rgba(124, 58, 237, 0.12);
-      border: 1px solid rgba(124, 58, 237, 0.2);
-    }
-    @keyframes hero-window-enter {
-      from {
-        opacity: 0;
-        transform: translateX(calc(100% + 80px));
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
+    @media (max-width: 767px) {
+      .hero-shape--a { width: 46vw; height: 46vw; left: -10vw; bottom: -6vw; }
+      .hero-shape--b { width: 50vw; height: 50vw; max-width: 300px; max-height: 300px; left: 24vw; top: auto; bottom: -16vw; }
+      .projects-shape--a { width: 64vw; height: 64vw; left: -10vw; top: -8vw; }
+      .services-shape--a { width: 68vw; height: 68vw; right: -10vw; top: -3%; }
+      .reviews-shape--a { width: 64vw; height: 64vw; left: -8vw; bottom: -6vw; }
+      .contact-shape--a { width: 54vw; height: 54vw; right: -8vw; bottom: -6vw; }
+      .footer-shape--a { width: 42vw; height: 42vw; max-height: 200px; left: -6vw; bottom: -4vw; }
     }
     .nav {
-      animation: page-nav-enter 1200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation: page-nav-enter 1200ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
     }
     .nav .logo,
     .nav-links > * {
-      animation: page-item-enter 1100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation: page-item-enter 1100ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
     }
     .nav .logo { animation-delay: 240ms; }
     .nav-links > :nth-child(1) { animation-delay: 360ms; }
@@ -1328,16 +552,6 @@
     .nav-links > :nth-child(3) { animation-delay: 600ms; }
     .nav-links > :nth-child(4) { animation-delay: 720ms; }
     .nav-links > :nth-child(5) { animation-delay: 840ms; }
-    .hero-astronaut__stage {
-      animation: page-astronaut-enter 1800ms cubic-bezier(0.16, 1, 0.3, 1) 300ms both;
-    }
-    .hero .section-deco {
-      animation: page-deco-enter 2000ms ease-out 520ms both;
-    }
-    .hero-blob-1,
-    .hero-blob-2 {
-      animation: page-deco-enter 2300ms ease-out 680ms both;
-    }
     @keyframes page-nav-enter {
       from {
         opacity: 0;
@@ -1358,284 +572,84 @@
         transform: translateY(0) scale(1);
       }
     }
-    @keyframes page-astronaut-enter {
-      from {
-        opacity: 0;
-        transform: translate3d(-80px, 48px, 0) scale(0.96);
-      }
-      to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0) scale(1);
-      }
-    }
-    @keyframes page-deco-enter {
-      from {
-        opacity: 0;
-        transform: scale(0.92);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
     @media (prefers-reduced-motion: reduce) {
-      .hero-window,
       .nav,
       .nav .logo,
-      .nav-links > *,
-      .hero-astronaut__stage,
-      .hero .section-deco,
-      .hero-blob-1,
-      .hero-blob-2 {
+      .nav-links > * {
         animation: none;
         will-change: auto;
       }
     }
-    .hero-window .hero-window__title {
-      max-width: 420px;
-      margin: 0 0 18px;
-      color: var(--hero-window-text);
-      font-family: var(--font-display);
-      font-size: clamp(26px, 2.4vw, 38px);
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      text-align: left;
-      text-wrap: balance;
+
+    /* — hero: текст слева, иллюстрация справа — */
+    .hero-layout {
       position: relative;
-      z-index: 3;
-    }
-    .hero-window__title span {
-      color: var(--hero-window-accent);
-    }
-    .hero-window__description {
-      max-width: 380px;
-      margin: 0;
-      color: var(--hero-window-muted);
-      font-size: clamp(14px, 1.25vw, 17px);
-      line-height: 1.65;
-      text-align: left;
-      position: relative;
-      z-index: 3;
-    }
-    .hero-astronaut {
-      grid-column: 1;
-      grid-row: 1;
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-end;
-      position: relative;
-      align-self: stretch;
-      min-width: 0;
-      overflow: visible;
-      z-index: 2;
-      transform: translateY(calc(var(--fly-y) * 1px - var(--astro-shift)));
-    }
-    .hero-astronaut.is-scrolling {
-      z-index: 3;
-    }
-    .hero-astronaut__stage {
-      overflow: visible;
-      height: var(--full-h);
-      min-height: var(--full-h);
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-start;
-    }
-    .hero-astronaut__figure {
-      margin: 0;
-      line-height: 0;
-    }
-    .hero-astronaut__figure img {
-      display: block;
-      height: var(--full-h);
-      width: auto;
-      max-width: 100%;
-      object-fit: contain;
-      object-position: bottom left;
-      transform: translateY(calc(var(--leg-ratio) * (1 - var(--reveal)) * 100%));
-      -webkit-user-drag: none;
-      user-select: none;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .hero-astronaut { --reveal: 0 !important; --fly-y: 0 !important; transform: translateY(calc(-1 * var(--astro-shift))); }
-      .hero-astronaut__figure img { transform: translateY(calc(var(--leg-ratio) * 100%)); }
-    }
-    .hero-layout .hero-content {
-      grid-column: 2;
-      align-self: center;
-      justify-self: start;
-      max-width: 560px;
+      z-index: 1;
       width: 100%;
-      min-width: 0;
-      text-align: left;
-      align-items: flex-start;
-      padding-bottom: clamp(40px, 6vh, 100px);
+      max-width: 1140px;
     }
-    .hero-layout .hero-main {
-      align-items: flex-start;
-      width: 100%;
-    }
-    .hero-layout h1 {
-      text-align: left;
-      font-size: clamp(36px, 4.2vw, 52px);
-    }
-    .hero-layout .hero-sub {
-      margin-left: 0;
-      margin-right: 0;
-      max-width: none;
-      text-align: left;
-    }
-    .hero-layout .hero-ctas {
-      justify-content: flex-start;
-    }
-    /* golden ratio composition: welcome bar centered on first screen */
     .hero-content {
       position: relative;
       z-index: 1;
       width: 100%;
-      max-width: 720px;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      text-align: center;
+      justify-content: space-between;
+      gap: 48px;
+      text-align: left;
     }
-    .hero-main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-    }
-    .hero-glass {
-      position: relative;
-      width: 100%;
-      max-width: 720px;
-    }
-    .hero-glass__body {
+    .hero-text {
       position: relative;
       z-index: 1;
-      padding: 38px 42px 42px;
-      background:
-        linear-gradient(145deg, rgba(108, 99, 255, 0.07) 0%, transparent 42%),
-        var(--glass-bg);
-      backdrop-filter: var(--glass-blur);
-      -webkit-backdrop-filter: var(--glass-blur);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      box-shadow:
-        var(--glass-shadow),
-        0 0 48px rgba(108, 99, 255, 0.14),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      flex: 1 1 520px;
+      max-width: 580px;
+      animation: page-deco-enter 1400ms cubic-bezier(0.16, 1, 0.3, 1) 200ms both;
     }
-    .hero-glass__body::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 3px,
-        rgba(108, 99, 255, 0.025) 3px,
-        rgba(108, 99, 255, 0.025) 4px
-      );
-      pointer-events: none;
-      opacity: 0.7;
+    @media (prefers-reduced-motion: reduce) {
+      .hero-text { animation: none; }
     }
-    .hero-glass__body::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 32px;
-      right: 92px;
-      height: 1px;
-      background: linear-gradient(90deg, var(--accent), rgba(255, 101, 132, 0.45) 55%, transparent);
-      pointer-events: none;
-      opacity: 0.85;
-    }
-    .hero-glass__corner {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .hero-glass__corner--tl {
-      top: 18px;
-      left: 12px;
-      border-top: 2px solid var(--accent);
-      border-left: 2px solid var(--accent);
-      box-shadow: -3px -3px 12px var(--accent-glow);
-    }
-    .hero-glass__corner--br {
-      right: 14px;
-      bottom: 18px;
-      border-bottom: 2px solid var(--accent2);
-      border-right: 2px solid var(--accent2);
-      box-shadow: 3px 3px 12px var(--accent-glow);
-    }
-    .hero-glass__tag {
-      position: absolute;
-      top: 14px;
-      right: 18px;
-      z-index: 2;
-      font-family: var(--font-display);
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      opacity: 0.55;
-      pointer-events: none;
-    }
-    .hero-glass__body > * {
+    .hero-media {
       position: relative;
       z-index: 1;
+      flex: 1 1 420px;
+      max-width: 460px;
+      display: flex;
+      justify-content: center;
+      animation: page-deco-enter 1400ms cubic-bezier(0.16, 1, 0.3, 1) 320ms both;
     }
-    [data-theme="light"] .hero-glass__body {
-      background:
-        linear-gradient(145deg, rgba(79, 70, 229, 0.06) 0%, transparent 42%),
-        var(--glass-bg);
-      box-shadow:
-        var(--glass-shadow),
-        0 0 36px rgba(79, 70, 229, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    @media (prefers-reduced-motion: reduce) {
+      .hero-media { animation: none; }
     }
-    [data-theme="light"] .hero-glass__body::before {
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 3px,
-        rgba(79, 70, 229, 0.04) 3px,
-        rgba(79, 70, 229, 0.04) 4px
-      );
+    .hero-media img {
+      width: 100%;
+      height: auto;
     }
     h1 {
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: 56px;
-      line-height: 1.1;
+      font-size: clamp(34px, 4vw, 52px);
+      line-height: 1.15;
       letter-spacing: -0.02em;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
-    h1 .line2 { color: var(--accent2); }
+    h1 .line2 { color: var(--accent); }
     .hero-sub {
-      font-size: 16px;
-      color: var(--white40);
-      max-width: 440px;
-      line-height: 1.65;
-      margin-left: auto;
-      margin-right: auto;
+      font-size: 18px;
+      color: var(--text-soft);
+      max-width: 460px;
+      line-height: 1.6;
     }
     .hero-ctas {
       display: flex;
       gap: 12px;
       margin-top: 36px;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: flex-start;
     }
     .btn-primary {
       display: inline-block;
-      background: #9580FF;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
       color: #fff;
       padding: 13px 28px;
       border-radius: 8px;
@@ -1643,12 +657,12 @@
       font-size: 14px;
       font-weight: 500;
       cursor: pointer;
-      box-shadow: 0 3px 18px rgba(149, 128, 255, 0.32);
+      box-shadow: 0 3px 18px var(--accent-glow);
       transition: box-shadow 0.25s ease, opacity 0.2s, transform 0.18s ease;
     }
     .btn-primary:hover {
       opacity: 0.9;
-      box-shadow: 0 6px 28px rgba(149, 128, 255, 0.50);
+      box-shadow: 0 6px 28px var(--accent-glow);
       transform: translateY(-1px);
     }
     .btn-ghost {
@@ -1667,10 +681,10 @@
       transition: border-color 0.25s, color 0.25s, background 0.25s, box-shadow 0.25s, transform 0.18s ease;
     }
     .btn-ghost:hover {
-      border-color: rgba(255,255,255,0.22);
+      border-color: rgba(37, 99, 235, 0.35);
       color: var(--text);
       background: var(--glass-bg-strong);
-      box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
       transform: translateY(-1px);
     }
 
@@ -1727,7 +741,7 @@
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
     .project-card:hover {
-      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
     }
     .project-card.featured { grid-column: 1 / -1; }
     .project-card::before {
@@ -1737,7 +751,7 @@
       left: 0;
       right: 0;
       height: 2px;
-      background: var(--gradient);
+      background: var(--accent);
       opacity: 0;
       transition: opacity 0.3s ease;
       z-index: 2;
@@ -1849,21 +863,21 @@
       gap: 6px;
       margin-top: 16px;
       padding: 10px 18px;
-      border: 1px solid rgba(155, 148, 255, 0.45);
+      border: 1px solid rgba(37, 99, 235, 0.35);
       border-radius: 8px;
       background: transparent;
       font-family: var(--font-body);
       font-size: 14px;
       font-weight: 500;
-      color: var(--accent2);
+      color: var(--accent);
       text-decoration: none;
       cursor: pointer;
       transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
     }
     .project-open-btn:hover {
       color: var(--accent);
-      border-color: var(--accent2);
-      background: rgba(108, 99, 255, 0.08);
+      border-color: var(--accent);
+      background: rgba(37, 99, 235, 0.08);
     }
     [data-theme="light"] .project-open-btn {
       border-color: rgba(91, 82, 240, 0.35);
@@ -1903,21 +917,26 @@
     }
     /* — expandable pill card — */
     .service-pill {
+      position: relative;
       display: flex;
       flex-direction: column;
       border-radius: 50px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.13);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      overflow: hidden;
+      overflow: visible;
       transition: border-radius 0.3s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
     }
     .service-pill.is-open {
-      border-radius: 16px;
-      border-color: rgba(255,255,255,0.25);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.28);
-      background: rgba(255,255,255,0.1);
+      position: relative;
+      z-index: 30;
+      border-radius: 16px 16px 6px 6px;
+      border-color: rgba(37, 99, 235, 0.25);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.10);
+      background: #FFFFFF;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
     }
     .service-pill__trigger {
       display: flex;
@@ -1952,19 +971,48 @@
       opacity: 0.9;
     }
     .service-pill__panel {
-      display: grid;
-      grid-template-rows: 0fr;
-      transition: grid-template-rows 0.35s ease;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 5;
+      margin-top: 8px;
+      border-radius: 16px;
+      background: #FFFFFF;
+      border: 1px solid rgba(37, 99, 235, 0.25);
+      box-shadow: 0 18px 36px rgba(15, 23, 42, 0.18);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transform-origin: top;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
     }
     .service-pill.is-open .service-pill__panel {
-      grid-template-rows: 1fr;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
     }
     .service-pill__panel-inner {
       overflow: hidden;
+      border-radius: inherit;
     }
     .service-pill__panel-content {
-      padding: 0 20px 16px;
-      border-top: 1px solid rgba(255,255,255,0.09);
+      padding: 14px 20px 16px;
+    }
+    .service-pill__preview {
+      margin: 0 0 12px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+      line-height: 0;
+    }
+    .service-pill__preview svg {
+      display: block;
+      width: 100%;
+      height: auto;
     }
     .service-pill__panel-desc {
       font-size: 13px;
@@ -2004,8 +1052,8 @@
       gap: 6px;
       padding: 8px 18px;
       border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
       color: var(--text-soft);
       font-family: var(--font-body);
       font-size: 12px;
@@ -2015,10 +1063,10 @@
       transition: background 0.25s, border-color 0.25s, color 0.25s, box-shadow 0.25s, transform 0.18s ease;
     }
     .service-pill__btn:hover {
-      background: rgba(255,255,255,0.10);
-      border-color: rgba(255,255,255,0.30);
+      background: var(--glass-bg-strong);
+      border-color: rgba(37, 99, 235, 0.35);
       color: var(--text);
-      box-shadow: 0 3px 14px rgba(42,26,255,0.18);
+      box-shadow: 0 3px 14px rgba(37, 99, 235, 0.16);
       transform: translateY(-1px);
     }
     /* Light theme pills */
@@ -2038,8 +1086,10 @@
     [data-theme="light"] .service-pill.is-open .service-pill__trigger {
       color: #111;
     }
-    [data-theme="light"] .service-pill__panel-content {
-      border-top-color: rgba(0,0,0,0.07);
+    [data-theme="light"] .service-pill__panel {
+      background: #fff;
+      border-color: rgba(108,99,255,0.25);
+      box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
     }
     [data-theme="light"] .service-pill__panel-desc {
       color: #555;
@@ -2067,8 +1117,8 @@
       margin-top: 44px;
     }
     .services-info-block {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
       border-radius: 16px;
       padding: 24px;
       backdrop-filter: blur(8px);
@@ -2091,19 +1141,29 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 22px;
     }
     .services-workflow-steps li {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 14px;
+      position: relative;
+    }
+    .services-workflow-steps li:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 26px;
+      width: 1px;
+      height: calc(100% + 4px);
+      background: var(--glass-border);
     }
     .services-workflow-steps__num {
       flex-shrink: 0;
       width: 22px;
       height: 22px;
       border-radius: 50%;
-      background: var(--gradient);
+      background: var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -2111,6 +1171,35 @@
       font-weight: 700;
       color: #fff;
       margin-top: 1px;
+      position: relative;
+      z-index: 1;
+    }
+    .services-workflow-steps__body {
+      flex: 1;
+      min-width: 0;
+    }
+    .services-workflow-steps__head {
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .services-workflow-steps__title {
+      font-family: var(--font-display);
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .services-workflow-steps__duration {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--accent2);
+      background: var(--chip-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 5px;
+      padding: 2px 7px;
     }
     .services-workflow-steps__text {
       font-size: 13px;
@@ -2120,6 +1209,9 @@
     .services-workflow-steps__text strong {
       color: var(--text);
       font-weight: 600;
+    }
+    [data-theme="light"] .services-workflow-steps__title {
+      color: #1a1a2e;
     }
     [data-theme="light"] .services-workflow-steps__text {
       color: #444;
@@ -2135,8 +1227,8 @@
     .services-tool-tag {
       padding: 5px 11px;
       border-radius: 6px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: var(--chip-bg);
+      border: 1px solid var(--glass-border);
       font-size: 11px;
       color: var(--text-muted);
       font-weight: 500;
@@ -2222,7 +1314,7 @@
     .service-panel__section--stack .service-panel__tag {
       background: transparent;
       color: var(--text-muted);
-      border-color: rgba(255, 255, 255, 0.08);
+      border-color: var(--glass-border);
       font-size: 11px;
       font-weight: 400;
     }
@@ -2274,419 +1366,6 @@
       font-weight: 500;
       color: var(--white80);
     }
-    .card-shards,
-    .corner-shard {
-      display: none !important;
-    }
-
-    /* ——— SHARD CARDS (угловой разлом + осколки) ——— */
-    .card-shard-wrap {
-      --shard-cut: 48px;
-      --shard-radius: 14px;
-      position: relative;
-      overflow: visible;
-      z-index: 1;
-    }
-    .card-shards {
-      position: absolute;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .card-shards--tr {
-      top: -48px;
-      right: -72px;
-      width: 210px;
-      height: 190px;
-    }
-    .card-shards--tl {
-      top: -48px;
-      left: -72px;
-      width: 210px;
-      height: 190px;
-    }
-    .card-shards--bl {
-      bottom: -52px;
-      left: -68px;
-      width: 200px;
-      height: 185px;
-    }
-    .card-shards--br {
-      bottom: -52px;
-      right: -72px;
-      width: 200px;
-      height: 185px;
-    }
-    .card-shard-wrap > .project-card,
-    .card-shard-wrap > .service-card,
-    .card-shard-wrap > .contact-channel {
-      position: relative;
-      z-index: 2;
-    }
-    .card-shard.project-card,
-    .card-shard.service-card,
-    .card-shard.contact-channel {
-      border-radius: var(--shard-radius);
-      overflow: visible;
-    }
-    /* юрист + боты: целый верхний левый, сломаны TR / BL / BR */
-    .card-shard-wrap--lawyer .card-shard,
-    .card-shard-wrap--bots .card-shard {
-      clip-path: polygon(
-        0 var(--shard-radius),
-        8px 4px,
-        var(--shard-radius) 0,
-        calc(100% - var(--shard-cut)) 0,
-        calc(100% - 20px) 20px,
-        calc(100% - 8px) 36px,
-        100% var(--shard-cut),
-        100% calc(100% - var(--shard-cut)),
-        calc(100% - 36px) calc(100% - 8px),
-        calc(100% - 20px) calc(100% - 20px),
-        calc(100% - var(--shard-cut)) 100%,
-        var(--shard-cut) 100%,
-        20px calc(100% - 20px),
-        8px calc(100% - 36px),
-        0 calc(100% - var(--shard-cut))
-      );
-    }
-    /* написать в Telegram: целый верхний правый, сломаны TL / BL / BR */
-    .card-shard-wrap--contact .card-shard {
-      clip-path: polygon(
-        var(--shard-cut) 0,
-        calc(100% - var(--shard-radius)) 0,
-        calc(100% - 8px) 4px,
-        100% var(--shard-radius),
-        100% calc(100% - var(--shard-cut)),
-        calc(100% - 36px) calc(100% - 8px),
-        calc(100% - 20px) calc(100% - 20px),
-        calc(100% - var(--shard-cut)) 100%,
-        var(--shard-cut) 100%,
-        20px calc(100% - 20px),
-        8px calc(100% - 36px),
-        0 calc(100% - var(--shard-cut)),
-        0 var(--shard-cut),
-        20px 20px,
-        36px 8px
-      );
-    }
-    .card-shard.service-card::after {
-      display: none;
-    }
-    .corner-shard {
-      position: absolute;
-      opacity: 0.62;
-      background: linear-gradient(
-        148deg,
-        var(--shard-face) 0%,
-        var(--shard-edge) 42%,
-        rgba(255, 255, 255, 0.08) 100%
-      );
-      border: 1px solid var(--shard-stroke);
-      box-shadow:
-        0 0 4px var(--shard-glow),
-        inset 1px 1px 0 rgba(255, 255, 255, 0.16);
-    }
-    .corner-shard::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        128deg,
-        transparent 38%,
-        rgba(255, 255, 255, 0.12) 50%,
-        transparent 62%
-      );
-      pointer-events: none;
-    }
-    .corner-shard--tr1 {
-      top: 46px;
-      right: 28px;
-      width: 36px;
-      height: 31px;
-      clip-path: polygon(100% 0, 12% 8%, 88% 100%, 100% 72%);
-      transform: rotate(4deg);
-      animation: shard-drift-tr1 7.2s ease-in-out infinite;
-    }
-    .corner-shard--tr2 {
-      top: 18px;
-      right: 88px;
-      width: 14px;
-      height: 22px;
-      clip-path: polygon(22% 0, 100% 14%, 68% 100%, 0 76%);
-      transform: rotate(-11deg);
-      animation: shard-drift-tr2 8.4s ease-in-out infinite;
-      animation-delay: -2.1s;
-    }
-    .corner-shard--tr3 {
-      top: 92px;
-      right: 12px;
-      width: 19px;
-      height: 11px;
-      clip-path: polygon(0 18%, 74% 0, 100% 62%, 36% 100%);
-      transform: rotate(7deg);
-      animation: shard-drift-tr3 6.8s ease-in-out infinite;
-      animation-delay: -4.3s;
-    }
-    .corner-shard--tr-top {
-      top: 8px;
-      right: 132px;
-      width: 26px;
-      height: 9px;
-      clip-path: polygon(0 60%, 24% 0, 100% 22%, 78% 100%);
-      transform: rotate(-5deg);
-      animation: shard-drift-tr-top 9.1s ease-in-out infinite;
-      animation-delay: -1.2s;
-    }
-    .corner-shard--tr-right {
-      top: 128px;
-      right: 54px;
-      width: 8px;
-      height: 24px;
-      clip-path: polygon(0 0, 100% 18%, 72% 100%, 14% 82%);
-      transform: rotate(9deg);
-      animation: shard-drift-tr-right 7.6s ease-in-out infinite;
-      animation-delay: -3.6s;
-    }
-    .corner-shard--tl1 {
-      top: 46px;
-      left: 28px;
-      width: 36px;
-      height: 31px;
-      clip-path: polygon(0 0, 88% 8%, 12% 100%, 0 72%);
-      transform: rotate(-4deg);
-      animation: shard-drift-tl1 7.2s ease-in-out infinite;
-    }
-    .corner-shard--tl2 {
-      top: 18px;
-      left: 88px;
-      width: 14px;
-      height: 22px;
-      clip-path: polygon(78% 0, 0 14%, 32% 100%, 100% 76%);
-      transform: rotate(11deg);
-      animation: shard-drift-tl2 8.4s ease-in-out infinite;
-      animation-delay: -2.1s;
-    }
-    .corner-shard--tl3 {
-      top: 92px;
-      left: 12px;
-      width: 19px;
-      height: 11px;
-      clip-path: polygon(100% 18%, 26% 0, 0 62%, 64% 100%);
-      transform: rotate(-7deg);
-      animation: shard-drift-tl3 6.8s ease-in-out infinite;
-      animation-delay: -4.3s;
-    }
-    .corner-shard--tl-top {
-      top: 8px;
-      left: 132px;
-      width: 26px;
-      height: 9px;
-      clip-path: polygon(100% 60%, 76% 0, 0 22%, 22% 100%);
-      transform: rotate(5deg);
-      animation: shard-drift-tl-top 9.1s ease-in-out infinite;
-      animation-delay: -1.2s;
-    }
-    .corner-shard--tl-left {
-      top: 128px;
-      left: 54px;
-      width: 8px;
-      height: 24px;
-      clip-path: polygon(100% 0, 0 18%, 28% 100%, 86% 82%);
-      transform: rotate(-9deg);
-      animation: shard-drift-tl-left 7.6s ease-in-out infinite;
-      animation-delay: -3.6s;
-    }
-    .corner-shard--bl1 {
-      bottom: 44px;
-      left: 26px;
-      width: 33px;
-      height: 28px;
-      clip-path: polygon(0 100%, 8% 10%, 92% 0, 100% 68%);
-      transform: rotate(-6deg);
-      animation: shard-drift-bl1 7.8s ease-in-out infinite;
-      animation-delay: -0.9s;
-    }
-    .corner-shard--bl2 {
-      bottom: 108px;
-      left: 8px;
-      width: 11px;
-      height: 26px;
-      clip-path: polygon(100% 0, 100% 78%, 28% 100%, 0 24%);
-      transform: rotate(8deg);
-      animation: shard-drift-bl2 8.7s ease-in-out infinite;
-      animation-delay: -2.8s;
-    }
-    .corner-shard--bl3 {
-      bottom: 14px;
-      left: 96px;
-      width: 22px;
-      height: 10px;
-      clip-path: polygon(0 0, 86% 20%, 100% 100%, 16% 82%);
-      transform: rotate(-4deg);
-      animation: shard-drift-bl3 6.5s ease-in-out infinite;
-      animation-delay: -4.9s;
-    }
-    .corner-shard--bl-left {
-      bottom: 72px;
-      left: 48px;
-      width: 7px;
-      height: 18px;
-      clip-path: polygon(100% 0, 100% 88%, 34% 100%, 0 12%);
-      transform: rotate(-10deg);
-      animation: shard-drift-bl-left 8.2s ease-in-out infinite;
-      animation-delay: -1.7s;
-    }
-    .corner-shard--bl-bottom {
-      bottom: 6px;
-      left: 148px;
-      width: 17px;
-      height: 7px;
-      clip-path: polygon(0 28%, 100% 0, 82% 100%, 12% 72%);
-      transform: rotate(6deg);
-      animation: shard-drift-bl-bottom 9.4s ease-in-out infinite;
-      animation-delay: -3.2s;
-    }
-    .corner-shard--br1 {
-      bottom: 44px;
-      right: 26px;
-      width: 36px;
-      height: 31px;
-      clip-path: polygon(100% 100%, 88% 8%, 12% 0, 0 72%);
-      transform: rotate(-4deg);
-      animation: shard-drift-br1 7.5s ease-in-out infinite;
-      animation-delay: -1.1s;
-    }
-    .corner-shard--br2 {
-      bottom: 108px;
-      right: 8px;
-      width: 11px;
-      height: 26px;
-      clip-path: polygon(0 0, 72% 22%, 100% 100%, 22% 78%);
-      transform: rotate(-8deg);
-      animation: shard-drift-br2 8.5s ease-in-out infinite;
-      animation-delay: -2.4s;
-    }
-    .corner-shard--br3 {
-      bottom: 14px;
-      right: 96px;
-      width: 22px;
-      height: 10px;
-      clip-path: polygon(100% 0, 18% 18%, 0 100%, 88% 82%);
-      transform: rotate(4deg);
-      animation: shard-drift-br3 6.9s ease-in-out infinite;
-      animation-delay: -3.8s;
-    }
-    .corner-shard--br-right {
-      bottom: 56px;
-      right: -2px;
-      width: 8px;
-      height: 21px;
-      clip-path: polygon(0 0, 78% 12%, 100% 100%, 0 88%);
-      transform: rotate(10deg);
-      animation: shard-drift-br-right 5.6s ease-in-out infinite;
-      animation-delay: -0.7s;
-    }
-    .corner-shard--br-bottom {
-      bottom: -2px;
-      right: 148px;
-      width: 26px;
-      height: 9px;
-      clip-path: polygon(100% 60%, 76% 0, 0 22%, 22% 100%);
-      transform: rotate(5deg);
-      animation: shard-drift-br-bottom 9.2s ease-in-out infinite;
-      animation-delay: -2.9s;
-    }
-    /* вариации формы/разброса по карточкам */
-    .card-shard-wrap--bots .corner-shard--tr1 { top: 52px; right: 18px; width: 29px; height: 34px; }
-    .card-shard-wrap--bots .corner-shard--tr-top { right: 118px; width: 31px; }
-    .card-shard-wrap--bots .corner-shard--bl-bottom { left: 128px; width: 21px; height: 9px; }
-    .card-shard-wrap--contact .corner-shard--tl1 { top: 52px; left: 18px; width: 29px; height: 34px; }
-    .card-shard-wrap--contact .corner-shard--tl-top { left: 118px; width: 31px; }
-    .card-shard-wrap--contact .corner-shard--bl1 { width: 27px; height: 32px; }
-    .card-shard-wrap--contact .corner-shard--bl-left { left: 62px; height: 14px; }
-    @keyframes shard-drift-tl1 {
-      0%, 100% { transform: rotate(-4deg) translate(-4px, -6px); opacity: 0.52; }
-      50% { transform: rotate(-7deg) translate(-18px, -22px); opacity: 0.68; }
-    }
-    @keyframes shard-drift-tl2 {
-      0%, 100% { transform: rotate(11deg) translate(6px, -4px); opacity: 0.48; }
-      50% { transform: rotate(7deg) translate(-12px, -18px); opacity: 0.62; }
-    }
-    @keyframes shard-drift-tl3 {
-      0%, 100% { transform: rotate(-7deg) translate(-2px, 4px); opacity: 0.5; }
-      50% { transform: rotate(-11deg) translate(-20px, 10px); opacity: 0.64; }
-    }
-    @keyframes shard-drift-tl-top {
-      0%, 100% { transform: rotate(5deg) translate(8px, -8px); opacity: 0.46; }
-      50% { transform: rotate(2deg) translate(-6px, -24px); opacity: 0.6; }
-    }
-    @keyframes shard-drift-tl-left {
-      0%, 100% { transform: rotate(-9deg) translate(0, 2px); opacity: 0.46; }
-      50% { transform: rotate(-13deg) translate(-16px, 14px); opacity: 0.6; }
-    }
-    @keyframes shard-drift-tr1 {
-      0%, 100% { transform: rotate(4deg) translate(4px, -6px); opacity: 0.52; }
-      50% { transform: rotate(7deg) translate(18px, -22px); opacity: 0.68; }
-    }
-    @keyframes shard-drift-tr2 {
-      0%, 100% { transform: rotate(-11deg) translate(-6px, -4px); opacity: 0.48; }
-      50% { transform: rotate(-7deg) translate(12px, -18px); opacity: 0.62; }
-    }
-    @keyframes shard-drift-tr3 {
-      0%, 100% { transform: rotate(7deg) translate(2px, 4px); opacity: 0.5; }
-      50% { transform: rotate(11deg) translate(20px, 10px); opacity: 0.64; }
-    }
-    @keyframes shard-drift-tr-top {
-      0%, 100% { transform: rotate(-5deg) translate(-8px, -8px); opacity: 0.46; }
-      50% { transform: rotate(-2deg) translate(6px, -24px); opacity: 0.6; }
-    }
-    @keyframes shard-drift-tr-right {
-      0%, 100% { transform: rotate(9deg) translate(0, 2px); opacity: 0.46; }
-      50% { transform: rotate(13deg) translate(16px, 14px); opacity: 0.6; }
-    }
-    @keyframes shard-drift-bl1 {
-      0%, 100% { transform: rotate(-6deg) translate(-4px, 6px); opacity: 0.52; }
-      50% { transform: rotate(-3deg) translate(-20px, 20px); opacity: 0.68; }
-    }
-    @keyframes shard-drift-bl2 {
-      0%, 100% { transform: rotate(8deg) translate(-2px, 0); opacity: 0.48; }
-      50% { transform: rotate(5deg) translate(-16px, 12px); opacity: 0.62; }
-    }
-    @keyframes shard-drift-bl3 {
-      0%, 100% { transform: rotate(-4deg) translate(0, 4px); opacity: 0.5; }
-      50% { transform: rotate(-8deg) translate(-14px, 18px); opacity: 0.64; }
-    }
-    @keyframes shard-drift-bl-left {
-      0%, 100% { transform: rotate(-10deg) translate(-6px, 2px); opacity: 0.46; }
-      50% { transform: rotate(-14deg) translate(-22px, 8px); opacity: 0.6; }
-    }
-    @keyframes shard-drift-bl-bottom {
-      0%, 100% { transform: rotate(6deg) translate(4px, 4px); opacity: 0.46; }
-      50% { transform: rotate(3deg) translate(-10px, 20px); opacity: 0.6; }
-    }
-    @keyframes shard-drift-br1 {
-      0%, 100% { transform: rotate(-4deg) translate(4px, 6px); opacity: 0.52; }
-      50% { transform: rotate(-1deg) translate(20px, 22px); opacity: 0.68; }
-    }
-    @keyframes shard-drift-br2 {
-      0%, 100% { transform: rotate(-8deg) translate(2px, 0); opacity: 0.48; }
-      50% { transform: rotate(-5deg) translate(16px, 12px); opacity: 0.62; }
-    }
-    @keyframes shard-drift-br3 {
-      0%, 100% { transform: rotate(4deg) translate(0, 4px); opacity: 0.5; }
-      50% { transform: rotate(8deg) translate(14px, 18px); opacity: 0.64; }
-    }
-    @keyframes shard-drift-br-right {
-      0%, 100% { transform: rotate(10deg) translate(3px, 1px); opacity: 0.46; }
-      50% { transform: rotate(14deg) translate(22px, 8px); opacity: 0.6; }
-    }
-    @keyframes shard-drift-br-bottom {
-      0%, 100% { transform: rotate(5deg) translate(-4px, 2px); opacity: 0.46; }
-      50% { transform: rotate(2deg) translate(10px, 20px); opacity: 0.6; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .corner-shard { animation: none; }
-    }
 
     /* ——— REVIEWS ——— */
     .reviews-grid {
@@ -2709,7 +1388,7 @@
     .review-card:hover {
       transform: translateY(-4px);
       background: var(--glass-bg-strong);
-      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
     }
     .review-stars {
       color: var(--accent2);
@@ -2863,7 +1542,7 @@
       height: 30px;
       padding: 0 14px;
       border-radius: 999px;
-      background: var(--gradient);
+      background: var(--accent);
       color: var(--white);
       font-family: var(--font-display);
       font-size: 14px;
@@ -3047,20 +1726,6 @@
       .reveal.visible {
         opacity: 1;
       }
-      .corner-shard,
-      .card-shards--tr::before,
-      .card-shards--tr::after,
-      .card-shards--tl::before,
-      .card-shards--tl::after,
-      .card-shards--bl::before,
-      .card-shards--bl::after,
-      .card-shards--br::before,
-      .card-shards--br::after {
-        animation: none !important;
-      }
-      .corner-shard::after {
-        display: none;
-      }
       #services,
       #reviews,
       #contact {
@@ -3105,76 +1770,19 @@
 
       .section { padding: 60px 20px; overflow-x: clip; }
       .hero {
-        --hero-top-gap: calc(48px / 1.75);
-        padding: calc(var(--nav-h) + var(--hero-top-gap)) 20px 0;
+        padding: calc(var(--nav-h) + 32px) 20px 48px;
         text-align: center;
         overflow-x: clip;
       }
-      .hero-layout {
-        grid-template-columns: 1fr;
-      }
-      .hero-window {
-        grid-column: 1;
-        grid-row: auto;
-        order: -1;
-        width: min(90vw, 440px);
-        height: auto;
-        min-height: 230px;
-        margin: 0 auto 28px;
-        padding: 34px 30px;
-        align-self: auto;
-        justify-self: center;
-        clip-path: none;
-        border: 1px solid var(--hero-window-border);
-        border-radius: 18px;
-        box-shadow: var(--hero-window-shadow);
-      }
-      .hero-window .hero-window__title {
-        max-width: 340px;
-        margin-left: auto;
-        margin-right: auto;
-        font-size: clamp(23px, 6.5vw, 30px);
+      .hero-layout { max-width: 440px; }
+      .hero-content {
+        flex-direction: column-reverse;
+        gap: 28px;
+        max-width: 100%;
         text-align: center;
       }
-      .hero-window__description {
-        max-width: 340px;
-        margin: 0 auto;
-        font-size: 14px;
-        text-align: center;
-      }
-      .hero-content {
-        grid-column: 1;
-        order: -1;
-        justify-self: center;
-        max-width: 480px;
-        padding-bottom: 28px;
-      }
-      .hero-astronaut {
-        order: 1;
-        grid-column: 1;
-        grid-row: auto;
-        justify-content: center;
-        justify-self: center;
-        --waist-h: min(calc((100svh - var(--nav-h) - var(--hero-top-gap)) * var(--astro-scale)), 476px);
-      }
-      .hero-astronaut__stage {
-        justify-content: center;
-      }
-      .hero-astronaut__figure img {
-        max-width: min(calc(96vw * var(--astro-scale, 1)), 476px);
-        object-position: bottom center;
-      }
-      .hero-content {
-        gap: 0;
-        max-width: 480px;
-      }
-      .hero-main { align-items: center; }
-      .hero-glass { max-width: 100%; }
-      .hero-glass__body {
-        padding: 28px 24px 32px;
-      }
-      .hero-glass__tag { display: none; }
-      .hero-glass__corner { display: none; }
+      .hero-text { max-width: 100%; }
+      .hero-media { max-width: 260px; }
       .hero-sub { margin: 0 auto; max-width: 100%; }
       .hero-ctas { justify-content: center; width: 100%; }
       .hero-ctas .btn-primary,
@@ -3191,152 +1799,6 @@
         hyphens: auto;
       }
       h1 .line2 { display: inline; }
-
-      /* декор: вдвое меньше элементов, слабые — выразительнее, но полупрозрачные */
-      .section-deco > *:nth-child(even) { display: none !important; }
-
-      .cosmos-stars { opacity: 1; }
-      [data-theme="light"] .cosmos-stars { opacity: 0.78; }
-
-      .section-deco { opacity: 1; }
-      .hero .section-deco { opacity: 1; }
-
-      .deco-orb { filter: blur(48px) saturate(1.15); }
-      .deco-cross { opacity: 0.58; }
-      .deco-diamond { opacity: 0.62; }
-      .deco-dot-cluster { opacity: 0.52; }
-      .deco-line { opacity: 0.55; }
-      .deco-svg { opacity: 0.42 !important; }
-      [data-theme="light"] .deco-cross,
-      [data-theme="light"] .deco-diamond { opacity: 0.68; }
-      [data-theme="light"] .deco-svg { opacity: 0.5 !important; }
-      [data-theme="light"] .deco-dot-cluster { opacity: 0.58; }
-
-      .hero-deco-cross-2 { opacity: 0.52; }
-      .hero-blob-1,
-      .hero-blob-2 {
-        transform: scale(1.25);
-        opacity: 0.92;
-      }
-      .hero-blob-3 { opacity: 0.92; }
-
-      .dev-float {
-        opacity: 0.9;
-        mask-image: radial-gradient(ellipse 92% 88% at 50% 50%, transparent 2%, black 96%);
-        -webkit-mask-image: radial-gradient(ellipse 92% 88% at 50% 50%, transparent 2%, black 96%);
-      }
-      .dev-float__item { opacity: 0.28; }
-      [data-theme="light"] .dev-float__item { opacity: 0.34; }
-      .dev-float__svg { opacity: 0.24; }
-      [data-theme="light"] .dev-float__svg { opacity: 0.3; }
-      .dev-float__item--lg { opacity: 0.24; }
-      [data-theme="light"] .dev-float__item--lg { opacity: 0.28; }
-      .dev-float__svg--lg { opacity: 0.2; }
-      [data-theme="light"] .dev-float__svg--lg { opacity: 0.26; }
-      .dev-float__item.deco-emphasis { opacity: 0.44; }
-      .dev-float__item.deco-emphasis .dev-float__svg { opacity: 0.34; }
-      [data-theme="light"] .dev-float__item.deco-emphasis { opacity: 0.5; }
-
-      .dev-float__item--fn,
-      .dev-float__item--css { opacity: 0.48; }
-      [data-theme="light"] .dev-float__item--fn,
-      [data-theme="light"] .dev-float__item--css { opacity: 0.54; }
-      .dev-float__item--import { opacity: 0.44; }
-      [data-theme="light"] .dev-float__item--import { opacity: 0.48; }
-
-      /* показываем больше плавающих элементов по краям экрана */
-      .dev-float__item--div,
-      .dev-float__item--bulb,
-      .dev-float__item--pencil,
-      .dev-float__item--palette,
-      .dev-float__item--layers { display: none; }
-
-      .dev-float__item--fn {
-        left: auto;
-        right: 3%;
-        top: 7%;
-        bottom: auto;
-        font-size: 9px;
-      }
-      .dev-float__item--css {
-        left: 3%;
-        right: auto;
-        top: 9%;
-        bottom: auto;
-        font-size: 9px;
-      }
-      .dev-float__item--window {
-        left: auto;
-        right: 1%;
-        top: auto;
-        bottom: 30%;
-      }
-      .dev-float__item--window .dev-float__svg {
-        width: 38px;
-        height: 30px;
-      }
-      .dev-float__item--id {
-        left: 2%;
-        right: auto;
-        top: auto;
-        bottom: 22%;
-      }
-      .dev-float__item--import {
-        left: auto;
-        right: 4%;
-        top: auto;
-        bottom: 14%;
-        font-size: 9px;
-      }
-      .dev-float__item--git {
-        left: 3%;
-        right: auto;
-        top: auto;
-        bottom: 10%;
-      }
-      .dev-float__item--terminal {
-        left: auto;
-        right: 5%;
-        top: 40%;
-        bottom: auto;
-        margin: 0;
-        font-size: 10px;
-      }
-      .dev-float__item--terminal .dev-float__drift,
-      .dev-float__item--spark .dev-float__drift {
-        animation: dev-drift-4 calc(26s / var(--deco-pace, 1)) ease-in-out infinite !important;
-      }
-      .dev-float__item--spark {
-        left: 4%;
-        right: auto;
-        top: 36%;
-        bottom: auto;
-        margin: 0;
-      }
-      .dev-float__item--spark .dev-float__svg {
-        width: 34px;
-        height: 34px;
-      }
-      .dev-float__item--braces {
-        left: 2%;
-        top: 14%;
-        font-size: 20px;
-      }
-      .dev-float__item--tags {
-        right: 3%;
-        top: 16%;
-        font-size: 17px;
-      }
-      .dev-float__item--arrow {
-        left: 4%;
-        bottom: 34%;
-        font-size: 18px;
-      }
-      .dev-float__item--brackets {
-        left: 2%;
-        top: 26%;
-        font-size: 22px;
-      }
 
       .reviews-grid { grid-template-columns: 1fr; }
       .reviews-empty-wrap { padding: 0 4px; }
@@ -3461,20 +1923,6 @@
         width: min(84vw, 300px);
         grid-column: auto;
       }
-      .card-shard-wrap {
-        display: flex;
-        flex-direction: column;
-      }
-      .card-shard-wrap > .project-card,
-      .card-shard-wrap > .service-card {
-        width: 100%;
-        flex: 1 1 auto;
-        box-sizing: border-box;
-      }
-      .card-shard.project-card,
-      .card-shard.service-card {
-        overflow: hidden;
-      }
       .projects-grid .browser-screen {
         height: 200px;
       }
@@ -3532,149 +1980,32 @@
         flex-shrink: 0;
       }
 
-      /* осколки ближе, крупнее и заметнее */
-      .card-shards--tr {
-        top: -14px;
-        right: -16px;
-        width: 96px;
-        height: 86px;
-        transform: scale(1.35);
-        transform-origin: 100% 100%;
-      }
-      .card-shards--tl {
-        top: -14px;
-        left: -16px;
-        width: 96px;
-        height: 86px;
-        transform: scale(1.35);
-        transform-origin: 0% 100%;
-      }
-      .card-shards--bl {
-        bottom: -16px;
-        left: -14px;
-        width: 92px;
-        height: 84px;
-        transform: scale(1.35);
-        transform-origin: 100% 0%;
-      }
-      .card-shards--br {
-        bottom: -16px;
-        right: -16px;
-        width: 92px;
-        height: 84px;
-        transform: scale(1.35);
-        transform-origin: 0% 0%;
-      }
-      .corner-shard {
-        opacity: 0.84;
-        box-shadow:
-          0 0 6px var(--shard-glow),
-          inset 1px 1px 0 rgba(255, 255, 255, 0.2);
-      }
-      .card-shards--tr::before,
-      .card-shards--tl::before,
-      .card-shards--bl::before,
-      .card-shards--br::before {
-        content: '';
-        position: absolute;
-        background: linear-gradient(
-          148deg,
-          var(--shard-face) 0%,
-          var(--shard-edge) 42%,
-          rgba(255, 255, 255, 0.08) 100%
-        );
-        border: 1px solid var(--shard-stroke);
-        box-shadow: 0 0 5px var(--shard-glow);
-        opacity: 0.8;
-        pointer-events: none;
-      }
-      .card-shards--tr::after,
-      .card-shards--tl::after,
-      .card-shards--bl::after,
-      .card-shards--br::after {
-        content: '';
-        position: absolute;
-        background: linear-gradient(
-          148deg,
-          var(--shard-face) 0%,
-          var(--shard-edge) 42%,
-          rgba(255, 255, 255, 0.08) 100%
-        );
-        border: 1px solid var(--shard-stroke);
-        opacity: 0.72;
-        pointer-events: none;
-      }
-      .card-shards--tr::before {
-        top: 28px;
-        right: 42px;
-        width: 11px;
-        height: 9px;
-        clip-path: polygon(100% 0, 0 40%, 70% 100%);
-        animation: shard-drift-tr2 6s ease-in-out infinite;
-      }
-      .card-shards--tr::after {
-        top: 58px;
-        right: 20px;
-        width: 8px;
-        height: 7px;
-        clip-path: polygon(0 0, 100% 30%, 60% 100%);
-        animation: shard-drift-tr3 5.2s ease-in-out infinite;
-        animation-delay: -1.8s;
-      }
-      .card-shards--tl::before {
-        top: 28px;
-        left: 42px;
-        width: 11px;
-        height: 9px;
-        clip-path: polygon(0 0, 100% 40%, 30% 100%);
-        animation: shard-drift-tl2 6s ease-in-out infinite;
-      }
-      .card-shards--tl::after {
-        top: 58px;
-        left: 20px;
-        width: 8px;
-        height: 7px;
-        clip-path: polygon(100% 0, 0 30%, 40% 100%);
-        animation: shard-drift-tl3 5.2s ease-in-out infinite;
-        animation-delay: -1.8s;
-      }
-      .card-shards--bl::before {
-        bottom: 28px;
-        left: 42px;
-        width: 10px;
-        height: 8px;
-        clip-path: polygon(0 100%, 100% 55%, 35% 0);
-        animation: shard-drift-bl2 6.2s ease-in-out infinite;
-      }
-      .card-shards--bl::after {
-        bottom: 58px;
-        left: 18px;
-        width: 7px;
-        height: 9px;
-        clip-path: polygon(100% 100%, 0 25%, 75% 0);
-        animation: shard-drift-bl-left 5.4s ease-in-out infinite;
-        animation-delay: -2.2s;
-      }
-      .card-shards--br::before {
-        bottom: 28px;
-        right: 42px;
-        width: 10px;
-        height: 8px;
-        clip-path: polygon(100% 100%, 0 55%, 65% 0);
-        animation: shard-drift-br2 6.2s ease-in-out infinite;
-      }
-      .card-shards--br::after {
-        bottom: 58px;
-        right: 18px;
-        width: 7px;
-        height: 9px;
-        clip-path: polygon(0 100%, 100% 25%, 25% 0);
-        animation: shard-drift-br-right 5.4s ease-in-out infinite;
-        animation-delay: -2.2s;
-      }
-
       .footer { padding: 32px 20px; }
       .footer-top { flex-direction: column; }
+    }
+
+    /* — телефоны в альбомной ориентации: мало высоты, hero не должен прятать заголовок и кнопки — */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .hero {
+        min-height: auto;
+        padding: calc(var(--nav-h) + 16px) 24px 20px;
+      }
+      .hero-content {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        gap: 24px;
+      }
+      .hero-layout { max-width: 720px; }
+      .hero-text { max-width: 55%; }
+      .hero-sub { margin: 0; }
+      .hero-media {
+        max-width: 180px;
+        flex: 0 1 180px;
+      }
+      .hero-ctas { justify-content: flex-start; margin-top: 16px; }
+      h1 { font-size: clamp(20px, 4vw, 28px); margin-bottom: 10px; }
+      .hero-sub { font-size: 14px; }
     }
 
     /* ——— GIFT SURPRISE ——— */
@@ -3741,30 +2072,16 @@
       margin: 2px auto 0;
     }
     .gift-box__shadow {
-      position: absolute;
-      left: 50%;
-      bottom: -6px;
-      width: 62px;
-      height: 12px;
-      margin-left: -31px;
-      background: radial-gradient(ellipse, rgba(108, 99, 255, 0.18) 0%, transparent 72%);
-      filter: blur(3px);
-      transition: opacity 0.5s ease;
+      display: none;
     }
     .gift-box__art {
       width: 100%;
       height: 100%;
-      filter:
-        drop-shadow(0 14px 26px rgba(108, 99, 255, 0.18))
-        drop-shadow(0 5px 12px rgba(232, 120, 148, 0.1))
-        drop-shadow(0 2px 8px rgba(0, 0, 0, 0.12));
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.18));
       transition: transform 0.65s cubic-bezier(0.34, 1.2, 0.64, 1), opacity 0.5s ease, filter 0.5s ease;
     }
     [data-theme="light"] .gift-box__art {
-      filter:
-        drop-shadow(0 12px 24px rgba(79, 70, 229, 0.18))
-        drop-shadow(0 4px 10px rgba(232, 90, 122, 0.08))
-        drop-shadow(0 2px 8px rgba(15, 16, 24, 0.08));
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.12));
     }
     .gift-box__img {
       width: 100%;
@@ -3777,7 +2094,7 @@
     .gift-surprise.is-opened .gift-box__art {
       transform: translateY(-10px) scale(1.06) rotate(-6deg);
       opacity: 0;
-      filter: blur(6px) saturate(1);
+      filter: blur(6px);
     }
     .gift-surprise.is-opened .gift-box__shadow {
       opacity: 0;
@@ -3800,9 +2117,9 @@
       animation: gift-sparkle-burst 0.7s ease-out forwards;
     }
     .gift-sparkles span:nth-child(1) { top: 20%; left: 10%; }
-    .gift-sparkles span:nth-child(2) { top: 5%; right: 15%; background: #FF6584; }
+    .gift-sparkles span:nth-child(2) { top: 5%; right: 15%; background: var(--accent); }
     .gift-sparkles span:nth-child(3) { bottom: 30%; left: 0; }
-    .gift-sparkles span:nth-child(4) { bottom: 10%; right: 5%; background: #FF6584; }
+    .gift-sparkles span:nth-child(4) { bottom: 10%; right: 5%; background: var(--accent); }
     .gift-sparkles span:nth-child(5) { top: 40%; right: 0; width: 4px; height: 4px; }
     .gift-sparkles span:nth-child(6) { top: 55%; left: 20%; width: 4px; height: 4px; }
 
@@ -3876,7 +2193,7 @@
       width: 56px;
       height: 56px;
       border-radius: 50%;
-      background: var(--gradient);
+      background: var(--accent);
       color: var(--white);
       font-family: var(--font-display);
       font-size: 16px;
@@ -3904,7 +2221,7 @@
         opacity 0.75s ease-out,
         transform 0.85s cubic-bezier(0.22, 0.61, 0.36, 1),
         box-shadow 0.75s ease-out;
-      box-shadow: 0 14px 34px rgba(108, 99, 255, 0.32);
+      box-shadow: 0 14px 34px rgba(37, 99, 235, 0.32);
     }
     .discount-flyer.is-hovering {
       opacity: 1;
@@ -3927,7 +2244,7 @@
         font-size 1.65s cubic-bezier(0.42, 0, 0.2, 1),
         transform 1.65s cubic-bezier(0.42, 0, 0.2, 1),
         box-shadow 1.65s ease;
-      box-shadow: 0 8px 22px rgba(108, 99, 255, 0.24);
+      box-shadow: 0 8px 22px rgba(37, 99, 235, 0.24);
     }
     .discount-flyer.is-dissolving {
       transition:
@@ -3936,10 +2253,10 @@
         box-shadow 0.7s ease-out;
       opacity: 0;
       transform: scale(0.45);
-      box-shadow: 0 0 0 rgba(108, 99, 255, 0);
+      box-shadow: 0 0 0 rgba(37, 99, 235, 0);
     }
     .btn-nav.has-discount {
-      box-shadow: 0 0 18px var(--accent-glow), 0 4px 16px rgba(108, 99, 255, 0.28);
+      box-shadow: 0 0 18px var(--accent-glow), 0 4px 16px rgba(37, 99, 235, 0.28);
     }
     .btn-nav.is-absorbing {
       animation: btn-absorb-pulse 0.85s cubic-bezier(0.33, 0, 0.2, 1) forwards;
@@ -3960,8 +2277,6 @@
 </head>
 <body>
 
-  <canvas class="cosmos-stars" id="cosmos-stars" aria-hidden="true"></canvas>
-
   <div class="gift-surprise" id="gift-surprise" hidden aria-hidden="true">
     <button type="button" class="gift-surprise__inner" id="gift-trigger" aria-label="Открыть подарок со скидкой">
       <span class="gift-surprise__tap" aria-hidden="true"></span>
@@ -3979,28 +2294,6 @@
 
   <div class="discount-flyer" id="discount-flyer" hidden aria-hidden="true"></div>
 
-  <div class="dev-float" aria-hidden="true">
-    <span class="dev-float__item dev-float__item--braces deco-emphasis dev-float__item--lift" data-scroll-speed="0.207"><span class="dev-float__drift dev-float-drift-1">{ }</span></span>
-    <span class="dev-float__item dev-float__item--tags deco-pace-fast dev-float__item--lift" data-scroll-speed="0.276"><span class="dev-float__drift dev-float-drift-2">&lt;/&gt;</span></span>
-
-    <span class="dev-float__item dev-float__chip dev-float__item--css deco-pace-fast dev-float__item--lift" data-scroll-speed="0.322"><span class="dev-float__drift dev-float-drift-4">.class</span></span>
-    <span class="dev-float__item dev-float__chip dev-float__item--fn" data-scroll-speed="0.138"><span class="dev-float__drift dev-float-drift-5">fn()</span></span>
-    <span class="dev-float__item dev-float__item--lg dev-float__item--div deco-pace-faster dev-float__item--lift" data-scroll-speed="0.241"><span class="dev-float__drift dev-float-drift-7">&lt;/div&gt;</span></span>
-
-    <span class="dev-float__item dev-float__chip dev-float__chip--lg dev-float__item--lg dev-float__item--id" data-scroll-speed="0.299"><span class="dev-float__drift dev-float-drift-9">#id</span></span>
-    <span class="dev-float__item dev-float__chip dev-float__chip--lg dev-float__item--lg dev-float__item--import deco-pace-fast dev-float__item--lift" data-scroll-speed="0.218"><span class="dev-float__drift dev-float-drift-10">import</span></span>
-    <span class="dev-float__item dev-float__item--lg dev-float__item--git deco-pace-faster" data-scroll-speed="0.264">
-      <svg class="dev-float__drift dev-float__svg dev-float__svg--lg dev-float-drift-7" viewBox="0 0 52 40" fill="none" aria-hidden="true">
-        <circle cx="14" cy="10" r="4" stroke="currentColor" stroke-width="1"/>
-        <circle cx="14" cy="30" r="4" stroke="currentColor" stroke-width="1"/>
-        <circle cx="38" cy="20" r="4" stroke="currentColor" stroke-width="1"/>
-        <path d="M18 10 H30 C34 10 34 20 30 20 H22" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-        <path d="M18 30 H26 C32 30 32 22 38 22" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-      </svg>
-    </span>
-
-  </div>
-
   <!-- NAV -->
   <nav class="nav" aria-label="Основная навигация">
     <div class="nav-inner">
@@ -4012,16 +2305,6 @@
         <a href="#projects">Работы</a>
         <a href="#services">Услуги</a>
         <a href="#reviews">Отзывы</a>
-        <a href="#contact">Контакт</a>
-        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Переключить тему" title="Переключить тему">
-          <svg class="theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="12" cy="12" r="4"></circle>
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
-          </svg>
-          <svg class="theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M21 14.5A8.5 8.5 0 1 1 9.5 3 7 7 0 0 0 21 14.5z"></path>
-          </svg>
-        </button>
         <a class="btn-nav" href="#contact" id="btn-write">Написать</a>
       </div>
     </div>
@@ -4030,34 +2313,32 @@
   <main>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="section-deco" aria-hidden="true">
-      <div class="deco-orb deco-float deco-emphasis" style="width:320px;height:320px;top:-80px;right:-60px;background:var(--deco-fill);"></div>
-
-      <div class="deco-cross hero-deco-cross-1 deco-float deco-pace-fastest deco-emphasis"></div>
-      <div class="deco-cross hero-deco-cross-2"></div>
-      <div class="deco-diamond hero-deco-diamond deco-float-2 deco-pace-faster deco-emphasis"></div>
-      <div class="deco-line hero-deco-line"></div>
-      <div class="deco-dot-cluster hero-deco-dots">
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
-      </div>
+  <section class="hero" id="hero">
+    <div class="zone-shapes" aria-hidden="true">
+      <span class="zone-shape zone-shape--blue-1 poly-hex shape-flip-xy hero-shape--a"></span>
+      <span class="zone-shape zone-shape--blue-2 poly-hept hero-shape--b"></span>
     </div>
-    <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
-    <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
-    <div class="hero-blob hero-blob-3 deco-pace-fastest" aria-hidden="true"></div>
     <div class="hero-layout">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Antares — место, где идеи<br><span class="line2">обретают жизнь</span></h1>
+          <p class="hero-sub">Разрабатываем сайты и Telegram-ботов любой сложности.</p>
+          <div class="hero-ctas">
+            <a href="#contact" class="btn-primary">Написать нам</a>
+            <a href="#projects" class="btn-ghost">Наши работы</a>
+          </div>
+        </div>
+        <div class="hero-media">
+          <img src="images/developer-hero.png" alt="Иллюстрация: разработчик за рабочим местом" width="2048" height="2048" decoding="async" fetchpriority="high" />
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- PROJECTS -->
   <section class="section section-bg2" id="projects">
-    <div class="section-deco" aria-hidden="true">
-      <div class="deco-orb" style="width:280px;height:280px;top:-60px;right:-40px;background:var(--deco-fill);"></div>
-      <div class="deco-cross deco-float" style="top:18%;right:12%;"></div>
-      <div class="deco-diamond deco-float-2 deco-pace-faster" style="bottom:20%;right:8%;"></div>
-      <div class="deco-line" style="width:160px;top:32%;left:4%;transform:rotate(12deg);"></div>
+    <div class="zone-shapes" aria-hidden="true">
+      <span class="zone-shape zone-shape--white poly-hept shape-flip-x projects-shape--a"></span>
     </div>
     <div class="section-inner">
       <div class="section-head reveal">
@@ -4179,16 +2460,8 @@
 
   <!-- SERVICES -->
   <section class="section" id="services">
-    <div class="section-deco" aria-hidden="true">
-      <div class="deco-orb deco-float-2 deco-pace-fast" style="width:300px;height:300px;bottom:-80px;left:20%;background:var(--deco-fill-2);"></div>
-      <div class="deco-orb" style="width:200px;height:200px;top:10%;right:-30px;background:var(--deco-fill);"></div>
-      <div class="deco-cross" style="bottom:24%;left:8%;width:16px;height:16px;"></div>
-      <div class="deco-dot-cluster deco-float deco-pace-fast" style="top:22%;left:4%;">
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
-      </div>
-      <div class="deco-line" style="width:200px;bottom:18%;right:6%;transform:rotate(-8deg);"></div>
-
+    <div class="zone-shapes" aria-hidden="true">
+      <span class="zone-shape zone-shape--blue-1 poly-hex services-shape--a"></span>
     </div>
     <div class="section-inner">
       <div class="section-head reveal">
@@ -4197,7 +2470,7 @@
       <div class="services-pills-wrap">
         <!-- Сайты -->
         <div class="services-pills-group reveal d1">
-          <p class="services-pills-label">🌐 Сайты</p>
+          <p class="services-pills-label">Сайты</p>
           <ul class="services-pills">
 
             <li class="service-pill">
@@ -4206,6 +2479,34 @@
                 <svg class="service-pill__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="service-pill__panel"><div class="service-pill__panel-inner"><div class="service-pill__panel-content">
+                <div class="service-pill__preview"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                  <rect width="320" height="180" fill="#F8FAFC" stroke="#E2E8F0"/>
+                  <rect x="0" y="0" width="320" height="24" fill="#EAF2FE"/>
+                  <rect x="0" y="12" width="320" height="12" fill="#EAF2FE"/>
+                  <circle cx="16" cy="12" r="3" fill="#CBD5E1"/><circle cx="27" cy="12" r="3" fill="#CBD5E1"/><circle cx="38" cy="12" r="3" fill="#CBD5E1"/>
+                  <rect x="58" y="6" width="180" height="12" rx="6" fill="#FFFFFF" stroke="#DCE7F8"/>
+                  <text x="66" y="15" font-family="Arial, sans-serif" font-size="7" fill="#94A3B8">antares-studio.ru</text>
+                  <rect x="16" y="36" width="288" height="64" rx="8" fill="#2563EB" fill-opacity="0.10"/>
+                  <text x="32" y="58" font-family="Arial, sans-serif" font-size="14" font-weight="700" fill="#1E3A8A">Скидка -30% на всё</text>
+                  <text x="32" y="72" font-family="Arial, sans-serif" font-size="8" fill="#64748B">Только до конца недели</text>
+                  <rect x="32" y="80" width="76" height="15" rx="7.5" fill="#2563EB"/>
+                  <text x="44" y="91" font-family="Arial, sans-serif" font-size="8" font-weight="600" fill="#FFFFFF">Заказать</text>
+                  <circle cx="270" cy="52" r="14" fill="#FFFFFF" stroke="#2563EB" stroke-opacity="0.4"/>
+                  <path d="M264 52.5l4 4 7-8.5" stroke="#2563EB" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="16" y="112" width="88" height="46" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <rect x="116" y="112" width="88" height="46" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <rect x="216" y="112" width="88" height="46" rx="6" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <circle cx="30" cy="126" r="6" fill="#2563EB" fill-opacity="0.15"/><path d="M27 126l2 2 4-4" stroke="#2563EB" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="24" y="146" font-family="Arial, sans-serif" font-size="7.5" font-weight="600" fill="#334155">Гарантия</text>
+                  <text x="24" y="155" font-family="Arial, sans-serif" font-size="6.5" fill="#94A3B8">12 месяцев</text>
+                  <circle cx="130" cy="126" r="6" fill="#2563EB" fill-opacity="0.15"/><path d="M127 126l2 2 4-4" stroke="#2563EB" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="124" y="146" font-family="Arial, sans-serif" font-size="7.5" font-weight="600" fill="#334155">Доставка</text>
+                  <text x="124" y="155" font-family="Arial, sans-serif" font-size="6.5" fill="#94A3B8">По всей РФ</text>
+                  <circle cx="230" cy="126" r="6" fill="#2563EB" fill-opacity="0.15"/><path d="M227 126l2 2 4-4" stroke="#2563EB" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="224" y="146" font-family="Arial, sans-serif" font-size="7.5" font-weight="600" fill="#334155">Отзывы</text>
+                  <text x="224" y="155" font-family="Arial, sans-serif" font-size="6.5" fill="#94A3B8">4.9 из 5</text>
+                  <rect x="16" y="164" width="288" height="6" rx="3" fill="#2563EB" fill-opacity="0.08"/>
+                </svg></div>
                 <p class="service-pill__panel-desc">Одностраничный продающий сайт под конкретный продукт, услугу или акцию. Максимально заточен на одно целевое действие: заявка, звонок, покупка.</p>
                 <ul class="service-pill__panel-features">
                   <li>Чёткая структура с одним целевым действием</li>
@@ -4222,6 +2523,31 @@
                 <svg class="service-pill__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="service-pill__panel"><div class="service-pill__panel-inner"><div class="service-pill__panel-content">
+                <div class="service-pill__preview"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                  <rect width="320" height="180" fill="#F8FAFC" stroke="#E2E8F0"/>
+                  <rect x="0" y="0" width="320" height="24" fill="#F3E8FF"/>
+                  <rect x="0" y="12" width="320" height="12" fill="#F3E8FF"/>
+                  <circle cx="16" cy="12" r="3" fill="#CBD5E1"/><circle cx="27" cy="12" r="3" fill="#CBD5E1"/><circle cx="38" cy="12" r="3" fill="#CBD5E1"/>
+                  <rect x="58" y="6" width="180" height="12" rx="6" fill="#FFFFFF" stroke="#E9D5FF"/>
+                  <rect x="16" y="40" width="40" height="8" rx="4" fill="#7C3AED"/>
+                  <text x="184" y="47" font-family="Arial, sans-serif" font-size="7.5" fill="#7C3AED">Обо мне</text>
+                  <text x="224" y="47" font-family="Arial, sans-serif" font-size="7.5" fill="#94A3B8">Услуги</text>
+                  <text x="262" y="47" font-family="Arial, sans-serif" font-size="7.5" fill="#94A3B8">Контакты</text>
+                  <circle cx="62" cy="104" r="32" fill="#F3E8FF"/>
+                  <circle cx="62" cy="94" r="11" fill="#7C3AED" fill-opacity="0.6"/>
+                  <path d="M38 122c0-14 10.7-22 24-22s24 8 24 22" fill="#7C3AED" fill-opacity="0.6"/>
+                  <circle cx="82" cy="118" r="8" fill="#FFFFFF" stroke="#7C3AED"/>
+                  <path d="M78.5 118l2.5 2.5 5-5.5" stroke="#7C3AED" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="112" y="77" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#1E1B2E">Анна Кузнецова</text>
+                  <text x="112" y="91" font-family="Arial, sans-serif" font-size="8" fill="#7C3AED">Визажист · Москва</text>
+                  <text x="112" y="107" font-family="Arial, sans-serif" font-size="7.5" fill="#64748B">Макияж на свадьбы, фотосессии</text>
+                  <text x="112" y="119" font-family="Arial, sans-serif" font-size="7.5" fill="#64748B">и вечерние выходы</text>
+                  <rect x="112" y="136" width="92" height="16" rx="8" fill="#7C3AED"/>
+                  <text x="124" y="147" font-family="Arial, sans-serif" font-size="8" font-weight="600" fill="#FFFFFF">Записаться</text>
+                  <circle cx="216" cy="144" r="9" fill="#FFFFFF" stroke="#E9D5FF"/>
+                  <circle cx="240" cy="144" r="9" fill="#FFFFFF" stroke="#E9D5FF"/>
+                  <circle cx="264" cy="144" r="9" fill="#FFFFFF" stroke="#E9D5FF"/>
+                </svg></div>
                 <p class="service-pill__panel-desc">Небольшой представительский сайт (3–7 страниц): кто вы, что предлагаете, портфолио, контакты. Подходит специалистам, мастерам и ИП.</p>
                 <ul class="service-pill__panel-features">
                   <li>Страницы: Главная, Услуги, Обасо мне, Контакты</li>
@@ -4238,6 +2564,41 @@
                 <svg class="service-pill__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="service-pill__panel"><div class="service-pill__panel-inner"><div class="service-pill__panel-content">
+                <div class="service-pill__preview"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                  <rect width="320" height="180" fill="#F8FAFC" stroke="#E2E8F0"/>
+                  <rect x="0" y="0" width="320" height="24" fill="#E0E7FF"/>
+                  <rect x="0" y="12" width="320" height="12" fill="#E0E7FF"/>
+                  <circle cx="16" cy="12" r="3" fill="#CBD5E1"/><circle cx="27" cy="12" r="3" fill="#CBD5E1"/><circle cx="38" cy="12" r="3" fill="#CBD5E1"/>
+                  <rect x="58" y="6" width="180" height="12" rx="6" fill="#FFFFFF" stroke="#C7D2FE"/>
+                  <rect x="16" y="36" width="14" height="14" rx="4" fill="#4F46E5"/>
+                  <text x="34" y="47" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#4F46E5">ACME</text>
+                  <text x="176" y="46" font-family="Arial, sans-serif" font-size="7.5" font-weight="600" fill="#4F46E5">Услуги</text>
+                  <rect x="176" y="48" width="24" height="2" fill="#4F46E5"/>
+                  <text x="206" y="46" font-family="Arial, sans-serif" font-size="7.5" fill="#94A3B8">Команда</text>
+                  <text x="238" y="46" font-family="Arial, sans-serif" font-size="7.5" fill="#94A3B8">Отзывы</text>
+                  <text x="268" y="46" font-family="Arial, sans-serif" font-size="7.5" fill="#94A3B8">Контакты</text>
+                  <rect x="16" y="60" width="88" height="98" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <rect x="116" y="60" width="88" height="98" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <rect x="216" y="60" width="88" height="98" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <circle cx="60" cy="86" r="16" fill="#E0E7FF"/>
+                  <circle cx="160" cy="86" r="16" fill="#E0E7FF"/>
+                  <circle cx="260" cy="86" r="16" fill="#E0E7FF"/>
+                  <path d="M53 90c0-6.5 5-10 7-10s7 3.5 7 10" fill="#4F46E5" fill-opacity="0.5"/>
+                  <path d="M153 90c0-6.5 5-10 7-10s7 3.5 7 10" fill="#4F46E5" fill-opacity="0.5"/>
+                  <path d="M253 90c0-6.5 5-10 7-10s7 3.5 7 10" fill="#4F46E5" fill-opacity="0.5"/>
+                  <text x="26" y="119" font-family="Arial, sans-serif" font-size="8" font-weight="700" fill="#1E1B4B">Услуги</text>
+                  <text x="126" y="119" font-family="Arial, sans-serif" font-size="8" font-weight="700" fill="#1E1B4B">Команда</text>
+                  <text x="226" y="119" font-family="Arial, sans-serif" font-size="8" font-weight="700" fill="#1E1B4B">Отзывы</text>
+                  <text x="26" y="131" font-family="Arial, sans-serif" font-size="6.5" fill="#94A3B8">Сайты и боты</text>
+                  <text x="126" y="131" font-family="Arial, sans-serif" font-size="6.5" fill="#94A3B8">5 специалистов</text>
+                  <text x="226" y="131" font-family="Arial, sans-serif" font-size="6.5" fill="#94A3B8">50+ отзывов</text>
+                  <rect x="26" y="140" width="42" height="12" rx="6" fill="#4F46E5" fill-opacity="0.12"/>
+                  <rect x="126" y="140" width="42" height="12" rx="6" fill="#4F46E5" fill-opacity="0.12"/>
+                  <rect x="226" y="140" width="42" height="12" rx="6" fill="#4F46E5" fill-opacity="0.12"/>
+                  <text x="32" y="149" font-family="Arial, sans-serif" font-size="6.5" font-weight="600" fill="#4F46E5">Подробнее</text>
+                  <text x="132" y="149" font-family="Arial, sans-serif" font-size="6.5" font-weight="600" fill="#4F46E5">Подробнее</text>
+                  <text x="232" y="149" font-family="Arial, sans-serif" font-size="6.5" font-weight="600" fill="#4F46E5">Подробнее</text>
+                </svg></div>
                 <p class="service-pill__panel-desc">Полноценный сайт компании с многостраничной структурой: о компании, об услугах, команда, новости, контакты.</p>
                 <ul class="service-pill__panel-features">
                   <li>Разделы: услуги, команда, отзывы, новости</li>
@@ -4254,6 +2615,40 @@
                 <svg class="service-pill__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="service-pill__panel"><div class="service-pill__panel-inner"><div class="service-pill__panel-content">
+                <div class="service-pill__preview"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                  <rect width="320" height="180" fill="#F8FAFC" stroke="#E2E8F0"/>
+                  <rect x="0" y="0" width="320" height="24" fill="#FFEDD5"/>
+                  <rect x="0" y="12" width="320" height="12" fill="#FFEDD5"/>
+                  <circle cx="16" cy="12" r="3" fill="#CBD5E1"/><circle cx="27" cy="12" r="3" fill="#CBD5E1"/><circle cx="38" cy="12" r="3" fill="#CBD5E1"/>
+                  <rect x="58" y="6" width="180" height="12" rx="6" fill="#FFFFFF" stroke="#FED7AA"/>
+                  <rect x="16" y="34" width="46" height="14" rx="7" fill="#F97316" fill-opacity="0.18"/>
+                  <text x="27" y="44" font-family="Arial, sans-serif" font-size="7" font-weight="600" fill="#C2410C">Все</text>
+                  <rect x="66" y="34" width="46" height="14" rx="7" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <text x="80" y="44" font-family="Arial, sans-serif" font-size="7" fill="#94A3B8">Топ</text>
+                  <rect x="116" y="34" width="46" height="14" rx="7" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <text x="123" y="44" font-family="Arial, sans-serif" font-size="7" fill="#94A3B8">Новое</text>
+                  <circle cx="292" cy="41" r="9" fill="#F97316" fill-opacity="0.14"/>
+                  <path d="M288 38h8l-1.5 6h-5z" fill="none" stroke="#F97316" stroke-width="1.3"/>
+                  <rect x="16" y="56" width="138" height="60" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <rect x="166" y="56" width="138" height="60" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <rect x="16" y="122" width="138" height="48" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <rect x="166" y="122" width="138" height="48" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <rect x="24" y="64" width="122" height="30" rx="6" fill="#FFEDD5"/>
+                  <rect x="174" y="64" width="122" height="30" rx="6" fill="#FFEDD5"/>
+                  <rect x="24" y="130" width="58" height="24" rx="6" fill="#FFEDD5"/>
+                  <rect x="174" y="130" width="58" height="24" rx="6" fill="#FFEDD5"/>
+                  <rect x="24" y="64" width="30" height="12" rx="6" fill="#F97316"/>
+                  <text x="29" y="73" font-family="Arial, sans-serif" font-size="6.5" font-weight="700" fill="#FFFFFF">-20%</text>
+                  <text x="24" y="107" font-family="Arial, sans-serif" font-size="8" font-weight="600" fill="#1E293B">Кроссовки Nike</text>
+                  <text x="116" y="108" font-family="Arial, sans-serif" font-size="8" font-weight="700" fill="#F97316">3 990 ₽</text>
+                  <text x="174" y="107" font-family="Arial, sans-serif" font-size="8" font-weight="600" fill="#1E293B">Куртка зимняя</text>
+                  <text x="266" y="108" font-family="Arial, sans-serif" font-size="8" font-weight="700" fill="#F97316">7 500 ₽</text>
+                  <text x="24" y="152" font-family="Arial, sans-serif" font-size="7" font-weight="600" fill="#1E293B">Сумка кожаная</text>
+                  <text x="90" y="152" font-family="Arial, sans-serif" font-size="7.5" font-weight="700" fill="#F97316">2 200 ₽</text>
+                  <text x="174" y="152" font-family="Arial, sans-serif" font-size="7" font-weight="600" fill="#1E293B">Часы Casio</text>
+                  <text x="240" y="152" font-family="Arial, sans-serif" font-size="7.5" font-weight="700" fill="#F97316">4 100 ₽</text>
+                  <circle cx="26" cy="162" r="2" fill="#F97316"/><circle cx="32" cy="162" r="2" fill="#F97316"/><circle cx="38" cy="162" r="2" fill="#F97316"/><circle cx="44" cy="162" r="2" fill="#E2E8F0"/><circle cx="50" cy="162" r="2" fill="#E2E8F0"/>
+                </svg></div>
                 <p class="service-pill__panel-desc">Сайт с каталогом товаров, карточками, корзиной и оформлением заказа. Подходит для мастерских, малого бизнеса и салонов.</p>
                 <ul class="service-pill__panel-features">
                   <li>Каталог с фильтрами и поиском</li>
@@ -4270,6 +2665,33 @@
                 <svg class="service-pill__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="service-pill__panel"><div class="service-pill__panel-inner"><div class="service-pill__panel-content">
+                <div class="service-pill__preview"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                  <rect width="320" height="180" fill="#F8FAFC" stroke="#E2E8F0"/>
+                  <rect x="0" y="0" width="320" height="24" fill="#FCE7F3"/>
+                  <rect x="0" y="12" width="320" height="12" fill="#FCE7F3"/>
+                  <circle cx="16" cy="12" r="3" fill="#CBD5E1"/><circle cx="27" cy="12" r="3" fill="#CBD5E1"/><circle cx="38" cy="12" r="3" fill="#CBD5E1"/>
+                  <rect x="58" y="6" width="180" height="12" rx="6" fill="#FFFFFF" stroke="#FBCFE8"/>
+                  <rect x="16" y="34" width="40" height="12" rx="6" fill="#DB2777"/>
+                  <text x="26" y="43" font-family="Arial, sans-serif" font-size="7" font-weight="600" fill="#FFFFFF">Фото</text>
+                  <rect x="60" y="34" width="40" height="12" rx="6" fill="#FFFFFF" stroke="#FBCFE8"/>
+                  <text x="68" y="43" font-family="Arial, sans-serif" font-size="7" fill="#9D174D">Дизайн</text>
+                  <rect x="104" y="34" width="40" height="12" rx="6" fill="#FFFFFF" stroke="#FBCFE8"/>
+                  <text x="115" y="43" font-family="Arial, sans-serif" font-size="7" fill="#9D174D">Видео</text>
+                  <rect x="16" y="52" width="92" height="64" rx="6" fill="#DB2777" fill-opacity="0.18"/>
+                  <circle cx="62" cy="80" r="12" fill="#FFFFFF" fill-opacity="0.85"/>
+                  <path d="M58 75l8 5-8 5z" fill="#DB2777"/>
+                  <text x="22" y="110" font-family="Arial, sans-serif" font-size="7" font-weight="600" fill="#831843">Свадьба Ани</text>
+                  <rect x="16" y="122" width="92" height="46" rx="6" fill="#FCE7F3"/>
+                  <text x="22" y="149" font-family="Arial, sans-serif" font-size="7" font-weight="600" fill="#831843">Портрет</text>
+                  <rect x="114" y="52" width="92" height="116" rx="6" fill="#FCE7F3"/>
+                  <text x="122" y="150" font-family="Arial, sans-serif" font-size="8" font-weight="700" fill="#DB2777">Интерьер</text>
+                  <text x="122" y="161" font-family="Arial, sans-serif" font-size="6.5" fill="#94A3B8">Loft-студия</text>
+                  <rect x="212" y="52" width="92" height="46" rx="6" fill="#FCE7F3"/>
+                  <text x="220" y="78" font-family="Arial, sans-serif" font-size="7" font-weight="600" fill="#831843">Событие</text>
+                  <rect x="212" y="104" width="92" height="64" rx="6" fill="#DB2777" fill-opacity="0.10"/>
+                  <circle cx="284" cy="60" r="8" fill="#FFFFFF" stroke="#DB2777" stroke-opacity="0.5"/>
+                  <path d="M281 60l2 2 4-4.5" stroke="#DB2777" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+                </svg></div>
                 <p class="service-pill__panel-desc">Галерея работ с фильтрами по категориям. Подходит для фотографов, дизайнеров, мастеров, визажистов и творческих команд.</p>
                 <ul class="service-pill__panel-features">
                   <li>Галерея с фильтрами и лайтбоксом</li>
@@ -4286,6 +2708,33 @@
                 <svg class="service-pill__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="service-pill__panel"><div class="service-pill__panel-inner"><div class="service-pill__panel-content">
+                <div class="service-pill__preview"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                  <rect width="320" height="180" fill="#F8FAFC" stroke="#E2E8F0"/>
+                  <rect x="0" y="0" width="320" height="24" fill="#CCFBF1"/>
+                  <rect x="0" y="12" width="320" height="12" fill="#CCFBF1"/>
+                  <circle cx="16" cy="12" r="3" fill="#CBD5E1"/><circle cx="27" cy="12" r="3" fill="#CBD5E1"/><circle cx="38" cy="12" r="3" fill="#CBD5E1"/>
+                  <rect x="58" y="6" width="180" height="12" rx="6" fill="#FFFFFF" stroke="#99F6E4"/>
+                  <rect x="16" y="36" width="150" height="132" rx="8" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <text x="28" y="56" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#134E4A">Онлайн-запись</text>
+                  <rect x="28" y="68" width="126" height="16" rx="8" fill="#F0FDFA" stroke="#99F6E4"/>
+                  <rect x="34" y="73" width="10" height="6" rx="1" fill="#0D9488"/>
+                  <text x="50" y="79" font-family="Arial, sans-serif" font-size="7" fill="#0D9488">Стрижка + укладка</text>
+                  <rect x="28" y="90" width="126" height="16" rx="8" fill="#F0FDFA" stroke="#99F6E4"/>
+                  <text x="34" y="101" font-family="Arial, sans-serif" font-size="7" fill="#94A3B8">Дата: 14 августа</text>
+                  <rect x="28" y="112" width="126" height="16" rx="8" fill="#F0FDFA" stroke="#99F6E4"/>
+                  <text x="34" y="123" font-family="Arial, sans-serif" font-size="7" fill="#94A3B8">Время: 15:30</text>
+                  <rect x="28" y="136" width="76" height="18" rx="9" fill="#0D9488"/>
+                  <text x="38" y="148" font-family="Arial, sans-serif" font-size="8" font-weight="600" fill="#FFFFFF">Записаться</text>
+                  <rect x="178" y="36" width="126" height="132" rx="8" fill="#F0FDFA" stroke="#99F6E4"/>
+                  <circle cx="212" cy="72" r="18" fill="none" stroke="#99F6E4" stroke-width="6"/>
+                  <path d="M212 54a18 18 0 0 1 0 36" fill="none" stroke="#0D9488" stroke-width="6" stroke-linecap="round"/>
+                  <text x="238" y="76" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#0D9488">3 200 ₽</text>
+                  <text x="196" y="104" font-family="Arial, sans-serif" font-size="7" fill="#64748B">Стрижка — 1 800 ₽</text>
+                  <text x="196" y="118" font-family="Arial, sans-serif" font-size="7" fill="#64748B">Укладка — 1 400 ₽</text>
+                  <text x="196" y="132" font-family="Arial, sans-serif" font-size="6.5" fill="#94A3B8">Мастер: Ольга Петрова</text>
+                  <rect x="196" y="146" width="90" height="14" rx="7" fill="#0D9488"/>
+                  <text x="205" y="156" font-family="Arial, sans-serif" font-size="7.5" font-weight="600" fill="#FFFFFF">Оплатить</text>
+                </svg></div>
                 <p class="service-pill__panel-desc">Сайт с функциональными инструментами для бизнеса: онлайн-запись, калькулятор цен, конструктор заказа.</p>
                 <ul class="service-pill__panel-features">
                   <li>Онлайн-запись или калькулятор стоимости</li>
@@ -4301,7 +2750,7 @@
 
         <!-- Telegram-боты -->
         <div class="services-pills-group reveal d2">
-          <p class="services-pills-label">🤖 Telegram-боты</p>
+          <p class="services-pills-label">Telegram-боты</p>
           <ul class="services-pills">
 
             <li class="service-pill">
@@ -4310,6 +2759,40 @@
                 <svg class="service-pill__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="service-pill__panel"><div class="service-pill__panel-inner"><div class="service-pill__panel-content">
+                <div class="service-pill__preview"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                  <rect width="320" height="180" fill="#F1F5F9" stroke="#E2E8F0"/>
+                  <rect x="0" y="0" width="320" height="34" fill="#2563EB"/>
+                  <rect x="0" y="20" width="320" height="14" fill="#2563EB"/>
+                  <circle cx="22" cy="17" r="10" fill="#FFFFFF" fill-opacity="0.95"/>
+                  <rect x="16" y="12" width="12" height="10" rx="1.5" fill="#2563EB" fill-opacity="0.55"/>
+                  <rect x="16" y="12" width="12" height="3" fill="#2563EB"/>
+                  <text x="42" y="18" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">ЗаписьБот</text>
+                  <text x="42" y="27" font-family="Arial, sans-serif" font-size="6.5" fill="#FFFFFF" fill-opacity="0.75">онлайн</text>
+                  <circle cx="298" cy="13" r="1.6" fill="#FFFFFF" fill-opacity="0.8"/><circle cx="298" cy="17" r="1.6" fill="#FFFFFF" fill-opacity="0.8"/><circle cx="298" cy="21" r="1.6" fill="#FFFFFF" fill-opacity="0.8"/>
+                  <rect x="12" y="44" width="200" height="34" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <text x="24" y="59" font-family="Arial, sans-serif" font-size="8" fill="#1E293B">Выберите удобную дату:</text>
+                  <text x="24" y="71" font-family="Arial, sans-serif" font-size="6.5" fill="#94A3B8">Свободно 6 окон на неделе</text>
+                  <rect x="12" y="88" width="48" height="20" rx="10" fill="#2563EB"/>
+                  <text x="21" y="101" font-family="Arial, sans-serif" font-size="7.5" font-weight="600" fill="#FFFFFF">Пн 12</text>
+                  <rect x="66" y="88" width="48" height="20" rx="10" fill="#FFFFFF" stroke="#CBD5E1"/>
+                  <text x="76" y="101" font-family="Arial, sans-serif" font-size="7.5" fill="#334155">Вт 13</text>
+                  <rect x="120" y="88" width="48" height="20" rx="10" fill="#FFFFFF" stroke="#CBD5E1"/>
+                  <text x="130" y="101" font-family="Arial, sans-serif" font-size="7.5" fill="#334155">Ср 14</text>
+                  <rect x="174" y="88" width="48" height="20" rx="10" fill="#FFFFFF" stroke="#CBD5E1"/>
+                  <text x="184" y="101" font-family="Arial, sans-serif" font-size="7.5" fill="#334155">Чт 15</text>
+                  <path d="M22 98l3 3 6-6" stroke="#FFFFFF" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="12" y="116" width="60" height="20" rx="10" fill="#FFFFFF" stroke="#CBD5E1"/>
+                  <text x="22" y="129" font-family="Arial, sans-serif" font-size="7.5" fill="#334155">10:00</text>
+                  <rect x="80" y="116" width="60" height="20" rx="10" fill="#2563EB"/>
+                  <text x="90" y="129" font-family="Arial, sans-serif" font-size="7.5" font-weight="600" fill="#FFFFFF">12:30</text>
+                  <path d="M87 126l3 3 6-6" stroke="#FFFFFF" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="148" y="116" width="60" height="20" rx="10" fill="#FFFFFF" stroke="#CBD5E1"/>
+                  <text x="158" y="129" font-family="Arial, sans-serif" font-size="7.5" fill="#334155">15:00</text>
+                  <rect x="12" y="148" width="230" height="24" rx="10" fill="#EAF2FE"/>
+                  <circle cx="26" cy="160" r="7" fill="#2563EB"/>
+                  <path d="M22.5 160l2.5 2.5 5-5.5" stroke="#FFFFFF" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="40" y="164" font-family="Arial, sans-serif" font-size="7.5" font-weight="600" fill="#1E3A8A">Вы записаны на Пн, 12:30</text>
+                </svg></div>
                 <p class="service-pill__panel-desc">Принимает запись по дате и времени, отправляет подтверждение клиенту и уведомляет вас. Подходит салонам, клиникам, фитнесу.</p>
                 <ul class="service-pill__panel-features">
                   <li>Выбор даты и времени через кнопки</li>
@@ -4326,6 +2809,31 @@
                 <svg class="service-pill__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="service-pill__panel"><div class="service-pill__panel-inner"><div class="service-pill__panel-content">
+                <div class="service-pill__preview"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                  <rect width="320" height="180" fill="#F1F5F9" stroke="#E2E8F0"/>
+                  <rect x="0" y="0" width="320" height="34" fill="#EA580C"/>
+                  <rect x="0" y="20" width="320" height="14" fill="#EA580C"/>
+                  <circle cx="22" cy="17" r="10" fill="#FFFFFF" fill-opacity="0.95"/>
+                  <path d="M17 14h2l1.5 7h6l1.5-5h-8" fill="none" stroke="#EA580C" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="20" cy="22.5" r="1" fill="#EA580C"/><circle cx="25.5" cy="22.5" r="1" fill="#EA580C"/>
+                  <text x="42" y="18" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">МагазинБот</text>
+                  <text x="42" y="27" font-family="Arial, sans-serif" font-size="6.5" fill="#FFFFFF" fill-opacity="0.75">каталог товаров</text>
+                  <circle cx="298" cy="13" r="1.6" fill="#FFFFFF" fill-opacity="0.8"/><circle cx="298" cy="17" r="1.6" fill="#FFFFFF" fill-opacity="0.8"/><circle cx="298" cy="21" r="1.6" fill="#FFFFFF" fill-opacity="0.8"/>
+                  <rect x="12" y="46" width="200" height="94" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <rect x="24" y="56" width="80" height="60" rx="6" fill="#FFEDD5"/>
+                  <circle cx="94" cy="66" r="9" fill="#EA580C"/>
+                  <rect x="90" y="65" width="8" height="2" fill="#FFFFFF"/><rect x="93" y="62" width="2" height="8" fill="#FFFFFF"/>
+                  <text x="112" y="65" font-family="Arial, sans-serif" font-size="8.5" font-weight="700" fill="#1E293B">Кроссовки</text>
+                  <text x="112" y="76" font-family="Arial, sans-serif" font-size="8.5" font-weight="700" fill="#1E293B">Nike Air</text>
+                  <text x="112" y="90" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#EA580C">4 990 ₽</text>
+                  <circle cx="114" cy="98" r="2" fill="#EA580C"/><circle cx="120" cy="98" r="2" fill="#EA580C"/><circle cx="126" cy="98" r="2" fill="#EA580C"/><circle cx="132" cy="98" r="2" fill="#EA580C"/><circle cx="138" cy="98" r="2" fill="#FED7AA"/>
+                  <rect x="112" y="104" width="80" height="18" rx="9" fill="#EA580C"/>
+                  <text x="128" y="116" font-family="Arial, sans-serif" font-size="8" font-weight="600" fill="#FFFFFF">Купить</text>
+                  <rect x="12" y="148" width="230" height="26" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <circle cx="26" cy="161" r="7" fill="#FFEDD5"/>
+                  <path d="M23 158h1l1 5h4l1-3.5h-5.5" fill="none" stroke="#EA580C" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="40" y="165" font-family="Arial, sans-serif" font-size="7.5" font-weight="600" fill="#1E293B">Итого к оплате: 4 990 ₽</text>
+                </svg></div>
                 <p class="service-pill__panel-desc">Каталог, корзина, оформление заказа и приём оплаты прямо в Telegram. Полноценный магазин без сайта.</p>
                 <ul class="service-pill__panel-features">
                   <li>Каталог с фото и описаниями</li>
@@ -4342,6 +2850,32 @@
                 <svg class="service-pill__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="service-pill__panel"><div class="service-pill__panel-inner"><div class="service-pill__panel-content">
+                <div class="service-pill__preview"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                  <rect width="320" height="180" fill="#F1F5F9" stroke="#E2E8F0"/>
+                  <rect x="0" y="0" width="320" height="34" fill="#16A34A"/>
+                  <rect x="0" y="20" width="320" height="14" fill="#16A34A"/>
+                  <circle cx="22" cy="17" r="10" fill="#FFFFFF" fill-opacity="0.95"/>
+                  <path d="M19 13.5a3.5 3 0 1 1 4.3 2.9c-.8.3-1.3.9-1.3 1.7v.4" fill="none" stroke="#16A34A" stroke-width="1.3" stroke-linecap="round"/>
+                  <circle cx="22" cy="21.5" r="1" fill="#16A34A"/>
+                  <circle cx="30" cy="24" r="3" fill="#4ADE80" stroke="#16A34A" stroke-width="1"/>
+                  <text x="42" y="18" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">Поддержка</text>
+                  <text x="42" y="27" font-family="Arial, sans-serif" font-size="6.5" fill="#FFFFFF" fill-opacity="0.75">отвечает 24/7</text>
+                  <circle cx="298" cy="13" r="1.6" fill="#FFFFFF" fill-opacity="0.8"/><circle cx="298" cy="17" r="1.6" fill="#FFFFFF" fill-opacity="0.8"/><circle cx="298" cy="21" r="1.6" fill="#FFFFFF" fill-opacity="0.8"/>
+                  <rect x="12" y="44" width="200" height="30" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <text x="24" y="59" font-family="Arial, sans-serif" font-size="8" fill="#1E293B">Здравствуйте! Чем помочь?</text>
+                  <text x="24" y="70" font-family="Arial, sans-serif" font-size="6.5" fill="#94A3B8">Выберите вопрос ниже</text>
+                  <rect x="12" y="80" width="150" height="18" rx="9" fill="#FFFFFF" stroke="#16A34A" stroke-opacity="0.5"/>
+                  <text x="20" y="92" font-family="Arial, sans-serif" font-size="7.5" fill="#166534">Доставка и оплата</text>
+                  <rect x="12" y="102" width="150" height="18" rx="9" fill="#FFFFFF" stroke="#16A34A" stroke-opacity="0.5"/>
+                  <text x="20" y="114" font-family="Arial, sans-serif" font-size="7.5" fill="#166534">Как вернуть товар?</text>
+                  <rect x="168" y="126" width="54" height="20" rx="10" fill="#16A34A" fill-opacity="0.15"/>
+                  <text x="176" y="139" font-family="Arial, sans-serif" font-size="7" font-weight="600" fill="#166534">Возврат</text>
+                  <rect x="12" y="152" width="220" height="24" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <text x="24" y="163" font-family="Arial, sans-serif" font-size="7" fill="#334155">Возврат в течение 14 дней</text>
+                  <text x="24" y="173" font-family="Arial, sans-serif" font-size="6.5" fill="#94A3B8">после получения заказа</text>
+                  <circle cx="270" cy="90" r="12" fill="#DCFCE7" stroke="#16A34A" stroke-opacity="0.4"/>
+                  <path d="M264 90l4 4 8-9" stroke="#16A34A" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg></div>
                 <p class="service-pill__panel-desc">Автоотвечает на частые вопросы 24/7, снижает нагрузку на оператора и переводит на нужный раздел. Подходит бизнесам с большим потоком обращений.</p>
                 <ul class="service-pill__panel-features">
                   <li>База ответов с простым редактированием</li>
@@ -4358,6 +2892,31 @@
                 <svg class="service-pill__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="service-pill__panel"><div class="service-pill__panel-inner"><div class="service-pill__panel-content">
+                <div class="service-pill__preview"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                  <rect width="320" height="180" fill="#F1F5F9" stroke="#E2E8F0"/>
+                  <rect x="0" y="0" width="320" height="34" fill="#E11D48"/>
+                  <rect x="0" y="20" width="320" height="14" fill="#E11D48"/>
+                  <circle cx="22" cy="17" r="10" fill="#FFFFFF" fill-opacity="0.95"/>
+                  <path d="M18 21v-5a4 4 0 1 1 8 0v5l1.5 2h-11z" fill="none" stroke="#E11D48" stroke-width="1.3" stroke-linejoin="round"/>
+                  <circle cx="22" cy="24.5" r="1.3" fill="#E11D48"/>
+                  <text x="42" y="18" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">Рассылка</text>
+                  <text x="42" y="27" font-family="Arial, sans-serif" font-size="6.5" fill="#FFFFFF" fill-opacity="0.75">1 240 подписчиков</text>
+                  <circle cx="298" cy="13" r="1.6" fill="#FFFFFF" fill-opacity="0.8"/><circle cx="298" cy="17" r="1.6" fill="#FFFFFF" fill-opacity="0.8"/><circle cx="298" cy="21" r="1.6" fill="#FFFFFF" fill-opacity="0.8"/>
+                  <rect x="12" y="44" width="210" height="66" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <rect x="22" y="52" width="190" height="26" rx="6" fill="#E11D48" fill-opacity="0.12"/>
+                  <path d="M32 65l4-5 4 3 6-7 4 4" stroke="#E11D48" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="70" y="68" font-family="Arial, sans-serif" font-size="8" font-weight="700" fill="#9F1239">Скидка 30% на всё!</text>
+                  <text x="22" y="90" font-family="Arial, sans-serif" font-size="8" fill="#1E293B">Успейте забрать до конца недели</text>
+                  <text x="22" y="101" font-family="Arial, sans-serif" font-size="6.5" fill="#94A3B8">Промокод: SALE30</text>
+                  <rect x="230" y="48" width="70" height="18" rx="9" fill="#E11D48" fill-opacity="0.12"/>
+                  <text x="238" y="60" font-family="Arial, sans-serif" font-size="6.5" font-weight="600" fill="#9F1239">Завтра 10:00</text>
+                  <rect x="12" y="118" width="210" height="30" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <circle cx="27" cy="133" r="7" fill="#FFE4E6" stroke="#E11D48" stroke-opacity="0.4"/>
+                  <path d="M23.5 133h1l1 4h3.5l1-3h-4.5" fill="none" stroke="#E11D48" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="42" y="137" font-family="Arial, sans-serif" font-size="7" fill="#334155">Открываемость 68% · клики 24%</text>
+                  <circle cx="200" cy="163" r="8" fill="#FFE4E6"/><circle cx="214" cy="163" r="8" fill="#FED7AA" fill-opacity="0.5"/><circle cx="228" cy="163" r="8" fill="#FFE4E6"/>
+                  <text x="236" y="166" font-family="Arial, sans-serif" font-size="7" fill="#334155">+1 237</text>
+                </svg></div>
                 <p class="service-pill__panel-desc">Отправляет акции, новости и напоминания по вашей базе подписчиков. Подходит для магазинов, клубов и любого бизнеса с постоянной аудиторией.</p>
                 <ul class="service-pill__panel-features">
                   <li>Рассылка по всем подписчикам или сегменту</li>
@@ -4374,6 +2933,33 @@
                 <svg class="service-pill__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="service-pill__panel"><div class="service-pill__panel-inner"><div class="service-pill__panel-content">
+                <div class="service-pill__preview"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                  <rect width="320" height="180" fill="#F1F5F9" stroke="#E2E8F0"/>
+                  <rect x="0" y="0" width="320" height="34" fill="#7C3AED"/>
+                  <rect x="0" y="20" width="320" height="14" fill="#7C3AED"/>
+                  <circle cx="22" cy="17" r="10" fill="#FFFFFF" fill-opacity="0.95"/>
+                  <path d="M18 22l1-4 7-7 3 3-7 7z" fill="none" stroke="#7C3AED" stroke-width="1.2" stroke-linejoin="round"/>
+                  <text x="42" y="18" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">Анкета</text>
+                  <text x="42" y="27" font-family="Arial, sans-serif" font-size="6.5" fill="#FFFFFF" fill-opacity="0.75">регистрация</text>
+                  <circle cx="298" cy="13" r="1.6" fill="#FFFFFF" fill-opacity="0.8"/><circle cx="298" cy="17" r="1.6" fill="#FFFFFF" fill-opacity="0.8"/><circle cx="298" cy="21" r="1.6" fill="#FFFFFF" fill-opacity="0.8"/>
+                  <rect x="12" y="42" width="200" height="4" rx="2" fill="#E9D5FF"/>
+                  <rect x="12" y="42" width="120" height="4" rx="2" fill="#7C3AED"/>
+                  <text x="220" y="46" font-family="Arial, sans-serif" font-size="6.5" fill="#7C3AED">Шаг 3 из 5</text>
+                  <rect x="12" y="52" width="200" height="26" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <text x="24" y="66" font-family="Arial, sans-serif" font-size="8" fill="#1E293B">Укажите ваш пол</text>
+                  <text x="24" y="76" font-family="Arial, sans-serif" font-size="6.5" fill="#94A3B8">Это нужно для подбора услуг</text>
+                  <rect x="12" y="86" width="190" height="18" rx="9" fill="#FFFFFF" stroke="#CBD5E1"/>
+                  <circle cx="24" cy="95" r="5" fill="#FFFFFF" stroke="#7C3AED"/>
+                  <text x="36" y="98" font-family="Arial, sans-serif" font-size="7.5" fill="#334155">Мужской</text>
+                  <rect x="12" y="110" width="190" height="18" rx="9" fill="#7C3AED" fill-opacity="0.10"/>
+                  <circle cx="24" cy="119" r="5" fill="#7C3AED"/>
+                  <path d="M22 119l1.3 1.3 2.7-3" stroke="#FFFFFF" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                  <text x="36" y="122" font-family="Arial, sans-serif" font-size="7.5" font-weight="600" fill="#5B21B6">Женский</text>
+                  <rect x="12" y="134" width="190" height="18" rx="9" fill="#FFFFFF" stroke="#CBD5E1"/>
+                  <circle cx="24" cy="143" r="5" fill="#FFFFFF" stroke="#7C3AED"/>
+                  <text x="36" y="146" font-family="Arial, sans-serif" font-size="7.5" fill="#334155">Не указывать</text>
+                  <circle cx="146" cy="164" r="3" fill="#7C3AED"/><circle cx="158" cy="164" r="3" fill="#7C3AED"/><circle cx="170" cy="164" r="3" fill="#7C3AED"/><circle cx="182" cy="164" r="3" fill="#E9D5FF"/><circle cx="194" cy="164" r="3" fill="#E9D5FF"/>
+                </svg></div>
                 <p class="service-pill__panel-desc">Собирает заявки, регистрации, фидбэк от клиентов через удобные кнопки. Паррельно интегрируется с таблицами или вашей CRM.</p>
                 <ul class="service-pill__panel-features">
                   <li>Пошаговый сбор данных через кнопки</li>
@@ -4390,6 +2976,32 @@
                 <svg class="service-pill__chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="service-pill__panel"><div class="service-pill__panel-inner"><div class="service-pill__panel-content">
+                <div class="service-pill__preview"><svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                  <rect width="320" height="180" fill="#F1F5F9" stroke="#E2E8F0"/>
+                  <rect x="0" y="0" width="320" height="34" fill="#0891B2"/>
+                  <rect x="0" y="20" width="320" height="14" fill="#0891B2"/>
+                  <circle cx="22" cy="17" r="10" fill="#FFFFFF" fill-opacity="0.95"/>
+                  <rect x="17" y="12" width="4" height="4" fill="#2563EB"/><rect x="22" y="12" width="4" height="4" fill="#EA580C"/><rect x="17" y="17" width="4" height="4" fill="#16A34A"/><rect x="22" y="17" width="4" height="4" fill="#7C3AED"/>
+                  <text x="42" y="18" font-family="Arial, sans-serif" font-size="9" font-weight="700" fill="#FFFFFF">Бизнес-бот</text>
+                  <text x="42" y="27" font-family="Arial, sans-serif" font-size="6.5" fill="#FFFFFF" fill-opacity="0.75">12 функций в одном</text>
+                  <circle cx="298" cy="13" r="1.6" fill="#FFFFFF" fill-opacity="0.8"/><circle cx="298" cy="17" r="1.6" fill="#FFFFFF" fill-opacity="0.8"/><circle cx="298" cy="21" r="1.6" fill="#FFFFFF" fill-opacity="0.8"/>
+                  <rect x="12" y="42" width="200" height="22" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+                  <text x="24" y="57" font-family="Arial, sans-serif" font-size="8" fill="#1E293B">Выберите раздел меню:</text>
+                  <rect x="12" y="72" width="92" height="30" rx="8" fill="#FFFFFF" stroke="#2563EB" stroke-opacity="0.4"/>
+                  <rect x="112" y="72" width="92" height="30" rx="8" fill="#FFFFFF" stroke="#EA580C" stroke-opacity="0.4"/>
+                  <rect x="212" y="72" width="92" height="30" rx="8" fill="#FFFFFF" stroke="#16A34A" stroke-opacity="0.4"/>
+                  <rect x="12" y="106" width="92" height="30" rx="8" fill="#FFFFFF" stroke="#7C3AED" stroke-opacity="0.4"/>
+                  <rect x="112" y="106" width="92" height="30" rx="8" fill="#FFFFFF" stroke="#E11D48" stroke-opacity="0.4"/>
+                  <rect x="212" y="106" width="92" height="30" rx="8" fill="#FFFFFF" stroke="#0891B2" stroke-opacity="0.4"/>
+                  <circle cx="24" cy="82" r="5" fill="#2563EB" fill-opacity="0.7"/><text x="34" y="90" font-family="Arial, sans-serif" font-size="7" font-weight="600" fill="#1E293B">Запись</text>
+                  <circle cx="124" cy="82" r="5" fill="#EA580C" fill-opacity="0.7"/><text x="134" y="90" font-family="Arial, sans-serif" font-size="7" font-weight="600" fill="#1E293B">Каталог</text>
+                  <circle cx="224" cy="82" r="5" fill="#16A34A" fill-opacity="0.7"/><text x="234" y="90" font-family="Arial, sans-serif" font-size="7" font-weight="600" fill="#1E293B">Оплата</text>
+                  <circle cx="24" cy="116" r="5" fill="#7C3AED" fill-opacity="0.7"/><text x="34" y="124" font-family="Arial, sans-serif" font-size="7" font-weight="600" fill="#1E293B">Отзывы</text>
+                  <circle cx="124" cy="116" r="5" fill="#E11D48" fill-opacity="0.7"/><text x="134" y="124" font-family="Arial, sans-serif" font-size="7" font-weight="600" fill="#1E293B">Рассылка</text>
+                  <circle cx="224" cy="116" r="5" fill="#0891B2" fill-opacity="0.7"/><text x="234" y="124" font-family="Arial, sans-serif" font-size="7" font-weight="600" fill="#1E293B">Поддержка</text>
+                  <rect x="12" y="146" width="200" height="20" rx="10" fill="#0891B2" fill-opacity="0.1"/>
+                  <text x="24" y="159" font-family="Arial, sans-serif" font-size="7.5" font-weight="600" fill="#0E7490">Всё управление — в одном чате</text>
+                </svg></div>
                 <p class="service-pill__panel-desc">Комбинация записи, каталога, рассылок и заявок в одном боте. Под любой бизнес с индивидуальными требованиями.</p>
                 <ul class="service-pill__panel-features">
                   <li>Сценарии под ваш бизнес</li>
@@ -4410,19 +3022,63 @@
             <ol class="services-workflow-steps">
               <li>
                 <span class="services-workflow-steps__num">1</span>
-                <span class="services-workflow-steps__text">Все начинается с переписки — мы знакомимся с вами, изучаем ваш бизнес и намечаем содержание нашего продукта, согласовываемся по рабочим моментам.</span>
+                <div class="services-workflow-steps__body">
+                  <div class="services-workflow-steps__head">
+                    <span class="services-workflow-steps__title">Знакомство и бриф</span>
+                    <span class="services-workflow-steps__duration">1–2 дня</span>
+                  </div>
+                  <p class="services-workflow-steps__text">Всё начинается с переписки или созвона — знакомимся с вами, изучаем бизнес, целевую аудиторию и конкурентов. Обсуждаем цели сайта или бота, намечаем содержание продукта и функционал. Фиксируем задачи, сроки, бюджет и согласовываемся по всем рабочим моментам, прежде чем переходить к делу.</p>
+                </div>
               </li>
               <li>
                 <span class="services-workflow-steps__num">2</span>
-                <span class="services-workflow-steps__text">Создаём <strong>мудборд</strong> — образ сайта. Здесь мы собираем всё, что понадобится для разработки: от шрифтов и цветовой палитры до целевой аудитории и референсов.</span>
+                <div class="services-workflow-steps__body">
+                  <div class="services-workflow-steps__head">
+                    <span class="services-workflow-steps__title">Мудборд и концепция</span>
+                    <span class="services-workflow-steps__duration">2–3 дня</span>
+                  </div>
+                  <p class="services-workflow-steps__text">Создаём <strong>мудборд</strong> — визуальный образ будущего проекта. Собираем всё, что понадобится для разработки: шрифты, цветовую палитру, стилистику, референсы конкурентов и удачных примеров, портрет целевой аудитории. Так мы вместе с вами формируем единое видение результата ещё до старта работы.</p>
+                </div>
               </li>
               <li>
                 <span class="services-workflow-steps__num">3</span>
-                <span class="services-workflow-steps__text">После согласования с вами приступаем к созданию сайта, уделяя внимание юзабилити и конверсии, сочетая это с красивым дизайном.</span>
+                <div class="services-workflow-steps__body">
+                  <div class="services-workflow-steps__head">
+                    <span class="services-workflow-steps__title">Прототип и структура</span>
+                    <span class="services-workflow-steps__duration">2–4 дня</span>
+                  </div>
+                  <p class="services-workflow-steps__text">Прорабатываем структуру страниц и логику пользовательского пути — от первого экрана до заявки или заказа. Продумываем блоки, их порядок и подачу информации так, чтобы посетителю было понятно и удобно. Согласовываем прототип с вами, прежде чем приступать к финальному дизайну.</p>
+                </div>
               </li>
               <li>
                 <span class="services-workflow-steps__num">4</span>
-                <span class="services-workflow-steps__text"><strong>Доработка</strong> — тестируем всё и доводим до идеала.</span>
+                <div class="services-workflow-steps__body">
+                  <div class="services-workflow-steps__head">
+                    <span class="services-workflow-steps__title">Дизайн и разработка</span>
+                    <span class="services-workflow-steps__duration">5–10 дней</span>
+                  </div>
+                  <p class="services-workflow-steps__text">После согласования концепции приступаем к созданию сайта или бота: продумываем визуал, уделяя внимание юзабилити и конверсии, и сочетаем это с красивым современным дизайном. Затем переносим макет в код — адаптивная вёрстка под все устройства, анимации, интеграции с CRM, аналитикой и платёжными сервисами.</p>
+                </div>
+              </li>
+              <li>
+                <span class="services-workflow-steps__num">5</span>
+                <div class="services-workflow-steps__body">
+                  <div class="services-workflow-steps__head">
+                    <span class="services-workflow-steps__title">Тестирование и доработка</span>
+                    <span class="services-workflow-steps__duration">2–3 дня</span>
+                  </div>
+                  <p class="services-workflow-steps__text"><strong>Доработка</strong> — тестируем всё на разных устройствах и браузерах: скорость загрузки, формы, кнопки, сценарии взаимодействия. Собираем ваши комментарии и вносим правки, чтобы довести проект до идеала перед запуском.</p>
+                </div>
+              </li>
+              <li>
+                <span class="services-workflow-steps__num">6</span>
+                <div class="services-workflow-steps__body">
+                  <div class="services-workflow-steps__head">
+                    <span class="services-workflow-steps__title">Запуск и поддержка</span>
+                    <span class="services-workflow-steps__duration">после сдачи</span>
+                  </div>
+                  <p class="services-workflow-steps__text">Публикуем сайт или бота, подключаем домен, хостинг и аналитику, передаём вам все доступы и исходники. Не пропадаем после сдачи проекта — остаёмся на связи для консультаций, обновлений и доработок в будущем.</p>
+                </div>
               </li>
             </ol>
           </div>
@@ -4463,15 +3119,8 @@
 
   <!-- REVIEWS -->
   <section class="section section-bg2" id="reviews">
-    <div class="section-deco" aria-hidden="true">
-      <div class="deco-cross deco-float-2 deco-pace-faster" style="top:30%;right:15%;"></div>
-      <div class="deco-diamond" style="bottom:25%;left:18%;"></div>
-      <div class="deco-dot-cluster" style="bottom:20%;right:12%;">
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
-      </div>
-
-      <div class="deco-line" style="width:100px;top:55%;left:5%;transform:rotate(-12deg);"></div>
+    <div class="zone-shapes" aria-hidden="true">
+      <span class="zone-shape zone-shape--white poly-penta shape-flip-xy reviews-shape--a"></span>
     </div>
     <div class="section-inner">
       <div class="section-head reveal">
@@ -4485,15 +3134,8 @@
 
   <!-- CONTACT -->
   <section class="section" id="contact">
-    <div class="section-deco" aria-hidden="true">
-      <div class="deco-orb deco-float deco-pace-fastest" style="width:260px;height:260px;top:-40px;left:-60px;background:var(--deco-fill);"></div>
-      <div class="deco-orb deco-float-2" style="width:220px;height:220px;bottom:-40px;right:-20px;background:var(--deco-fill-2);"></div>
-      <div class="deco-cross" style="bottom:15%;left:12%;"></div>
-      <div class="deco-line" style="width:140px;top:40%;right:8%;transform:rotate(20deg);"></div>
-      <svg class="deco-svg" style="width:120px;height:120px;top:18%;left:8%;" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-        <path d="M60 8 L112 60 L60 112 L8 60 Z" stroke="var(--deco-stroke)" stroke-width="1"/>
-      </svg>
-
+    <div class="zone-shapes" aria-hidden="true">
+      <span class="zone-shape zone-shape--blue-2 poly-hex shape-flip-y contact-shape--a"></span>
     </div>
     <div class="section-inner">
       <div class="section-head reveal">
@@ -4526,7 +3168,7 @@
           </a>
         </div>
 
-        <p class="contact-footer-note">Ответим в тот же день · консультация ничего не стоит 🙂</p>
+        <p class="contact-footer-note">Ответим в тот же день · консультация ничего не стоит</p>
       </div>
     </div>
   </section>
@@ -4535,14 +3177,8 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="section-deco" aria-hidden="true">
-      <div class="deco-line" style="width:100%;top:0;left:0;opacity:0.2;background:var(--gradient);"></div>
-      <div class="deco-cross" style="bottom:40%;right:10%;opacity:0.35;"></div>
-      <div class="deco-diamond deco-float-2 deco-pace-fast" style="top:30%;left:14%;"></div>
-      <div class="deco-dot-cluster" style="top:20%;right:20%;">
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
-      </div>
+    <div class="zone-shapes" aria-hidden="true">
+      <span class="zone-shape zone-shape--white poly-hept shape-flip-xy footer-shape--a"></span>
     </div>
     <div class="footer-inner">
       <div class="footer-top">
@@ -4570,257 +3206,13 @@
     const TG_USERNAME = 'AntaresAgensy';
     const TG_CONTACT = `https://t.me/${TG_USERNAME}`;
     const TG_APP = `tg://resolve?domain=${TG_USERNAME}`;
-    const CONTACT_TEMPLATE = `Привет! 👋 Хочу сайт / бота.
+    const CONTACT_TEMPLATE = `Привет! Хочу сайт / бота.
 
 Меня зовут:
 Связаться со мной удобнее:
 Что хочу сделать:
 Есть примеры, которые нравятся:`;
     const PROMO_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-
-    // Theme toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('bb-theme', next);
-      if (window.renderCosmosStars) window.renderCosmosStars(next);
-    });
-
-    // Realistic static starfield — dense like astrophotography references
-    (function initCosmosStars() {
-      const canvas = document.getElementById('cosmos-stars');
-      if (!canvas) return;
-
-      const ctx = canvas.getContext('2d');
-      let resizeTimer = 0;
-
-      function mulberry32(seed) {
-        return function () {
-          let t = seed += 0x6D2B79F5;
-          t = Math.imul(t ^ (t >>> 15), t | 1);
-          t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-        };
-      }
-
-      function pickStarPosition(rand, w, h) {
-        const roll = rand();
-
-        // лёгкая полоса плотности — очень рассеянная
-        if (roll < 0.08) {
-          const t = rand();
-          const along = t * w * 1.18 - w * 0.09;
-          const across = h * 0.47 + (rand() - 0.5) * h * 0.24;
-          const nx = 0.82;
-          const ny = 0.57;
-          return {
-            x: along * nx - across * ny + (rand() - 0.5) * 18,
-            y: along * ny + across * nx + (rand() - 0.5) * 18,
-          };
-        }
-
-        // мягкие скопления — разнесены по всей площади, без наложений
-        if (roll < 0.32) {
-          const clusters = [
-            { x: 0.14, y: 0.16, r: 0.048 },
-            { x: 0.84, y: 0.14, r: 0.044 },
-            { x: 0.78, y: 0.80, r: 0.05 },
-            { x: 0.16, y: 0.78, r: 0.048 },
-            { x: 0.50, y: 0.28, r: 0.038 },
-            { x: 0.62, y: 0.58, r: 0.04 },
-            { x: 0.28, y: 0.46, r: 0.036 },
-            { x: 0.72, y: 0.38, r: 0.036 },
-          ];
-          const c = clusters[Math.floor(rand() * clusters.length)];
-          const angle = rand() * Math.PI * 2;
-          const dist = Math.pow(rand(), 2.6) * c.r * Math.min(w, h);
-          return {
-            x: c.x * w + Math.cos(angle) * dist,
-            y: c.y * h + Math.sin(angle) * dist,
-          };
-        }
-
-        // основная масса — равномерно по всему небу
-        return { x: rand() * w, y: rand() * h };
-      }
-
-      function starPalette(isDark) {
-        return {
-          white: isDark ? [180, 170, 255] : [61, 22, 89],
-          blue: isDark ? [130, 160, 255] : [30, 27, 75],
-          violet: isDark ? [149, 128, 255] : [75, 30, 110],
-          warm: isDark ? [170, 150, 255] : [50, 25, 85],
-          glow: isDark ? [108, 99, 255] : [45, 20, 80],
-        };
-      }
-
-      function drawStar(star) {
-        const { x, y, radius, alpha, rgb, glow } = star;
-        if (glow) {
-          const halo = ctx.createRadialGradient(x, y, 0, x, y, radius * 7);
-          halo.addColorStop(0, `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${alpha * 0.42})`);
-          halo.addColorStop(0.35, `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${alpha * 0.1})`);
-          halo.addColorStop(1, `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 0)`);
-          ctx.fillStyle = halo;
-          ctx.beginPath();
-          ctx.arc(x, y, radius * 7, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        ctx.fillStyle = `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${alpha})`;
-        ctx.beginPath();
-        ctx.arc(x, y, radius, 0, Math.PI * 2);
-        ctx.fill();
-      }
-
-      function renderCosmosStars(theme) {
-        const isDark = theme !== 'light';
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-        canvas.width = Math.round(w * dpr);
-        canvas.height = Math.round(h * dpr);
-        canvas.style.width = w + 'px';
-        canvas.style.height = h + 'px';
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        ctx.clearRect(0, 0, w, h);
-
-        const rand = mulberry32(42857);
-        const palette = starPalette(isDark);
-        const area = w * h;
-        const count = Math.floor(Math.min(
-          Math.floor(area / 310),
-          6500
-        ) * 0.44);
-        const stars = [];
-        const MIN_DIST = 10;
-        const cellSize = MIN_DIST;
-        const gridCols = Math.ceil((w + 4) / cellSize);
-        const gridRows = Math.ceil((h + 4) / cellSize);
-        const grid = new Array(gridCols * gridRows);
-
-        function tooClose(px, py) {
-          const cx = Math.floor((px + 2) / cellSize);
-          const cy = Math.floor((py + 2) / cellSize);
-          for (let dx = -1; dx <= 1; dx++) {
-            for (let dy = -1; dy <= 1; dy++) {
-              const nx = cx + dx, ny = cy + dy;
-              if (nx < 0 || ny < 0 || nx >= gridCols || ny >= gridRows) continue;
-              const cell = grid[ny * gridCols + nx];
-              if (!cell) continue;
-              for (let k = 0; k < cell.length; k++) {
-                const ddx = cell[k][0] - px, ddy = cell[k][1] - py;
-                if (ddx * ddx + ddy * ddy < MIN_DIST * MIN_DIST) return true;
-              }
-            }
-          }
-          return false;
-        }
-
-        function addToGrid(px, py) {
-          const cx = Math.floor((px + 2) / cellSize);
-          const cy = Math.floor((py + 2) / cellSize);
-          const idx = cy * gridCols + cx;
-          if (!grid[idx]) grid[idx] = [];
-          grid[idx].push([px, py]);
-        }
-
-        for (let i = 0; i < count; i += 1) {
-          const pos = pickStarPosition(rand, w, h);
-          if (pos.x < -2 || pos.y < -2 || pos.x > w + 2 || pos.y > h + 2) continue;
-          if (tooClose(pos.x, pos.y)) continue;
-
-          const roll = rand();
-          let radius;
-          let alpha;
-          let rgb = palette.white;
-          let glow = false;
-
-          if (roll > 0.996) {
-            radius = (1.5 + rand() * 1.1) * 1.1;
-            alpha = 0.82 + rand() * 0.18;
-            rgb = rand() > 0.45 ? palette.blue : palette.violet;
-            glow = true;
-          } else if (roll > 0.985) {
-            radius = (1.0 + rand() * 0.7) * 1.1;
-            alpha = 0.62 + rand() * 0.28;
-            rgb = rand() > 0.55 ? palette.blue : palette.white;
-            glow = rand() > 0.35;
-          } else if (roll > 0.94) {
-            radius = (0.55 + rand() * 0.45) * 1.1;
-            alpha = 0.34 + rand() * 0.34;
-            if (rand() > 0.82) rgb = palette.blue;
-            else if (rand() > 0.96) rgb = palette.warm;
-          } else if (roll > 0.72) {
-            radius = (0.32 + rand() * 0.28) * 1.1;
-            alpha = 0.18 + rand() * 0.28;
-          } else {
-            radius = (0.15 + rand() * 0.22) * 1.1;
-            alpha = 0.08 + rand() * 0.2;
-          }
-
-          let finalAlpha = alpha * 0.9;
-          if (!isDark) {
-            if (roll > 0.996) {
-              finalAlpha = 0.94 + rand() * 0.06;
-              radius *= 1.08;
-            } else if (roll > 0.985) {
-              finalAlpha = Math.min(1, finalAlpha * 1.42);
-              radius *= 1.05;
-            } else if (roll > 0.94) {
-              finalAlpha = Math.min(1, finalAlpha * 1.28);
-            } else if (roll > 0.72) {
-              finalAlpha = Math.min(1, finalAlpha * 1.6);
-            } else {
-              finalAlpha = Math.min(1, finalAlpha * 2.0);
-            }
-          }
-
-          addToGrid(pos.x, pos.y);
-          stars.push({
-            x: pos.x,
-            y: pos.y,
-            radius,
-            alpha: finalAlpha,
-            rgb,
-            glow,
-            layer: glow ? 2 : radius > 0.5 ? 1 : 0,
-          });
-        }
-
-        stars.sort((a, b) => a.layer - b.layer);
-        stars.forEach(drawStar);
-      }
-
-      window.renderCosmosStars = renderCosmosStars;
-      renderCosmosStars(document.documentElement.getAttribute('data-theme') || 'dark');
-
-      window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = window.setTimeout(() => {
-          renderCosmosStars(document.documentElement.getAttribute('data-theme') || 'dark');
-        }, 180);
-      }, { passive: true });
-    })();
-
-    // Параллакс dev-декора: скролл вниз → элементы вверх, скролл вверх → вниз
-    (function initDevFloatScroll() {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      const items = document.querySelectorAll('.dev-float__item[data-scroll-speed]');
-      if (!items.length) return;
-
-      function updateDevFloat() {
-        const scrollY = window.scrollY;
-        items.forEach((item) => {
-          const speed = parseFloat(item.dataset.scrollSpeed) || 0.207;
-          item.style.setProperty('--scroll-y', String(-scrollY * speed));
-        });
-      }
-
-      updateDevFloat();
-      window.addEventListener('scroll', updateDevFloat, { passive: true });
-      window.addEventListener('resize', updateDevFloat, { passive: true });
-    })();
 
     // Ссылки на проекты задаются кнопками .project-open-btn в разметке
 
@@ -4840,9 +3232,27 @@
           pill.classList.add('is-open');
           trigger.setAttribute('aria-expanded', 'true');
           requestAnimationFrame(() => {
-            pill.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            requestAnimationFrame(() => {
+              const panel = pill.querySelector('.service-pill__panel');
+              const targetRect = (panel || pill).getBoundingClientRect();
+              const margin = 24;
+              const overflow = targetRect.bottom - window.innerHeight + margin;
+              if (overflow > 0) {
+                window.scrollBy({ top: overflow, behavior: 'smooth' });
+              }
+            });
           });
         }
+      });
+    });
+
+    // Закрытие раскрытой карточки услуги по клику вне неё
+    document.addEventListener('click', (e) => {
+      document.querySelectorAll('.service-pill.is-open').forEach((p) => {
+        if (p.contains(e.target)) return;
+        p.classList.remove('is-open');
+        const t = p.querySelector('.service-pill__trigger');
+        if (t) t.setAttribute('aria-expanded', 'false');
       });
     });
 
@@ -4983,7 +3393,7 @@
     }
 
     function buildDiscountMessage(discount) {
-      return `🎁 У меня промо-скидка ${discount.percent}% на всё (код: ${discount.code})\n\n${CONTACT_TEMPLATE}`;
+      return `У меня промо-скидка ${discount.percent}% на всё (код: ${discount.code})\n\n${CONTACT_TEMPLATE}`;
     }
 
     function getTelegramMessage() {

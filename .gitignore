@@ -2,6 +2,9 @@
 *.zip
 *.7z
 
+# Node
+node_modules/
+
 # Cake (Next.js)
 cake/node_modules/
 cake/.next/

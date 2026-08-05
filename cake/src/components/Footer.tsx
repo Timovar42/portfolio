@@ -17,47 +17,37 @@ export function Footer({ settings }: FooterProps) {
             <p className="mt-2 text-sm leading-relaxed text-chocolate-light">
               {settings.tagline}
             </p>
+            <a
+              href={`tel:${settings.phone.replace(/\D/g, "")}`}
+              className="mt-3 inline-block text-sm text-chocolate transition hover:text-terracotta"
+            >
+              {settings.phone}
+            </a>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2">
-            <div>
-              <p className="text-xs font-medium uppercase tracking-[0.14em] text-chocolate-light">
-                Контакты
-              </p>
-              <div className="mt-3 space-y-2 text-sm">
-                <a
-                  href={`tel:${settings.phone.replace(/\D/g, "")}`}
-                  className="block text-chocolate transition hover:text-terracotta"
-                >
-                  {settings.phone}
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <p className="text-xs font-medium uppercase tracking-[0.14em] text-chocolate-light">
-                Разделы
-              </p>
-              <div className="mt-3 space-y-2 text-sm">
-                <StaticLink
-                  href="/"
-                  className="block text-chocolate transition hover:text-terracotta"
-                >
-                  Главная
-                </StaticLink>
-                <StaticLink
-                  href="/catalog"
-                  className="block text-chocolate transition hover:text-terracotta"
-                >
-                  Каталог
-                </StaticLink>
-                <StaticLink
-                  href="/constructor"
-                  className="block text-chocolate transition hover:text-terracotta"
-                >
-                  Конструктор
-                </StaticLink>
-              </div>
+          <div>
+            <p className="text-xs font-medium uppercase tracking-[0.14em] text-chocolate-light">
+              Разделы
+            </p>
+            <div className="mt-3 space-y-2 text-sm">
+              <StaticLink
+                href="/"
+                className="block text-chocolate transition hover:text-terracotta"
+              >
+                Главная
+              </StaticLink>
+              <StaticLink
+                href="/catalog"
+                className="block text-chocolate transition hover:text-terracotta"
+              >
+                Каталог
+              </StaticLink>
+              <StaticLink
+                href="/constructor"
+                className="block text-chocolate transition hover:text-terracotta"
+              >
+                Конструктор
+              </StaticLink>
             </div>
           </div>
         </div>
