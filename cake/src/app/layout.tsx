@@ -2,7 +2,6 @@ import "@/app/globals.css";
 import type { Metadata, Viewport } from "next";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { ConditionalLocationMap } from "@/components/ConditionalLocationMap";
 import { MainContent } from "@/components/MainContent";
 import { ContactButton } from "@/components/ContactButton";
 import { getSiteSettings } from "@/lib/site/repository";
@@ -38,7 +37,6 @@ export default function RootLayout({
       <body className="min-h-screen overflow-x-clip bg-cream text-chocolate antialiased">
         <Header settings={settings} />
         <MainContent>{children}</MainContent>
-        <ConditionalLocationMap settings={settings} />
         <Footer settings={settings} />
         <ContactButton phone={settings.phone} />
       </body>

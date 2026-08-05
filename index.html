@@ -219,13 +219,13 @@
       --text-muted: rgba(15, 23, 42, 0.46);
       --white80: rgba(15, 23, 42, 0.78);
       --white40: rgba(15, 23, 42, 0.46);
-      --border: rgba(37, 99, 235, 0.14);
+      --border: rgba(37, 99, 235, 0.22);
       --nav-bg: rgba(255, 255, 255, 0.82);
       --section-alt-bg: #EAF2FE;
       --footer-bg: #EAF2FE;
       --glass-bg: rgba(255, 255, 255, 0.72);
       --glass-bg-strong: rgba(255, 255, 255, 0.94);
-      --glass-border: rgba(37, 99, 235, 0.16);
+      --glass-border: rgba(37, 99, 235, 0.26);
       --glass-blur: blur(14px);
       --glass-shadow: 0 10px 30px rgba(37, 99, 235, 0.10);
       /* фон — сплошной белый, без градиентов; цвет и глубину дают геометрические зоны-фигуры */
@@ -241,7 +241,7 @@
       --chip-bg: rgba(37, 99, 235, 0.10);
       --chip-text: rgba(15, 23, 42, 0.68);
       --hero-window-bg: rgba(255, 255, 255, 0.80);
-      --hero-window-border: rgba(15, 23, 42, 0.08);
+      --hero-window-border: rgba(15, 23, 42, 0.16);
       --hero-window-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
       --hero-window-text: #0F172A;
       --hero-window-muted: rgba(15, 23, 42, 0.6);
@@ -431,8 +431,10 @@
     }
     .nav-links a:not(.btn-nav) {
       font-family: var(--font-body);
-      font-size: 13px;
-      color: var(--white40);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-soft);
+      letter-spacing: -0.01em;
       transition: color 0.2s;
     }
     .nav-links a:not(.btn-nav):hover { color: var(--text); }
@@ -466,7 +468,8 @@
       justify-content: center;
       text-align: center;
       padding: calc(var(--nav-h) + 56px) 24px 72px;
-      overflow: hidden;
+      overflow-x: clip;
+      overflow-y: visible;
       box-sizing: border-box;
     }
     /* — крупные геометрические фигуры зонируют фон секций (без градиентов, приглушённый цвет, минимум фигур) — */
@@ -474,23 +477,22 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-      overflow: hidden;
+      overflow: visible;
       pointer-events: none;
     }
     .zone-shape { position: absolute; }
     .zone-shape--blue-1 { background: var(--zone-1); }
     .zone-shape--blue-2 { background: var(--zone-2); }
     .zone-shape--white { background: var(--white); }
-    /* неправильные многоугольники (близкие к шестиугольнику/семиугольнику/пятиугольнику), однотонная заливка, без градиентов;
-       по умолчанию — угол вылета сверху-справа (плоские верх/право, неправильный контур внутри) */
+    /* неправильные многоугольники без горизонтальных/вертикальных рёбер; могут выходить за границы секции */
     .poly-hex {
-      clip-path: polygon(26% 0%, 100% 0%, 100% 64%, 68% 100%, 14% 90%, 0% 38%);
+      clip-path: polygon(22% 4%, 96% 8%, 98% 62%, 66% 96%, 12% 88%, 2% 36%);
     }
     .poly-hept {
-      clip-path: polygon(18% 0%, 62% 0%, 100% 22%, 100% 70%, 62% 100%, 18% 96%, 0% 48%);
+      clip-path: polygon(16% 6%, 58% 3%, 94% 24%, 97% 68%, 58% 94%, 20% 92%, 3% 46%);
     }
     .poly-penta {
-      clip-path: polygon(30% 0%, 100% 0%, 100% 58%, 46% 100%, 0% 52%);
+      clip-path: polygon(28% 5%, 94% 12%, 96% 56%, 44% 94%, 4% 48%);
     }
     .shape-flip-x { transform: scaleX(-1); }
     .shape-flip-y { transform: scaleY(-1); }
@@ -510,10 +512,38 @@
       width: 44vw; height: 44vw; max-width: 580px; max-height: 580px;
       left: -6vw; top: -6vw;
     }
-    /* services (белая секция → голубая фигура, угол сверху-справа) */
+    /* services (белая секция → голубые фигуры по углам, без пересечений) */
     .services-shape--a {
-      width: 48vw; height: 48vw; max-width: 640px; max-height: 640px;
-      right: -6vw; top: -4%;
+      width: 44vw; height: 44vw; max-width: 580px; max-height: 580px;
+      right: -6vw; top: -5%;
+    }
+    .services-shape--b {
+      width: 34vw; height: 34vw; max-width: 460px; max-height: 460px;
+      left: -6vw; bottom: -4vw;
+    }
+    .services-shape--c {
+      width: 26vw; height: 26vw; max-width: 340px; max-height: 340px;
+      left: -5vw; top: -4%;
+    }
+    .services-shape--d {
+      width: 30vw; height: 30vw; max-width: 400px; max-height: 400px;
+      right: -5vw; bottom: -3vw;
+    }
+    /* одна фигура между Telegram-ботами и «Как мы работаем», чуть смещена от центра */
+    .services-mid-shape {
+      position: relative;
+      height: 140px;
+      margin: 0 0 -28px;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .services-shape--mid {
+      width: 36vw; height: 36vw; max-width: 460px; max-height: 460px;
+      left: 54%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--zone-1);
+      opacity: 0.88;
     }
     /* reviews (голубая секция → белая фигура, угол снизу-слева, забирает пустое пространство) */
     .reviews-shape--a {
@@ -534,7 +564,12 @@
       .hero-shape--a { width: 46vw; height: 46vw; left: -10vw; bottom: -6vw; }
       .hero-shape--b { width: 50vw; height: 50vw; max-width: 300px; max-height: 300px; left: 24vw; top: auto; bottom: -16vw; }
       .projects-shape--a { width: 64vw; height: 64vw; left: -10vw; top: -8vw; }
-      .services-shape--a { width: 68vw; height: 68vw; right: -10vw; top: -3%; }
+      .services-shape--a { width: 58vw; height: 58vw; right: -10vw; top: -4%; }
+      .services-shape--b { width: 48vw; height: 48vw; left: -12vw; bottom: -5vw; }
+      .services-shape--c { width: 40vw; height: 40vw; left: -10vw; top: -3%; }
+      .services-shape--d { width: 44vw; height: 44vw; right: -10vw; bottom: -4vw; }
+      .services-mid-shape { height: 100px; margin: 0 0 -20px; }
+      .services-shape--mid { width: 54vw; height: 54vw; left: 57%; opacity: 0.84; }
       .reviews-shape--a { width: 64vw; height: 64vw; left: -8vw; bottom: -6vw; }
       .contact-shape--a { width: 54vw; height: 54vw; right: -8vw; bottom: -6vw; }
       .footer-shape--a { width: 42vw; height: 42vw; max-height: 200px; left: -6vw; bottom: -4vw; }
@@ -765,7 +800,7 @@
     /* Browser mockup */
     .browser {
       position: relative;
-      background: #2a2a32;
+      background: var(--zone-3);
       border-bottom: 1px solid var(--border);
     }
     .browser-bar {
@@ -773,7 +808,7 @@
       align-items: center;
       gap: 8px;
       padding: 10px 14px;
-      background: #22222a;
+      background: var(--section-alt-bg);
     }
     .browser-dots {
       display: flex;
@@ -791,11 +826,12 @@
     .browser-dots span:nth-child(3) { background: #28c840; }
     .browser-url {
       flex: 1;
-      background: #1a1a22;
+      background: var(--surface-tint);
+      border: 1px solid var(--hero-window-border);
       border-radius: 4px;
       padding: 4px 10px;
       font-size: 11px;
-      color: var(--white40);
+      color: var(--text-muted);
       font-family: var(--font-body);
       white-space: nowrap;
       overflow: hidden;
@@ -806,7 +842,7 @@
       height: 220px;
       overflow: hidden;
       padding: 0;
-      background: #14141a;
+      background: var(--bg);
     }
     .featured .browser-screen { height: 340px; }
     .browser-shot {
@@ -893,27 +929,88 @@
       display: flex;
       flex-direction: column;
       gap: 36px;
+      position: relative;
+    }
+    .services-pills-group,
+    .services-bottom {
+      position: relative;
+      z-index: 1;
+    }
+    .services-pills-group:has(.service-pill.is-open) {
+      z-index: 10;
     }
     .services-pills-group {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+      display: grid;
+      grid-template-columns: minmax(220px, 340px) 1fr;
+      grid-template-rows: auto 1fr;
+      gap: 14px 18px;
+      align-items: start;
+    }
+    .services-pills-group--bots {
+      grid-template-columns: 1fr minmax(220px, 340px);
     }
     .services-pills-label {
+      grid-column: 1 / -1;
       font-family: var(--font-display);
-      font-size: 11px;
+      font-size: clamp(16px, 1.75vw, 22px);
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--accent2);
       margin-bottom: 2px;
       padding-left: 2px;
     }
+    .services-pills-group__visual {
+      grid-row: 2;
+      grid-column: 1;
+      align-self: stretch;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--zone-1);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06);
+    }
+    .services-pills-group--bots .services-pills-group__visual {
+      grid-column: 2;
+      background: #2563EB;
+    }
+    .services-pills-group__visual img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .services-pills-group .services-pills {
+      grid-row: 2;
+      grid-column: 2;
+      align-self: stretch;
+      height: 100%;
+      grid-template-rows: repeat(3, 1fr);
+    }
+    .services-pills-group--bots .services-pills {
+      grid-column: 1;
+    }
+    [data-theme="light"] .services-pills-group__visual {
+      border-color: rgba(0, 0, 0, 0.14);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.05);
+    }
+    [data-theme="light"] .services-pills-group:not(.services-pills-group--bots) .services-pills-group__visual {
+      background: var(--zone-1);
+    }
+    [data-theme="light"] .services-pills-group--bots .services-pills-group__visual {
+      background: #2563EB;
+    }
     .services-pills {
       list-style: none;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
+      gap: 10px 12px;
     }
     /* — expandable pill card — */
     .service-pill {
@@ -921,12 +1018,31 @@
       display: flex;
       flex-direction: column;
       border-radius: 50px;
-      background: var(--glass-bg);
-      border: 1px solid var(--glass-border);
+      background: rgba(255, 255, 255, 0.97);
+      border: 1px solid rgba(15, 23, 42, 0.16);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08), 0 1px 0 rgba(255, 255, 255, 0.85) inset;
       overflow: visible;
-      transition: border-radius 0.3s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      transition: border-radius 0.3s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, transform 0.25s ease;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      .service-pill:not(.is-open):hover {
+        border-color: rgba(37, 99, 235, 0.44);
+        background: linear-gradient(180deg, rgba(234, 242, 254, 0.98) 0%, #ffffff 100%);
+        box-shadow:
+          0 6px 22px rgba(37, 99, 235, 0.17),
+          0 2px 8px rgba(37, 99, 235, 0.08),
+          0 0 0 1px rgba(37, 99, 235, 0.06);
+        transform: translateY(-2px);
+      }
+      .service-pill:not(.is-open):hover .service-pill__trigger {
+        color: #1e40af;
+      }
+      .service-pill:not(.is-open):hover .service-pill__chev {
+        opacity: 0.92;
+        color: var(--accent);
+      }
     }
     .service-pill.is-open {
       position: relative;
@@ -943,15 +1059,17 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
+      flex: 1;
       width: 100%;
-      padding: 14px 20px;
+      min-height: 52px;
+      padding: 18px 22px;
       background: none;
       border: none;
       cursor: pointer;
       font-family: var(--font-body);
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-soft);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
       text-align: left;
       transition: color 0.2s;
     }
@@ -961,10 +1079,11 @@
     }
     .service-pill__chev {
       flex-shrink: 0;
-      width: 14px;
-      height: 14px;
+      width: 16px;
+      height: 16px;
       transition: transform 0.35s ease, opacity 0.2s;
-      opacity: 0.45;
+      opacity: 0.55;
+      color: rgba(15, 23, 42, 0.45);
     }
     .service-pill.is-open .service-pill__chev {
       transform: rotate(180deg);
@@ -999,7 +1118,7 @@
       border-radius: inherit;
     }
     .service-pill__panel-content {
-      padding: 14px 20px 16px;
+      padding: 16px 20px 18px;
     }
     .service-pill__preview {
       margin: 0 0 12px;
@@ -1015,9 +1134,9 @@
       height: auto;
     }
     .service-pill__panel-desc {
-      font-size: 13px;
-      color: var(--white40);
-      line-height: 1.65;
+      font-size: 14px;
+      color: rgba(15, 23, 42, 0.88);
+      line-height: 1.7;
       margin-top: 14px;
       margin-bottom: 14px;
     }
@@ -1025,15 +1144,15 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      margin-bottom: 14px;
+      gap: 8px;
+      margin-bottom: 16px;
     }
     .service-pill__panel-features li {
-      font-size: 12px;
-      color: var(--text-soft);
+      font-size: 13px;
+      color: rgba(15, 23, 42, 0.78);
       padding-left: 14px;
       position: relative;
-      line-height: 1.5;
+      line-height: 1.6;
     }
     .service-pill__panel-features li::before {
       content: '';
@@ -1071,9 +1190,27 @@
     }
     /* Light theme pills */
     [data-theme="light"] .service-pill {
-      background: rgba(255,255,255,0.8);
-      border-color: rgba(0,0,0,0.1);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      background: rgba(255, 255, 255, 0.98);
+      border-color: rgba(15, 23, 42, 0.16);
+      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08), 0 1px 0 rgba(255, 255, 255, 0.85) inset;
+    }
+    @media (hover: hover) and (pointer: fine) {
+      [data-theme="light"] .service-pill:not(.is-open):hover {
+        border-color: rgba(37, 99, 235, 0.44);
+        background: linear-gradient(180deg, rgba(234, 242, 254, 0.98) 0%, #ffffff 100%);
+        box-shadow:
+          0 6px 22px rgba(37, 99, 235, 0.17),
+          0 2px 8px rgba(37, 99, 235, 0.08),
+          0 0 0 1px rgba(37, 99, 235, 0.06);
+        transform: translateY(-2px);
+      }
+      [data-theme="light"] .service-pill:not(.is-open):hover .service-pill__trigger {
+        color: #1e40af;
+      }
+      [data-theme="light"] .service-pill:not(.is-open):hover .service-pill__chev {
+        opacity: 0.92;
+        color: var(--accent);
+      }
     }
     [data-theme="light"] .service-pill.is-open {
       background: #fff;
@@ -1092,10 +1229,10 @@
       box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
     }
     [data-theme="light"] .service-pill__panel-desc {
-      color: #555;
+      color: #1e293b;
     }
     [data-theme="light"] .service-pill__panel-features li {
-      color: #444;
+      color: #334155;
     }
     [data-theme="light"] .service-pill__btn {
       border-color: rgba(0,0,0,0.12);
@@ -1126,7 +1263,105 @@
     }
     [data-theme="light"] .services-info-block {
       background: rgba(255,255,255,0.75);
-      border-color: rgba(0,0,0,0.08);
+      border-color: rgba(0,0,0,0.14);
+    }
+    .services-info-block--workflow {
+      background: #FFFFFF;
+      border-color: rgba(37, 99, 235, 0.14);
+      border-left: 3px solid var(--accent);
+      box-shadow: 0 8px 28px rgba(15, 23, 42, 0.06), 0 1px 0 rgba(37, 99, 235, 0.06);
+      overflow: visible;
+      padding: clamp(24px, 2.6vw, 32px);
+    }
+    [data-theme="light"] .services-info-block--workflow {
+      background: #FFFFFF;
+      border-color: rgba(37, 99, 235, 0.14);
+    }
+    .services-info-block--workflow .services-info-block__title {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+    }
+    .services-info-block--workflow .services-info-block__subtitle {
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.55;
+      max-width: 62ch;
+    }
+    .services-info-block--workflow .services-info-block__subtitle strong {
+      color: #0F172A;
+      font-weight: 700;
+    }
+    .services-info-block--workflow .services-workflow-steps {
+      gap: 34px;
+    }
+    .services-workflow-step {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: clamp(3px, 0.4vw, 6px);
+    }
+    .services-workflow-step__main {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      flex: 0 1 auto;
+      min-width: 0;
+      order: 1;
+    }
+    .services-workflow-step__art {
+      flex: 0 0 auto;
+      width: clamp(92px, 10.5vw, 140px);
+      margin: 0;
+      line-height: 0;
+      order: 2;
+      transform: translateY(var(--art-y, 0px)) rotate(var(--art-rotate, 0deg)) scale(var(--art-scale, 1));
+      transition: transform 0.35s ease, filter 0.35s ease;
+      pointer-events: none;
+    }
+    .services-workflow-step__art svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+      filter: drop-shadow(0 3px 5px rgba(15, 23, 42, 0.10)) drop-shadow(0 12px 18px rgba(15, 23, 42, 0.10));
+    }
+    .services-workflow-step:hover .services-workflow-step__art svg {
+      filter: drop-shadow(0 4px 7px rgba(37, 99, 235, 0.14)) drop-shadow(0 16px 24px rgba(37, 99, 235, 0.14));
+    }
+    .services-workflow-step--chaos-1 { --art-rotate: -5deg; --art-y: 4px;  --art-scale: 1;    }
+    .services-workflow-step--chaos-2 { --art-rotate: 5deg;  --art-y: -4px; --art-scale: 1.04; }
+    .services-workflow-step--chaos-3 { --art-rotate: 2deg;  --art-y: 6px;  --art-scale: 0.94; }
+    .services-workflow-step--chaos-4 { --art-rotate: -6deg; --art-y: 2px;  --art-scale: 1.02; }
+    .services-workflow-step--chaos-5 { --art-rotate: 4deg;  --art-y: -6px; --art-scale: 0.96; }
+    .services-workflow-step--chaos-6 { --art-rotate: -3deg; --art-y: 5px;  --art-scale: 1;    }
+    .services-workflow-step:hover .services-workflow-step__art {
+      transform: translateY(calc(var(--art-y, 0px) - 4px)) rotate(var(--art-rotate, 0deg)) scale(var(--art-scale, 1));
+    }
+    .services-info-block--workflow .services-workflow-steps li:not(:last-child)::after {
+      background: rgba(37, 99, 235, 0.12);
+    }
+    .services-info-block--workflow .services-workflow-steps__title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.01em;
+    }
+    .services-info-block--workflow .services-workflow-steps__text {
+      color: #334155;
+      font-size: 15px;
+      line-height: 1.68;
+      max-width: 68ch;
+    }
+    .services-info-block--workflow .services-workflow-steps__text strong {
+      color: #0F172A;
+      font-weight: 600;
+    }
+    .services-info-block--workflow .services-workflow-steps__duration {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(37, 99, 235, 0.07);
+      border-color: rgba(37, 99, 235, 0.16);
     }
     .services-info-block__title {
       font-family: var(--font-display);
@@ -1135,7 +1370,23 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--accent2);
+      margin-bottom: 6px;
+    }
+    .services-info-block__subtitle {
+      font-size: 13px;
+      color: var(--text-soft);
       margin-bottom: 18px;
+      line-height: 1.45;
+    }
+    .services-info-block__subtitle strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+    [data-theme="light"] .services-info-block__subtitle {
+      color: #555;
+    }
+    [data-theme="light"] .services-info-block__subtitle strong {
+      color: #1a1a2e;
     }
     .services-workflow-steps {
       list-style: none;
@@ -1144,9 +1395,6 @@
       gap: 22px;
     }
     .services-workflow-steps li {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
       position: relative;
     }
     .services-workflow-steps li:not(:last-child)::after {
@@ -1680,15 +1928,15 @@
       box-shadow: 0 16px 40px rgba(226, 87, 76, 0.16), 0 4px 12px rgba(226, 87, 76, 0.07);
     }
     [data-theme="light"] .browser {
-      background: #2E3140;
-      border-bottom-color: rgba(15, 16, 24, 0.18);
+      background: var(--zone-3);
+      border-bottom-color: var(--border);
     }
     [data-theme="light"] .browser-bar {
-      background: #252836;
+      background: var(--section-alt-bg);
     }
     [data-theme="light"] .browser-url {
-      background: #1C1F2B;
-      color: rgba(255, 255, 255, 0.45);
+      background: var(--surface-tint);
+      color: var(--text-muted);
     }
     [data-theme="light"] .btn-ghost,
     [data-theme="light"] .theme-toggle,
@@ -1871,9 +2119,60 @@
       /* услуги на мобильных — одна колонка */
       .services-pills {
         grid-template-columns: 1fr;
+        grid-template-rows: none;
+        height: auto;
+      }
+      .services-pills-group .services-pills {
+        align-self: auto;
+      }
+      .service-pill__trigger {
+        min-height: 48px;
+        padding: 16px 20px;
+        font-size: 14px;
+      }
+      .services-pills-group,
+      .services-pills-group--bots {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 12px;
+      }
+      .services-pills-group__visual,
+      .services-pills-group--bots .services-pills-group__visual {
+        grid-row: 2;
+        grid-column: 1;
+        max-width: 280px;
+        margin: 0 auto;
+        width: 100%;
+      }
+      .services-pills-group .services-pills,
+      .services-pills-group--bots .services-pills {
+        grid-row: 3;
+        grid-column: 1;
       }
       .services-pills-wrap {
         gap: 24px;
+      }
+      .services-pills-label {
+        font-size: clamp(14px, 4vw, 18px);
+      }
+      .services-info-block--workflow {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 24px;
+      }
+      .services-workflow-step {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+      }
+      .services-workflow-step__art {
+        width: min(56vw, 200px);
+        margin: 0 0 14px 0;
+        order: -1;
+        transform: rotate(var(--art-rotate, 0deg)) scale(var(--art-scale, 1));
+      }
+      .services-workflow-step:hover .services-workflow-step__art {
+        transform: rotate(var(--art-rotate, 0deg)) scale(var(--art-scale, 1));
       }
       /* нет необходимости менять services-bottom на мобильных — уже flex-column */
 
@@ -1949,12 +2248,14 @@
       }
       .project-card,
       .service-card,
-      .contact-channel {
+      .contact-channel,
+      .service-pill {
         transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, opacity 0.3s ease;
       }
       .project-card:hover,
       .service-card:hover,
-      .contact-channel:hover {
+      .contact-channel:hover,
+      .service-pill:not(.is-open):hover {
         transform: none;
       }
 
@@ -2462,6 +2763,9 @@
   <section class="section" id="services">
     <div class="zone-shapes" aria-hidden="true">
       <span class="zone-shape zone-shape--blue-1 poly-hex services-shape--a"></span>
+      <span class="zone-shape zone-shape--blue-2 poly-penta shape-flip-x services-shape--b"></span>
+      <span class="zone-shape zone-shape--blue-1 poly-hept shape-flip-y services-shape--c"></span>
+      <span class="zone-shape zone-shape--blue-2 poly-hex shape-flip-y services-shape--d"></span>
     </div>
     <div class="section-inner">
       <div class="section-head reveal">
@@ -2471,6 +2775,9 @@
         <!-- Сайты -->
         <div class="services-pills-group reveal d1">
           <p class="services-pills-label">Сайты</p>
+          <div class="services-pills-group__visual" aria-hidden="true">
+            <img src="images/service-sites.png" alt="" width="1024" height="571" loading="lazy" decoding="async" />
+          </div>
           <ul class="services-pills">
 
             <li class="service-pill">
@@ -2749,8 +3056,11 @@
         </div>
 
         <!-- Telegram-боты -->
-        <div class="services-pills-group reveal d2">
+        <div class="services-pills-group services-pills-group--bots reveal d2">
           <p class="services-pills-label">Telegram-боты</p>
+          <div class="services-pills-group__visual" aria-hidden="true">
+            <img src="images/service-bots.png" alt="" width="722" height="423" loading="lazy" decoding="async" />
+          </div>
           <ul class="services-pills">
 
             <li class="service-pill">
@@ -3015,69 +3325,261 @@
           </ul>
         </div>
 
+        <div class="services-mid-shape" aria-hidden="true">
+          <span class="zone-shape poly-hept shape-flip-x services-shape--mid"></span>
+        </div>
+
         <!-- Как мы работаем + Инструменты -->
         <div class="services-bottom reveal d3">
-          <div class="services-info-block">
+          <div class="services-info-block services-info-block--workflow">
             <p class="services-info-block__title">Как мы работаем</p>
+            <p class="services-info-block__subtitle">Общее время выполнения проекта — <strong>от 3 до 7 дней</strong> при готовом контенте от заказчика.</p>
             <ol class="services-workflow-steps">
-              <li>
-                <span class="services-workflow-steps__num">1</span>
-                <div class="services-workflow-steps__body">
-                  <div class="services-workflow-steps__head">
-                    <span class="services-workflow-steps__title">Знакомство и бриф</span>
-                    <span class="services-workflow-steps__duration">1–2 дня</span>
+              <li class="services-workflow-step services-workflow-step--chaos-1">
+                <figure class="services-workflow-step__art">
+                  <svg viewBox="0 0 220 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                    <!-- телефонная трубка: созвон -->
+                    <g transform="rotate(-10 62 60)">
+                      <circle cx="62" cy="60" r="34" fill="#2563EB"/>
+                      <path d="M46 46c2-3 6-3 8 0l4 5c2 3 1 6-1 8l-2 2c1 5 4 9 8 12s7 4 12 3l2-2c2-2 5-3 8-1l5 4c3 2 3 6 0 8-6 6-15 6-23 2-9-4-16-11-20-20-4-8-4-16 2-21z" fill="#FFFFFF"/>
+                    </g>
+                    <!-- знак вопроса: обсуждение целей -->
+                    <g transform="rotate(9 150 42)">
+                      <circle cx="150" cy="42" r="24" fill="#0EA5E9"/>
+                      <text x="150" y="52" font-family="Arial, sans-serif" font-size="28" font-weight="800" fill="#FFFFFF" text-anchor="middle">?</text>
+                    </g>
+                    <!-- блокнот с ручкой: записываем бриф -->
+                    <g transform="rotate(-6 96 120)">
+                      <rect x="58" y="86" width="76" height="68" rx="8" fill="#FFFFFF" stroke="#DCE7F8" stroke-width="2"/>
+                      <rect x="58" y="86" width="76" height="14" rx="8" fill="#EAF2FE"/>
+                      <path d="M70 112h40M70 122h52M70 132h34" stroke="#CBD5E1" stroke-width="3" stroke-linecap="round"/>
+                      <path d="M110 150 L146 114 L156 124 L120 160 L106 164 Z" fill="#F59E0B"/>
+                      <path d="M146 114 L156 124" stroke="#D97706" stroke-width="2"/>
+                    </g>
+                    <!-- лупа: изучаем аудиторию и конкурентов -->
+                    <g transform="rotate(8 178 118)">
+                      <circle cx="176" cy="112" r="20" fill="none" stroke="#1E3A8A" stroke-width="6"/>
+                      <line x1="190" y1="126" x2="204" y2="140" stroke="#1E3A8A" stroke-width="7" stroke-linecap="round"/>
+                    </g>
+                    <!-- точки «печатает...» между трубкой и вопросом -->
+                    <circle cx="102" cy="34" r="4" fill="#2563EB" fill-opacity="0.55"/>
+                    <circle cx="114" cy="30" r="4" fill="#2563EB" fill-opacity="0.4"/>
+                    <circle cx="126" cy="28" r="4" fill="#2563EB" fill-opacity="0.25"/>
+                  </svg>
+                </figure>
+                <div class="services-workflow-step__main">
+                  <span class="services-workflow-steps__num">1</span>
+                  <div class="services-workflow-steps__body">
+                    <div class="services-workflow-steps__head">
+                      <span class="services-workflow-steps__title">Знакомство и бриф</span>
+                      <span class="services-workflow-steps__duration">1 день</span>
+                    </div>
+                    <p class="services-workflow-steps__text">Всё начинается с переписки или созвона — знакомимся с вами, изучаем бизнес, целевую аудиторию и конкурентов. Обсуждаем цели сайта или бота, намечаем содержание продукта и функционал. Фиксируем задачи, сроки, бюджет и согласовываемся по всем рабочим моментам, прежде чем переходить к делу.</p>
                   </div>
-                  <p class="services-workflow-steps__text">Всё начинается с переписки или созвона — знакомимся с вами, изучаем бизнес, целевую аудиторию и конкурентов. Обсуждаем цели сайта или бота, намечаем содержание продукта и функционал. Фиксируем задачи, сроки, бюджет и согласовываемся по всем рабочим моментам, прежде чем переходить к делу.</p>
                 </div>
               </li>
-              <li>
-                <span class="services-workflow-steps__num">2</span>
-                <div class="services-workflow-steps__body">
-                  <div class="services-workflow-steps__head">
-                    <span class="services-workflow-steps__title">Мудборд и концепция</span>
-                    <span class="services-workflow-steps__duration">2–3 дня</span>
+              <li class="services-workflow-step services-workflow-step--chaos-2">
+                <figure class="services-workflow-step__art">
+                  <svg viewBox="0 0 220 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                    <!-- палитра художника -->
+                    <g transform="rotate(-8 66 100)">
+                      <path d="M30 96c0-24 20-42 44-38 22 4 34 22 30 40-2 10-12 14-20 10-6-3-12-1-14 5-3 8-12 12-22 8-14-6-18-16-18-25z" fill="#FFFFFF" stroke="#DCE7F8" stroke-width="2"/>
+                      <circle cx="44" cy="84" r="6" fill="#2563EB"/>
+                      <circle cx="62" cy="72" r="6" fill="#0EA5E9"/>
+                      <circle cx="82" cy="78" r="6" fill="#F59E0B"/>
+                      <circle cx="52" cy="102" r="6" fill="#E11D48"/>
+                    </g>
+                    <!-- цветовые чипы веером -->
+                    <g transform="rotate(10 158 46)">
+                      <rect x="140" y="18" width="26" height="46" rx="7" fill="#1E3A8A"/>
+                    </g>
+                    <g transform="rotate(-4 172 52)">
+                      <rect x="158" y="24" width="26" height="46" rx="7" fill="#2563EB"/>
+                    </g>
+                    <g transform="rotate(18 186 58)">
+                      <rect x="176" y="30" width="26" height="46" rx="7" fill="#0EA5E9"/>
+                    </g>
+                    <!-- пипетка -->
+                    <g transform="rotate(-25 130 130)">
+                      <rect x="120" y="96" width="14" height="46" rx="7" fill="#F59E0B"/>
+                      <rect x="120" y="96" width="14" height="16" rx="7" fill="#FDE68A"/>
+                    </g>
+                    <!-- пиновая карточка-референс -->
+                    <g transform="rotate(7 190 118)">
+                      <rect x="168" y="94" width="46" height="48" rx="6" fill="#FFFFFF" stroke="#DCE7F8" stroke-width="2"/>
+                      <rect x="176" y="102" width="30" height="20" rx="3" fill="#EAF2FE"/>
+                      <rect x="176" y="126" width="24" height="4" rx="2" fill="#CBD5E1"/>
+                      <circle cx="191" cy="94" r="5" fill="#E11D48"/>
+                    </g>
+                  </svg>
+                </figure>
+                <div class="services-workflow-step__main">
+                  <span class="services-workflow-steps__num">2</span>
+                  <div class="services-workflow-steps__body">
+                    <div class="services-workflow-steps__head">
+                      <span class="services-workflow-steps__title">Мудборд и концепция</span>
+                      <span class="services-workflow-steps__duration">1 день</span>
+                    </div>
+                    <p class="services-workflow-steps__text">Создаём <strong>мудборд</strong> — визуальный образ будущего проекта. Собираем всё, что понадобится для разработки: шрифты, цветовую палитру, стилистику, референсы конкурентов и удачных примеров, портрет целевой аудитории. Так мы вместе с вами формируем единое видение результата ещё до старта работы.</p>
                   </div>
-                  <p class="services-workflow-steps__text">Создаём <strong>мудборд</strong> — визуальный образ будущего проекта. Собираем всё, что понадобится для разработки: шрифты, цветовую палитру, стилистику, референсы конкурентов и удачных примеров, портрет целевой аудитории. Так мы вместе с вами формируем единое видение результата ещё до старта работы.</p>
                 </div>
               </li>
-              <li>
-                <span class="services-workflow-steps__num">3</span>
-                <div class="services-workflow-steps__body">
-                  <div class="services-workflow-steps__head">
-                    <span class="services-workflow-steps__title">Прототип и структура</span>
-                    <span class="services-workflow-steps__duration">2–4 дня</span>
+              <li class="services-workflow-step services-workflow-step--chaos-3">
+                <figure class="services-workflow-step__art">
+                  <svg viewBox="0 0 220 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                    <!-- карандаш рисует блок-схему -->
+                    <g transform="rotate(-8 76 96)">
+                      <rect x="42" y="70" width="68" height="48" rx="6" fill="none" stroke="#2563EB" stroke-width="4" stroke-dasharray="9 6"/>
+                    </g>
+                    <g transform="rotate(6 150 84)">
+                      <rect x="126" y="62" width="52" height="40" rx="6" fill="none" stroke="#0EA5E9" stroke-width="4" stroke-dasharray="8 5"/>
+                    </g>
+                    <!-- стрелка-связь между блоками -->
+                    <path d="M112 92 Q120 92 124 88" stroke="#94A3B8" stroke-width="4" fill="none" stroke-linecap="round"/>
+                    <polygon points="124,88 116,86 120,94" fill="#94A3B8"/>
+                    <!-- карандаш -->
+                    <g transform="rotate(-40 60 150)">
+                      <rect x="40" y="120" width="14" height="70" rx="4" fill="#F59E0B"/>
+                      <polygon points="40,120 54,120 47,104" fill="#FDBA74"/>
+                      <rect x="40" y="182" width="14" height="10" rx="2" fill="#334155"/>
+                    </g>
+                    <!-- линейка -->
+                    <g transform="rotate(18 176 138)">
+                      <rect x="146" y="126" width="70" height="20" rx="4" fill="#FFFFFF" stroke="#DCE7F8" stroke-width="2"/>
+                      <path d="M156 126v8M168 126v12M180 126v8M192 126v12M204 126v8" stroke="#94A3B8" stroke-width="2"/>
+                    </g>
+                    <!-- маленький макет-«точка внимания» -->
+                    <circle cx="108" cy="130" r="6" fill="#2563EB"/>
+                    <circle cx="128" cy="140" r="4" fill="#2563EB" fill-opacity="0.5"/>
+                  </svg>
+                </figure>
+                <div class="services-workflow-step__main">
+                  <span class="services-workflow-steps__num">3</span>
+                  <div class="services-workflow-steps__body">
+                    <div class="services-workflow-steps__head">
+                      <span class="services-workflow-steps__title">Прототип и структура</span>
+                      <span class="services-workflow-steps__duration">1 день</span>
+                    </div>
+                    <p class="services-workflow-steps__text">Прорабатываем структуру страниц и логику пользовательского пути — от первого экрана до заявки или заказа. Продумываем блоки, их порядок и подачу информации так, чтобы посетителю было понятно и удобно. Согласовываем прототип с вами, прежде чем приступать к финальному дизайну.</p>
                   </div>
-                  <p class="services-workflow-steps__text">Прорабатываем структуру страниц и логику пользовательского пути — от первого экрана до заявки или заказа. Продумываем блоки, их порядок и подачу информации так, чтобы посетителю было понятно и удобно. Согласовываем прототип с вами, прежде чем приступать к финальному дизайну.</p>
                 </div>
               </li>
-              <li>
-                <span class="services-workflow-steps__num">4</span>
-                <div class="services-workflow-steps__body">
-                  <div class="services-workflow-steps__head">
-                    <span class="services-workflow-steps__title">Дизайн и разработка</span>
-                    <span class="services-workflow-steps__duration">5–10 дней</span>
+              <li class="services-workflow-step services-workflow-step--chaos-4">
+                <figure class="services-workflow-step__art">
+                  <svg viewBox="0 0 220 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                    <!-- кисть красит -->
+                    <g transform="rotate(-18 66 96)">
+                      <rect x="52" y="30" width="14" height="60" rx="6" fill="#94A3B8"/>
+                      <path d="M46 30 h26 l-6 -22 a7 7 0 0 0 -14 0 z" fill="#F59E0B"/>
+                      <path d="M52 90 q7 20 7 34" stroke="#F59E0B" stroke-width="10" stroke-linecap="round" fill="none"/>
+                    </g>
+                    <!-- фигурная скобка кода </> -->
+                    <g transform="rotate(9 156 60)">
+                      <circle cx="156" cy="58" r="34" fill="#0F172A"/>
+                      <text x="156" y="70" font-family="monospace" font-size="26" font-weight="700" fill="#38BDF8" text-anchor="middle">&lt;/&gt;</text>
+                    </g>
+                    <!-- курсор клика -->
+                    <g transform="rotate(-4 92 130)">
+                      <path d="M78 108 L78 156 L90 145 L98 162 L108 157 L99 141 L114 138 Z" fill="#2563EB"/>
+                    </g>
+                    <!-- цветовые точки/слои -->
+                    <circle cx="176" cy="126" r="12" fill="#F59E0B"/>
+                    <circle cx="192" cy="140" r="9" fill="#E11D48" fill-opacity="0.85"/>
+                    <circle cx="160" cy="144" r="7" fill="#22C55E" fill-opacity="0.85"/>
+                  </svg>
+                </figure>
+                <div class="services-workflow-step__main">
+                  <span class="services-workflow-steps__num">4</span>
+                  <div class="services-workflow-steps__body">
+                    <div class="services-workflow-steps__head">
+                      <span class="services-workflow-steps__title">Дизайн и разработка</span>
+                      <span class="services-workflow-steps__duration">2–3 дня</span>
+                    </div>
+                    <p class="services-workflow-steps__text">После согласования концепции приступаем к созданию сайта или бота: продумываем визуал, уделяя внимание юзабилити и конверсии, и сочетаем это с красивым современным дизайном. Затем переносим макет в код — адаптивная вёрстка под все устройства, анимации, интеграции с CRM, аналитикой и платёжными сервисами.</p>
                   </div>
-                  <p class="services-workflow-steps__text">После согласования концепции приступаем к созданию сайта или бота: продумываем визуал, уделяя внимание юзабилити и конверсии, и сочетаем это с красивым современным дизайном. Затем переносим макет в код — адаптивная вёрстка под все устройства, анимации, интеграции с CRM, аналитикой и платёжными сервисами.</p>
                 </div>
               </li>
-              <li>
-                <span class="services-workflow-steps__num">5</span>
-                <div class="services-workflow-steps__body">
-                  <div class="services-workflow-steps__head">
-                    <span class="services-workflow-steps__title">Тестирование и доработка</span>
-                    <span class="services-workflow-steps__duration">2–3 дня</span>
+              <li class="services-workflow-step services-workflow-step--chaos-5">
+                <figure class="services-workflow-step__art">
+                  <svg viewBox="0 0 220 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                    <!-- лупа с жуком: ищем баги -->
+                    <g transform="rotate(-6 78 96)">
+                      <circle cx="72" cy="88" r="30" fill="none" stroke="#E11D48" stroke-width="7"/>
+                      <line x1="94" y1="110" x2="114" y2="130" stroke="#E11D48" stroke-width="9" stroke-linecap="round"/>
+                      <ellipse cx="72" cy="88" rx="10" ry="13" fill="#334155"/>
+                      <line x1="62" y1="80" x2="54" y2="72" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+                      <line x1="82" y1="80" x2="90" y2="72" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+                      <line x1="60" y1="94" x2="52" y2="98" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+                      <line x1="84" y1="94" x2="92" y2="98" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+                    </g>
+                    <!-- галочки чек-листа -->
+                    <g transform="rotate(8 168 54)">
+                      <rect x="140" y="24" width="56" height="60" rx="8" fill="#FFFFFF" stroke="#DCE7F8" stroke-width="2"/>
+                      <circle cx="153" cy="38" r="6" fill="#22C55E"/>
+                      <path d="M150 38l2 2 4-4" stroke="#FFFFFF" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                      <rect x="163" y="35" width="26" height="4" rx="2" fill="#CBD5E1"/>
+                      <circle cx="153" cy="54" r="6" fill="#22C55E"/>
+                      <path d="M150 54l2 2 4-4" stroke="#FFFFFF" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                      <rect x="163" y="51" width="20" height="4" rx="2" fill="#CBD5E1"/>
+                      <circle cx="153" cy="70" r="6" fill="#F59E0B"/>
+                      <rect x="163" y="67" width="24" height="4" rx="2" fill="#CBD5E1"/>
+                    </g>
+                    <!-- гаечный ключ чинит -->
+                    <g transform="rotate(35 100 150)">
+                      <path d="M92 118a14 14 0 1 0 18 18l30 30 8-8-30-30a14 14 0 0 0 -26-10z" fill="#64748B"/>
+                    </g>
+                  </svg>
+                </figure>
+                <div class="services-workflow-step__main">
+                  <span class="services-workflow-steps__num">5</span>
+                  <div class="services-workflow-steps__body">
+                    <div class="services-workflow-steps__head">
+                      <span class="services-workflow-steps__title">Тестирование и доработка</span>
+                      <span class="services-workflow-steps__duration">1 день</span>
+                    </div>
+                    <p class="services-workflow-steps__text"><strong>Доработка</strong> — тестируем всё на разных устройствах и браузерах: скорость загрузки, формы, кнопки, сценарии взаимодействия. Собираем ваши комментарии и вносим правки, чтобы довести проект до идеала перед запуском.</p>
                   </div>
-                  <p class="services-workflow-steps__text"><strong>Доработка</strong> — тестируем всё на разных устройствах и браузерах: скорость загрузки, формы, кнопки, сценарии взаимодействия. Собираем ваши комментарии и вносим правки, чтобы довести проект до идеала перед запуском.</p>
                 </div>
               </li>
-              <li>
-                <span class="services-workflow-steps__num">6</span>
-                <div class="services-workflow-steps__body">
-                  <div class="services-workflow-steps__head">
-                    <span class="services-workflow-steps__title">Запуск и поддержка</span>
-                    <span class="services-workflow-steps__duration">после сдачи</span>
+              <li class="services-workflow-step services-workflow-step--chaos-6">
+                <figure class="services-workflow-step__art">
+                  <svg viewBox="0 0 220 170" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+                    <!-- ракета взлетает -->
+                    <g transform="rotate(-14 80 92)">
+                      <path d="M80 30c14 8 20 26 20 46 0 14-8 26-20 34-12-8-20-20-20-34 0-20 6-38 20-46z" fill="#2563EB"/>
+                      <circle cx="80" cy="66" r="9" fill="#FFFFFF"/>
+                      <path d="M60 88l-14 10 6 -20z" fill="#0EA5E9"/>
+                      <path d="M100 88l14 10 -6 -20z" fill="#0EA5E9"/>
+                      <path d="M72 110c0 12 4 22 8 28 4-6 8-16 8-28z" fill="#F59E0B"/>
+                    </g>
+                    <!-- шестерёнка настройки -->
+                    <g transform="rotate(14 168 60)">
+                      <path d="M168 38l4 8 9-3 1 9 9 2-4 8 7 6-7 6 4 8-9 2-1 9-9-3-4 8-4-8-9 3-1-9-9-2 4-8-7-6 7-6-4-8 9-2 1-9 9 3z" fill="#64748B"/>
+                      <circle cx="168" cy="60" r="10" fill="#F8FAFC"/>
+                    </g>
+                    <!-- вилка в розетку: подключаем -->
+                    <g transform="rotate(6 60 140)">
+                      <rect x="30" y="126" width="30" height="20" rx="4" fill="#334155"/>
+                      <rect x="36" y="132" width="5" height="10" rx="1" fill="#E2E8F0"/>
+                      <rect x="48" y="132" width="5" height="10" rx="1" fill="#E2E8F0"/>
+                      <rect x="60" y="128" width="26" height="16" rx="8" fill="#FFFFFF" stroke="#2563EB" stroke-width="3"/>
+                    </g>
+                    <!-- чат поддержки -->
+                    <g transform="rotate(-8 170 128)">
+                      <path d="M144 112h50a8 8 0 0 1 8 8v20a8 8 0 0 1 -8 8h-30l-14 12v-12h-6a8 8 0 0 1 -8 -8v-20a8 8 0 0 1 8 -8z" fill="#22C55E"/>
+                      <circle cx="158" cy="130" r="3" fill="#FFFFFF"/><circle cx="169" cy="130" r="3" fill="#FFFFFF"/><circle cx="180" cy="130" r="3" fill="#FFFFFF"/>
+                    </g>
+                  </svg>
+                </figure>
+                <div class="services-workflow-step__main">
+                  <span class="services-workflow-steps__num">6</span>
+                  <div class="services-workflow-steps__body">
+                    <div class="services-workflow-steps__head">
+                      <span class="services-workflow-steps__title">Запуск и поддержка</span>
+                      <span class="services-workflow-steps__duration">после сдачи</span>
+                    </div>
+                    <p class="services-workflow-steps__text">Публикуем сайт или бота, подключаем домен, хостинг и аналитику, передаём вам все доступы и исходники. Не пропадаем после сдачи проекта — остаёмся на связи для консультаций, обновлений и доработок в будущем.</p>
                   </div>
-                  <p class="services-workflow-steps__text">Публикуем сайт или бота, подключаем домен, хостинг и аналитику, передаём вам все доступы и исходники. Не пропадаем после сдачи проекта — остаёмся на связи для консультаций, обновлений и доработок в будущем.</p>
                 </div>
               </li>
             </ol>

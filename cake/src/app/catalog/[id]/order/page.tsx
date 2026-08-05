@@ -2,6 +2,7 @@ import { StaticLink } from "@/components/StaticLink";
 import { READY_CAKES } from "@/lib/data/catalog";
 import { getReadyCake, getSiteSettings } from "@/lib/site/repository";
 import { OrderForm } from "@/components/OrderForm";
+import { PageLocationMap } from "@/components/PageLocationMap";
 import { notFound } from "next/navigation";
 
 interface ReadyCakeOrderPageProps {
@@ -45,6 +46,8 @@ export default async function ReadyCakeOrderPage({
           contactPhone={settings.phone}
         />
       </div>
+
+      <PageLocationMap />
     </div>
   );
 }
