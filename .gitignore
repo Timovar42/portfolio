@@ -27,3 +27,6 @@ lawyer/backend/.venv/
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Локальный responsive-аудит (скриншоты)
+.audit/
