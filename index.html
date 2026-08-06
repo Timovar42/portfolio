@@ -383,6 +383,9 @@
     #projects .project-card.reveal {
       transform: translateY(56px);
     }
+    #projects .project-card.reveal.visible {
+      transform: none;
+    }
     #projects .d1 { transition-delay: 0.12s; }
     #projects .d2 { transition-delay: 0.34s; }
     #projects .d3 { transition-delay: 0.56s; }
@@ -464,13 +467,13 @@
       position: relative;
       z-index: 2;
       isolation: isolate;
-      min-height: 100svh;
+      min-height: auto;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       text-align: center;
-      padding: calc(var(--nav-h) + 56px) 24px 72px;
+      padding: calc(var(--nav-h) + 40px) 24px 32px;
       overflow-x: clip;
       overflow-y: visible;
       box-sizing: border-box;
@@ -581,18 +584,186 @@
       left: -4vw; bottom: -6vw;
     }
     @media (max-width: 767px) {
-      .hero-shape--a { width: 42vw; height: 42vw; left: -14vw; bottom: -10vw; opacity: 0.7; }
-      .hero-shape--b { width: 44vw; height: 44vw; max-width: 260px; max-height: 260px; left: 28vw; top: auto; bottom: -18vw; opacity: 0.55; }
-      .projects-shape--a { width: 52vw; height: 52vw; left: -16vw; top: -14vw; opacity: 0.55; }
-      .services-shape--a { width: 48vw; height: 48vw; right: -16vw; top: -6%; opacity: 0.55; }
-      .services-shape--c { width: 34vw; height: 34vw; left: -14vw; top: -5%; opacity: 0.5; }
-      .services-bottom-shape--a { display: none; }
-      .services-bottom-shape--b { width: 46vw; height: 46vw; max-width: none; left: -22vw; top: 52%; opacity: 0.4; }
-      /* mid-shape на телефонах уходит под визуал и перекрывает текст — прячем */
+      /* фигуры — самый задний слой; translateZ фиксит iOS Safari */
+      .hero,
+      .section,
+      .hero + #projects.section {
+        z-index: auto;
+        isolation: isolate;
+        transform: translateZ(0);
+      }
+      .zone-shapes {
+        z-index: 0;
+        overflow: visible;
+        pointer-events: none;
+        transform: translate3d(0, 0, -1px);
+      }
+      .zone-shape {
+        z-index: 0;
+        opacity: 0.62;
+      }
+      .hero-layout,
+      .section-inner {
+        position: relative;
+        z-index: 2;
+        transform: translateZ(0);
+        isolation: isolate;
+      }
+      .section-head {
+        position: relative;
+        z-index: 3;
+      }
+      .projects-grid {
+        position: relative;
+        z-index: 2;
+      }
+      .projects-grid > .project-card {
+        z-index: 1;
+      }
+      .services-intro,
+      .services-pills-wrap {
+        position: relative;
+        z-index: 2;
+      }
+      .services-pills-group {
+        position: relative;
+        z-index: 2;
+        isolation: isolate;
+      }
+      .services-pills-group__visual,
+      .services-pills {
+        position: relative;
+        z-index: 2;
+      }
+      .service-pill {
+        position: relative;
+        z-index: 2;
+        background: #FFFFFF;
+        isolation: isolate;
+      }
+      .service-pill__trigger {
+        background: #FFFFFF;
+      }
+      .services-bottom {
+        position: relative;
+        z-index: 2;
+        isolation: isolate;
+      }
+      .services-bottom .zone-shapes {
+        z-index: 0;
+        transform: translate3d(0, 0, -1px);
+      }
+      .services-bottom > .services-info-block {
+        position: relative;
+        z-index: 2;
+        background: var(--glass-bg);
+      }
+      .contact-block,
+      .reviews-empty-wrap {
+        position: relative;
+        z-index: 2;
+      }
+      .hero-shape--a {
+        width: 44vw;
+        height: 44vw;
+        max-width: 220px;
+        max-height: 220px;
+        left: -12vw;
+        bottom: -10vw;
+        opacity: 0.68;
+      }
+      .hero-shape--b {
+        width: 46vw;
+        height: 46vw;
+        max-width: 240px;
+        max-height: 240px;
+        left: auto;
+        right: -10vw;
+        top: auto;
+        bottom: -14vw;
+        opacity: 0.55;
+      }
+      .projects-shape--a {
+        width: 50vw;
+        height: 50vw;
+        max-width: 260px;
+        max-height: 260px;
+        left: -18vw;
+        top: -16vw;
+        opacity: 0.45;
+      }
+      .services-shape--a {
+        width: 48vw;
+        height: 48vw;
+        max-width: 250px;
+        max-height: 250px;
+        right: auto;
+        left: -14vw;
+        top: -6%;
+        opacity: 0.6;
+      }
+      .services-shape--c {
+        width: 36vw;
+        height: 36vw;
+        max-width: 190px;
+        max-height: 190px;
+        left: auto;
+        right: -14vw;
+        top: auto;
+        bottom: -12vw;
+        opacity: 0.52;
+      }
+      .services-bottom-shape--a {
+        width: 42vw;
+        height: 42vw;
+        max-width: 230px;
+        max-height: 230px;
+        right: -14vw;
+        left: auto;
+        top: auto;
+        bottom: -10vw;
+        opacity: 0.5;
+      }
+      .services-bottom-shape--b {
+        width: 46vw;
+        height: 46vw;
+        max-width: 250px;
+        max-height: 250px;
+        left: -16vw;
+        right: auto;
+        top: auto;
+        bottom: -12vw;
+        opacity: 0.48;
+      }
+      .reviews-shape--a {
+        width: 48vw;
+        height: 48vw;
+        max-width: 260px;
+        max-height: 260px;
+        right: -14vw;
+        top: -10%;
+        opacity: 0.55;
+      }
+      .contact-shape--a {
+        width: 42vw;
+        height: 42vw;
+        max-width: 230px;
+        max-height: 230px;
+        right: -12vw;
+        bottom: -10vw;
+        opacity: 0.52;
+      }
+      .footer-shape--a {
+        width: 38vw;
+        height: 38vw;
+        max-width: 200px;
+        max-height: 190px;
+        left: -10vw;
+        bottom: -8vw;
+        opacity: 0.58;
+      }
+      /* mid-shape в центре карточек — прячем, чтобы не лез на текст */
       .services-pills-group--bots .services-mid-shape { display: none; }
-      .reviews-shape--a { width: 48vw; height: 48vw; max-width: none; right: -20vw; top: -12%; opacity: 0.45; }
-      .contact-shape--a { width: 40vw; height: 40vw; right: -16vw; bottom: -12vw; opacity: 0.45; }
-      .footer-shape--a { width: 36vw; height: 36vw; max-height: 170px; left: -10vw; bottom: -6vw; opacity: 0.5; }
     }
     .nav {
       animation: page-nav-enter 1200ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
@@ -671,6 +842,7 @@
       max-width: 460px;
       display: flex;
       justify-content: center;
+      align-items: center;
       animation: page-deco-enter 1400ms cubic-bezier(0.16, 1, 0.3, 1) 320ms both;
     }
     @media (prefers-reduced-motion: reduce) {
@@ -679,6 +851,8 @@
     .hero-media img {
       width: 100%;
       height: auto;
+      max-width: 100%;
+      object-fit: contain;
     }
     h1 {
       font-family: var(--font-display);
@@ -756,13 +930,13 @@
     .section-bg2 { background: var(--section-alt-bg); }
     .hero + #projects.section {
       margin-top: 0;
-      padding: 20px 24px 100px;
+      padding: 12px 24px 100px;
       background: var(--section-alt-bg);
       z-index: 1;
     }
     .hero + #projects.section .section-head {
       margin-top: 0;
-      margin-bottom: 40px;
+      margin-bottom: 32px;
     }
     /* отзывов пока нет — секция короче, чтобы не оставлять большую пустую область */
     #reviews.section {
@@ -2091,23 +2265,38 @@
         transform: translateX(0);
       }
 
-      .section { padding: 56px var(--pad-x); overflow-x: clip; }
+      .section { padding: 56px var(--pad-x); overflow-x: clip; isolation: isolate; z-index: auto; }
       .hero {
-        padding: calc(var(--nav-h) + 28px) var(--pad-x) 44px;
-        text-align: center;
+        min-height: 100svh;
+        min-height: 100dvh;
+        justify-content: flex-start;
+        padding: calc(var(--nav-h) + 24px) var(--pad-x) 24px;
+        align-items: stretch;
+        text-align: left;
         overflow-x: clip;
+        z-index: auto;
+        isolation: isolate;
       }
-      .hero-layout { max-width: 440px; }
+      .hero-layout { max-width: 100%; width: 100%; position: relative; z-index: 1; }
       .hero-content {
         flex-direction: column-reverse;
+        align-items: flex-start;
         gap: 28px;
         max-width: 100%;
-        text-align: center;
+        text-align: left;
       }
-      .hero-text { max-width: 100%; }
-      .hero-media { max-width: 260px; }
-      .hero-sub { margin: 0 auto; max-width: 100%; }
-      .hero-ctas { justify-content: center; width: 100%; }
+      .hero-text {
+        flex: 0 0 auto;
+        max-width: 100%;
+      }
+      .hero-media {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 180px;
+        align-self: center;
+      }
+      .hero-sub { margin: 0; max-width: 100%; }
+      .hero-ctas { justify-content: flex-start; width: 100%; }
       .hero-ctas .btn-primary,
       .hero-ctas .btn-ghost {
         flex: 1 1 auto;
@@ -2222,7 +2411,7 @@
         margin: 12px 0 24px;
         padding: 14px 28px;
         font-size: 17px;
-        align-self: flex-start;
+        align-self: center;
         text-align: left;
       }
       .services-pills-group,
@@ -2267,8 +2456,10 @@
       /* проекты — горизонтальная лента */
       .hero + #projects.section {
         margin-top: 0;
-        padding: 16px var(--pad-x) 56px;
+        padding: 8px var(--pad-x) 48px;
         background: var(--section-alt-bg);
+        z-index: auto;
+        isolation: isolate;
       }
       #projects.section {
         overflow-x: clip;
@@ -2279,13 +2470,13 @@
         flex-wrap: nowrap;
         align-items: stretch;
         overflow-x: auto;
-        overflow-y: hidden;
+        overflow-y: visible;
         scroll-snap-type: x mandatory;
         scroll-padding-inline: var(--pad-x);
         gap: 14px;
         margin-left: calc(-1 * var(--pad-x));
         margin-right: calc(-1 * var(--pad-x));
-        padding: 8px var(--pad-x) 20px;
+        padding: 8px var(--pad-x) 28px;
         -webkit-overflow-scrolling: touch;
         overscroll-behavior-x: contain;
         overscroll-behavior-y: auto;
@@ -2304,17 +2495,74 @@
         max-height: none;
         overflow: hidden;
         isolation: isolate;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        z-index: 2;
+        transform: translateZ(0);
+        background: #FFFFFF;
       }
       .projects-grid > .project-card.featured {
         flex: 0 0 min(84vw, 300px);
         width: min(84vw, 300px);
         grid-column: auto;
       }
-      .projects-grid .browser-screen {
-        height: 200px;
-      }
+      .projects-grid .browser-screen,
       .projects-grid .featured .browser-screen {
-        height: 220px;
+        height: auto;
+        aspect-ratio: 1280 / 680;
+        flex-shrink: 0;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      .projects-grid .browser-shot {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top center;
+      }
+      .projects-grid .project-info {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        padding: 18px;
+        position: relative;
+        z-index: 2;
+        background: #FFFFFF;
+      }
+      .projects-grid .project-card.featured .project-info {
+        padding: 18px;
+      }
+      .projects-grid .tags {
+        position: relative;
+        z-index: 2;
+        margin-top: 14px;
+        margin-bottom: 4px;
+      }
+      .projects-grid .tag {
+        background: #EAF2FE;
+        border-color: rgba(37, 99, 235, 0.2);
+      }
+      .projects-grid .project-open-btn {
+        position: relative;
+        z-index: 2;
+        background: #FFFFFF;
+        margin-top: 14px;
+        flex-shrink: 0;
+      }
+      .projects-grid .project-desc {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 4;
+        overflow: hidden;
+        min-height: calc(4 * 1.6em);
+        flex: 1 1 auto;
+      }
+
+      .projects-grid .browser {
+        position: relative;
+        z-index: 2;
+        background: #F1F5F9;
       }
 
       /* без вертикального сдвига — не перехватывает скролл страницы */
@@ -2333,6 +2581,9 @@
       }
       .section-head.reveal.visible {
         transform: translateX(0);
+      }
+      #projects .project-card.reveal {
+        transform: none;
       }
       .project-card,
       .service-card,
@@ -2389,8 +2640,10 @@
       .hero-text { max-width: 55%; }
       .hero-sub { margin: 0; }
       .hero-media {
-        max-width: 180px;
-        flex: 0 1 180px;
+        flex: 0 0 auto;
+        width: auto;
+        max-width: 140px;
+        align-self: center;
       }
       .hero-ctas { justify-content: flex-start; margin-top: 16px; }
       h1 { font-size: clamp(20px, 4vw, 28px); margin-bottom: 10px; }
@@ -2842,7 +3095,7 @@
       .nav-links { gap: 18px; }
       .nav-links a:not(.btn-nav) { font-size: 13.5px; }
 
-      .hero { padding-top: calc(var(--nav-h) + 40px); padding-bottom: 56px; }
+      .hero { padding-top: calc(var(--nav-h) + 32px); padding-bottom: 28px; }
       .hero-content { gap: 28px; }
       .hero-text { flex: 1 1 54%; max-width: 54%; }
       .hero-media { flex: 0 1 42%; max-width: 300px; }
@@ -2913,10 +3166,15 @@
       .social-link { width: 42px; height: 42px; }
       .project-open-btn { padding: 11px 18px; }
 
-      /* герой: иллюстрация не должна выдавливать заголовок за первый экран */
-      .hero { padding-top: calc(var(--nav-h) + 24px); padding-bottom: 40px; }
+      /* герой на весь экран — портфолио не видно при открытии */
+      .hero { padding-top: calc(var(--nav-h) + 20px); padding-bottom: 24px; }
       .hero-content { gap: 22px; }
-      .hero-media { max-width: min(52vw, 230px); }
+      .hero-media {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: min(46vw, 180px);
+        align-self: center;
+      }
       h1 { font-size: clamp(25px, 7.2vw, 32px); }
       .hero-sub { font-size: 15.5px; }
       .hero-ctas { margin-top: 26px; gap: 10px; }
@@ -2967,7 +3225,7 @@
       :root { --pad-x: 18px; }
 
       .section { padding-top: 52px; padding-bottom: 52px; }
-      .hero-media { max-width: min(46vw, 200px); }
+      .hero-media { max-width: min(42vw, 160px); }
       .hero-ctas { flex-direction: column; align-items: stretch; }
       .hero-ctas .btn-primary,
       .hero-ctas .btn-ghost { width: 100%; }
@@ -2995,7 +3253,7 @@
 
       h1 { font-size: clamp(22px, 7.6vw, 27px); }
       .hero-sub { font-size: 14.5px; }
-      .hero-media { max-width: min(40vw, 158px); }
+      .hero-media { max-width: min(38vw, 140px); }
       .hero-content { gap: 18px; }
 
       .section-head { width: min(88vw, 490px); }
@@ -3066,7 +3324,6 @@
       .hero-text { max-width: 660px; }
       .hero-sub { font-size: 19px; max-width: 520px; }
       .hero-media { max-width: 520px; }
-      .hero { min-height: min(100svh, 1040px); }
 
       .section { padding-top: 120px; padding-bottom: 120px; }
       .browser-screen { height: 250px; }
