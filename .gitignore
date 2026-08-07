@@ -30,3 +30,6 @@ desktop.ini
 
 # Локальный responsive-аудит (скриншоты)
 .audit/
+
+# Сборка GitHub Pages
+_site/
