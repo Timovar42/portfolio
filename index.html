@@ -2267,39 +2267,79 @@
 
       .section { padding: 56px var(--pad-x); overflow-x: clip; isolation: isolate; z-index: auto; }
       .hero {
-        min-height: 100svh;
-        min-height: 100dvh;
+        height: 100svh;
+        height: 100dvh;
+        max-height: 100dvh;
+        min-height: 0;
         justify-content: flex-start;
-        padding: calc(var(--nav-h) + 24px) var(--pad-x) 24px;
+        padding: calc(var(--nav-h) + 12px) var(--pad-x) max(16px, env(safe-area-inset-bottom, 0px));
         align-items: stretch;
         text-align: left;
-        overflow-x: clip;
+        overflow: hidden;
         z-index: auto;
         isolation: isolate;
+        box-sizing: border-box;
       }
-      .hero-layout { max-width: 100%; width: 100%; position: relative; z-index: 1; }
-      .hero-content {
-        flex-direction: column-reverse;
-        align-items: flex-start;
-        gap: 28px;
+      .hero-layout {
         max-width: 100%;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        overflow: hidden;
+      }
+      .hero-content {
+        flex: 1;
+        display: grid;
+        grid-template-rows: minmax(0, 1fr) auto;
+        grid-template-columns: minmax(0, 1fr);
+        align-items: stretch;
+        gap: 10px;
+        max-width: 100%;
+        min-height: 0;
         text-align: left;
+        overflow: hidden;
       }
       .hero-text {
+        grid-row: 2;
         flex: 0 0 auto;
         max-width: 100%;
+        width: 100%;
+        align-self: flex-start;
       }
       .hero-media {
-        flex: 0 0 auto;
-        width: auto;
-        max-width: 180px;
-        align-self: center;
+        grid-row: 1;
+        min-height: 0;
+        width: 100%;
+        max-width: 100%;
+        align-self: stretch;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+        overflow: hidden;
       }
-      .hero-sub { margin: 0; max-width: 100%; }
-      .hero-ctas { justify-content: flex-start; width: 100%; }
+      .hero-media img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        object-position: left bottom;
+      }
+      .hero-sub { margin: 0; max-width: 100%; text-align: left; }
+      .hero-ctas {
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+        margin-top: 16px;
+        gap: 10px;
+      }
       .hero-ctas .btn-primary,
       .hero-ctas .btn-ghost {
-        flex: 1 1 auto;
+        flex: 0 1 auto;
         min-width: 0;
         text-align: center;
       }
@@ -2309,6 +2349,8 @@
         overflow-wrap: break-word;
         word-break: break-word;
         hyphens: auto;
+        text-align: left;
+        margin-bottom: 12px;
       }
       h1 .line2 { display: inline; }
 
@@ -2398,21 +2440,12 @@
         flex-direction: column;
         align-items: stretch;
         gap: 12px;
-        margin-bottom: 28px;
+        margin-bottom: 20px;
         padding-top: 12px;
       }
-      .services-pills-label--sites {
-        margin-top: 0;
-        align-self: flex-end;
-        padding: 14px 28px;
-        font-size: 17px;
-      }
+      .services-pills-label--sites,
       .services-pills-label--bots {
-        margin: 12px 0 24px;
-        padding: 14px 28px;
-        font-size: 17px;
-        align-self: center;
-        text-align: left;
+        display: none;
       }
       .services-pills-group,
       .services-pills-group--bots {
@@ -2424,9 +2457,11 @@
       .services-pills-group--bots .services-pills-group__visual {
         grid-row: 1;
         grid-column: 1;
-        max-width: 280px;
-        margin: 0 auto;
-        width: 100%;
+        width: calc(100% + 2 * var(--pad-x));
+        max-width: none;
+        margin-left: calc(-1 * var(--pad-x));
+        margin-right: calc(-1 * var(--pad-x));
+        border-radius: 14px;
       }
       .services-pills-group .services-pills,
       .services-pills-group--bots .services-pills {
@@ -2627,23 +2662,29 @@
     /* — телефоны в альбомной ориентации: мало высоты, hero не должен прятать заголовок и кнопки — */
     @media (max-height: 500px) and (orientation: landscape) {
       .hero {
+        height: auto;
+        max-height: none;
         min-height: auto;
+        overflow: visible;
         padding: calc(var(--nav-h) + 16px) 24px 20px;
       }
+      .hero-layout { max-width: 720px; overflow: visible; }
       .hero-content {
+        display: flex;
         flex-direction: row;
         align-items: center;
         text-align: left;
         gap: 24px;
+        overflow: visible;
       }
-      .hero-layout { max-width: 720px; }
-      .hero-text { max-width: 55%; }
+      .hero-text { grid-row: auto; max-width: 55%; }
       .hero-sub { margin: 0; }
       .hero-media {
+        grid-row: auto;
         flex: 0 0 auto;
         width: auto;
         max-width: 140px;
-        align-self: center;
+        align-self: flex-start;
       }
       .hero-ctas { justify-content: flex-start; margin-top: 16px; }
       h1 { font-size: clamp(20px, 4vw, 28px); margin-bottom: 10px; }
@@ -3166,18 +3207,15 @@
       .social-link { width: 42px; height: 42px; }
       .project-open-btn { padding: 11px 18px; }
 
-      /* герой на весь экран — портфолио не видно при открытии */
-      .hero { padding-top: calc(var(--nav-h) + 20px); padding-bottom: 24px; }
-      .hero-content { gap: 22px; }
-      .hero-media {
-        flex: 0 0 auto;
-        width: auto;
-        max-width: min(46vw, 180px);
-        align-self: center;
+      /* герой: фото крупное, текст и кнопки всегда в первом экране */
+      .hero {
+        padding-top: calc(var(--nav-h) + 10px);
+        padding-bottom: max(14px, env(safe-area-inset-bottom, 0px));
       }
-      h1 { font-size: clamp(25px, 7.2vw, 32px); }
-      .hero-sub { font-size: 15.5px; }
-      .hero-ctas { margin-top: 26px; gap: 10px; }
+      .hero-content { gap: 8px; }
+      h1 { font-size: clamp(25px, 7.2vw, 32px); margin-bottom: 10px; }
+      .hero-sub { font-size: 15.5px; line-height: 1.45; }
+      .hero-ctas { margin-top: 14px; gap: 8px; }
       .hero-ctas .btn-primary,
       .hero-ctas .btn-ghost { padding: 13px 18px; }
 
@@ -3225,12 +3263,9 @@
       :root { --pad-x: 18px; }
 
       .section { padding-top: 52px; padding-bottom: 52px; }
-      .hero-media { max-width: min(42vw, 160px); }
       .hero-ctas { flex-direction: column; align-items: stretch; }
       .hero-ctas .btn-primary,
       .hero-ctas .btn-ghost { width: 100%; }
-      .services-pills-group__visual,
-      .services-pills-group--bots .services-pills-group__visual { max-width: 240px; }
       .services-info-block--workflow { padding: 20px 16px; }
       .services-workflow-step__art { width: min(62vw, 190px); }
       .reviews-empty {
@@ -3251,10 +3286,10 @@
       .nav-burger { width: 38px; height: 38px; }
       .nav-links { gap: 0; }
 
-      h1 { font-size: clamp(22px, 7.6vw, 27px); }
+      h1 { font-size: clamp(22px, 7.6vw, 27px); margin-bottom: 8px; }
       .hero-sub { font-size: 14.5px; }
-      .hero-media { max-width: min(38vw, 140px); }
-      .hero-content { gap: 18px; }
+      .hero-content { gap: 6px; }
+      .hero-ctas { margin-top: 12px; }
 
       .section-head { width: min(88vw, 490px); }
       .section-head h2 {
@@ -3271,11 +3306,6 @@
       }
       .contact-channel { padding: 14px 12px; }
       .services-tool-tag { font-size: 10.5px; padding: 4px 9px; }
-      .services-pills-label--sites,
-      .services-pills-label--bots {
-        padding: 12px 20px;
-        font-size: 15px;
-      }
     }
 
     /* ═══════════ ОЧЕНЬ УЗКИЕ ЭКРАНЫ: ≤340 ═══════════ */
