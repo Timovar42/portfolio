@@ -60,15 +60,15 @@
 
     .reveal {
       opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.75s ease, transform 0.75s ease;
+      transform: translateY(18px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
     }
     .reveal.visible { opacity: 1; transform: none; }
-    .d1 { transition-delay: 0.1s; }
-    .d2 { transition-delay: 0.25s; }
-    .d3 { transition-delay: 0.4s; }
-    .d4 { transition-delay: 0.55s; }
-    .d5 { transition-delay: 0.7s; }
+    .d1 { transition-delay: 0.04s; }
+    .d2 { transition-delay: 0.1s; }
+    .d3 { transition-delay: 0.16s; }
+    .d4 { transition-delay: 0.22s; }
+    .d5 { transition-delay: 0.28s; }
 
     /* ── NAV ── */
     .nav {
@@ -1272,6 +1272,15 @@
         display: none;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .marquee-track { animation: none; }
+    }
   </style>
 </head>
 <body>
@@ -1778,17 +1787,32 @@
   <script>
     (function () {
       /* IntersectionObserver — один инстанс для всех .reveal */
+      function showReveal(el) {
+        el.classList.add('visible');
+        revealObserver.unobserve(el);
+      }
+
       const revealObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            revealObserver.unobserve(entry.target);
-          }
+          if (entry.isIntersecting) showReveal(entry.target);
         });
-      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      }, { threshold: 0.06, rootMargin: '80px 0px -4% 0px' });
 
       document.querySelectorAll('.reveal').forEach(function (el) {
+        if (el.closest('#hero')) {
+          showReveal(el);
+          return;
+        }
         revealObserver.observe(el);
+      });
+
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          document.querySelectorAll('.reveal:not(.visible)').forEach(function (el) {
+            var r = el.getBoundingClientRect();
+            if (r.top < window.innerHeight * 0.94 && r.bottom > 0) showReveal(el);
+          });
+        });
       });
 
       /* Медная полоса на карточках услуг */
@@ -1799,7 +1823,7 @@
             cardObserver.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.3 });
+      }, { threshold: 0.12, rootMargin: '60px 0px -4% 0px' });
 
       document.querySelectorAll('.service-card').forEach(function (card) {
         cardObserver.observe(card);

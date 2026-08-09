@@ -82,16 +82,16 @@
 
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-                  transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      transform: translateY(16px);
+      transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
-    .delay-1 { transition-delay: 0.08s; }
-    .delay-2 { transition-delay: 0.18s; }
-    .delay-3 { transition-delay: 0.28s; }
-    .delay-4 { transition-delay: 0.38s; }
-    .delay-5 { transition-delay: 0.48s; }
+    .delay-1 { transition-delay: 0.04s; }
+    .delay-2 { transition-delay: 0.08s; }
+    .delay-3 { transition-delay: 0.12s; }
+    .delay-4 { transition-delay: 0.16s; }
+    .delay-5 { transition-delay: 0.2s; }
 
     .section-inner {
       max-width: 1040px;
@@ -456,7 +456,7 @@
     .accordion__panel {
       display: grid;
       grid-template-rows: 0fr;
-      transition: grid-template-rows 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: grid-template-rows 0.38s cubic-bezier(0.22, 1, 0.36, 1);
     }
     .accordion__item--open .accordion__panel {
       grid-template-rows: 1fr;
@@ -1593,21 +1593,36 @@
           if (el.classList.contains('reveal')) el.classList.add('visible');
           if (el.classList.contains('counter') && !countersDone.has(el)) {
             countersDone.add(el);
-            animateCounter(el, parseInt(el.dataset.target, 10), 1600);
+            animateCounter(el, parseInt(el.dataset.target, 10), 1200);
           }
           if (el.classList.contains('stats-row')) {
             el.querySelectorAll('.counter').forEach((c) => {
               if (!countersDone.has(c)) {
                 countersDone.add(c);
-                animateCounter(c, parseInt(c.dataset.target, 10), 1600);
+                animateCounter(c, parseInt(c.dataset.target, 10), 1200);
               }
             });
           }
           revealObs.unobserve(el);
         });
-      }, { threshold: 0.2 });
+      }, { threshold: 0.06, rootMargin: '80px 0px -4% 0px' });
 
-      document.querySelectorAll('.reveal, .counter, .stats-row').forEach((el) => revealObs.observe(el));
+      document.querySelectorAll('.reveal, .counter, .stats-row').forEach((el) => {
+        if (el.closest('#hero')) {
+          if (el.classList.contains('reveal')) el.classList.add('visible');
+          return;
+        }
+        revealObs.observe(el);
+      });
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          document.querySelectorAll('.reveal:not(.visible)').forEach((el) => {
+            const r = el.getBoundingClientRect();
+            if (r.top < window.innerHeight * 0.94 && r.bottom > 0) el.classList.add('visible');
+          });
+        });
+      });
 
       /* Accordion — плавное открытие и закрытие */
       document.querySelectorAll('.accordion__trigger').forEach((btn) => {
