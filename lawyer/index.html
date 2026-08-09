@@ -96,7 +96,7 @@
     .section-inner {
       max-width: 1040px;
       margin: 0 auto;
-      padding: calc(var(--header-h) + 48px) 24px 48px;
+      padding: calc(var(--header-h) + 56px) 24px 64px;
       width: 100%;
       flex: 1;
       display: flex;
@@ -163,7 +163,12 @@
       justify-content: space-between;
       gap: 16px;
     }
-    .logo { display: flex; flex-direction: column; gap: 2px; }
+    .logo {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
     .logo__name {
       font-family: var(--font-display);
       font-size: 17px;
@@ -180,7 +185,21 @@
     .header--light .logo__name { color: var(--text-dark); }
     .header--light .logo__sub { color: rgba(26,26,46,0.45); }
 
-    .header__right { display: flex; align-items: center; gap: 18px; }
+    .header__right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: clamp(12px, 2vw, 20px);
+      flex-shrink: 0;
+    }
+    .header__right .nav {
+      display: flex;
+      gap: clamp(16px, 2.5vw, 26px);
+    }
+    .header__right .nav__link { font-size: 13px; }
+    .header__right .header__phone { font-size: 14px; }
+    .header__right .btn { padding: 13px 24px; font-size: 13px; flex-shrink: 0; }
     .nav { display: flex; gap: 26px; }
     .nav__link {
       font-size: 13px;
@@ -239,7 +258,7 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
-      padding: 16px 20px 20px;
+      padding: 16px max(20px, env(safe-area-inset-right)) 20px max(20px, env(safe-area-inset-left));
       flex-direction: column;
       gap: 4px;
     }
@@ -334,6 +353,12 @@
       flex: 1;
       box-sizing: border-box;
     }
+    @media (min-width: 1025px) {
+      .hero__layout {
+        height: 100vh;
+        height: 100svh;
+      }
+    }
     .hero__layout > * { min-width: 0; }
     .hero__content {
       display: flex;
@@ -363,14 +388,19 @@
       overflow: hidden;
     }
     .hero__photo img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
-      min-height: calc(100vh - var(--header-h));
-      min-height: calc(100svh - var(--header-h));
       object-fit: cover;
       object-position: center top;
       display: block;
       filter: contrast(1.04) brightness(0.95);
+    }
+    @media (min-width: 1025px) {
+      .hero__photo {
+        min-height: calc(100svh - var(--header-h));
+      }
     }
 
     /* Service accordions */
@@ -434,25 +464,45 @@
 
     .accordion__panel-inner { overflow: hidden; min-height: 0; }
 
-    .accordion__list {
-      padding: 0 22px 20px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px 24px;
+    .accordion__body {
+      padding: 0 22px 22px;
       opacity: 0;
       transform: translateY(16px);
       transition:
         opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.08s,
         transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.08s;
     }
-    .accordion__item--open .accordion__list {
+    .accordion__item--open .accordion__body {
       opacity: 1;
       transform: translateY(0);
     }
-    .accordion__item:not(.accordion__item--open) .accordion__list {
+    .accordion__item:not(.accordion__item--open) .accordion__body {
       transition:
         opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
         transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .accordion__intro {
+      font-size: 14px;
+      color: rgba(237,234,226,0.72);
+      line-height: 1.7;
+      margin-bottom: 16px;
+      max-width: 720px;
+    }
+    .accordion__note {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .accordion__note strong { color: var(--gold-soft); font-weight: 500; }
+
+    .accordion__list {
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 24px;
     }
     .accordion__list li {
       font-size: 13px;
@@ -558,6 +608,115 @@
       color: var(--text-muted);
       line-height: 1.75;
       max-width: 520px;
+    }
+    .about__bio + .about__bio { margin-top: 16px; }
+    .about__list {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .about__list li {
+      font-size: 14px;
+      color: var(--text-muted);
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.55;
+    }
+    .about__list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.7;
+    }
+
+    /* Process */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 8px;
+    }
+    .process-block {
+      margin-top: 48px;
+    }
+    .process-step {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px 20px;
+    }
+    .process-step__num {
+      font-family: var(--font-display);
+      font-size: 28px;
+      color: var(--gold-soft);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .process-step__title {
+      font-size: 16px;
+      margin-bottom: 8px;
+      color: var(--text-light);
+    }
+    .process-step__text {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 720px;
+      margin-bottom: 32px;
+    }
+    .faq-item {
+      background: #fff;
+      border: 1px solid rgba(26,26,46,0.08);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+    .faq-item__q {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 8px;
+    }
+    .faq-item__a {
+      font-size: 14px;
+      color: rgba(26,26,46,0.62);
+      line-height: 1.65;
+    }
+
+    .contact-aside {
+      max-width: 640px;
+      margin-bottom: 28px;
+      padding: 20px 22px;
+      background: rgba(26,26,46,0.04);
+      border-radius: 8px;
+      border: 1px solid rgba(26,26,46,0.08);
+    }
+    .contact-aside p {
+      font-size: 14px;
+      color: rgba(26,26,46,0.62);
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+    .contact-aside p:last-child { margin-bottom: 0; }
+
+    .stats-intro {
+      max-width: 640px;
+      margin: 0 0 36px;
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
     }
     .about__photo {
       width: 100%;
@@ -677,12 +836,28 @@
     /* Tablet */
     @media (max-width: 1024px) {
       .section-inner {
-        padding: calc(var(--header-h) + 40px) 24px 44px;
+        padding: calc(var(--header-h) + 48px) 24px 56px;
       }
 
+      .nav { display: none; }
+      .header__toggle { display: flex; }
+      .header__right .btn { display: none; }
+      .header__right .header__phone { display: none; }
+
       .hero__layout {
-        grid-template-columns: minmax(0, 1fr) minmax(240px, 300px);
+        grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
         gap: 32px;
+        min-height: auto;
+        height: auto;
+      }
+
+      .hero__photo {
+        position: relative;
+        aspect-ratio: 4 / 5;
+        max-width: 280px;
+        justify-self: end;
+        align-self: start;
+        min-height: 0;
       }
 
       .advantages-grid {
@@ -697,17 +872,30 @@
 
       .about-grid {
         gap: 40px;
-        grid-template-columns: minmax(0, 1fr) minmax(220px, 260px);
+        grid-template-columns: minmax(0, 1fr) minmax(200px, 240px);
+      }
+
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-block { margin-top: 40px; }
+
+      .footer__grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
       }
     }
 
     /* Mobile */
     @media (max-width: 900px) {
       .scroll-dots { display: none; }
-      .nav { display: none; }
-      .header__toggle { display: flex; }
-      .header__right .btn { display: none; }
-      .header__right .header__phone { display: none; }
+
+      .header__inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 0 max(16px, env(safe-area-inset-left)) 0 max(16px, env(safe-area-inset-right));
+      }
+
+      .header__right { gap: 0; }
 
       html { scroll-behavior: auto; }
 
@@ -719,30 +907,29 @@
       .stack-panel:not(:first-child) { box-shadow: none; }
 
       .section-inner {
-        padding-top: calc(var(--header-h) + 32px);
-        padding-bottom: 40px;
+        padding-top: calc(var(--header-h) + 40px);
+        padding-bottom: 52px;
         padding-left: max(16px, env(safe-area-inset-left));
         padding-right: max(16px, env(safe-area-inset-right));
-      }
-
-      .header__inner {
-        padding: 0 max(16px, env(safe-area-inset-left)) 0 max(16px, env(safe-area-inset-right));
       }
 
       .hero__layout {
         grid-template-columns: 1fr;
         gap: 28px;
         min-height: auto;
+        height: auto;
         padding: 0 max(16px, env(safe-area-inset-left)) 0 max(16px, env(safe-area-inset-right));
       }
 
       .hero__photo {
         order: -1;
+        position: relative;
         width: 100%;
         max-width: 360px;
         margin: 0 auto;
         aspect-ratio: 4 / 5;
         align-self: auto;
+        justify-self: auto;
       }
 
       .hero__photo img {
@@ -801,14 +988,14 @@
 
       .accordion__trigger h3 { font-size: 14px; }
 
+      .accordion__body { padding: 0 18px 18px; }
+
       .accordion__list {
         grid-template-columns: 1fr;
-        padding: 0 18px 18px;
       }
 
-      .stats-row { grid-template-columns: 1fr; }
-
-      .stats-row__item { padding: 28px 20px; }
+      .process-grid { grid-template-columns: 1fr; }
+      .process-block { margin-top: 32px; }
 
       .form-grid { grid-template-columns: 1fr; }
 
@@ -821,15 +1008,33 @@
     }
 
     @media (max-width: 768px) {
+      .stats-row { grid-template-columns: 1fr; }
+
+      .stats-row__item { padding: 28px 20px; }
+
+      .stats-row__label { max-width: none; }
+
       .hero__actions { flex-direction: column; }
       .hero__actions .btn { width: 100%; white-space: normal; text-align: center; }
 
       .section-title { font-size: clamp(26px, 7vw, 34px); }
 
       .section-lead,
-      .advantages-intro {
+      .advantages-intro,
+      .stats-intro {
         font-size: 14px;
         margin-bottom: 28px;
+      }
+
+      .accordion__intro {
+        font-size: 13px;
+        margin-bottom: 14px;
+      }
+
+      .accordion__note {
+        font-size: 11px;
+        margin-top: 14px;
+        padding-top: 12px;
       }
 
       .advantage-card { padding: 20px 18px; }
@@ -841,12 +1046,12 @@
     @media (max-width: 480px) {
       .hero__photo {
         max-width: 100%;
-        aspect-ratio: 16 / 10;
+        aspect-ratio: 3 / 4;
       }
 
       .about__photo {
         max-width: 100%;
-        aspect-ratio: 16 / 10;
+        aspect-ratio: 3 / 4;
       }
 
       .about__badge {
@@ -925,7 +1130,7 @@
     <div class="section-inner section-inner--top">
       <p class="eyebrow reveal">Экспертиза</p>
       <h2 class="section-title reveal delay-1">Область экспертизы</h2>
-      <p class="section-lead reveal delay-2">Предлагаю широкий спектр юридических услуг для частных лиц и бизнеса: консультации, анализ правовой ситуации, подготовку документов, представительство в судах, органах власти и организациях.</p>
+      <p class="section-lead reveal delay-2">Предлагаю широкий спектр юридических услуг для частных лиц и бизнеса. Нажмите на направление — вы увидите подробное описание, типичные ситуации и что именно я делаю на каждом этапе.</p>
 
       <div class="accordion reveal delay-3" id="accordion">
         <div class="accordion__item">
@@ -935,13 +1140,20 @@
           </button>
           <div class="accordion__panel">
             <div class="accordion__panel-inner">
-            <ul class="accordion__list">
-              <li>Юридическое сопровождение сделок</li>
-              <li>Экспертиза документов при покупке недвижимости</li>
-              <li>Составление и подача исковых заявлений</li>
-              <li>Представительство в суде общей юрисдикции</li>
-              <li>Представительство в арбитражном суде</li>
-            </ul>
+              <div class="accordion__body">
+                <p class="accordion__intro">Веду дела в судах общей юрисдикции и арбитражных судах: от подготовки позиции до исполнения решения. Оцениваю перспективы ещё на консультации, чтобы вы понимали риски и реальные сроки.</p>
+                <ul class="accordion__list">
+                  <li>Юридическое сопровождение сделок с недвижимостью и бизнесом</li>
+                  <li>Экспертиза документов перед покупкой квартиры или дома</li>
+                  <li>Составление и подача исковых заявлений, отзывов, ходатайств</li>
+                  <li>Представительство в суде первой, апелляционной и кассационной инстанции</li>
+                  <li>Участие в судебных заседаниях, переговорах о мировом соглашении</li>
+                  <li>Представительство в арбитражном суде по спорам между юрлицами и ИП</li>
+                  <li>Обжалование решений, взыскание судебных расходов</li>
+                  <li>Сопровождение исполнительного производства</li>
+                </ul>
+                <p class="accordion__note"><strong>Как начать:</strong> принесите документы по делу — договор, переписку, судебные акты. На первой встрече разберём ситуацию и составим пошаговый план.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -952,12 +1164,19 @@
           </button>
           <div class="accordion__panel">
             <div class="accordion__panel-inner">
-            <ul class="accordion__list">
-              <li>Составление правовых документов</li>
-              <li>Составление договоров и претензий</li>
-              <li>Представление интересов в госорганах и судах</li>
-              <li>Урегулирование споров</li>
-            </ul>
+              <div class="accordion__body">
+                <p class="accordion__intro">Помогаю предпринимателям и компаниям снизить правовые риски: проверяю договоры, готовлю претензии, представляю интересы в спорах с контрагентами, налоговой и госорганами.</p>
+                <ul class="accordion__list">
+                  <li>Разработка и экспертиза договоров поставки, оказания услуг, аренды</li>
+                  <li>Составление претензий, ответов на претензии, досудебное урегулирование</li>
+                  <li>Представление интересов в судах и государственных органах</li>
+                  <li>Консультации по регистрации, ликвидации, изменению учредительных документов</li>
+                  <li>Защита при проверках и административных спорах</li>
+                  <li>Сопровождение сделок с долями, активами, интеллектуальной собственностью</li>
+                  <li>Абонентское юридическое обслуживание для малого и среднего бизнеса</li>
+                </ul>
+                <p class="accordion__note"><strong>Формат работы:</strong> разовая услуга или постоянное сопровождение — подберём вариант под масштаб задачи и бюджет.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -968,12 +1187,19 @@
           </button>
           <div class="accordion__panel">
             <div class="accordion__panel-inner">
-            <ul class="accordion__list">
-              <li>Восстановление на работе</li>
-              <li>Защита прав работников</li>
-              <li>Взыскание выплат</li>
-              <li>Защита прав работодателей</li>
-            </ul>
+              <div class="accordion__body">
+                <p class="accordion__intro">Защищаю права работников и работодателей: незаконные увольнения, невыплата зарплаты, споры по отпускам, дисциплинарным взысканиям, материальной ответственности.</p>
+                <ul class="accordion__list">
+                  <li>Оспаривание увольнения и восстановление на работе</li>
+                  <li>Взыскание заработной платы, премий, компенсаций при увольнении</li>
+                  <li>Споры о переводе, изменении условий труда, сокращении штата</li>
+                  <li>Защита при привлечении к дисциплинарной ответственности</li>
+                  <li>Консультации работодателям по кадровому документообороту</li>
+                  <li>Представительство в ГИТ и суде по трудовым искам</li>
+                  <li>Разработка локальных актов: положений, должностных инструкций</li>
+                </ul>
+                <p class="accordion__note"><strong>Сроки:</strong> по трудовым спорам важно не пропустить процессуальные сроки — обращайтесь как можно раньше после увольнения или нарушения.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -984,13 +1210,19 @@
           </button>
           <div class="accordion__panel">
             <div class="accordion__panel-inner">
-            <ul class="accordion__list">
-              <li>Расторжение брака</li>
-              <li>Взыскание алиментов</li>
-              <li>Споры по детям</li>
-              <li>Раздел имущества и обязательств</li>
-              <li>Взыскание долгов</li>
-            </ul>
+              <div class="accordion__body">
+                <p class="accordion__intro">Сопровождаю деликатные семейные вопросы: развод, алименты, определение места жительства детей, раздел совместно нажитого имущества и долгов.</p>
+                <ul class="accordion__list">
+                  <li>Расторжение брака через ЗАГС и через суд</li>
+                  <li>Взыскание алиментов на детей и супруга, изменение их размера</li>
+                  <li>Определение порядка общения с ребёнком</li>
+                  <li>Раздел квартир, автомобилей, вкладов, бизнеса и кредитов</li>
+                  <li>Брачные договоры и соглашения о разделе имущества</li>
+                  <li>Оспаривание отцовства, установление отцовства</li>
+                  <li>Взыскание долгов между бывшими супругами</li>
+                </ul>
+                <p class="accordion__note"><strong>Подход:</strong> стараюсь решить вопрос мирно — через переговоры и соглашение. Если это невозможно, готовлю сильную позицию для суда.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -1001,11 +1233,19 @@
           </button>
           <div class="accordion__panel">
             <div class="accordion__panel-inner">
-            <ul class="accordion__list">
-              <li>Вступление в наследство</li>
-              <li>Споры по долгам наследодателя</li>
-              <li>Оспаривание завещания</li>
-            </ul>
+              <div class="accordion__body">
+                <p class="accordion__intro">Помогаю оформить наследство и защитить права наследников: от сбора документов у нотариуса до споров о завещании, обязательной доле и долгах наследодателя.</p>
+                <ul class="accordion__list">
+                  <li>Вступление в наследство по закону и по завещанию</li>
+                  <li>Пропущенные сроки — восстановление и признание наследником</li>
+                  <li>Споры между наследниками о разделе имущества</li>
+                  <li>Оспаривание завещания, признание недействительным</li>
+                  <li>Выдел обязательной доли нетрудоспособным родственникам</li>
+                  <li>Споры по долгам наследодателя и кредиторам</li>
+                  <li>Представительство в суде по наследственным делам</li>
+                </ul>
+                <p class="accordion__note"><strong>Важно:</strong> срок принятия наследства — 6 месяцев. Если он близок к концу или уже прошёл, свяжитесь со мной сразу.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -1016,12 +1256,19 @@
           </button>
           <div class="accordion__panel">
             <div class="accordion__panel-inner">
-            <ul class="accordion__list">
-              <li>Договор купли-продажи</li>
-              <li>Отмена судебного приказа</li>
-              <li>Договор дарения</li>
-              <li>Договор аренды</li>
-            </ul>
+              <div class="accordion__body">
+                <p class="accordion__intro">Повседневные гражданские вопросы: сделки с имуществом, защита от неправомерных требований, отмена судебных приказов, составление договоров между физлицами.</p>
+                <ul class="accordion__list">
+                  <li>Договоры купли-продажи, дарения, аренды, займа</li>
+                  <li>Отмена судебного приказа и возражения по иску</li>
+                  <li>Защита прав потребителей — некачественные услуги и товары</li>
+                  <li>Взыскание долгов по распискам и договорам</li>
+                  <li>Споры с управляющими компаниями, соседями, застройщиками</li>
+                  <li>Оспаривание штрафов и действий госорганов</li>
+                  <li>Консультации перед крупными сделками и покупками</li>
+                </ul>
+                <p class="accordion__note"><strong>Стоимость:</strong> многие вопросы решаются одной консультацией с письменным заключением — вы заранее знаете объём работы.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -1032,11 +1279,19 @@
           </button>
           <div class="accordion__panel">
             <div class="accordion__panel-inner">
-            <ul class="accordion__list">
-              <li>Выселение</li>
-              <li>Определение порядка пользования</li>
-              <li>Раздел жилого помещения</li>
-            </ul>
+              <div class="accordion__body">
+                <p class="accordion__intro">Споры о жилье: выселение, вселение, определение порядка пользования, раздел квартир, приватизация, споры с соседями и наймодателями.</p>
+                <ul class="accordion__list">
+                  <li>Выселение и вселение в жилое помещение</li>
+                  <li>Определение порядка пользования квартирой или домом</li>
+                  <li>Раздел жилого помещения между собственниками и бывшими супругами</li>
+                  <li>Споры о праве пользования по договору найма и социальному найму</li>
+                  <li>Приватизация, оформление права собственности</li>
+                  <li>Споры с управляющей компанией и ТСЖ</li>
+                  <li>Защита от незаконных действий соседей и арендаторов</li>
+                </ul>
+                <p class="accordion__note"><strong>Документы:</strong> для анализа понадобятся выписка ЕГРН, договор, решения суда или справки о составе семьи — подскажу полный список на консультации.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -1046,8 +1301,11 @@
 
   <!-- 3. Stats -->
   <section class="stack-panel section--dark" id="stats" data-section>
-    <div class="section-inner">
-      <div class="stats-row reveal">
+    <div class="section-inner section-inner--top">
+      <p class="eyebrow reveal">Цифры</p>
+      <h2 class="section-title reveal delay-1">Опыт, подтверждённый практикой</h2>
+      <p class="stats-intro reveal delay-2">За годы работы я помог сотням клиентов — от первичной консультации до полного сопровождения дела. Каждая цифра — это реальный опыт, а не маркетинговый слоган.</p>
+      <div class="stats-row reveal delay-3">
         <div class="stats-row__item">
           <div class="stats-row__value"><span class="counter" data-target="15">0</span></div>
           <p class="stats-row__label">лет успешной юридической практики</p>
@@ -1069,41 +1327,77 @@
     <div class="section-inner section-inner--top">
       <p class="eyebrow reveal">Преимущества</p>
       <h2 class="section-title reveal delay-1">Мои преимущества</h2>
-      <p class="advantages-intro reveal delay-2">Опыт и специализированные знания создают основание для доверия. Я предлагаю не только консультацию, но и стратегическое планирование и поддержку на всех этапах — комплексный подход для оптимального результата.</p>
+      <p class="advantages-intro reveal delay-2">Опыт и специализированные знания создают основание для доверия. Я предлагаю не только консультацию, но и стратегическое планирование и поддержку на всех этапах — комплексный подход для оптимального результата. Ниже — принципы, по которым я работаю с каждым клиентом.</p>
       <div class="advantages-grid">
         <article class="advantage-card reveal delay-1">
           <h3 class="advantage-card__title">Годы практики</h3>
-          <p class="advantage-card__text">Накопленный за 15 лет опыт — значительное преимущество в решении сложных правовых задач.</p>
+          <p class="advantage-card__text">15 лет в гражданском, семейном, трудовом и корпоративном праве. За это время я видел сотни сценариев — и знаю, какие аргументы работают в суде, а какие нет.</p>
         </article>
         <article class="advantage-card reveal delay-2">
           <h3 class="advantage-card__title">Конфиденциальность</h3>
-          <p class="advantage-card__text">Личные данные остаются конфиденциальными и не передаются третьим лицам.</p>
+          <p class="advantage-card__text">Вся информация по делу остаётся между нами. Не передаю данные третьим лицам, не обсуждаю детали с посторонними — это базовое правило адвокатской этики и моей практики.</p>
         </article>
         <article class="advantage-card reveal delay-3">
           <h3 class="advantage-card__title">Персональный подход</h3>
-          <p class="advantage-card__text">Уникальные стратегии для каждого клиента с учётом конкретной ситуации и целей.</p>
+          <p class="advantage-card__text">Нет шаблонных решений: изучаю документы, задаю уточняющие вопросы и предлагаю стратегию под вашу цель — быстрее закрыть вопрос, выиграть в суде или минимизировать потери.</p>
         </article>
         <article class="advantage-card reveal delay-1">
           <h3 class="advantage-card__title">Отличный сервис</h3>
-          <p class="advantage-card__text">Надёжность, своевременная информация и постоянная доступность — качества надёжного партнёра.</p>
+          <p class="advantage-card__text">Отвечаю на звонки и сообщения в рабочее время, заранее предупреждаю о ключевых этапах дела и объясняю юридические формулировки простым языком — без лишней бюрократии.</p>
         </article>
         <article class="advantage-card reveal delay-2">
-          <h3 class="advantage-card__title">Выгода</h3>
-          <p class="advantage-card__text">Фиксированные тарифы на стандартные услуги — вы заранее знаете стоимость каждой услуги.</p>
+          <h3 class="advantage-card__title">Прозрачные условия</h3>
+          <p class="advantage-card__text">Фиксированная стоимость на стандартные услуги и понятная смета на ведение дела. Вы заранее знаете, за что платите, и не получаете неожиданных счетов в процессе.</p>
         </article>
+      </div>
+
+      <div class="process-block">
+      <p class="eyebrow reveal">Как работаем</p>
+      <h2 class="section-title reveal delay-1">Четыре шага к решению</h2>
+      <p class="advantages-intro reveal delay-2">Понятный процесс без сюрпризов: вы всегда знаете, что происходит сейчас и что будет дальше.</p>
+      <div class="process-grid reveal delay-3">
+        <article class="process-step">
+          <div class="process-step__num">01</div>
+          <h3 class="process-step__title">Консультация</h3>
+          <p class="process-step__text">Вы описываете ситуацию, я задаю уточняющие вопросы и анализирую документы. Первая встреча — бесплатно. Вы получаете честную оценку перспектив.</p>
+        </article>
+        <article class="process-step">
+          <div class="process-step__num">02</div>
+          <h3 class="process-step__title">Стратегия</h3>
+          <p class="process-step__text">Составляю план: досудебное урегулирование, переговоры или суд. Согласовываем сроки, стоимость и ваши ожидания от результата.</p>
+        </article>
+        <article class="process-step">
+          <div class="process-step__num">03</div>
+          <h3 class="process-step__title">Ведение дела</h3>
+          <p class="process-step__text">Готовлю документы, представляю ваши интересы в суде и госорганах, информирую о каждом важном шаге. Вы в курсе — без необходимости разбираться в процессуальных тонкостях.</p>
+        </article>
+        <article class="process-step">
+          <div class="process-step__num">04</div>
+          <h3 class="process-step__title">Результат</h3>
+          <p class="process-step__text">Добиваемся решения суда, соглашения или исполнения обязательств. При необходимости сопровождаю исполнительное производство до финального результата.</p>
+        </article>
+      </div>
       </div>
     </div>
   </section>
 
   <!-- 5. About -->
   <section class="stack-panel section--dark" id="about" data-section>
-    <div class="section-inner">
+    <div class="section-inner section-inner--top">
       <div class="about-grid">
         <div>
           <p class="eyebrow reveal">О юристе</p>
           <h2 class="section-title reveal delay-1">Иван Иванов</h2>
           <p class="about__role reveal delay-2">Юрист · Россия</p>
-          <p class="about__bio reveal delay-3">За время 15-летней практики я приобрёл знания в различных областях права. Этот опыт позволяет эффективно решать самые сложные юридические задачи для моих клиентов — от первой консультации до представительства в судах всех инстанций.</p>
+          <p class="about__bio reveal delay-3">За 15 лет практики я приобрёл глубокие знания в гражданском, семейном, трудовом, наследственном и корпоративном праве. Работаю с частными клиентами и бизнесом — от первой консультации до представительства в судах всех инстанций.</p>
+          <p class="about__bio reveal delay-3">Мой принцип — говорить честно о перспективах дела. Если шансов мало, я скажу об этом сразу. Если решение возможно — предложу конкретный план и буду сопровождать вас на каждом этапе.</p>
+          <ul class="about__list reveal delay-4">
+            <li>Высшее юридическое образование, специализация — гражданское и предпринимательское право</li>
+            <li>Член Московской городской коллегии адвокатов</li>
+            <li>Регулярное повышение квалификации по судебной практике и законодательным изменениям</li>
+            <li>Опыт ведения дел в судах общей юрисдикции и арбитражных судах</li>
+            <li>Более 600 успешно завершённых дел за период практики</li>
+          </ul>
         </div>
         <div class="about__photo reveal delay-2">
           <img src="images/candidate_2.jpg" alt="Иван Иванов — Юрист" class="about__photo-img">
@@ -1170,11 +1464,13 @@
         <div>
           <p class="footer__title">Иван Иванов</p>
           <p class="footer__subtitle">Юридические услуги · г. Москва, Россия</p>
+          <p class="footer__subtitle" style="margin-top:12px; max-width:320px; line-height:1.6;">Суды · бизнес · семейные и трудовые споры · наследство · жильё. Первая консультация бесплатно.</p>
         </div>
         <ul class="footer__contacts">
           <li><span>📞</span><a href="tel:+123456789">+123456789</a></li>
           <li><span>✉</span><a href="mailto:youremail@gmail.com">youremail@gmail.com</a></li>
           <li><span>🕐</span><span>Пн–Сб, 09:00–18:00</span></li>
+          <li><span>📍</span><span>г. Москва, очные и онлайн-консультации</span></li>
         </ul>
       </div>
       <div class="footer__bottom">
@@ -1256,7 +1552,7 @@
       }
 
       window.addEventListener('resize', () => {
-        if (window.innerWidth > 900) setMobileNavOpen(false);
+        if (window.innerWidth > 1024) setMobileNavOpen(false);
       });
 
       let ticking = false;
