@@ -14,7 +14,24 @@
 
   function assetPrefix() {
     try {
-      if (location.protocol !== "file:") return "/";
+      if (typeof window !== "undefined" && window.__CAKE_ASSET_PREFIX__) {
+        return window.__CAKE_ASSET_PREFIX__;
+      }
+      var preset = document.documentElement.getAttribute("data-asset-prefix");
+      if (preset) return preset;
+      if (location.protocol !== "file:") {
+        var path = decodeURIComponent(location.pathname.replace(/\\/g, "/"));
+        var marker = "/out/";
+        var idx = path.toLowerCase().lastIndexOf(marker);
+        if (idx >= 0) {
+          var rel = path.slice(idx + marker.length);
+          if (rel.endsWith("/index.html")) rel = rel.slice(0, -11);
+          if (rel.endsWith("/")) rel = rel.slice(0, -1);
+          var depth = rel ? rel.split("/").filter(Boolean).length : 0;
+          return depth === 0 ? "./" : new Array(depth + 1).join("../");
+        }
+        return "./";
+      }
       var p = decodeURIComponent(location.pathname.replace(/\\/g, "/"));
       var i = p.toLowerCase().lastIndexOf("/out/");
       if (i < 0) {

@@ -26,6 +26,13 @@ function getDepthPrefix(): string {
 
 /** Префикс к public/ для static export (file:// и вложенные страницы в out/). */
 export function getAssetPrefix(): string {
+  if (typeof window !== "undefined") {
+    const globalPrefix = (
+      window as Window & { __CAKE_ASSET_PREFIX__?: string }
+    ).__CAKE_ASSET_PREFIX__;
+    if (globalPrefix) return globalPrefix;
+  }
+
   if (typeof document !== "undefined") {
     const preset = document.documentElement.getAttribute("data-asset-prefix");
     if (preset) return preset;

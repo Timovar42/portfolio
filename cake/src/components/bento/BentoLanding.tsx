@@ -110,9 +110,9 @@ export function BentoLanding({ settings }: BentoLandingProps) {
           className="object-cover transition duration-700 group-hover:scale-105"
           sizes="(max-width: 1024px) 100vw, 66vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-chocolate/85 via-chocolate/35 to-chocolate/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-chocolate/95 via-chocolate/50 to-chocolate/15" />
         <div className="relative flex h-full flex-col justify-end p-5 sm:p-10">
-          <span className="font-hand text-xl text-rose sm:text-3xl">
+          <span className="font-hand text-2xl font-semibold tracking-wide text-rose [text-shadow:0_1px_3px_rgba(74,44,42,0.95),0_2px_14px_rgba(74,44,42,0.85),0_0_1px_rgba(74,44,42,1)] sm:text-3xl">
             с любовью, вручную
           </span>
           <h1 className="mt-2 max-w-lg text-balance font-serif text-2xl font-semibold leading-tight text-cream sm:text-4xl lg:text-5xl">

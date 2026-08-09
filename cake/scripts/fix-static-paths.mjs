@@ -5,9 +5,12 @@ const OUT_DIR = path.resolve("out");
 
 const FALLBACK_SCRIPT = `<script id="static-export-fallback">(function(){document.querySelectorAll(".bento-reveal").forEach(function(el){el.classList.add("is-visible")});})();</script>`;
 
-const NAV_FIX_SCRIPT = `<script id="static-export-nav">document.addEventListener("click",function(e){var a=e.target.closest("a[href]");if(!a||a.target==="_blank"||a.hasAttribute("download"))return;var href=a.getAttribute("href");if(!href||/^(https?:|mailto:|tel:|#)/.test(href))return;e.preventDefault();e.stopImmediatePropagation();window.location.href=a.href;},true);</script>`;
+const NAV_FIX_SCRIPT = `<script id="static-export-nav">if(location.protocol==="file:"){document.addEventListener("click",function(e){var a=e.target.closest("a[href]");if(!a||a.target==="_blank"||a.hasAttribute("download"))return;var href=a.getAttribute("href");if(!href||/^(https?:|mailto:|tel:|#)/.test(href))return;e.preventDefault();e.stopImmediatePropagation();window.location.href=a.href;},true);}</script>`;
 
-const CONSTRUCTOR_SCRIPT = `<script src="../constructor.js" defer></script>`;
+const HYDRATION_FIX_SCRIPT = `<script id="static-export-hydration">(function(){function fix(){if(window.__CAKE_ASSET_PREFIX__)document.documentElement.setAttribute("data-asset-prefix",window.__CAKE_ASSET_PREFIX__);document.querySelectorAll('link[rel="stylesheet"]').forEach(function(l){try{var p=new URL(l.href,location.href).pathname;if(/\\/out\\/.+\\/_next\\//.test(p))l.remove();}catch(e){}});}fix();document.addEventListener("DOMContentLoaded",fix);var t=setInterval(fix,120);setTimeout(function(){clearInterval(t);},1e4);})();</script>`;
+
+const CONSTRUCTOR_SCRIPT = (toRoot) =>
+  `<script src="${toRoot}constructor.js" defer></script>`;
 
 function walk(dir, files = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -50,12 +53,21 @@ function normalizePageLinks(content) {
         `href="${depth}${page}/?`,
         `href="${depth}${page}/index.html?`,
       );
+      next = next.replaceAll(
+        `href="${depth}${page}"`,
+        `href="${depth}${page}/index.html"`,
+      );
     }
   }
 
   next = next.replace(
     /href="((?:\.\.\/|\.\/)+catalog\/\d+\/order\/)(\?[^"]*)?"/g,
     (_, pagePath, query = "") => `href="${pagePath}index.html${query}"`,
+  );
+
+  next = next.replace(
+    /href="((?:\.\.\/|\.\/)+catalog\/\d+\/order)(\?[^"]*)?"/g,
+    (_, pagePath, query = "") => `href="${pagePath}/index.html${query}"`,
   );
 
   next = next.replace(
@@ -90,7 +102,7 @@ function fixContent(content, filePath) {
 
   if (filePath.endsWith(".html")) {
     const wpPath = toNext;
-    const publicPathScript = `<script>self.__webpack_public_path__="${wpPath}";</script>`;
+    const publicPathScript = `<script>self.__webpack_public_path__="${wpPath}";window.__CAKE_ASSET_PREFIX__="${toRoot}";</script>`;
 
     if (!next.includes("__webpack_public_path__")) {
       next = next.replace("<head>", `<head>${publicPathScript}`);
@@ -120,11 +132,20 @@ function fixContent(content, filePath) {
       next = next.replace("</body>", `${FALLBACK_SCRIPT}</body>`);
     }
 
+    if (next.includes("static-export-hydration")) {
+      next = next.replace(
+        /<script id="static-export-hydration">[\s\S]*?<\/script>/,
+        HYDRATION_FIX_SCRIPT,
+      );
+    } else {
+      next = next.replace("</body>", `${HYDRATION_FIX_SCRIPT}</body>`);
+    }
+
     if (
       filePath.replace(/\\/g, "/").endsWith("/constructor/index.html") &&
       !next.includes("constructor.js")
     ) {
-      next = next.replace("</body>", `${CONSTRUCTOR_SCRIPT}</body>`);
+      next = next.replace("</body>", `${CONSTRUCTOR_SCRIPT(toRoot)}</body>`);
     }
   }
 
@@ -135,6 +156,14 @@ function fixContent(content, filePath) {
   return next;
 }
 
+/** Webpack runtime: r.p="./_next/" ломает вложенные страницы на GitHub Pages */
+function fixWebpackPublicPath(content) {
+  return content.replace(
+    /r\.p="\.\/_next\/"/g,
+    'r.p=typeof self!=="undefined"&&self.__webpack_public_path__?self.__webpack_public_path__:"./_next/"',
+  );
+}
+
 if (!fs.existsSync(OUT_DIR)) {
   console.error("Missing out/ — run npm run build:static first");
   process.exit(1);
@@ -142,7 +171,11 @@ if (!fs.existsSync(OUT_DIR)) {
 
 const files = walk(OUT_DIR);
 for (const file of files) {
-  fs.writeFileSync(file, fixContent(fs.readFileSync(file, "utf8"), file));
+  let content = fixContent(fs.readFileSync(file, "utf8"), file);
+  if (file.includes(`${path.sep}_next${path.sep}`) && file.endsWith(".js")) {
+    content = fixWebpackPublicPath(content);
+  }
+  fs.writeFileSync(file, content);
 }
 
 // GitHub Pages (Jekyll) игнорирует папки с _ — без .nojekyll не отдаёт _next/
