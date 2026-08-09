@@ -360,11 +360,17 @@
       }
     }
     .hero__layout > * { min-width: 0; }
-    .hero__content {
+    .hero__copy {
+      grid-column: 1;
+      grid-row: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
       padding: calc(var(--header-h) + 56px) 0 56px;
+    }
+    .hero__photo {
+      grid-column: 2;
+      grid-row: 1;
     }
     .hero__title {
       font-size: clamp(36px, 5vw, 56px);
@@ -833,45 +839,202 @@
       color: rgba(237,234,226,0.3);
     }
 
-    /* Tablet */
+    /* Tablet & mobile */
     @media (max-width: 1024px) {
       .section-inner {
-        padding: calc(var(--header-h) + 48px) 24px 56px;
+        padding: calc(var(--header-h) + 48px) max(16px, env(safe-area-inset-right)) 56px max(16px, env(safe-area-inset-left));
       }
 
-      .nav { display: none; }
-      .header__toggle { display: flex; }
-      .header__right .btn { display: none; }
-      .header__right .header__phone { display: none; }
+      /* ——— Header ——— */
+      .header {
+        overflow: hidden;
+      }
 
       .header__inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 40px;
+        align-items: center;
         gap: 12px;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 max(16px, env(safe-area-inset-left)) 0 max(16px, env(safe-area-inset-right));
       }
 
       .logo {
-        flex: 1;
         min-width: 0;
+        overflow: hidden;
+      }
+
+      .logo__name {
+        font-size: 16px;
+        line-height: 1.2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .logo__sub {
+        display: none;
       }
 
       .header__right {
-        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
         flex-wrap: nowrap;
+        gap: 0;
+        width: 40px;
+      }
+
+      .header__right .nav,
+      .header__right > .header__phone,
+      .header__right > .btn {
+        display: none !important;
+      }
+
+      .header__toggle {
+        display: flex !important;
+      }
+
+      /* ——— Hero ——— */
+      .hero {
+        overflow: visible;
       }
 
       .hero__layout {
-        grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
-        gap: 32px;
-        min-height: auto;
-        height: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        gap: 0;
+        min-height: auto !important;
+        height: auto !important;
+        padding: calc(var(--header-h) + 12px) max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
       }
 
       .hero__photo {
+        grid-row: 1;
+        grid-column: 1;
         position: relative;
-        aspect-ratio: 4 / 5;
-        max-width: 280px;
-        justify-self: end;
+        z-index: 0;
+        width: 100%;
+        max-width: min(380px, 100%);
+        margin: 0 auto;
+        height: auto;
+        overflow: hidden;
+        justify-self: center;
+      }
+
+      .hero__photo::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 26%;
+        background: linear-gradient(
+          to bottom,
+          rgba(17, 19, 24, 0.92) 0%,
+          rgba(17, 19, 24, 0.62) 16%,
+          rgba(17, 19, 24, 0.22) 30%,
+          transparent 44%
+        );
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .hero__photo::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 48%;
+        background: linear-gradient(
+          to top,
+          rgba(17, 19, 24, 0.97) 0%,
+          rgba(17, 19, 24, 0.72) 42%,
+          rgba(17, 19, 24, 0.2) 78%,
+          transparent 100%
+        );
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .hero__photo img {
+        position: static;
+        width: 100%;
+        height: auto;
+        object-fit: unset;
+        display: block;
+      }
+
+      .hero__copy {
+        display: contents;
+      }
+
+      .hero__copy > .eyebrow {
+        grid-row: 1;
+        grid-column: 1;
+        position: relative;
         align-self: start;
-        min-height: 0;
+        justify-self: center;
+        width: 100%;
+        max-width: min(380px, 100%);
+        z-index: 3;
+        padding: 10px 0 0;
+        margin: 0;
+        text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero__copy > .hero__title {
+        grid-row: 1;
+        grid-column: 1;
+        position: relative;
+        align-self: end;
+        justify-self: center;
+        width: 100%;
+        max-width: min(380px, 100%);
+        z-index: 3;
+        padding: 0 0 72px;
+        margin: 0;
+        font-size: clamp(32px, 9vw, 46px);
+        line-height: 1.1;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.55);
+      }
+
+      .hero__below {
+        grid-row: 2;
+        grid-column: 1;
+        position: relative;
+        z-index: 4;
+        width: 100%;
+        max-width: min(380px, 100%);
+        justify-self: center;
+        margin-top: -3.8em;
+        padding: 0.35em 0 36px;
+      }
+
+      .hero__subtitle {
+        max-width: none;
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 20px;
+        margin-top: 0;
+        text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
+      }
+
+      .hero__actions {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+      }
+
+      .hero__actions .btn {
+        width: 100%;
+        white-space: normal;
+        text-align: center;
+        padding: 14px 18px;
+        font-size: 13px;
       }
 
       .advantages-grid {
@@ -902,42 +1065,6 @@
     @media (max-width: 900px) {
       .scroll-dots { display: none; }
 
-      .header__inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 12px;
-        padding: 0 max(16px, env(safe-area-inset-left)) 0 max(16px, env(safe-area-inset-right));
-      }
-
-      .logo {
-        flex: 1;
-        min-width: 0;
-        padding-right: 8px;
-      }
-
-      .logo__name {
-        font-size: clamp(15px, 4.2vw, 17px);
-        line-height: 1.2;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .logo__sub {
-        font-size: 9px;
-        letter-spacing: 0.08em;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .header__right {
-        flex: 0 0 auto;
-        flex-wrap: nowrap;
-        gap: 0;
-      }
-
       html { scroll-behavior: auto; }
 
       /* Обычный скролл вместо sticky-стека — контент не обрезается */
@@ -950,66 +1077,6 @@
       .section-inner {
         padding-top: calc(var(--header-h) + 40px);
         padding-bottom: 52px;
-        padding-left: max(16px, env(safe-area-inset-left));
-        padding-right: max(16px, env(safe-area-inset-right));
-      }
-
-      .hero__layout {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        min-height: auto;
-        height: auto;
-        padding: var(--header-h) max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
-      }
-
-      .hero__photo {
-        order: -1;
-        position: relative;
-        width: 100%;
-        max-width: min(400px, 100%);
-        margin: 0 auto;
-        height: auto;
-        overflow: visible;
-        align-self: auto;
-        justify-self: auto;
-      }
-
-      .hero__photo img {
-        position: static;
-        inset: auto;
-        width: 100%;
-        height: auto;
-        object-fit: unset;
-        object-position: center top;
-        display: block;
-      }
-
-      .hero__content {
-        padding: 0 0 40px;
-      }
-
-      .hero__title {
-        font-size: clamp(30px, 8.5vw, 42px);
-        margin-bottom: 20px;
-      }
-
-      .hero__subtitle {
-        max-width: none;
-        font-size: 15px;
-        line-height: 1.75;
-        margin-bottom: 24px;
-      }
-
-      .hero__actions {
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .hero__actions .btn {
-        width: 100%;
-        white-space: normal;
-        text-align: center;
       }
 
       .advantages-grid { grid-template-columns: 1fr; }
@@ -1091,14 +1158,16 @@
       }
 
       .advantage-card { padding: 20px 18px; }
-
-      .logo__name { font-size: 15px; }
-      .logo__sub { font-size: 9px; }
     }
 
     @media (max-width: 480px) {
       .hero__photo {
         max-width: 100%;
+      }
+
+      .hero__copy > .hero__title {
+        font-size: clamp(30px, 8.5vw, 40px);
+        padding-bottom: 64px;
       }
 
       .about__photo {
@@ -1159,20 +1228,22 @@
   <!-- 1. Hero -->
   <section class="stack-panel section--dark hero" id="hero" data-section>
     <div class="hero__layout">
-      <div class="hero__content">
+      <div class="hero__photo reveal delay-2">
+        <img src="images/candidate_2.jpg" alt="Иван Иванов — Частный юрист">
+      </div>
+      <div class="hero__copy">
         <p class="eyebrow reveal">Частная практика · Россия</p>
         <h1 class="hero__title reveal delay-1">
           Юридические услуги
           <span>г. Москва, Россия</span>
         </h1>
-        <p class="hero__subtitle reveal delay-2">Моя цель — обеспечить клиентов качественными и эффективными решениями, которые помогут достичь желаемого результата. Обратитесь сегодня, чтобы получить профессиональную помощь в разрешении юридических вопросов.</p>
-        <div class="hero__actions reveal delay-3">
-          <a href="#contact" class="btn btn--gold" data-goto="5">Получить бесплатную консультацию</a>
-          <a href="#services" class="btn btn--outline" data-goto="1">Область экспертизы</a>
+        <div class="hero__below">
+          <p class="hero__subtitle reveal delay-2">Моя цель — обеспечить клиентов качественными и эффективными решениями, которые помогут достичь желаемого результата. Обратитесь сегодня, чтобы получить профессиональную помощь в разрешении юридических вопросов.</p>
+          <div class="hero__actions reveal delay-3">
+            <a href="#contact" class="btn btn--gold" data-goto="5">Получить бесплатную консультацию</a>
+            <a href="#services" class="btn btn--outline" data-goto="1">Область экспертизы</a>
+          </div>
         </div>
-      </div>
-      <div class="hero__photo reveal delay-2">
-        <img src="images/candidate_2.jpg" alt="Иван Иванов — Частный юрист">
       </div>
     </div>
   </section>
