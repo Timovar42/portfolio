@@ -7,27 +7,34 @@
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg:         #0F0F0F;
-      --bg2:        #181818;
-      --bg3:        #222222;
+      --bg:         #110f0d;
+      --bg2:        #171412;
+      --bg3:        #211e1b;
       --bg-light:   #F5F2EC;
       --copper:     #B5703A;
       --copper-lt:  #D4956A;
       --cream:      #EDE8DF;
       --cream40:    rgba(237,232,223,0.40);
       --cream10:    rgba(237,232,223,0.07);
-      --border:     rgba(237,232,223,0.09);
+      --border:     rgba(237,232,223,0.08);
       --text-dark:  #1A1714;
       --muted-dark: #6B635A;
       --font-display: 'Bebas Neue', sans-serif;
       --font-body:    'Inter', system-ui, sans-serif;
       --nav-h: 58px;
+      --grid-dark: url("data:image/svg+xml,%3Csvg width='48' height='48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M48 0H0V48' fill='none' stroke='rgba(237,232,223,0.035)' stroke-width='0.5'/%3E%3C/svg%3E");
+      --grid-light: url("data:image/svg+xml,%3Csvg width='56' height='56' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M56 0H0V56' fill='none' stroke='rgba(26,23,20,0.045)' stroke-width='0.5'/%3E%3C/svg%3E");
+      --tile-tools-a: url("data:image/svg+xml,%3Csvg%20width%3D%22360%22%20height%3D%22168%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20transform%3D%22rotate(-22%20180%2084)%22%20fill%3D%22none%22%20stroke%3D%22rgba(181%2C112%2C58%2C0.055)%22%20stroke-width%3D%221.15%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22translate(8%2024)%20scale(1.05)%22%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%224.5%22%2F%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2227%22%20r%3D%224.5%22%2F%3E%3Cpath%20d%3D%22M14.5%2013.5L18%2018M14.5%2024.5L18%2018M18%2018L33%209M18%2018L33%2027%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(80%2024)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M20%203v9M14%2012h12M15%2012l2.5%2024c.5%202%203.5%202.5%205%20.5l2.5-24.5H15z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(152%2024)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M14%2036v-8M11%2036h6%22%2F%3E%3Cellipse%20cx%3D%2217%22%20cy%3D%2222%22%20rx%3D%229%22%20ry%3D%2210%22%2F%3E%3Cpath%20d%3D%22M10%2014c2-3%205-4%207-4s5%201%207%204c-2-1-4-1.5-7-1.5S12%2013%2010%2014z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(224%2024)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M7%208h26v4H7z%22%2F%3E%3Cpath%20d%3D%22M10%2012v24M15%2012v24M20%2012v24M25%2012v24M30%2012v24%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(296%2024)%20scale(1.05)%22%3E%3Crect%20x%3D%2215%22%20y%3D%224%22%20width%3D%2210%22%20height%3D%2232%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22M15%2010h10M15%2018h10M15%2026h10%22%2F%3E%3Cpath%20d%3D%22M15%204h10v4H15zM15%2032h10v4H15z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(8%2096)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M7%208h26v4H7z%22%2F%3E%3Cpath%20d%3D%22M10%2012v24M15%2012v24M20%2012v24M25%2012v24M30%2012v24%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(80%2096)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M14%2036v-8M11%2036h6%22%2F%3E%3Cellipse%20cx%3D%2217%22%20cy%3D%2222%22%20rx%3D%229%22%20ry%3D%2210%22%2F%3E%3Cpath%20d%3D%22M10%2014c2-3%205-4%207-4s5%201%207%204c-2-1-4-1.5-7-1.5S12%2013%2010%2014z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(152%2096)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M20%203v9M14%2012h12M15%2012l2.5%2024c.5%202%203.5%202.5%205%20.5l2.5-24.5H15z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(224%2096)%20scale(1.05)%22%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%224.5%22%2F%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2227%22%20r%3D%224.5%22%2F%3E%3Cpath%20d%3D%22M14.5%2013.5L18%2018M14.5%2024.5L18%2018M18%2018L33%209M18%2018L33%2027%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(296%2096)%20scale(1.05)%22%3E%3Crect%20x%3D%2215%22%20y%3D%224%22%20width%3D%2210%22%20height%3D%2232%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22M15%2010h10M15%2018h10M15%2026h10%22%2F%3E%3Cpath%20d%3D%22M15%204h10v4H15zM15%2032h10v4H15z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+      --tile-tools-b: url("data:image/svg+xml,%3Csvg%20width%3D%22360%22%20height%3D%22168%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20transform%3D%22rotate(-16%20180%2084)%22%20fill%3D%22none%22%20stroke%3D%22rgba(181%2C112%2C58%2C0.055)%22%20stroke-width%3D%221.15%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22translate(8%2024)%20scale(1.05)%22%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%224.5%22%2F%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2227%22%20r%3D%224.5%22%2F%3E%3Cpath%20d%3D%22M14.5%2013.5L18%2018M14.5%2024.5L18%2018M18%2018L33%209M18%2018L33%2027%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(80%2024)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M20%203v9M14%2012h12M15%2012l2.5%2024c.5%202%203.5%202.5%205%20.5l2.5-24.5H15z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(152%2024)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M14%2036v-8M11%2036h6%22%2F%3E%3Cellipse%20cx%3D%2217%22%20cy%3D%2222%22%20rx%3D%229%22%20ry%3D%2210%22%2F%3E%3Cpath%20d%3D%22M10%2014c2-3%205-4%207-4s5%201%207%204c-2-1-4-1.5-7-1.5S12%2013%2010%2014z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(224%2024)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M7%208h26v4H7z%22%2F%3E%3Cpath%20d%3D%22M10%2012v24M15%2012v24M20%2012v24M25%2012v24M30%2012v24%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(296%2024)%20scale(1.05)%22%3E%3Crect%20x%3D%2215%22%20y%3D%224%22%20width%3D%2210%22%20height%3D%2232%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22M15%2010h10M15%2018h10M15%2026h10%22%2F%3E%3Cpath%20d%3D%22M15%204h10v4H15zM15%2032h10v4H15z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(8%2096)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M7%208h26v4H7z%22%2F%3E%3Cpath%20d%3D%22M10%2012v24M15%2012v24M20%2012v24M25%2012v24M30%2012v24%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(80%2096)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M14%2036v-8M11%2036h6%22%2F%3E%3Cellipse%20cx%3D%2217%22%20cy%3D%2222%22%20rx%3D%229%22%20ry%3D%2210%22%2F%3E%3Cpath%20d%3D%22M10%2014c2-3%205-4%207-4s5%201%207%204c-2-1-4-1.5-7-1.5S12%2013%2010%2014z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(152%2096)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M20%203v9M14%2012h12M15%2012l2.5%2024c.5%202%203.5%202.5%205%20.5l2.5-24.5H15z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(224%2096)%20scale(1.05)%22%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%224.5%22%2F%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2227%22%20r%3D%224.5%22%2F%3E%3Cpath%20d%3D%22M14.5%2013.5L18%2018M14.5%2024.5L18%2018M18%2018L33%209M18%2018L33%2027%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(296%2096)%20scale(1.05)%22%3E%3Crect%20x%3D%2215%22%20y%3D%224%22%20width%3D%2210%22%20height%3D%2232%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22M15%2010h10M15%2018h10M15%2026h10%22%2F%3E%3Cpath%20d%3D%22M15%204h10v4H15zM15%2032h10v4H15z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+      --tile-tools-c: url("data:image/svg+xml,%3Csvg%20width%3D%22360%22%20height%3D%22168%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20transform%3D%22rotate(-28%20180%2084)%22%20fill%3D%22none%22%20stroke%3D%22rgba(181%2C112%2C58%2C0.055)%22%20stroke-width%3D%221.15%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22translate(8%2024)%20scale(1.05)%22%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%224.5%22%2F%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2227%22%20r%3D%224.5%22%2F%3E%3Cpath%20d%3D%22M14.5%2013.5L18%2018M14.5%2024.5L18%2018M18%2018L33%209M18%2018L33%2027%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(80%2024)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M20%203v9M14%2012h12M15%2012l2.5%2024c.5%202%203.5%202.5%205%20.5l2.5-24.5H15z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(152%2024)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M14%2036v-8M11%2036h6%22%2F%3E%3Cellipse%20cx%3D%2217%22%20cy%3D%2222%22%20rx%3D%229%22%20ry%3D%2210%22%2F%3E%3Cpath%20d%3D%22M10%2014c2-3%205-4%207-4s5%201%207%204c-2-1-4-1.5-7-1.5S12%2013%2010%2014z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(224%2024)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M7%208h26v4H7z%22%2F%3E%3Cpath%20d%3D%22M10%2012v24M15%2012v24M20%2012v24M25%2012v24M30%2012v24%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(296%2024)%20scale(1.05)%22%3E%3Crect%20x%3D%2215%22%20y%3D%224%22%20width%3D%2210%22%20height%3D%2232%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22M15%2010h10M15%2018h10M15%2026h10%22%2F%3E%3Cpath%20d%3D%22M15%204h10v4H15zM15%2032h10v4H15z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(8%2096)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M7%208h26v4H7z%22%2F%3E%3Cpath%20d%3D%22M10%2012v24M15%2012v24M20%2012v24M25%2012v24M30%2012v24%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(80%2096)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M14%2036v-8M11%2036h6%22%2F%3E%3Cellipse%20cx%3D%2217%22%20cy%3D%2222%22%20rx%3D%229%22%20ry%3D%2210%22%2F%3E%3Cpath%20d%3D%22M10%2014c2-3%205-4%207-4s5%201%207%204c-2-1-4-1.5-7-1.5S12%2013%2010%2014z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(152%2096)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M20%203v9M14%2012h12M15%2012l2.5%2024c.5%202%203.5%202.5%205%20.5l2.5-24.5H15z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(224%2096)%20scale(1.05)%22%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%224.5%22%2F%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2227%22%20r%3D%224.5%22%2F%3E%3Cpath%20d%3D%22M14.5%2013.5L18%2018M14.5%2024.5L18%2018M18%2018L33%209M18%2018L33%2027%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(296%2096)%20scale(1.05)%22%3E%3Crect%20x%3D%2215%22%20y%3D%224%22%20width%3D%2210%22%20height%3D%2232%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22M15%2010h10M15%2018h10M15%2026h10%22%2F%3E%3Cpath%20d%3D%22M15%204h10v4H15zM15%2032h10v4H15z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+      --tile-tools-d: url("data:image/svg+xml,%3Csvg%20width%3D%22360%22%20height%3D%22168%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20transform%3D%22rotate(-12%20180%2084)%22%20fill%3D%22none%22%20stroke%3D%22rgba(181%2C112%2C58%2C0.055)%22%20stroke-width%3D%221.15%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cg%20transform%3D%22translate(8%2024)%20scale(1.05)%22%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%224.5%22%2F%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2227%22%20r%3D%224.5%22%2F%3E%3Cpath%20d%3D%22M14.5%2013.5L18%2018M14.5%2024.5L18%2018M18%2018L33%209M18%2018L33%2027%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(80%2024)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M20%203v9M14%2012h12M15%2012l2.5%2024c.5%202%203.5%202.5%205%20.5l2.5-24.5H15z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(152%2024)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M14%2036v-8M11%2036h6%22%2F%3E%3Cellipse%20cx%3D%2217%22%20cy%3D%2222%22%20rx%3D%229%22%20ry%3D%2210%22%2F%3E%3Cpath%20d%3D%22M10%2014c2-3%205-4%207-4s5%201%207%204c-2-1-4-1.5-7-1.5S12%2013%2010%2014z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(224%2024)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M7%208h26v4H7z%22%2F%3E%3Cpath%20d%3D%22M10%2012v24M15%2012v24M20%2012v24M25%2012v24M30%2012v24%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(296%2024)%20scale(1.05)%22%3E%3Crect%20x%3D%2215%22%20y%3D%224%22%20width%3D%2210%22%20height%3D%2232%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22M15%2010h10M15%2018h10M15%2026h10%22%2F%3E%3Cpath%20d%3D%22M15%204h10v4H15zM15%2032h10v4H15z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(8%2096)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M7%208h26v4H7z%22%2F%3E%3Cpath%20d%3D%22M10%2012v24M15%2012v24M20%2012v24M25%2012v24M30%2012v24%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(80%2096)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M14%2036v-8M11%2036h6%22%2F%3E%3Cellipse%20cx%3D%2217%22%20cy%3D%2222%22%20rx%3D%229%22%20ry%3D%2210%22%2F%3E%3Cpath%20d%3D%22M10%2014c2-3%205-4%207-4s5%201%207%204c-2-1-4-1.5-7-1.5S12%2013%2010%2014z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(152%2096)%20scale(1.05)%22%3E%3Cpath%20d%3D%22M20%203v9M14%2012h12M15%2012l2.5%2024c.5%202%203.5%202.5%205%20.5l2.5-24.5H15z%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(224%2096)%20scale(1.05)%22%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2211%22%20r%3D%224.5%22%2F%3E%3Ccircle%20cx%3D%2211%22%20cy%3D%2227%22%20r%3D%224.5%22%2F%3E%3Cpath%20d%3D%22M14.5%2013.5L18%2018M14.5%2024.5L18%2018M18%2018L33%209M18%2018L33%2027%22%2F%3E%3C%2Fg%3E%3Cg%20transform%3D%22translate(296%2096)%20scale(1.05)%22%3E%3Crect%20x%3D%2215%22%20y%3D%224%22%20width%3D%2210%22%20height%3D%2232%22%20rx%3D%222%22%2F%3E%3Cpath%20d%3D%22M15%2010h10M15%2018h10M15%2026h10%22%2F%3E%3Cpath%20d%3D%22M15%204h10v4H15zM15%2032h10v4H15z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E");
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html {
       overflow-y: scroll;
+      overflow-x: clip;
       height: 100%;
       scroll-behavior: smooth;
       scroll-padding-top: var(--nav-h);
@@ -41,14 +48,15 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-    button, input, select { font-family: inherit; }
-
     section.snap {
       min-height: 100vh;
       overflow: hidden;
+      position: relative;
     }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button, input, select { font-family: inherit; }
 
     .reveal {
       opacity: 0;
@@ -74,7 +82,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 32px;
-      background: rgba(15,15,15,0.88);
+      background: rgba(17,15,13,0.88);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
@@ -105,6 +113,69 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--cream); }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      padding: 8px;
+      background: transparent;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: var(--cream);
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+    .nav-mobile-panel {
+      display: none;
+      position: fixed;
+      top: var(--nav-h);
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(17,15,13,0.97);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 20px 20px;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .nav-mobile-panel.is-open { display: flex; }
+    .nav-mobile-panel a {
+      font-size: 13px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--cream40);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s;
+    }
+    .nav-mobile-panel a:last-child { border-bottom: none; }
+    .nav-mobile-panel a:hover { color: var(--cream); }
+    .nav-mobile-panel .btn {
+      margin-top: 12px;
+      width: 100%;
+    }
 
     .btn {
       display: inline-flex;
@@ -180,10 +251,20 @@
       color: var(--muted-dark);
     }
 
-    .bg-section { background: var(--bg); }
-    .bg-section-alt { background: var(--bg2); }
+    .bg-section {
+      background-color: var(--bg);
+      background-image: var(--grid-dark);
+      background-size: 48px 48px;
+    }
+    .bg-section-alt {
+      background-color: var(--bg2);
+      background-image: var(--grid-dark);
+      background-size: 52px 52px;
+    }
     .bg-section-light {
-      background: var(--bg-light);
+      background-color: var(--bg-light);
+      background-image: var(--grid-light);
+      background-size: 56px 56px;
       color: var(--text-dark);
     }
 
@@ -193,11 +274,22 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: var(--bg);
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
+      background-image: var(--grid-dark), var(--tile-tools-a);
+      background-size: 40px 40px, 360px 168px;
+    }
+
+    /* Фоновые инструменты — один угол на секцию, все параллельно */
+    #services {
+      background-image: var(--grid-dark), var(--tile-tools-b);
+      background-size: 48px 48px, 360px 168px;
+    }
+    #masters {
+      background-image: var(--grid-dark), var(--tile-tools-c);
+      background-size: 48px 48px, 360px 168px;
+    }
+    #reviews {
+      background-image: var(--grid-dark), var(--tile-tools-d);
+      background-size: 48px 48px, 360px 168px;
     }
 
     .hero-content {
@@ -271,17 +363,67 @@
     }
 
     /* ── PRINCIPLES ── */
+    .principles-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+      gap: 20px;
+      align-items: stretch;
+      margin-top: 28px;
+    }
+    .principles-layout > * { min-width: 0; }
+    .principles-visual {
+      position: relative;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+    }
+    .principles-visual::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 2px;
+      background: var(--copper);
+    }
+    .principles-visual img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    .principles-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        transparent 55%,
+        rgba(15,15,15,0.35) 100%
+      );
+      pointer-events: none;
+    }
     .principles-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
+      grid-template-columns: repeat(2, 1fr);
+      border: 1px solid var(--border);
     }
     .principle-item {
-      padding: 24px 20px;
+      padding: 28px 22px;
       text-align: center;
       border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
-    .principle-item:last-child { border-right: none; }
+    .principle-item:nth-child(2n) { border-right: none; }
+    .principle-item:nth-child(n+3) { border-bottom: none; }
     .principle-icon {
       font-family: var(--font-display);
       font-size: 36px;
@@ -309,38 +451,158 @@
     .service-card {
       background: var(--bg3);
       border: 1px solid var(--border);
-      padding: 28px 24px;
+      padding: 0;
       position: relative;
-      transition: border-color 0.3s, transform 0.3s;
+      overflow: hidden;
+      cursor: pointer;
+      text-align: left;
+      width: 100%;
+      font: inherit;
+      color: inherit;
+      transition: border-color 0.25s ease;
     }
-    .service-card:hover {
+    .service-card:hover,
+    .service-card.is-open {
       border-color: var(--copper);
-      transform: translateY(-4px);
+    }
+    .service-card:focus-visible {
+      outline: 2px solid var(--copper);
+      outline-offset: 2px;
     }
     .service-card-bar {
       position: absolute;
       top: 0;
       left: 0;
+      z-index: 2;
       height: 2px;
       width: 0;
       background: var(--copper);
-      transition: width 0.6s ease;
+      transition: width 0.45s ease;
     }
     .service-card.visible .service-card-bar { width: 100%; }
-    .service-icon {
-      font-size: 24px;
-      color: var(--copper);
-      margin-bottom: 14px;
+    .service-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .service-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transform: translateZ(0);
+      transition: transform 0.35s ease;
+    }
+    .service-card:hover .service-thumb img,
+    .service-card.is-open .service-thumb img {
+      transform: scale(1.03) translateZ(0);
+    }
+    .service-thumb::after {
+      content: '';
+      position: absolute;
+      inset: auto 0 0;
+      height: 48px;
+      background: linear-gradient(to top, var(--bg3), transparent);
+      pointer-events: none;
+    }
+    .service-body {
+      padding: 16px 22px 20px;
+    }
+    .service-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
     }
     .service-name {
       font-size: 15px;
       font-weight: 600;
-      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .service-price {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--copper-lt);
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .service-desc {
       font-size: 13px;
       color: var(--cream40);
       line-height: 1.5;
+    }
+    .service-details-wrap {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.32s ease;
+    }
+    .service-card.is-open .service-details-wrap {
+      grid-template-rows: 1fr;
+    }
+    .service-details-inner {
+      overflow: hidden;
+    }
+    .service-details {
+      padding-top: 12px;
+      margin-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .service-details p {
+      font-size: 13px;
+      color: var(--cream40);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .service-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .service-duration {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--cream40);
+    }
+    .service-book {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--copper-lt);
+      transition: color 0.2s;
+    }
+    .service-book:hover { color: var(--copper); }
+    .service-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      margin: 14px auto 0;
+      border: 1px solid var(--border);
+      transition: border-color 0.25s ease, background 0.25s ease;
+    }
+    .service-toggle::after {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-right: 1.5px solid var(--copper);
+      border-bottom: 1.5px solid var(--copper);
+      transform: rotate(45deg) translate(-1px, -1px);
+      transition: transform 0.32s ease;
+    }
+    .service-card.is-open .service-toggle {
+      border-color: var(--copper);
+      background: rgba(181,112,58,0.12);
+    }
+    .service-card.is-open .service-toggle::after {
+      transform: rotate(-135deg) translate(-1px, -1px);
     }
 
     /* ── PRICE ── */
@@ -351,12 +613,15 @@
       align-items: baseline;
       padding: 14px 0;
       border-bottom: 1px dotted rgba(0,0,0,0.12);
-      gap: 16px;
+      gap: 12px 16px;
+      flex-wrap: wrap;
     }
     .price-name {
       font-size: 14px;
       color: var(--text-dark);
-      flex-shrink: 0;
+      flex: 1 1 180px;
+      min-width: 0;
+      line-height: 1.45;
     }
     .price-value {
       font-size: 14px;
@@ -378,24 +643,26 @@
     .masters-scroll::-webkit-scrollbar { display: none; }
 
     .master-card {
-      flex: 0 0 200px;
-      width: 200px;
+      flex: 0 0 228px;
+      width: 228px;
     }
     .master-photo {
-      width: 200px;
-      height: 240px;
+      width: 100%;
+      aspect-ratio: 5 / 6;
       background: var(--bg3);
       border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      overflow: hidden;
       margin-bottom: 14px;
+      transition: border-color 0.25s ease;
     }
-    .master-initials {
-      font-family: var(--font-display);
-      font-size: 36px;
-      color: var(--copper);
-      letter-spacing: 0.04em;
+    .master-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .master-card:hover .master-photo {
+      border-color: var(--copper);
     }
     .master-name {
       font-size: 15px;
@@ -410,8 +677,16 @@
       margin-bottom: 6px;
     }
     .master-spec {
+      font-size: 11px;
+      color: var(--copper-lt);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+    .master-desc {
       font-size: 12px;
       color: var(--cream40);
+      line-height: 1.55;
     }
 
     .masters-cta { text-align: center; }
@@ -447,9 +722,7 @@
     /* ── PHOTO MARQUEE ── */
     .marquees {
       position: relative;
-      width: 100vw;
-      left: 50%;
-      transform: translateX(-50%);
+      width: 100%;
       margin: 8px 0 24px;
       display: flex;
       flex-direction: column;
@@ -457,7 +730,14 @@
       -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
       mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
     }
-    .marquee { overflow: hidden; width: 100%; }
+    @media (min-width: 768px) {
+      .marquees {
+        width: 100vw;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+    .marquee { overflow: hidden; width: 100%; contain: strict; }
     .marquee-track {
       display: flex;
       gap: 16px;
@@ -622,10 +902,16 @@
     #footer {
       min-height: auto;
       scroll-snap-align: none;
-      background: var(--bg);
+      position: relative;
+      isolation: isolate;
+      background-color: var(--bg);
+      background-image: var(--grid-dark);
+      background-size: 48px 48px;
       padding: 56px 32px 32px;
     }
     .footer-inner {
+      position: relative;
+      z-index: 1;
       max-width: 1100px;
       margin: 0 auto;
     }
@@ -701,28 +987,105 @@
       text-align: center;
     }
 
-    /* ── MOBILE ── */
-    @media (max-width: 767px) {
-      .nav { padding: 0 20px; }
-      .nav-links a:not(.btn) { display: none; }
+    /* ── TABLET ── */
+    @media (max-width: 1024px) {
+      .section-inner {
+        padding: calc(var(--nav-h) + 40px) 24px 56px;
+      }
 
-      .section-inner { padding: calc(var(--nav-h) + 32px) 20px 48px; }
-
-      .hero-title { font-size: 38px; }
-
-      .principles-grid {
+      .services-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      .reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .principles-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .principles-visual {
+        aspect-ratio: 16 / 9;
+      }
+
+      .booking-grid {
+        gap: 32px;
+      }
+
+      .master-card {
+        flex: 0 0 240px;
+        width: 240px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1.5fr 1fr 1fr;
+        gap: 28px;
+      }
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 767px) {
+      section.snap {
+        min-height: auto;
+        overflow: visible;
+      }
+
+      #hero {
+        min-height: 100dvh;
+        min-height: 100svh;
+      }
+
+      .nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+
+      .section-inner {
+        padding-top: calc(var(--nav-h) + 28px);
+        padding-bottom: 44px;
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+      }
+
+      .hero-content {
+        padding: calc(var(--nav-h) + 24px) 20px 72px;
+      }
+
+      .hero-title {
+        font-size: clamp(34px, 11vw, 48px);
+      }
+
+      .hero-sub {
+        font-size: 14px;
+        max-width: 100%;
+      }
+
+      .scroll-indicator {
+        bottom: 16px;
+        font-size: 9px;
+      }
+
+      .principles-visual {
+        aspect-ratio: 16 / 10;
+      }
+
+      .principles-grid {
+        grid-template-columns: 1fr;
+      }
+
       .principle-item {
-        border-right: none;
-        border-bottom: 1px solid var(--border);
+        border-right: none !important;
+        border-bottom: 1px solid var(--border) !important;
+        padding: 22px 18px;
       }
-      .principle-item:nth-child(odd) {
-        border-right: 1px solid var(--border);
+
+      .principle-item:last-child {
+        border-bottom: none !important;
       }
-      .principle-item:nth-child(3),
-      .principle-item:nth-child(4) {
-        border-bottom: none;
+
+      .principle-desc {
+        max-width: 320px;
       }
 
       .services-grid,
@@ -731,16 +1094,161 @@
         grid-template-columns: 1fr;
       }
 
+      .service-thumb {
+        aspect-ratio: 16 / 9;
+      }
+
+      .service-body {
+        padding: 14px 16px 18px;
+      }
+
+      .service-name {
+        flex: 1 1 100%;
+      }
+
+      .masters-scroll {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        overflow-x: visible;
+        padding-bottom: 0;
+        margin-bottom: 24px;
+      }
+
+      .master-card {
+        flex: none;
+        width: 100%;
+        display: grid;
+        grid-template-columns: minmax(112px, 34%) 1fr;
+        gap: 14px;
+        align-items: start;
+        padding: 14px;
+        background: var(--bg3);
+        border: 1px solid var(--border);
+      }
+
+      .master-photo {
+        margin-bottom: 0;
+        aspect-ratio: 4 / 5;
+      }
+
+      .master-desc {
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
       .booking-grid,
       .footer-grid {
         grid-template-columns: 1fr;
+        gap: 28px;
       }
 
-      .marquee-item { width: 190px; height: 220px; }
-      .marquee-item.sm { width: 170px; height: 160px; }
+      #footer {
+        padding: 44px 16px 28px;
+      }
 
-      .hero-buttons { flex-direction: column; width: 100%; }
+      .footer-desc {
+        max-width: none;
+      }
+
+      .price-row {
+        align-items: flex-start;
+      }
+
+      .price-value {
+        margin-left: auto;
+      }
+
+      .review-card {
+        padding: 20px 18px;
+      }
+
+      .review-quote {
+        float: none;
+        display: block;
+        font-size: 36px;
+        margin: 0 0 8px;
+        line-height: 1;
+      }
+
+      .review-text {
+        font-size: 13px;
+      }
+
+      .marquees {
+        margin: 4px 0 20px;
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+        mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+      }
+
+      .marquee-item {
+        width: min(72vw, 220px);
+        height: min(82vw, 250px);
+      }
+
+      .marquee-item.sm {
+        width: min(64vw, 200px);
+        height: min(58vw, 180px);
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+      }
+
       .hero-buttons .btn { width: 100%; }
+
+      #hero,
+      #services,
+      #masters,
+      #reviews {
+        background-size: 40px 40px, 280px 130px;
+      }
+
+      .rating-badge {
+        font-size: 13px;
+        padding: 8px 14px;
+        margin-bottom: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .master-card {
+        grid-template-columns: 1fr;
+      }
+
+      .master-photo {
+        aspect-ratio: 16 / 10;
+      }
+
+      .section-title {
+        font-size: clamp(32px, 9vw, 42px);
+      }
+
+      .section-sub {
+        font-size: 14px;
+        margin-bottom: 28px;
+      }
+
+      .scroll-indicator {
+        display: none;
+      }
+
+      .principle-icon {
+        font-size: 30px;
+      }
+    }
+
+    @media (max-height: 640px) and (max-width: 767px) {
+      #hero {
+        min-height: auto;
+        padding-bottom: 24px;
+      }
+
+      .scroll-indicator {
+        display: none;
+      }
     }
   </style>
 </head>
@@ -757,7 +1265,18 @@
       <a href="#booking">Контакты</a>
       <a href="#booking" class="btn btn-primary">Записаться</a>
     </div>
+    <button type="button" class="nav-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-mobile-panel">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+  <div id="nav-mobile-panel" class="nav-mobile-panel" hidden>
+    <a href="#services">Услуги</a>
+    <a href="#masters">Мастера</a>
+    <a href="#price">Прайс</a>
+    <a href="#gallery">Галерея</a>
+    <a href="#booking">Контакты</a>
+    <a href="#booking" class="btn btn-primary">Записаться</a>
+  </div>
 
   <!-- 1. HERO -->
   <section id="hero" class="snap bg-section">
@@ -782,28 +1301,32 @@
   <!-- 2. PRINCIPLES -->
   <section id="principles" class="snap bg-section-alt">
     <div class="section-inner">
-      <p class="eyebrow reveal">Почему мы</p>
-      <h2 class="section-title reveal d1">НАШИ ПРИНЦИПЫ</h2>
-      <div class="principles-grid">
-        <div class="principle-item reveal d1">
-          <div class="principle-icon"><span id="counter-years">0</span>+</div>
-          <div class="principle-name">Лет опыта</div>
-          <div class="principle-desc">Мастера с профессиональным образованием</div>
+      <h2 class="section-title reveal">НАШИ ПРИНЦИПЫ</h2>
+      <div class="principles-layout">
+        <div class="principles-visual reveal d1">
+          <img src="images/principles-craft.jpg" alt="Мастерство барбера IRON CLIP" width="640" height="480" loading="lazy">
         </div>
-        <div class="principle-item reveal d2">
-          <div class="principle-icon">✦</div>
-          <div class="principle-name">Только оригинал</div>
-          <div class="principle-desc">Профессиональная косметика мировых брендов</div>
-        </div>
-        <div class="principle-item reveal d3">
-          <div class="principle-icon">★ <span id="counter-rating">0</span></div>
-          <div class="principle-name">Рейтинг Google</div>
-          <div class="principle-desc">На основании 200+ отзывов</div>
-        </div>
-        <div class="principle-item reveal d4">
-          <div class="principle-icon">∞</div>
-          <div class="principle-name">Без выходных</div>
-          <div class="principle-desc">Работаем каждый день 10:00–21:00</div>
+        <div class="principles-grid">
+          <div class="principle-item reveal d2">
+            <div class="principle-icon"><span id="counter-years">0</span>+</div>
+            <div class="principle-name">Лет опыта</div>
+            <div class="principle-desc">Мастера с профессиональным образованием</div>
+          </div>
+          <div class="principle-item reveal d3">
+            <div class="principle-icon">✦</div>
+            <div class="principle-name">Только оригинал</div>
+            <div class="principle-desc">Профессиональная косметика мировых брендов</div>
+          </div>
+          <div class="principle-item reveal d4">
+            <div class="principle-icon">★ <span id="counter-rating">0</span></div>
+            <div class="principle-name">Рейтинг Google</div>
+            <div class="principle-desc">На основании 200+ отзывов</div>
+          </div>
+          <div class="principle-item reveal d5">
+            <div class="principle-icon">∞</div>
+            <div class="principle-name">Без выходных</div>
+            <div class="principle-desc">Работаем каждый день 10:00–21:00</div>
+          </div>
         </div>
       </div>
     </div>
@@ -812,46 +1335,159 @@
   <!-- 3. SERVICES -->
   <section id="services" class="snap bg-section">
     <div class="section-inner">
-      <p class="eyebrow reveal">Что мы делаем</p>
-      <h2 class="section-title reveal d1">УСЛУГИ</h2>
-      <p class="section-sub reveal d2">Всё для безупречного образа</p>
-      <div class="services-grid">
-        <div class="service-card reveal d1">
+      <h2 class="section-title reveal">УСЛУГИ</h2>
+      <p class="section-sub reveal d1">Всё для безупречного образа</p>
+      <div class="services-grid reveal d3">
+        <article class="service-card" tabindex="0" aria-expanded="false">
           <div class="service-card-bar"></div>
-          <div class="service-icon">✂</div>
-          <div class="service-name">Мужская стрижка</div>
-          <div class="service-desc">Классика, фейд, андеркат</div>
-        </div>
-        <div class="service-card reveal d2">
+          <div class="service-thumb">
+            <img src="images/service-haircut.jpg" alt="Мужская стрижка" width="480" height="320" loading="lazy">
+          </div>
+          <div class="service-body">
+            <div class="service-head">
+              <div class="service-name">Мужская стрижка</div>
+              <div class="service-price">от 160 MDL</div>
+            </div>
+            <div class="service-desc">Классика, фейд, андеркат</div>
+            <div class="service-details-wrap">
+              <div class="service-details-inner">
+                <div class="service-details">
+                  <p>Консультация по форме, мытьё, стрижка машинкой и ножницами, финишная укладка. Подберём стиль под тип лица и ваш образ жизни.</p>
+                  <div class="service-meta">
+                    <span class="service-duration">~45 мин</span>
+                    <a href="#booking" class="service-book">Записаться</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="service-toggle" aria-hidden="true"></span>
+          </div>
+        </article>
+        <article class="service-card" tabindex="0" aria-expanded="false">
           <div class="service-card-bar"></div>
-          <div class="service-icon">🧔</div>
-          <div class="service-name">Уход за бородой</div>
-          <div class="service-desc">Моделирование, бритьё, оформление</div>
-        </div>
-        <div class="service-card reveal d3">
+          <div class="service-thumb">
+            <img src="images/service-beard.jpg" alt="Уход за бородой" width="480" height="320" loading="lazy">
+          </div>
+          <div class="service-body">
+            <div class="service-head">
+              <div class="service-name">Уход за бородой</div>
+              <div class="service-price">от 100 MDL</div>
+            </div>
+            <div class="service-desc">Моделирование, бритьё, оформление</div>
+            <div class="service-details-wrap">
+              <div class="service-details-inner">
+                <div class="service-details">
+                  <p>Оформление контура, стрижка бороды, горячее полотенце и уходовое масло. Чёткие линии и аккуратный, ухоженный вид.</p>
+                  <div class="service-meta">
+                    <span class="service-duration">~30 мин</span>
+                    <a href="#booking" class="service-book">Записаться</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="service-toggle" aria-hidden="true"></span>
+          </div>
+        </article>
+        <article class="service-card" tabindex="0" aria-expanded="false">
           <div class="service-card-bar"></div>
-          <div class="service-icon">👦</div>
-          <div class="service-name">Детская стрижка</div>
-          <div class="service-desc">Для мальчиков до 12 лет</div>
-        </div>
-        <div class="service-card reveal d1">
+          <div class="service-thumb">
+            <img src="images/service-kids.jpg" alt="Детская стрижка" width="480" height="320" loading="lazy">
+          </div>
+          <div class="service-body">
+            <div class="service-head">
+              <div class="service-name">Детская стрижка</div>
+              <div class="service-price">от 120 MDL</div>
+            </div>
+            <div class="service-desc">Для мальчиков до 12 лет</div>
+            <div class="service-details-wrap">
+              <div class="service-details-inner">
+                <div class="service-details">
+                  <p>Спокойная атмосфера и бережный подход. Аккуратная стрижка с учётом пожеланий ребёнка и родителей — без спешки и стресса.</p>
+                  <div class="service-meta">
+                    <span class="service-duration">~30–40 мин</span>
+                    <a href="#booking" class="service-book">Записаться</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="service-toggle" aria-hidden="true"></span>
+          </div>
+        </article>
+        <article class="service-card" tabindex="0" aria-expanded="false">
           <div class="service-card-bar"></div>
-          <div class="service-icon">💆</div>
-          <div class="service-name">Королевский уход</div>
-          <div class="service-desc">Маска, патчи, воск, скраб</div>
-        </div>
-        <div class="service-card reveal d2">
+          <div class="service-thumb">
+            <img src="images/service-care.jpg" alt="Королевский уход" width="480" height="320" loading="lazy">
+          </div>
+          <div class="service-body">
+            <div class="service-head">
+              <div class="service-name">Королевский уход</div>
+              <div class="service-price">от 330 MDL</div>
+            </div>
+            <div class="service-desc">Маска, патчи, воск, скраб</div>
+            <div class="service-details-wrap">
+              <div class="service-details-inner">
+                <div class="service-details">
+                  <p>Полный ритуал: стрижка, воск для бороды, патчи под глаза, маска для лица и расслабляющий уход. Максимум комфорта за один визит.</p>
+                  <div class="service-meta">
+                    <span class="service-duration">~75 мин</span>
+                    <a href="#booking" class="service-book">Записаться</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="service-toggle" aria-hidden="true"></span>
+          </div>
+        </article>
+        <article class="service-card" tabindex="0" aria-expanded="false">
           <div class="service-card-bar"></div>
-          <div class="service-icon">🎨</div>
-          <div class="service-name">Окрашивание</div>
-          <div class="service-desc">Камуфляж седины, тонировка</div>
-        </div>
-        <div class="service-card reveal d3">
+          <div class="service-thumb">
+            <img src="images/service-coloring.jpg" alt="Окрашивание" width="480" height="320" loading="lazy">
+          </div>
+          <div class="service-body">
+            <div class="service-head">
+              <div class="service-name">Окрашивание</div>
+              <div class="service-price">от 110 MDL</div>
+            </div>
+            <div class="service-desc">Камуфляж седины, тонировка</div>
+            <div class="service-details-wrap">
+              <div class="service-details-inner">
+                <div class="service-details">
+                  <p>Камуфлирование седины на голове или в бороде, тонирование для естественного оттенка. Профессиональные средства без резких переходов.</p>
+                  <div class="service-meta">
+                    <span class="service-duration">~40 мин</span>
+                    <a href="#booking" class="service-book">Записаться</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="service-toggle" aria-hidden="true"></span>
+          </div>
+        </article>
+        <article class="service-card" tabindex="0" aria-expanded="false">
           <div class="service-card-bar"></div>
-          <div class="service-icon">⚡</div>
-          <div class="service-name">Комплекс 2в1</div>
-          <div class="service-desc">Стрижка + борода со скидкой</div>
-        </div>
+          <div class="service-thumb">
+            <img src="images/service-combo.jpg" alt="Комплекс 2в1" width="480" height="320" loading="lazy">
+          </div>
+          <div class="service-body">
+            <div class="service-head">
+              <div class="service-name">Комплекс 2в1</div>
+              <div class="service-price">от 250 MDL</div>
+            </div>
+            <div class="service-desc">Стрижка + борода со скидкой</div>
+            <div class="service-details-wrap">
+              <div class="service-details-inner">
+                <div class="service-details">
+                  <p>Мужская стрижка и моделирование бороды в одном визите. Выгоднее, чем по отдельности — цельный образ от одного мастера.</p>
+                  <div class="service-meta">
+                    <span class="service-duration">~60 мин</span>
+                    <a href="#booking" class="service-book">Записаться</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span class="service-toggle" aria-hidden="true"></span>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -859,9 +1495,8 @@
   <!-- 4. PRICE -->
   <section id="price" class="snap bg-section-light">
     <div class="section-inner">
-      <p class="eyebrow eyebrow-dark reveal">Прайс-лист</p>
-      <h2 class="section-title reveal d1" style="color: var(--text-dark);">СТОИМОСТЬ</h2>
-      <p class="section-sub section-sub-dark reveal d2">Цены зависят от категории мастера</p>
+      <h2 class="section-title reveal" style="color: var(--text-dark);">СТОИМОСТЬ</h2>
+      <p class="section-sub section-sub-dark reveal d1">Цены зависят от категории мастера</p>
       <div class="price-list reveal d3">
         <div class="price-row">
           <span class="price-name">Мужская стрижка</span>
@@ -899,33 +1534,44 @@
   <!-- 5. MASTERS -->
   <section id="masters" class="snap bg-section">
     <div class="section-inner">
-      <p class="eyebrow reveal">Команда</p>
-      <h2 class="section-title reveal d1">НАШИ МАСТЕРА</h2>
-      <p class="section-sub reveal d2">Категории от Junior до VIP</p>
+      <h2 class="section-title reveal">НАШИ МАСТЕРА</h2>
+      <p class="section-sub reveal d1">Категории от Junior до VIP</p>
       <div class="masters-scroll reveal d3">
         <div class="master-card">
-          <div class="master-photo"><span class="master-initials">ДК</span></div>
+          <div class="master-photo">
+            <img src="images/master-denis.jpg" alt="Денис К. — VIP-барбер" width="200" height="240" loading="lazy">
+          </div>
           <div class="master-name">Денис К.</div>
           <div class="master-category">VIP-барбер</div>
-          <div class="master-spec">Стрижки, борода</div>
+          <div class="master-spec">Стрижки · борода</div>
+          <p class="master-desc">10+ лет в профессии. Создаёт образы с характером — от строгой классики до смелых решений. Безупречный результат, когда важна каждая деталь.</p>
         </div>
         <div class="master-card">
-          <div class="master-photo"><span class="master-initials">АС</span></div>
+          <div class="master-photo">
+            <img src="images/master-andrey.jpg" alt="Андрей С. — Топ-барбер" width="200" height="240" loading="lazy">
+          </div>
           <div class="master-name">Андрей С.</div>
           <div class="master-category">Топ-барбер</div>
-          <div class="master-spec">Фейд, андеркат</div>
+          <div class="master-spec">Фейд · андеркат</div>
+          <p class="master-desc">Мастер чистых переходов. Фейды и андеркаты — его визитная карточка: плавные линии, идеальная геометрия, стиль, который держит форму неделями.</p>
         </div>
         <div class="master-card">
-          <div class="master-photo"><span class="master-initials">МВ</span></div>
+          <div class="master-photo">
+            <img src="images/master-mikhail.jpg" alt="Михаил В. — Барбер" width="200" height="240" loading="lazy">
+          </div>
           <div class="master-name">Михаил В.</div>
           <div class="master-category">Барбер</div>
-          <div class="master-spec">Классика, дети</div>
+          <div class="master-spec">Классика · дети</div>
+          <p class="master-desc">Спокойная рука и внимание к каждому клиенту. Классические стрижки и детские — без спешки и стресса. Малыши уходят с улыбкой, взрослые — с идеальным силуэтом.</p>
         </div>
         <div class="master-card">
-          <div class="master-photo"><span class="master-initials">ЕП</span></div>
+          <div class="master-photo">
+            <img src="images/master-evgeny.jpg" alt="Евгений П. — Барбер" width="200" height="240" loading="lazy">
+          </div>
           <div class="master-name">Евгений П.</div>
           <div class="master-category">Барбер</div>
-          <div class="master-spec">Укладки, окрашивание</div>
+          <div class="master-spec">Укладки · окрашивание</div>
+          <p class="master-desc">Финальный штрих — его стихия. Укладки держат форму весь день, камуфляж седины выглядит естественно — будто так и задумано природой.</p>
         </div>
       </div>
       <div class="masters-cta reveal d4">
@@ -937,9 +1583,8 @@
   <!-- 6. GALLERY -->
   <section id="gallery" class="snap bg-section-alt">
     <div class="section-inner">
-      <p class="eyebrow reveal">Интерьер</p>
-      <h2 class="section-title reveal d1">АТМОСФЕРА</h2>
-      <p class="section-sub reveal d2">Место, где стрижка становится ритуалом</p>
+      <h2 class="section-title reveal">АТМОСФЕРА</h2>
+      <p class="section-sub reveal d1">Место, где стрижка становится ритуалом</p>
       <div class="marquees">
         <div class="marquee">
           <div class="marquee-track">
@@ -977,8 +1622,7 @@
   <!-- 7. REVIEWS -->
   <section id="reviews" class="snap bg-section">
     <div class="section-inner">
-      <p class="eyebrow reveal">Клиенты</p>
-      <h2 class="section-title reveal d1">ОТЗЫВЫ</h2>
+      <h2 class="section-title reveal">ОТЗЫВЫ</h2>
       <div class="rating-badge reveal d2">★ 4.8 / 5 — на основании Google отзывов</div>
       <div class="reviews-grid">
         <div class="review-card reveal d1">
@@ -1006,9 +1650,8 @@
   <!-- 8. BOOKING -->
   <section id="booking" class="snap bg-section-light">
     <div class="section-inner">
-      <p class="eyebrow eyebrow-dark reveal">Запись</p>
-      <h2 class="section-title reveal d1" style="color: var(--text-dark);">ЗАПИШИТЕСЬ ОНЛАЙН</h2>
-      <p class="section-sub section-sub-dark reveal d2">Выберите мастера, услугу и удобное время</p>
+      <h2 class="section-title reveal" style="color: var(--text-dark);">ЗАПИШИТЕСЬ ОНЛАЙН</h2>
+      <p class="section-sub section-sub-dark reveal d1">Выберите мастера, услугу и удобное время</p>
       <div class="booking-grid reveal d3">
         <div class="booking-form-wrap">
           <form id="booking-form">
@@ -1140,6 +1783,32 @@
         cardObserver.observe(card);
       });
 
+      /* Раскрытие карточек услуг */
+      var serviceCards = document.querySelectorAll('.service-card');
+
+      function setServiceOpen(card, open) {
+        card.classList.toggle('is-open', open);
+        card.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+
+      serviceCards.forEach(function (card) {
+        card.addEventListener('click', function (e) {
+          if (e.target.closest('.service-book')) return;
+          var willOpen = !card.classList.contains('is-open');
+          serviceCards.forEach(function (other) {
+            if (other !== card) setServiceOpen(other, false);
+          });
+          setServiceOpen(card, willOpen);
+        });
+
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            card.click();
+          }
+        });
+      });
+
       /* Анимированные счётчики */
       function animateCounter(el, target, duration, decimals) {
         var start = null;
@@ -1162,6 +1831,32 @@
         e.preventDefault();
         this.style.display = 'none';
         document.getElementById('form-success').classList.add('show');
+      });
+
+      /* Мобильное меню */
+      var navToggle = document.querySelector('.nav-toggle');
+      var navPanel = document.getElementById('nav-mobile-panel');
+
+      function setNavOpen(open) {
+        navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        navToggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+        navPanel.hidden = !open;
+        navPanel.classList.toggle('is-open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      }
+
+      navToggle.addEventListener('click', function () {
+        setNavOpen(navPanel.hidden);
+      });
+
+      navPanel.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          setNavOpen(false);
+        });
+      });
+
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 767) setNavOpen(false);
       });
     })();
   </script>
