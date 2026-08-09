@@ -86,6 +86,7 @@
   <!-- Иконки -->
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+  <link rel="preload" as="image" href="images/developer-hero.webp" type="image/webp" fetchpriority="high" />
   <!-- Верификация поисковиков: раскомментируйте и вставьте свои коды
   <meta name="google-site-verification" content="XXXX" />
   <meta name="yandex-verification" content="XXXX" />
@@ -847,6 +848,10 @@
     }
     @media (prefers-reduced-motion: reduce) {
       .hero-media { animation: none; }
+    }
+    .hero-media picture {
+      display: block;
+      width: 100%;
     }
     .hero-media img {
       width: 100%;
@@ -3456,7 +3461,10 @@
           </div>
         </div>
         <div class="hero-media">
-          <img src="images/developer-hero.png" alt="Иллюстрация: разработчик за рабочим местом" width="2048" height="2048" decoding="async" fetchpriority="high" />
+          <picture>
+            <source srcset="images/developer-hero.webp" type="image/webp" />
+            <img src="images/developer-hero.png" alt="Иллюстрация: разработчик за рабочим местом" width="920" height="920" decoding="async" fetchpriority="high" />
+          </picture>
         </div>
       </div>
     </div>
