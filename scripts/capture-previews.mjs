@@ -4,12 +4,9 @@ import { mkdir } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
 const require = createRequire(import.meta.url);
-const puppeteer = require(
-  path.join(fileURLToPath(new URL(".", import.meta.url)), "../../тортики/node_modules/puppeteer"),
-);
+const root = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
+const puppeteer = require(path.join(root, "node_modules/puppeteer"));
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const root = path.join(__dirname, "..");
 const outDir = path.join(root, "images", "previews");
 
 const sites = [
