@@ -1,31 +1,31 @@
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Nunito:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #faf3e7;
-  --color-cream-dark: #ede0cf;
+  --color-cream: #fbf7f0;
+  --color-cream-dark: #f1e8dc;
   --color-chocolate: #4a2c2a;
-  --color-chocolate-light: #7a5a52;
-  --color-terracotta: #d98b5f;
-  --color-terracotta-dark: #c0754a;
+  --color-chocolate-light: #8a726a;
+  --color-terracotta: #d9986f;
+  --color-terracotta-dark: #c9855a;
   --color-rose: #f2c9c2;
-  --color-rose-dark: #e0a89e;
-  --color-berry: #b83256;
-  --color-berry-dark: #9a2848;
-  --color-gold: #c2a35a;
+  --color-rose-dark: #e8b8b0;
+  --color-berry: #c04a68;
+  --color-berry-dark: #a83d58;
+  --color-gold: #c9ad6a;
 
-  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-sans: "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-serif: "Nunito", "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-hand: "Caveat", cursive;
 
   --radius-bento: 1.5rem;
   --radius-bento-lg: 2rem;
   --bento-gap: 1rem;
 
-  --shadow-bento: 0 2px 8px rgba(74, 44, 42, 0.06),
-    0 12px 32px -8px rgba(74, 44, 42, 0.1);
-  --shadow-bento-hover: 0 4px 12px rgba(74, 44, 42, 0.08),
-    0 24px 48px -12px rgba(74, 44, 42, 0.18);
+  --shadow-bento: 0 1px 3px rgba(74, 44, 42, 0.04),
+    0 8px 24px -6px rgba(74, 44, 42, 0.07);
+  --shadow-bento-hover: 0 2px 6px rgba(74, 44, 42, 0.05),
+    0 16px 36px -10px rgba(74, 44, 42, 0.1);
 
   --shadow-soft: var(--shadow-bento);
   --shadow-lift: var(--shadow-bento-hover);
@@ -51,7 +51,7 @@
   h2,
   h3 {
     font-family: var(--font-serif);
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
   }
 
   ::selection {
@@ -112,10 +112,12 @@
 
   .bento-card {
     border-radius: 1.25rem;
+    border: 1px solid color-mix(in srgb, var(--color-cream-dark) 65%, white);
     box-shadow: var(--shadow-bento);
     transition:
       transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1),
-      box-shadow 0.35s ease;
+      box-shadow 0.35s ease,
+      border-color 0.35s ease;
   }
 
   @media (min-width: 640px) {
@@ -126,8 +128,42 @@
 
   @media (hover: hover) and (pointer: fine) {
     .bento-card:hover {
-      transform: scale(1.02);
+      transform: scale(1.008);
       box-shadow: var(--shadow-bento-hover);
+      border-color: color-mix(in srgb, var(--color-rose) 35%, var(--color-cream-dark));
+    }
+  }
+
+  .hero-overlay {
+    background:
+      linear-gradient(
+        155deg,
+        color-mix(in srgb, var(--color-chocolate) 48%, transparent) 0%,
+        color-mix(in srgb, var(--color-chocolate) 16%, transparent) 36%,
+        transparent 52%
+      ),
+      linear-gradient(
+        to top,
+        color-mix(in srgb, var(--color-chocolate) 82%, transparent) 0%,
+        color-mix(in srgb, var(--color-chocolate) 42%, transparent) 38%,
+        color-mix(in srgb, var(--color-chocolate) 12%, transparent) 62%,
+        transparent 100%
+      );
+  }
+
+  .hero-tag {
+    display: inline-block;
+    width: fit-content;
+    font-family: var(--font-hand);
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--color-rose);
+  }
+
+  @media (min-width: 640px) {
+    .hero-tag {
+      font-size: 1.75rem;
     }
   }
 

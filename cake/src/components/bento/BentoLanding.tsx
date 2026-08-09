@@ -110,15 +110,15 @@ export function BentoLanding({ settings }: BentoLandingProps) {
           className="object-cover transition duration-700 group-hover:scale-105"
           sizes="(max-width: 1024px) 100vw, 66vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-chocolate/95 via-chocolate/50 to-chocolate/15" />
+        <div className="hero-overlay absolute inset-0" />
+        <span className="hero-tag absolute left-5 top-5 z-10 sm:left-10 sm:top-10">
+          с любовью, вручную
+        </span>
         <div className="relative flex h-full flex-col justify-end p-5 sm:p-10">
-          <span className="font-hand text-2xl font-semibold tracking-wide text-rose [text-shadow:0_1px_3px_rgba(74,44,42,0.95),0_2px_14px_rgba(74,44,42,0.85),0_0_1px_rgba(74,44,42,1)] sm:text-3xl">
-            с любовью, вручную
-          </span>
-          <h1 className="mt-2 max-w-lg text-balance font-serif text-2xl font-semibold leading-tight text-cream sm:text-4xl lg:text-5xl">
+          <h1 className="max-w-lg text-balance font-serif text-2xl font-semibold leading-tight text-cream sm:text-4xl lg:text-5xl">
             Торты, которые запоминают
           </h1>
-          <p className="mt-2 max-w-md text-sm leading-relaxed text-cream/85 sm:mt-3 sm:text-base">
+          <p className="mt-2 max-w-md text-sm leading-relaxed text-cream/90 sm:mt-3 sm:text-base">
             {settings.description}
           </p>
           <div className="mt-5 flex flex-col gap-2.5 sm:mt-6 sm:flex-row sm:gap-3">
@@ -131,7 +131,7 @@ export function BentoLanding({ settings }: BentoLandingProps) {
             </StaticLink>
             <StaticLink
               href="/catalog"
-              className="inline-flex w-full items-center justify-center rounded-2xl border border-cream/30 bg-cream/15 px-6 py-3.5 text-sm font-medium text-cream backdrop-blur-sm transition hover:bg-cream/25 active:scale-[0.98] sm:w-auto sm:px-7"
+              className="inline-flex w-full items-center justify-center rounded-2xl border border-cream/40 bg-cream/20 px-6 py-3.5 text-sm font-medium text-cream backdrop-blur-sm transition hover:bg-cream/30 active:scale-[0.98] sm:w-auto sm:px-7"
             >
               Смотреть каталог
             </StaticLink>
@@ -193,7 +193,7 @@ export function BentoLanding({ settings }: BentoLandingProps) {
             onClick={() => setActiveCategory("all")}
             className={`relative h-[120px] w-[130px] overflow-hidden rounded-xl text-left transition active:scale-[0.98] ${
               activeCategory === "all"
-                ? "ring-2 ring-berry ring-offset-2"
+                ? "ring-2 ring-rose-dark/50 ring-offset-2 ring-offset-cream"
                 : ""
             }`}
           >
@@ -204,7 +204,7 @@ export function BentoLanding({ settings }: BentoLandingProps) {
               className="object-cover"
               sizes="130px"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-chocolate/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-chocolate/65 to-transparent" />
             <span className="absolute inset-x-0 bottom-0 p-3 font-serif text-sm font-semibold text-cream">
               Все
             </span>
@@ -218,7 +218,7 @@ export function BentoLanding({ settings }: BentoLandingProps) {
               }
               className={`relative h-[120px] w-[130px] overflow-hidden rounded-xl text-left transition active:scale-[0.98] ${
                 activeCategory === cat.id
-                  ? "ring-2 ring-berry ring-offset-2"
+                  ? "ring-2 ring-rose-dark/50 ring-offset-2 ring-offset-cream"
                   : ""
               }`}
             >
@@ -229,7 +229,7 @@ export function BentoLanding({ settings }: BentoLandingProps) {
                 className="object-cover"
                 sizes="130px"
             />
-              <div className="absolute inset-0 bg-gradient-to-t from-chocolate/80 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-chocolate/65 to-transparent" />
               <span className="absolute inset-x-0 bottom-0 p-3 font-serif text-sm font-semibold text-cream">
                 {cat.label}
               </span>
@@ -248,7 +248,7 @@ export function BentoLanding({ settings }: BentoLandingProps) {
             setActiveCategory((prev) => (prev === cat.id ? "all" : cat.id))
           }
           className={`group relative hidden min-h-[160px] cursor-pointer text-left lg:block ${
-            activeCategory === cat.id ? "ring-2 ring-berry ring-offset-2" : ""
+            activeCategory === cat.id ? "ring-2 ring-rose-dark/50 ring-offset-2 ring-offset-cream" : ""
           }`}
         >
           <StaticImage
@@ -258,7 +258,7 @@ export function BentoLanding({ settings }: BentoLandingProps) {
             className="object-cover transition duration-500 group-hover:scale-105"
             sizes="(max-width: 1024px) 50vw, 16vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-chocolate/80 via-chocolate/25 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-chocolate/65 via-chocolate/20 to-transparent" />
           <div className="absolute inset-x-0 bottom-0 p-5">
             <h3 className="font-serif text-lg font-semibold text-cream">
               {cat.label}
@@ -266,7 +266,7 @@ export function BentoLanding({ settings }: BentoLandingProps) {
             <p className="mt-0.5 text-xs text-cream/75">{cat.subtitle}</p>
           </div>
           {activeCategory === cat.id && (
-            <span className="absolute right-3 top-3 rounded-full bg-berry px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white">
+            <span className="absolute right-3 top-3 rounded-full bg-berry/90 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-white">
               Активно
             </span>
           )}
@@ -277,7 +277,7 @@ export function BentoLanding({ settings }: BentoLandingProps) {
       <BentoCard
         as="section"
         span="order-8 md:col-span-3 lg:order-8 lg:col-span-2 lg:row-span-1"
-        className="bg-gradient-to-br from-rose/40 to-cream p-5 sm:p-6"
+        className="bg-gradient-to-br from-rose/25 via-cream to-cream p-5 sm:p-6"
         delay={200}
       >
         <div className="flex h-full flex-col justify-between">
@@ -374,7 +374,7 @@ export function BentoLanding({ settings }: BentoLandingProps) {
           className="object-cover transition duration-500 group-hover:scale-105"
           sizes="(max-width: 1024px) 100vw, 33vw"
         />
-        <div className="absolute inset-0 bg-chocolate/40 transition group-hover:bg-chocolate/30" />
+        <div className="absolute inset-0 bg-chocolate/30 transition group-hover:bg-chocolate/22" />
         <div className="relative flex h-full flex-col items-center justify-center p-6 text-center">
           <span className="flex h-14 w-14 items-center justify-center rounded-full bg-cream/90 text-chocolate shadow-lift transition group-hover:scale-110">
             <PlayIcon />
@@ -403,7 +403,7 @@ export function BentoLanding({ settings }: BentoLandingProps) {
       <BentoCard
         as="section"
         span="order-12 md:col-span-3 lg:order-12 lg:col-span-2 lg:row-span-1"
-        className="bg-cream-dark/50 p-5 sm:p-6"
+        className="bg-white p-5 sm:p-6"
         delay={280}
       >
         <DeliveryIcon className="text-terracotta" />
@@ -469,7 +469,7 @@ export function BentoLanding({ settings }: BentoLandingProps) {
             <div className="mt-5 grid gap-2.5 sm:mt-6">
               <a
                 href={`tel:${settings.phone.replace(/\D/g, "")}`}
-                className="flex items-center gap-3 rounded-2xl border border-cream-dark bg-cream/50 px-4 py-3.5 text-sm text-chocolate transition hover:border-terracotta/40 hover:shadow-soft active:scale-[0.99]"
+                className="flex items-center gap-3 rounded-2xl border border-cream-dark/80 bg-cream/40 px-4 py-3.5 text-sm text-chocolate transition hover:border-rose/40 hover:bg-cream/60 active:scale-[0.99]"
               >
                 <PhoneIcon />
                 <span className="truncate">{settings.phone}</span>
@@ -524,7 +524,7 @@ function SocialStaticLink({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="flex h-11 w-11 items-center justify-center rounded-xl border border-cream-dark text-chocolate transition hover:border-terracotta/50 hover:bg-rose/30"
+      className="flex h-11 w-11 items-center justify-center rounded-xl border border-cream-dark/80 text-chocolate transition hover:border-rose/40 hover:bg-rose/15"
     >
       {children}
     </a>

@@ -82,7 +82,7 @@ export function BentoCatalog({ cakes }: BentoCatalogProps) {
           className="object-cover transition duration-700 group-hover:scale-105"
           sizes="(max-width: 1024px) 100vw, 66vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-chocolate/90 via-chocolate/40 to-chocolate/15" />
+        <div className="hero-overlay absolute inset-0" />
         <div className="relative flex h-full flex-col justify-end p-5 sm:p-10">
           <span className="text-xs font-medium uppercase tracking-[0.16em] text-rose">
             Каталог
@@ -104,7 +104,7 @@ export function BentoCatalog({ cakes }: BentoCatalogProps) {
       <BentoCard
         as="section"
         span="md:col-span-1 md:row-span-2 md:col-start-3 md:row-start-1 lg:col-start-5 lg:col-span-2 lg:row-start-1 lg:row-span-2"
-        className="bg-gradient-to-br from-rose/50 to-cream p-5 sm:p-8"
+        className="bg-gradient-to-br from-rose/25 via-cream to-cream p-5 sm:p-8"
         delay={80}
       >
         <div className="flex h-full flex-col justify-between">

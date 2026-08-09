@@ -27,10 +27,10 @@ export function Header({ settings }: HeaderProps) {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-cream-dark/80 bg-cream/95 shadow-soft backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-cream-dark/60 bg-cream/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
           <StaticLink href="/" className="group flex min-w-0 items-center gap-2.5 sm:gap-3">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-terracotta to-terracotta-dark font-serif text-base font-semibold text-white shadow-soft sm:h-11 sm:w-11 sm:text-lg">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-terracotta/90 to-terracotta-dark font-serif text-base font-semibold text-white sm:h-11 sm:w-11 sm:text-lg">
               {monogram}
             </span>
             <span className="flex min-w-0 flex-col">
@@ -48,14 +48,14 @@ export function Header({ settings }: HeaderProps) {
               <StaticLink
                 key={link.href}
                 href={link.href}
-                className="rounded-xl px-3 py-2 text-sm font-medium text-chocolate-light transition hover:bg-cream-dark/70 hover:text-chocolate sm:px-4"
+                className="rounded-xl px-3 py-2 text-sm font-medium text-chocolate-light transition hover:bg-rose/15 hover:text-chocolate sm:px-4"
               >
                 {link.label}
               </StaticLink>
             ))}
             <StaticLink
               href="/constructor"
-              className="ml-1 rounded-2xl bg-berry px-4 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-berry-dark active:scale-[0.98]"
+              className="ml-1 rounded-2xl bg-berry px-4 py-2 text-sm font-semibold text-white transition hover:bg-berry-dark active:scale-[0.98]"
             >
               Заказать
             </StaticLink>
@@ -73,7 +73,7 @@ export function Header({ settings }: HeaderProps) {
             </button>
             <StaticLink
               href="/constructor"
-              className="rounded-2xl bg-berry px-3.5 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-berry-dark active:scale-[0.98]"
+              className="rounded-2xl bg-berry px-3.5 py-2 text-sm font-semibold text-white transition hover:bg-berry-dark active:scale-[0.98]"
             >
               Заказать
             </StaticLink>
@@ -86,10 +86,10 @@ export function Header({ settings }: HeaderProps) {
           <button
             type="button"
             aria-label="Закрыть меню"
-            className="absolute inset-0 bg-chocolate/30 backdrop-blur-[2px]"
+            className="absolute inset-0 bg-chocolate/20 backdrop-blur-[2px]"
             onClick={() => setMenuOpen(false)}
           />
-          <nav className="absolute left-4 right-4 top-[4.25rem] overflow-hidden rounded-2xl border border-cream-dark/80 bg-cream shadow-lift">
+          <nav className="absolute left-4 right-4 top-[4.25rem] overflow-hidden rounded-2xl border border-cream-dark/70 bg-cream shadow-soft">
             <div className="p-2">
               {NAV_LINKS.map((link) => (
                 <StaticLink
