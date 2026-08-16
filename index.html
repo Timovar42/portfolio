@@ -294,8 +294,8 @@
     .section-head {
       position: relative;
       z-index: 2;
-      width: calc(clamp(288px, 28.8vw, 384px) + (100vw - 100%) / 2);
-      margin: 0 0 48px calc((100% - 100vw) / 2 + 20px);
+      width: calc(clamp(320px, 32vw, 420px) + (100vw - 100%) / 2 + 20px);
+      margin: 0 0 48px calc((100% - 100vw) / 2);
       padding: 20px clamp(30px, 3.6vw, 50px) 20px clamp(24px, 3vw, 40px);
       box-sizing: border-box;
       display: flex;
@@ -2259,8 +2259,8 @@
       h2 { font-size: 28px; margin-bottom: 36px; }
 
       .section-head {
-        width: min(82vw, 490px);
-        margin: 0 0 28px calc(-1 * var(--pad-x) + 20px);
+        width: calc(min(86vw, 510px) + 20px);
+        margin: 0 0 28px calc(-1 * var(--pad-x));
         padding: 14px clamp(22px, 7vw, 34px) 14px clamp(16px, 5vw, 22px);
         background: #FFFFFF;
         border: 1px solid var(--hero-window-border);
@@ -3158,6 +3158,39 @@
       .nav-links { gap: 18px; }
       .nav-links a:not(.btn-nav) { font-size: 13.5px; }
 
+      /* заголовки секций — поверх декоративных фигур */
+      .hero,
+      .section,
+      .hero + #projects.section {
+        z-index: auto;
+        isolation: isolate;
+        transform: translateZ(0);
+      }
+      .zone-shapes {
+        z-index: 0;
+        overflow: visible;
+        pointer-events: none;
+        transform: translate3d(0, 0, -1px);
+      }
+      .zone-shape {
+        z-index: 0;
+      }
+      .hero-layout,
+      .section-inner {
+        position: relative;
+        z-index: 2;
+        transform: translateZ(0);
+        isolation: isolate;
+      }
+      .section-head {
+        position: relative;
+        z-index: 3;
+      }
+      .services-bottom .zone-shapes {
+        z-index: 0;
+        transform: translate3d(0, 0, -1px);
+      }
+
       .hero { padding-top: calc(var(--nav-h) + 32px); padding-bottom: 28px; }
       .hero-content { gap: 28px; }
       .hero-text { flex: 1 1 54%; max-width: 54%; }
@@ -3167,7 +3200,7 @@
 
       .section { padding-top: 72px; padding-bottom: 72px; }
       .section-head {
-        width: calc(clamp(260px, 34vw, 340px) + (100vw - 100%) / 2);
+        width: calc(clamp(300px, 38vw, 380px) + (100vw - 100%) / 2 + 20px);
       }
       .section-head h2 { font-size: clamp(17px, 2.5vw, 21px); }
 
@@ -3313,7 +3346,7 @@
       .hero-content { gap: 6px; }
       .hero-ctas { margin-top: 12px; }
 
-      .section-head { width: min(88vw, 490px); }
+      .section-head { width: calc(min(92vw, 510px) + 20px); }
       .section-head h2 {
         font-size: clamp(14px, 4.4vw, 17px);
         white-space: normal;
@@ -3332,7 +3365,7 @@
 
     /* ═══════════ ОЧЕНЬ УЗКИЕ ЭКРАНЫ: ≤340 ═══════════ */
     @media (max-width: 340px) {
-      .section-head { width: min(90vw, 490px); }
+      .section-head { width: calc(min(94vw, 510px) + 20px); }
       .nav-inner {
         padding-left: max(14px, env(safe-area-inset-left, 0px));
         padding-right: max(14px, env(safe-area-inset-right, 0px));
